@@ -15,11 +15,13 @@ class CreateShiftsTable extends Migration
     {
         Schema::create('shifts', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreign('station_id')->refrences('id')->on('stations');
-            $table->foreign('user_id')->refrences('id')->on('users');
+            $table->integer('station_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->integer('day');
             $table->string('shift');
             $table->timestamps();
+            $table->foreign('station_id')->references('id')->on('stations');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

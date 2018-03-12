@@ -15,13 +15,16 @@ class CreateReportsTable extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreign('open_user_id')->references('id')->on('users');
-            $table->foreign('closing_user_id')->references('id')->on('users');
-            $table->foreign('station_id')->references('id')->on('stations');
+            $table->integer('open_user_id')->unsigned();
+            $table->integer('closing_user_id')->unsigned();
+            $table->integer('station_id')->unsigned();
             $table->string('type');
             $table->string('desc');
             $table->boolean('status');
             $table->timestamps();
+            $table->foreign('open_user_id')->references('id')->on('users');
+            $table->foreign('closing_user_id')->references('id')->on('users');
+            $table->foreign('station_id')->references('id')->on('stations');
         });
     }
 
