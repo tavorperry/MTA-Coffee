@@ -16,12 +16,11 @@ class CreateShiftsTable extends Migration
         Schema::create('shifts', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('station_id')->unsigned();
-            $table->integer('user_id')->unsigned();
             $table->integer('day');
-            $table->string('shift');
+            $table->string('start_shift');
+            $table->string('end_shift');
             $table->timestamps();
-            $table->foreign('station_id')->references('id')->on('stations');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('station_id')->references('id')->on('stations')->onDelete('cascade');
         });
     }
 
