@@ -58,6 +58,7 @@ class LoginController extends Controller
             $social->provider_id = $socialUser->getId();
             $social->provider_name = $socialUser->getName();
             $social->save();
+            Auth::login($user);
         }
         return redirect('/');
     }
