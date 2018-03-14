@@ -1,16 +1,16 @@
 # Kafe_Emon
 
-##Getting started
+## Getting started
 
 1.Install Xampp
 
 2.Install phpStorm editor
 
-3.Install Composer via[https://getcomposer.org/](https://getcomposer.org/)
+3.Install Composer via [https://getcomposer.org/](https://getcomposer.org/)
 
 4.Clone the git to your xampp folder : xampp/htdocs
 
-##First time git clone
+## First time git clone
 Run for installation your dependencies
  ```
 composer install
@@ -27,7 +27,7 @@ php artisan key:generate
 php artisan migrate
  ```
 
-##Before starting any coding
+## Before starting any coding
 - Don't forget to fetch at Github desktop!
 
 - Run to insert fake data to the DB
