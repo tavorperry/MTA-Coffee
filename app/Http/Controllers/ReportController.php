@@ -23,7 +23,7 @@ class ReportController extends Controller
 
         $report = new Report();
 
-        $report->user_id = 1;
+        $report->user_id = 1; //for testing
         $report->station_id = $request->get('station');
         $report->type = $request->get('type');
         $report->desc = $request->get('message');

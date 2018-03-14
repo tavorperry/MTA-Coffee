@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Station extends Model
 {
+    protected $guarded = []; //all
+
     public function reports()
     {
         return $this->hasMany('App\Report');
