@@ -41,4 +41,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Shift');
     }
+
+    public function socials_user()
+    {
+        return $this->hasMany('App\SocialUser');
+    }
 }
