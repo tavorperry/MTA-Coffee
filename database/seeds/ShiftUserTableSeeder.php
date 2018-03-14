@@ -16,7 +16,7 @@ class ShiftUserTableSeeder extends Seeder
         $shiftUser = [
             [
                 'user_id' => 1,
-                'shift_id' => 2,
+                'shift_id' => rand(1,30),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -28,13 +28,13 @@ class ShiftUserTableSeeder extends Seeder
             ],
             [
                 'user_id' => 2,
-                'shift_id' => 1,
+                'shift_id' => rand(1,30),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
                 'user_id' => 3,
-                'shift_id' => 2,
+                'shift_id' => rand(1,30),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],

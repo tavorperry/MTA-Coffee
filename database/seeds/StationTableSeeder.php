@@ -14,12 +14,7 @@ class StationTableSeeder extends Seeder
     {
         $stations = [
             [
-                'name' => 'Kalkala',
-                'building' => 3,
-                'floor' => 2
-            ],
-            [
-                'name' => 'Fumento',
+                'name' => 'Fomento',
                 'building' => 1,
                 'floor' => 2
             ],
@@ -27,6 +22,11 @@ class StationTableSeeder extends Seeder
                 'name' => 'Weston',
                 'building' => 2,
                 'floor' => 0
+            ],
+            [
+                'name' => 'Kalkala',
+                'building' => 3,
+                'floor' => 2
             ]
         ];
 
