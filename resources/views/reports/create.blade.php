@@ -1,38 +1,46 @@
-<h1>Create Reports</h1>
+<!DOCTYPE html>
+<html dir="rtl">
+    <h1>דווח על בעיה בעמדה</h1>
 
-@if(session('message'))
-    <div>{{ session('message') }}</div>
-@endif
+    @if(session('message'))
+        <div>{{ session('message') }}</div>
+    @endif
 
-<form action="{{ route('reports.store') }}" method="POST">
-    @csrf
-    
-    <div>
-        <label>Type</label><br>
-        <select name="type">
-            <option value="חסר משהו">חסר משהו</option>
-            <option value="אחר">אחר</option>
-        </select>
-    </div>
+    <form action="{{ route('reports.store') }}" method="POST">
+        @csrf
 
-    <br>
+        <div>
+            <label>סוג</label><br>
+            <select name="type">
+                <option value="חסר משהו">חסר משהו</option>
+                <option value="יש תקלה">יש תקלה</option>
+                <option value="לא נקי">לא נקי</option>
+                <option value="אחר">אחר</option>
+            </select>
+        </div>
 
-    <div>
-        <label>Message</label><br>
-        <input type="text" name="message">
-    </div>
+        <br>
 
-    <br>
+        <div>
+            <label>עמדה</label><br>
+            <select name="station">
+                <option value="1">פומנטו</option>
+                <option value="2">ווסטון</option>
+                <option value="3">כלכלה</option>
+            </select>
+        </div>
 
-    <div>
-        <label>Station</label><br>
-        <select name="station">
-            <option value="1">kakala</option>
-            <option value="3">westron</option>
-        </select>
-    </div>
+        <br>
 
-    <div>
-        <input type="submit" value="Report">
-    </div>
-</form>
+        <div>
+            <label>פרטים נוספים</label><br>
+            <textarea rows="4" cols="50" name="message" placeholder="נא לשמור על שפה תקינה"></textarea>
+        </div>
+
+        <br>
+
+        <div>
+            <input type="submit" value="דווח!">
+        </div>
+    </form>
+</html>

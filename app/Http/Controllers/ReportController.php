@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Session;
 
 class ReportController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     // GET /reports/create
     public function create()
     {
@@ -23,7 +27,7 @@ class ReportController extends Controller
 
         $report = new Report();
 
-        $report->user_id = 1; //for testing
+        $report->user_id = auth()->id();
         $report->station_id = $request->get('station');
         $report->type = $request->get('type');
         $report->desc = $request->get('message');
