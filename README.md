@@ -26,6 +26,13 @@ php artisan key:generate
  ```
 php artisan migrate
  ```
+ 
+ Now we have Google Auth - How great is that? 
+ Add the ID and the secret code to the .env (ask me for the details):
+ ```angular2html
+GOOGLE_CLIENT_ID=6***********-r***************.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=vC-****************
+```
 
 ## Before starting any coding
 - Don't forget to fetch at Github desktop!
