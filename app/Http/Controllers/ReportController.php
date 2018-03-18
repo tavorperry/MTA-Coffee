@@ -40,7 +40,6 @@ class ReportController extends Controller
         if ($isReported) {
             PointsController::AddPoints(20,$report->user_id);
             $request->session()->flash('message', 'Created Successfully');
-
         } else {
             $request->session()->flash('message', 'There is an error!');
         }
