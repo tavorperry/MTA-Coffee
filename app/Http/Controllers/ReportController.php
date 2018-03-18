@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Report;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\PointsController;
+
 
 class ReportController extends Controller
 {
@@ -25,8 +27,8 @@ class ReportController extends Controller
             'message' => 'required'
         ]);
 
-        $report = new Report();
 
+        $report = new Report();
         $report->user_id = auth()->id();
         $report->station_id = $request->get('station');
         $report->type = $request->get('type');
@@ -36,6 +38,7 @@ class ReportController extends Controller
 
 
         if ($isReported) {
+            PointsController::AddPoints(20,$report->user_id);
             $request->session()->flash('message', 'Created Successfully');
 
         } else {
