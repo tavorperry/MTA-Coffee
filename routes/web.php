@@ -26,3 +26,8 @@ Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback
 
 //logout
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+
+//shifts
+Route::get('/shifts', function () {
+    return view('shifts/update');
+});
