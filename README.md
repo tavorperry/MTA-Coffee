@@ -17,7 +17,7 @@ composer install
  ```
 Change from .env.example to .env (PHPstorm user? at Refactor->Rename)
 
-Create your DB and config it at .env
+Via PhpMyAdmin, Create your DB(UTF 8) and config it at .env
 
 Run for code key generate and create your DB for the first time
  ```
