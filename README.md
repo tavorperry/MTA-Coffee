@@ -11,7 +11,7 @@
 4.Clone the git to your xampp folder : xampp/htdocs
 
 ## First time git clone
-Navigate through CMD to your project folder and run then run for installation your dependencies
+Navigate through CMD to your project folder and run for installation your dependencies:
  ```
 composer install
  ```
