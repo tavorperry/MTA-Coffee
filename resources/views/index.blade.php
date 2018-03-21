@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
 <title>Index</title>
@@ -15,7 +13,7 @@
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
   <div class="w3-bar w3-purple w3-card" id="myNavbar">
-    <a href="#home" class="right-align w3-bar-item w3-button w3-wide"> קפה אמון <img src="../../public/images/logo1.png" width="40"></a>
+    <a href="#home" class="right-align w3-bar-item w3-button w3-wide"> קפה אמון <img src="images/logo1.png" width="40"></a>
 
     <!-- Right-sided navbar links -->
     <div class="w3-left w3-hide-small">
@@ -51,7 +49,20 @@
    <!--  <span class="w3-large">Stop  valuable time with projects that just isn't you.</span> -->
 
     <p><a href="#about" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">לחץ כאן לתשלום</a></p>
-  </div> 
+    {{--Tavor Added this line - this Google Login--}}
+    <div>
+      @if(Auth::user())
+        <div>
+          <h1>ברוך הבא, {{ Auth::user()->first_name }}</h1>
+          <a href="{{ route('logout') }}">Logout</a>
+        </div>
+      @else
+        <div>
+          <a href="{{ route('login') }}">לחץ כאן להתחברות</a>
+        </div>
+      @endif
+    </div>
+  </div>
   <div class="w3-display-bottomleft w3-text-grey w3-large" style="padding:24px 48px">
     <i class="fa fa-facebook-official w3-hover-opacity"></i>
     <i class="fa fa-instagram w3-hover-opacity"></i>
