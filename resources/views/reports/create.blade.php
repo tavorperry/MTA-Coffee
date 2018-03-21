@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html dir="rtl">
     <h1>דווח על בעיה בעמדה</h1>
+    //test
 
     @if(session('message'))
         <div>{{ session('message') }}</div>
