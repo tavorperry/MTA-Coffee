@@ -29,5 +29,9 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 //shifts
 Route::get('/shifts', function () {
+    return view('shifts/user_shifts');
+});
+
+Route::get('/shifts/update', function () {
     return view('shifts/update');
 });

@@ -8,7 +8,7 @@
         </style>
     </head>
     <body>
-        <h1>המשמרות שלך</h1>
+        <h1>עדכן משמרות</h1>
         <form>
             <table style="border: 2px solid black">
                 <tr>
@@ -21,12 +21,6 @@
                 </tr>
                 <tr>
                     <th>בוקר 8:00-14:00<br></th>
-                </tr>
-                <tr>
-                    <th>ערב 14:00-20:00<br></th>
-                </tr>
-                <tr>
-                    <td></td>
                     <td><input type="checkbox" name="shift" value="1">1</td>
                     <td><input type="checkbox" name="shift" value="Bike">2</td>
                     <td><input type="checkbox" name="shift" value="Bike">3</td>
@@ -34,13 +28,14 @@
                     <td><input type="checkbox" name="shift" value="Bike">5</td>
                 </tr>
                 <tr>
-                    <td></td>
+                    <th>ערב 14:00-20:00<br></th>
                     <td><input type="checkbox" name="vehicle" value="Bike"></td>
                     <td><input type="checkbox" name="vehicle" value="Bike"></td>
                     <td><input type="checkbox" name="vehicle" value="Bike"></td>
                     <td><input type="checkbox" name="vehicle" value="Bike"></td>
                     <td><input type="checkbox" name="vehicle" value="Bike"></td>
                 </tr>
+
             </table>
         </form>
     </body>
