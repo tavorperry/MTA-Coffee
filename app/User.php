@@ -7,6 +7,17 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    const LEVEL_ONE = 100;
+    const LEVEL_TWO = 200;
+    const LEVEL_THREE = 300;
+    const LEVEL_FOUR = 400;
+    const LEVEL_FIVE = 500;
+    const LEVEL_SIX = 600;
+    const LEVEL_SEVEN = 700;
+    const LEVEL_EIGHT = 800;
+    const LEVEL_NINE = 900;
+    const LEVEL_STEN = 1000;
+
     use Notifiable;
 
     /**
@@ -45,5 +56,47 @@ class User extends Authenticatable
     public function socials_user()
     {
         return $this->hasMany('App\SocialUser');
+    }
+
+    public function addPoints($points)
+    {
+        $this->points = $this->points + $points;
+        if ($this->save()) {
+            return $this->$points;
+        };
+        return 0;
+    }
+
+    public function getLevel()
+    {
+        $currentPoints = $this->points;
+
+        if($currentPoints <= self::LEVEL_ONE){
+            return 1;
+        } elseif ($currentPoints <= self::LEVEL_TWO){
+            return 2;
+        } elseif ($currentPoints <= self::LEVEL_THREE) {
+            return 3;
+        } elseif ($currentPoints <= self::LEVEL_FOUR){
+            return 4;
+        } elseif ($currentPoints <= self::LEVEL_FIVE) {
+            return 5;
+        } elseif ($currentPoints <= self::LEVEL_SIX) {
+            return 6;
+        } elseif ($currentPoints <= self::LEVEL_SEVEN) {
+            return 7;
+        } elseif ($currentPoints <= self::LEVEL_EIGHT) {
+            return 8;
+        } elseif ($currentPoints <= self::LEVEL_NINE) {
+            return 9;
+        }elseif ($currentPoints <= self::LEVEL_TEN) {
+            return 10;
+        }
+        return 0;
+    }
+
+    public function isLevelUp($prevLevel)
+    {
+        return $this->getLevel() > $prevLevel;
     }
 }
