@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\PointsController;
 use Auth;
+use Alert;
 
 
 class ReportController extends Controller
@@ -40,15 +41,15 @@ class ReportController extends Controller
             $user = Auth::user();
             $prevLevel = $user->getLevel();
             $user->addPoints(20);
+            Alert::success('הרווחת 20 נקודות', 'הדיווח נשלח!')->persistent("Close");
 
             if($user->isLevelUp($prevLevel))
             {
-                //Add something to do
-                $request->session()->flash('message', "Level UP!");
+                Alert::success('מזל טוב עלית רמה!','תותח/ית')->persistent("Close");
             }
             //$request->session()->flash('message', 'Created Successfully');
         } else {
-            $request->session()->flash('message', 'There is an error!');
+            Alert::error('לא בוכים על חלב שנשפך!', 'אופס תקלה');
         }
 
         return redirect()->route('reports.create');
