@@ -5,7 +5,11 @@
         "This file is @generated automatically"
     ],
 <<<<<<< HEAD
+<<<<<<< HEAD
     "content-hash": "022a9199ffb2f4a2bf7202e4d7349d4e",
+=======
+    "content-hash": "64895f5653da90477d459f9efd44757d",
+>>>>>>> parent of 6ddf293... feat: Sweet alerts for every report!
 =======
     "content-hash": "64895f5653da90477d459f9efd44757d",
 >>>>>>> parent of 6ddf293... feat: Sweet alerts for every report!

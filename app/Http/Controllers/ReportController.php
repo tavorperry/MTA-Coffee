@@ -9,6 +9,9 @@ use App\Http\Controllers\PointsController;
 <<<<<<< HEAD
 =======
 use Auth;
+<<<<<<< HEAD
+>>>>>>> parent of 6ddf293... feat: Sweet alerts for every report!
+=======
 >>>>>>> parent of 6ddf293... feat: Sweet alerts for every report!
 
 
