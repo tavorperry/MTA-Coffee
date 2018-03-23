@@ -6,6 +6,10 @@ use App\Report;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\PointsController;
+<<<<<<< HEAD
+=======
+use Auth;
+>>>>>>> parent of 6ddf293... feat: Sweet alerts for every report!
 
 
 class ReportController extends Controller
@@ -38,8 +42,21 @@ class ReportController extends Controller
 
 
         if ($isReported) {
+<<<<<<< HEAD
             PointsController::AddPoints(20,$report->user_id);
             $request->session()->flash('message', 'Created Successfully');
+=======
+            $user = Auth::user();
+            $prevLevel = $user->getLevel();
+            $user->addPoints(20);
+
+            if($user->isLevelUp($prevLevel))
+            {
+                //Add something to do
+                $request->session()->flash('message', "Level UP!");
+            }
+            //$request->session()->flash('message', 'Created Successfully');
+>>>>>>> parent of 6ddf293... feat: Sweet alerts for every report!
         } else {
             $request->session()->flash('message', 'There is an error!');
         }

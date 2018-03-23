@@ -1,9 +1,5 @@
 <!DOCTYPE html>
 <html dir="rtl">
-    <head>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    </head>
     <h1>דווח על בעיה בעמדה</h1>
 
     @if(session('message'))
@@ -47,6 +43,4 @@
             <input type="submit" value="דווח!">
         </div>
     </form>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
-    @include('sweet::alert')
 </html>
