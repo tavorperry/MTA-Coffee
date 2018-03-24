@@ -7,22 +7,11 @@
     "require": {
         "php": "^7.1.3",
         "fideloper/proxy": "^4.0",
-        "guzzlehttp/guzzle": "~6.3",
         "laravel/framework": "5.6.*",
         "laravel/socialite": "^3.0",
         "laravel/tinker": "^1.0",
-<<<<<<< HEAD
-<<<<<<< HEAD
         "laravelcollective/html": "5.6.*",
-        "paypal/rest-api-sdk-php": "*",
-        "srmklive/paypal": "^1.6",
         "uxweb/sweet-alert": "^1.4"
-=======
-        "laravelcollective/html": "5.6.*"
->>>>>>> parent of 6ddf293... feat: Sweet alerts for every report!
-=======
-        "laravelcollective/html": "5.6.*"
->>>>>>> parent of 6ddf293... feat: Sweet alerts for every report!
     },
     "require-dev": {
         "filp/whoops": "^2.0",

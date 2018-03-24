@@ -60,7 +60,7 @@ class LoginController extends Controller
             $social->save();
             Auth::login($user);
         }
-        return redirect('/');
+        return redirect()->back();
     }
 
     public function logout(Request $request) {
