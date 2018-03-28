@@ -35,3 +35,16 @@ Route::get('/shifts', function () {
 Route::get('/shifts/update', function () {
     return view('shifts/update');
 });
+
+//PayPal
+Route::get('paypal/express-checkout', 'PaypalController@expressCheckout')->name('paypal.express-checkout');
+Route::get('paypal/express-checkout-success', 'PaypalController@expressCheckoutSuccess');
+Route::post('paypal/notify', 'PaypalController@notify');
+
+
+Route::get('/paypal', function () {
+    return view('tavorstest');
+});
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
