@@ -1,5 +1,7 @@
 <html dir="rtl">
     <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <title></title>
         <style>
             table, th, td {
@@ -9,7 +11,9 @@
     </head>
     <body>
         <h1>עדכן משמרות</h1>
-        <form>
+        <form action="{{ route('station.shifts', $station->id) }}" method="POST">
+            @csrf
+            @method('PUT')
             <table style="border: 2px solid black">
                 <tr>
                     <th>משמרת</th>
@@ -21,22 +25,22 @@
                 </tr>
                 <tr>
                     <th>בוקר 8:00-14:00<br></th>
-                    <td><input type="checkbox" name="shift" value="1">1</td>
-                    <td><input type="checkbox" name="shift" value="Bike">2</td>
-                    <td><input type="checkbox" name="shift" value="Bike">3</td>
-                    <td><input type="checkbox" name="shift" value="Bike">4</td>
-                    <td><input type="checkbox" name="shift" value="Bike">5</td>
+                    @foreach($station->shifts as $shift)
+                        <td><input type="checkbox" name="shifts[]" value="{{ $shift->id }}">1</td>
+                        @break($loop->index == 4)
+                    @endforeach
                 </tr>
                 <tr>
                     <th>ערב 14:00-20:00<br></th>
-                    <td><input type="checkbox" name="vehicle" value="Bike"></td>
-                    <td><input type="checkbox" name="vehicle" value="Bike"></td>
-                    <td><input type="checkbox" name="vehicle" value="Bike"></td>
-                    <td><input type="checkbox" name="vehicle" value="Bike"></td>
-                    <td><input type="checkbox" name="vehicle" value="Bike"></td>
+                    @for($i=5; $i < 10; $i++)
+                        <td><input type="checkbox" name="shifts[]" value="{{ $station->shifts[$i]->id }}">1</td>
+                    @endfor
                 </tr>
 
-            </table>
+            </table><br>
+            <button type='submit'>עדכן משמרות</button>
         </form>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
+        @include('sweet::alert')
     </body>
 </html>

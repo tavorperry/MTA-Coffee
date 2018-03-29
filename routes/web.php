@@ -32,9 +32,9 @@ Route::get('/shifts', function () {
     return view('shifts.user_shifts');
 });
 
-Route::get('/shifts/update', function () {
-    return view('shifts.update');
-});
+Route::get('station/{station}/shifts/edit', 'StationShiftController@edit')->name('station.shifts.edit');
+Route::put('station/{station}/shifts' ,'StationShiftController@update')->name('station.shifts');
+
 
 //PayPal
 Route::get('paypal/express-checkout', 'PaypalController@expressCheckout')->name('paypal.express-checkout');

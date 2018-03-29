@@ -25,6 +25,38 @@ class ShiftTableSeeder extends Seeder
             ],
             [
                 'station_id' => '1',
+                'day' => '2',
+                'start_shift' => '8',
+                'end_shift' => '14',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'station_id' => '1',
+                'day' => '3',
+                'start_shift' => '8',
+                'end_shift' => '14',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'station_id' => '1',
+                'day' => '4',
+                'start_shift' => '8',
+                'end_shift' => '14',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'station_id' => '1',
+                'day' => '5',
+                'start_shift' => '8',
+                'end_shift' => '14',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'station_id' => '1',
                 'day' => '1',
                 'start_shift' => '14',
                 'end_shift' => '20',
@@ -34,24 +66,8 @@ class ShiftTableSeeder extends Seeder
             [
                 'station_id' => '1',
                 'day' => '2',
-                'start_shift' => '8',
-                'end_shift' => '14',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'station_id' => '1',
-                'day' => '2',
                 'start_shift' => '14',
                 'end_shift' => '20',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'station_id' => '1',
-                'day' => '3',
-                'start_shift' => '8',
-                'end_shift' => '14',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
@@ -66,24 +82,8 @@ class ShiftTableSeeder extends Seeder
             [
                 'station_id' => '1',
                 'day' => '4',
-                'start_shift' => '8',
-                'end_shift' => '14',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'station_id' => '1',
-                'day' => '4',
                 'start_shift' => '14',
                 'end_shift' => '20',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'station_id' => '1',
-                'day' => '5',
-                'start_shift' => '8',
-                'end_shift' => '14',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
@@ -95,6 +95,7 @@ class ShiftTableSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
+
             //station 2
             [
                 'station_id' => '2',
@@ -104,6 +105,42 @@ class ShiftTableSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
+
+            [
+                'station_id' => '2',
+                'day' => '2',
+                'start_shift' => '8',
+                'end_shift' => '14',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+
+            [
+                'station_id' => '2',
+                'day' => '3',
+                'start_shift' => '8',
+                'end_shift' => '14',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+
+            [
+                'station_id' => '2',
+                'day' => '4',
+                'start_shift' => '8',
+                'end_shift' => '14',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+
+            [
+                'station_id' => '2',
+                'day' => '5',
+                'start_shift' => '8',
+                'end_shift' => '14',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
             [
                 'station_id' => '2',
                 'day' => '1',
@@ -115,14 +152,6 @@ class ShiftTableSeeder extends Seeder
             [
                 'station_id' => '2',
                 'day' => '2',
-                'start_shift' => '8',
-                'end_shift' => '14',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'station_id' => '2',
-                'day' => '2',
                 'start_shift' => '14',
                 'end_shift' => '20',
                 'created_at' => Carbon::now(),
@@ -131,25 +160,8 @@ class ShiftTableSeeder extends Seeder
             [
                 'station_id' => '2',
                 'day' => '3',
-                'start_shift' => '8',
-                'end_shift' => '14',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'station_id' => '2',
-                'day' => '3',
                 'start_shift' => '14',
                 'end_shift' => '20',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            //
-            [
-                'station_id' => '2',
-                'day' => '4',
-                'start_shift' => '8',
-                'end_shift' => '14',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
@@ -164,19 +176,12 @@ class ShiftTableSeeder extends Seeder
             [
                 'station_id' => '2',
                 'day' => '5',
-                'start_shift' => '8',
-                'end_shift' => '14',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'station_id' => '2',
-                'day' => '5',
                 'start_shift' => '14',
                 'end_shift' => '20',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
+
             //station 3
             [
                 'station_id' => '3',
@@ -186,6 +191,42 @@ class ShiftTableSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
+
+            [
+                'station_id' => '3',
+                'day' => '2',
+                'start_shift' => '8',
+                'end_shift' => '14',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+
+            [
+                'station_id' => '3',
+                'day' => '3',
+                'start_shift' => '8',
+                'end_shift' => '14',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+
+            [
+                'station_id' => '3',
+                'day' => '4',
+                'start_shift' => '8',
+                'end_shift' => '14',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+
+            [
+                'station_id' => '3',
+                'day' => '5',
+                'start_shift' => '8',
+                'end_shift' => '14',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
             [
                 'station_id' => '3',
                 'day' => '1',
@@ -197,24 +238,8 @@ class ShiftTableSeeder extends Seeder
             [
                 'station_id' => '3',
                 'day' => '2',
-                'start_shift' => '8',
-                'end_shift' => '14',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'station_id' => '3',
-                'day' => '2',
                 'start_shift' => '14',
                 'end_shift' => '20',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'station_id' => '3',
-                'day' => '3',
-                'start_shift' => '8',
-                'end_shift' => '14',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
@@ -229,24 +254,8 @@ class ShiftTableSeeder extends Seeder
             [
                 'station_id' => '3',
                 'day' => '4',
-                'start_shift' => '8',
-                'end_shift' => '14',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'station_id' => '3',
-                'day' => '4',
                 'start_shift' => '14',
                 'end_shift' => '20',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'station_id' => '3',
-                'day' => '5',
-                'start_shift' => '8',
-                'end_shift' => '14',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
@@ -258,6 +267,7 @@ class ShiftTableSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]
+
         ];
 
 
