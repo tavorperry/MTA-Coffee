@@ -16,7 +16,7 @@
         @else
         <div>
             <h1>Welcome to MTAcoffee!</h1>
-            <a href="{{ route('login') }}">Login</a>
+            <a href="{{ route('login/google') }}">Login</a>
         </div>
         @endif
     </body>

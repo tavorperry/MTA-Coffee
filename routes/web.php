@@ -21,7 +21,7 @@ Route::get('/', function () {
 Route::resource('reports', 'ReportController', ['only' => ['create', 'store']]);
 
 //Google auth
-Route::get('login/google', 'Auth\LoginController@redirectToProvider')->name('login');
+Route::get('login/google', 'Auth\LoginController@redirectToProvider')->name('login/google');
 Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback');
 
 //logout
@@ -45,6 +45,10 @@ Route::post('paypal/notify', 'PaypalController@notify');
 Route::get('/paypal', function () {
     return view('tavorstest');
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
