@@ -15,25 +15,25 @@ Route::get('/', function () {
     return view('index');
 });
 
-//Route::get('/login', 'loginController@getUser');
+//Auth
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+//Google auth
+Route::get('login/google', 'SocialLoginController@redirectToProvider')->name('login.google');
+Route::get('login/google/callback', 'SocialLoginController@handleProviderCallback');
 
 //reports
 Route::resource('reports', 'ReportController', ['only' => ['create', 'store']]);
 
-//Google auth
-Route::get('login/google', 'Auth\LoginController@redirectToProvider')->name('login/google');
-Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback');
-
-//logout
-Route::get('logout', 'Auth\LoginController@logout')->name('logout');
-
 //shifts
 Route::get('/shifts', function () {
-    return view('shifts/user_shifts');
+    return view('shifts.user_shifts');
 });
 
 Route::get('/shifts/update', function () {
-    return view('shifts/update');
+    return view('shifts.update');
 });
 
 //PayPal
@@ -45,10 +45,7 @@ Route::post('paypal/notify', 'PaypalController@notify');
 Route::get('/paypal', function () {
     return view('tavorstest');
 });
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+

@@ -54,11 +54,17 @@
       @if(Auth::user())
         <div>
           <h1>ברוך הבא, {{ Auth::user()->first_name }}</h1>
-          <a href="{{ route('logout') }}">Logout</a>
+          <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type="submit">LOGOUT</button>
+          </form>
+
         </div>
       @else
         <div>
-          <a href="{{ route('login/google') }}">לחץ כאן להתחברות</a>
+          <a href="{{ route('login.google') }}">GOOGLE לחץ כאן להתחברות</a><br>
+          <a href="{{ route('login') }}">לחץ כאן להתחברות</a><br>
+          <a href="{{ route('register') }}">לחץ כאן להרשמה</a>
         </div>
       @endif
     </div>
