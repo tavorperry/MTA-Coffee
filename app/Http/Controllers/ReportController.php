@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\PointsController;
 use Auth;
 use Alert;
+use Validator;
 
 
 class ReportController extends Controller
@@ -25,9 +26,15 @@ class ReportController extends Controller
     // POST /reports
     public function store(Request $request)
     {
-        $request->validate([
-            'message' => 'required'
+        $validator = Validator::make($request->all(),[
+            'message' => 'required|max:50'
         ]);
+
+        if($validator->fails())
+        {
+            Alert::error('אנא ספק פרטים נוספים לטיפול מהיר', 'אין פרטים!')->persistent("Close");
+            return redirect()->back()->withInput();
+        }
 
         $report = new Report();
         $report->user_id = auth()->id();
@@ -48,8 +55,6 @@ class ReportController extends Controller
                 Alert::success('מזל טוב עלית רמה!','תותח/ית')->persistent("Close");
             }
             //$request->session()->flash('message', 'Created Successfully');
-        } else {
-            Alert::error('לא בוכים על חלב שנשפך!', 'אופס תקלה');
         }
 
         return redirect()->route('reports.create');
