@@ -49,6 +49,8 @@
    <!--  <span class="w3-large">Stop  valuable time with projects that just isn't you.</span> -->
 
     <p><a href="#about" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">לחץ כאן לתשלום</a></p>
+    <p><a href="{{ route('reports.create') }}" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">לחץ כאן לדיווח</a></p>
+    <p><a href="{{ route('station') }}" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">לחץ כאן לשיבוץ למשמרות</a></p>
     {{--Tavor Added this line - this Google Login--}}
     <div>
       @if(Auth::user())

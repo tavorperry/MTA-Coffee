@@ -6,11 +6,25 @@
         <style>
             table, th, td {
                 border: 1px solid black;
+                padding: 5px;
+                text-align: center;
+            }
+            input[type='checkbox']{
+                zoom: 2;
             }
         </style>
     </head>
     <body>
         <h1>עדכן משמרות</h1>
+        <h4>
+            @if($station->id == 1)
+                {{ "פומנטו" }}
+            @elseif($station->id == 2)
+                {{ "ווסטון" }}
+            @else
+                {{ "כלכלה" }}
+            @endif
+        </h4>
         <form action="{{ route('station.shifts', $station->id) }}" method="POST">
             @csrf
             @method('PUT')
@@ -26,14 +40,14 @@
                 <tr>
                     <th>בוקר 8:00-14:00<br></th>
                     @foreach($station->shifts as $shift)
-                        <td><input type="checkbox" name="shifts[]" value="{{ $shift->id }}">1</td>
+                        <td><input type="checkbox" name="shifts[]" value="{{ $shift->id }}"></td>
                         @break($loop->index == 4)
                     @endforeach
                 </tr>
                 <tr>
                     <th>ערב 14:00-20:00<br></th>
                     @for($i=5; $i < 10; $i++)
-                        <td><input type="checkbox" name="shifts[]" value="{{ $station->shifts[$i]->id }}">1</td>
+                        <td><input type="checkbox" name="shifts[]" value="{{ $station->shifts[$i]->id }}"></td>
                     @endfor
                 </tr>
 

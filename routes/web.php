@@ -32,6 +32,8 @@ Route::get('/shifts', function () {
     return view('shifts.user_shifts');
 });
 
+Route::get('station', 'StationShiftController@pickStation')->name('station');
+
 Route::get('station/{station}/shifts/edit', 'StationShiftController@edit')->name('station.shifts.edit');
 Route::put('station/{station}/shifts' ,'StationShiftController@update')->name('station.shifts');
 

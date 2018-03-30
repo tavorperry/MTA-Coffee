@@ -29,6 +29,11 @@ class StationShiftController extends Controller
         return back();
     }
 
+    public function pickStation()
+    {
+        return view('shifts.stations');
+    }
+
 
 
 }
