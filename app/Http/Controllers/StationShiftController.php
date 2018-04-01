@@ -25,9 +25,6 @@ class StationShiftController extends Controller
             Alert::success('צבור נקודות וזכה בפרסים! :)', 'המשמרות מעודכנות!')->persistent('Close');
         }
         $userShifts->sync($shifts);
-
-
-
         return back();
     }
 
