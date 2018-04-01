@@ -42,13 +42,13 @@
 </nav>
 
 <!-- Header with full-height image -->
-<header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
-  <div class="w3-display-topright w3-text-white w3-right-aligns right-align" style="padding:48px">
-    <span class="w3-jumbo w3-hide-small ">קפה אמון, בשביל כולנו!</span><br>
-    <span class="w3-xxlarge w3-hide-large w3-hide-medium">קפה אמון בשביל כולם</span><br>
+<main class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
+  <div class="w3-display-topright w3-text-white w3-right-aligns right-align" style="padding:10%">
+    <span class="w3-jumbo w3-hide-small ">קפה אמון!</span><br>
+    <span class="w3-xxlarge w3-hide-large w3-hide-medium">ברוכים הבאים לאפליקציה הרשמית של קפה אמון!</span><br>
    <!--  <span class="w3-large">Stop  valuable time with projects that just isn't you.</span> -->
 
-    <p><a href="#about" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">לחץ כאן לתשלום</a></p>
+    <p><a href="{{ route('paypal') }}" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">לחץ כאן לתשלום</a></p>
     <p><a href="{{ route('reports.create') }}" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">לחץ כאן לדיווח</a></p>
     <p><a href="{{ route('station') }}" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">לחץ כאן לשיבוץ למשמרות</a></p>
     {{--Tavor Added this line - this Google Login--}}
@@ -71,6 +71,7 @@
       @endif
     </div>
   </div>
+</main>
   <div class="w3-display-bottomleft w3-text-grey w3-large" style="padding:24px 48px">
     <i class="fa fa-facebook-official w3-hover-opacity"></i>
     <i class="fa fa-instagram w3-hover-opacity"></i>
@@ -79,7 +80,7 @@
     <i class="fa fa-twitter w3-hover-opacity"></i>
     <i class="fa fa-linkedin w3-hover-opacity"></i>
   </div>
-</header>
+{{--
 
 <!-- About Section -->
 <div class="w3-container" style="padding:128px 16px" id="about">
@@ -351,7 +352,8 @@
     </div>
   </div>
 </div>
-
+--}}
+{{--
 <!-- Footer -->
 <footer class="w3-center w3-black w3-padding-64">
   <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
@@ -363,11 +365,12 @@
     <i class="fa fa-twitter w3-hover-opacity"></i>
     <i class="fa fa-linkedin w3-hover-opacity"></i>
   </div>
-  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+ --}}{{-- <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>--}}{{--
 </footer>
- 
+ --}}
 <!-- Add Google Maps -->
 <script>
+/*
 function myMap()
 {
   myCenter=new google.maps.LatLng(41.878114, -87.629798);
@@ -383,7 +386,9 @@ function myMap()
   });
   marker.setMap(map);
 }
+*/
 
+/*
 // Modal Image Gallery
 function onClick(element) {
   document.getElementById("img01").src = element.src;
@@ -392,6 +397,7 @@ function onClick(element) {
   captionText.innerHTML = element.alt;
 }
 
+*/
 
 // Toggle between showing and hiding the sidebar when clicking the menu icon
 var mySidebar = document.getElementById("mySidebar");
@@ -409,7 +415,7 @@ function w3_close() {
     mySidebar.style.display = "none";
 }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>
+{{--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>--}}
 <!--
 To use this code on your website, get a free API key from Google.
 Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp

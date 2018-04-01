@@ -177,4 +177,8 @@ class PaypalController extends Controller
 
         return redirect('/')->with(['code' => 'danger', 'message' => 'Error processing PayPal payment for Order ' . $invoice->id . '!']);
     }
+
+    public function show() {
+        return view('paypal');
+    }
 }

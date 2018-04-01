@@ -42,11 +42,11 @@ Route::put('station/{station}/shifts' ,'StationShiftController@update')->name('s
 Route::get('paypal/express-checkout', 'PaypalController@expressCheckout')->name('paypal.express-checkout');
 Route::get('paypal/express-checkout-success', 'PaypalController@expressCheckoutSuccess');
 Route::post('paypal/notify', 'PaypalController@notify');
-
-
+Route::get('paypal','PaypalController@show')->name('paypal');
+/*
 Route::get('/paypal', function () {
     return view('tavorstest');
-});
+});*/
 
 
 
