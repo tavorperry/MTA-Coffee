@@ -43,11 +43,4 @@ Route::get('paypal/express-checkout', 'PaypalController@expressCheckout')->name(
 Route::get('paypal/express-checkout-success', 'PaypalController@expressCheckoutSuccess');
 Route::post('paypal/notify', 'PaypalController@notify');
 Route::get('paypal','PaypalController@show')->name('paypal');
-/*
-Route::get('/paypal', function () {
-    return view('tavorstest');
-});*/
-
-
-
 
