@@ -9,6 +9,7 @@ use App\Http\Controllers\PointsController;
 use Auth;
 use Alert;
 use Validator;
+use Illuminate\Support\Facades\DB;
 
 
 class ReportController extends Controller
@@ -56,7 +57,32 @@ class ReportController extends Controller
             }
             //$request->session()->flash('message', 'Created Successfully');
         }
-
+        $this->sendNoticifationstoUsers($this->getUsersInCurrentShift($this->getCurrentShift()));
         return redirect()->route('reports.create');
+    }
+
+    public function getCurrentShift(Request $request){
+        $current_hour = (int)date("H");
+        $station_id = $request->get('station');
+        $current_day = date('w') + 1; //The function returns 0-6 values so we add 1 so that will fit the DB*/
+        $current_shift = DB::table('shifts')
+            ->where([
+                ['station_id', '=', $station_id],
+                ['day', '=', $current_day],
+                ['start_shift', '<', $current_hour],
+                ['end_shift', '>=', $current_hour]
+            ])->value('id');
+        return $current_shift;
+    }
+    public function getUsersInCurrentShift($current_shift){
+        $users_in_current_shift = DB::table('shift_user')
+            ->where([
+                ['shift_id', '=', $current_shift]
+            ])->pluck('user_id');
+
+        return $users_in_current_shift;
+    }
+    public function sendNotificationstoUsers($users){
+        //We need to write here(or in somewhere else) the function that sends notifications to all the users in the var $users
     }
 }
