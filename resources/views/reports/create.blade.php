@@ -38,15 +38,21 @@
 
         <div>
             <label>פרטים נוספים</label><br>
-            <textarea rows="4" cols="50" name="message" placeholder="נא לשמור על שפה תקינה"></textarea>
+            <textarea rows="4" cols="50" name="message" placeholder="נא לשמור על שפה תקינה, עד 50 תווים"></textarea><br>
+            <span id="characters">0</span><span>/50</span>
         </div>
-
         <br>
-
         <div>
             <input type="submit" value="דווח!">
         </div>
     </form>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <script type='text/javascript'>
+        $("textarea").keyup(function(){
+            $("#characters").text($(this).val().length);
+        });
+    </script>
     @include('sweet::alert')
 </html>

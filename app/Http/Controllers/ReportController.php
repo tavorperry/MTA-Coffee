@@ -33,7 +33,7 @@ class ReportController extends Controller
 
         if($validator->fails())
         {
-            Alert::error('אנא ספק פרטים נוספים לטיפול מהיר', 'אין פרטים!')->persistent("Close");
+            Alert::error(' אנא ספק פרטים נוספים לטיפול מהיר עד 50 תווים', 'תקלה בפרטים!')->persistent("Close");
             return redirect()->back()->withInput();
         }
 
