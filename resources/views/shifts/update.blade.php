@@ -64,6 +64,11 @@
             </div>
             <button type='submit'>עדכן משמרות</button>
         </form>
+        <form action="{{ route('station.shifts', $station->id) }}" method="POST">
+            @csrf
+            @method('PUT')
+            <button type='submit'>נקה משמרות</button>
+        </form>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
         @include('sweet::alert')
     </body>
