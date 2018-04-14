@@ -57,7 +57,7 @@ class ReportController extends Controller
             }
             //$request->session()->flash('message', 'Created Successfully');
         }
-        $this->sendNoticifationstoUsers($this->getUsersInCurrentShift($this->getCurrentShift()));
+        //$this->sendNoticifationstoUsers($this->getUsersInCurrentShift($this->getCurrentShift()));
         return redirect()->route('reports.create');
     }
 
