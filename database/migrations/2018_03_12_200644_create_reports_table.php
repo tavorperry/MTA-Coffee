@@ -20,6 +20,7 @@ class CreateReportsTable extends Migration
             $table->string('type');
             $table->string('desc');
             $table->boolean('status')->default(0);
+            $table->string('picture')->default('no_pic.png');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('station_id')->references('id')->on('stations');

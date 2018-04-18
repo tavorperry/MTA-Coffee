@@ -10,20 +10,9 @@
         <div>{{ session('message') }}</div>
     @endif
 
-    <form action="{{ route('reports.store') }}" method="POST">
+    {{--<form action="{{ route('reports.store') }}" method="POST" enctype="multipart/form-data">--}}
+    {{!! Form::open(['route' => ['reports.store'],'files' => true]); !!}}
         @csrf
-
-        <div>
-            <label>סוג</label><br>
-            <select name="type">
-                <option value="חסר משהו">חסר משהו</option>
-                <option value="יש תקלה">יש תקלה</option>
-                <option value="לא נקי">לא נקי</option>
-                <option value="אחר">אחר</option>
-            </select>
-        </div>
-
-        <br>
 
         <div>
             <label>עמדה</label><br>
@@ -37,15 +26,34 @@
         <br>
 
         <div>
+            <label>סוג</label><br>
+            <select name="type">
+                <option value="חסר משהו">חסר משהו</option>
+                <option value="יש תקלה">יש תקלה</option>
+                <option value="לא נקי">לא נקי</option>
+                <option value="אחר">אחר</option>
+            </select>
+        </div>
+
+
+        <br>
+
+        <div>
             <label>פרטים נוספים</label><br>
             <textarea rows="4" cols="50" name="message" placeholder="נא לשמור על שפה תקינה, עד 50 תווים"></textarea><br>
             <span id="characters">0</span><span>/50</span>
         </div>
         <br>
         <div>
+            <label>הוסף תמונה</label><br>
+            <input type="file" name="picture">
+        </div>
+        <br>
+        <div>
             <input type="submit" value="דווח!">
         </div>
-    </form>
+    {!! Form::close() !!}
+{{--    </form>--}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 

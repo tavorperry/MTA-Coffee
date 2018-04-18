@@ -10,6 +10,8 @@ use Auth;
 use Alert;
 use Validator;
 use Illuminate\Support\Facades\DB;
+use Image;
+
 
 
 class ReportController extends Controller
@@ -43,8 +45,15 @@ class ReportController extends Controller
         $report->type = $request->get('type');
         $report->desc = $request->get('message');
 
-        $isReported = $report->save();
+        //This 'if' is to save the image with "Image Intervention" package
+        if($request->hasFile('picture')) {
+            $picture = $request->file('picture');
+            $filename = time() . '_pic.' . $picture->getClientOriginalExtension();
+            Image::make($picture)->resize(600,400)->save(public_path( '/pictures/' . $filename));
+            $report->picture = $filename;
+        }
 
+        $isReported = $report->save();
         if ($isReported) {
             $user = Auth::user();
             $prevLevel = $user->getLevel();
@@ -57,7 +66,7 @@ class ReportController extends Controller
             }
             //$request->session()->flash('message', 'Created Successfully');
         }
-        //$this->sendNoticifationstoUsers($this->getUsersInCurrentShift($this->getCurrentShift()));
+        $this->sendNotificationstoUsers($this->getUsersInCurrentShift($this->getCurrentShift($request)));
         return redirect()->route('reports.create');
     }
 
@@ -84,5 +93,13 @@ class ReportController extends Controller
     }
     public function sendNotificationstoUsers($users){
         //We need to write here(or in somewhere else) the function that sends notifications to all the users in the var $users
+    }
+    public function view(Report $report){
+        return view('reports.view', compact('report'));
+    }
+    public function close(Request $request){
+        //We need to add the comment to the report (change the DB also).
+        //Probably we will need to change the DB and add table that called - UserReports
+
     }
 }

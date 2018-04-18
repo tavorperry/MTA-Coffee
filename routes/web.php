@@ -44,3 +44,23 @@ Route::get('paypal/express-checkout-success', 'PaypalController@expressCheckoutS
 Route::post('paypal/notify', 'PaypalController@notify');
 Route::get('paypal','PaypalController@show')->name('paypal');
 
+
+//purcahseTest
+Route::get('/purchase', function () {
+    return view('purchase');
+});
+Route::get('/newPayPal', function () {
+    return view('NewPayPal');
+});
+
+//Tavor Added it for PayPal- Maybe we can delete it?
+Route::post('/JStoPHP', 'NewPayPalController@makeInvoice');
+Route::post('JStoPHP2', 'NewPayPalController@storeValue');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+//Tavor Added this to ViewReport page
+Route::get('reports/view/{report}', 'ReportController@view')->name('report.view');
+Route::get('ReportController@close')->name('reports.close');
