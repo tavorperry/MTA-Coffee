@@ -236,8 +236,15 @@ h5,h6 {
     float: right;
 }
 
-.service-description h3{
+.service-description{
     color: #9b59b6;
 }
 
 /*login form*/
+
+.login-btn {
+    background-color: #9b59b6;
+    color: white;
+    width: 100%;
+}
+

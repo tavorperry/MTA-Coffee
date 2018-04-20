@@ -74,6 +74,11 @@
           </form>
         </div>
         @else
+        <section id="login-form">
+          @yield('content')
+        </section>
+        <hr>
+        <h2 class="service-description text-center">השירותים שלנו (או שלכם, אחריי קפה שחור ;)</h2>
         <div class="row">
           <button type="button" class="btn menu-btn col" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" data-content="קבל התרעות מדיווחים של משתמשים אחרים וקבל נקודות!"> <i class="far fa-flag menu-btn-icon"></i><br>
             התרעות
