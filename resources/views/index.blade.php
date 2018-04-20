@@ -59,7 +59,7 @@
     <div class="round-div"></div>
   </header>
 
-  <main class="func-buttons">
+  <main class="func-buttons" style="position: relative;top: 50px;">
     <div class="container">
         @if(Auth::user())
           <div class="to-the-right">
@@ -75,7 +75,8 @@
         </div>
         @else
         <section id="login-form">
-          @yield('content')
+          @yield('login')
+          @yield('reg')
         </section>
         <hr>
         <h2 class="service-description text-center">השירותים שלנו (או שלכם, אחריי קפה שחור ;)</h2>
