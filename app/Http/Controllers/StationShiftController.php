@@ -42,5 +42,11 @@ class StationShiftController extends Controller
         }
     }
 
-
+    public static function isUserHasShifts(){
+        $user_shifts = Auth::user()->shifts;
+        $flag = false;
+        if($user_shifts->count() != 0)
+            $flag = true;
+        return $flag;
+    }
 }

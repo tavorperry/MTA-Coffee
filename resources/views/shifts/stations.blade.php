@@ -6,19 +6,20 @@
 
     <body>
         <h1>המשמרות שלך</h1>
-        <h2>עמדה:
-            @foreach (Auth::user()->shifts as $shift)
-                @if($shift->station_id == 1)
-                    {{ "פומנטו" }}
-                @elseif($shift->station_id == 2)
-                    {{ "ווסטון" }}
-                @else
-                    {{ "כלכלה" }}
-                @endif
-                @break
-            @endforeach
-        </h2>
-        <h2>משמרות:
+        @if(\App\Http\Controllers\StationShiftController::isUserHasShifts())
+            <h2>עמדה:
+                @foreach (Auth::user()->shifts as $shift)
+                    @if($shift->station_id == 1)
+                        {{ "פומנטו" }}
+                    @elseif($shift->station_id == 2)
+                        {{ "ווסטון" }}
+                    @else
+                        {{ "כלכלה" }}
+                    @endif
+                    @break
+                @endforeach
+            </h2>
+            <h2>משמרות:
             @foreach (Auth::user()->shifts as $shift)
                 <ul>
                     <li>
@@ -39,6 +40,9 @@
                     </li>
                 </ul>
             @endforeach
+            @else
+                <h4>אין משמרות, לא חבל על הנקודות?</h4>
+            @endif
         </h2>
 
         <h1>עדכן משמרות</h1>
