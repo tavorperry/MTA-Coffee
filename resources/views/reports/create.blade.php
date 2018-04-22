@@ -9,8 +9,6 @@
     @if(session('message'))
         <div>{{ session('message') }}</div>
     @endif
-
-    {{--<form action="{{ route('reports.store') }}" method="POST" enctype="multipart/form-data">--}}
     {{ Form::open(['route' => ['reports.store'],'files' => true]) }}
         @csrf
 
