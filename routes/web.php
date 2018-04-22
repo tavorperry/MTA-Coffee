@@ -27,11 +27,6 @@ Route::get('login/google/callback', 'SocialLoginController@handleProviderCallbac
 //reports
 Route::resource('reports', 'ReportController', ['only' => ['create', 'store']]);
 
-//shifts
-Route::get('/shifts', function () {
-    return view('shifts.user_shifts');
-});
-
 Route::get('station', 'StationShiftController@pickStation')->name('station');
 
 Route::get('station/{station}/shifts/edit', 'StationShiftController@edit')->name('station.shifts.edit');
