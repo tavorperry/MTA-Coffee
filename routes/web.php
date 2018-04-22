@@ -59,3 +59,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Tavor Added this to ViewReport page
 Route::get('reports/view/{report}', 'ReportController@view')->name('report.view');
 Route::post('reports/close/{report}', 'ReportController@close')->name('report.close');
+
+Route::get('/reports/viewall', function () {
+    return view('reports/viewall');
+});

@@ -129,10 +129,9 @@ class ReportController extends Controller
     }
     public static function findUser($user_id){
         return \App\User::find($user_id);
-
-        /*        $user = DB::table('users')
-                    ->where([
-                        ['shift_id', '=', $current_shift]
-                    ])->pluck('user_id');*/
+    }
+    public static function getAllOpenReports(){
+        $reports = DB::table('reports')->where('status', 0)->get();
+        return $reports;
     }
 }
