@@ -40,7 +40,7 @@ class ReportController extends Controller
         }
 
         $report = new Report();
-        $report->user_id = auth()->id();
+        $report->opening_user_id = auth()->id();
         $report->station_id = $request->get('station');
         $report->type = $request->get('type');
         $report->desc = $request->get('message');
@@ -64,7 +64,6 @@ class ReportController extends Controller
             {
                 Alert::success('מזל טוב עלית רמה!','תותח/ית')->persistent("Close");
             }
-            //$request->session()->flash('message', 'Created Successfully');
         }
         $this->sendNotificationstoUsers($this->getUsersInCurrentShift($this->getCurrentShift($request)));
         return redirect()->route('reports.create');
@@ -98,8 +97,42 @@ class ReportController extends Controller
         return view('reports.view', compact('report'));
     }
     public function close(Request $request){
-        //We need to add the comment to the report (change the DB also).
-        //Probably we will need to change the DB and add table that called - UserReports
+        $report_id= $request->get('report_id');
+        $report_status = DB::table('reports')->where('id', $report_id)->pluck('status')->first();
+        if($report_status == 1) {
+            Alert::error('הדיווח כבר סגור! תודה')->persistent("Close");
+        }
+        else{
+            //Update the close data in the DB
+            DB::table('reports')
+                ->where('id', $report_id)
+                ->update(['status' => 1,'comment' => $request->get('comment'), 'closing_user_id' => auth()->id()
+                ]);
+            //give the user more points
+            $user = Auth::user();
+            $prevLevel = $user->getLevel();
+            $user->addPoints(100);
+            Alert::success('הרווחת 100 נקודות', 'הדיווח נסגר כל הכבוד!')->persistent("Close");
 
+            if ($user->isLevelUp($prevLevel)) {
+                Alert::success('מזל טוב עלית רמה! ', 'הדיווח נסגר כל הכבוד!הרווחת 100 נקודות ')->persistent("Close");
+            }
+        }
+
+        //Add here Notification to the user who opened the report
+        //
+        //
+        //
+
+        
+        return redirect()->route('report.view', compact('report_id'));
+    }
+    public static function findUser($user_id){
+        return \App\User::find($user_id);
+
+        /*        $user = DB::table('users')
+                    ->where([
+                        ['shift_id', '=', $current_shift]
+                    ])->pluck('user_id');*/
     }
 }

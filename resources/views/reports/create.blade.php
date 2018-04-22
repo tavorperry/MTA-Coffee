@@ -11,7 +11,7 @@
     @endif
 
     {{--<form action="{{ route('reports.store') }}" method="POST" enctype="multipart/form-data">--}}
-    {{!! Form::open(['route' => ['reports.store'],'files' => true]); !!}}
+    {{ Form::open(['route' => ['reports.store'],'files' => true]) }}
         @csrf
 
         <div>

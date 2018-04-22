@@ -16,7 +16,7 @@ class User extends Authenticatable
     const LEVEL_SEVEN = 700;
     const LEVEL_EIGHT = 800;
     const LEVEL_NINE = 900;
-    const LEVEL_STEN = 1000;
+    const LEVEL_TEN = 1000;
 
     use Notifiable;
 
@@ -92,6 +92,9 @@ class User extends Authenticatable
         }elseif ($currentPoints <= self::LEVEL_TEN) {
             return 10;
         }
+        else{
+            return 11;
+        }
         return 0;
     }
 
@@ -99,4 +102,6 @@ class User extends Authenticatable
     {
         return $this->getLevel() > $prevLevel;
     }
+
+
 }

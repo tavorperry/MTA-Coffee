@@ -15,14 +15,17 @@ class CreateReportsTable extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
+            $table->integer('opening_user_id')->unsigned();
+            $table->integer('closing_user_id')->unsigned()->nullable();
             $table->integer('station_id')->unsigned();
             $table->string('type');
             $table->string('desc');
             $table->boolean('status')->default(0);
             $table->string('picture')->default('no_pic.png');
+            $table->string('comment', 255)->nullable();
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('opening_user_id')->references('id')->on('users');
+            $table->foreign('closing_user_id')->references('id')->on('users');
             $table->foreign('station_id')->references('id')->on('stations');
         });
     }
