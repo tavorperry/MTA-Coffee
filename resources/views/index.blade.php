@@ -124,6 +124,15 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.compatibility.js"></script>
   <!-- Index JavaScript -->
   <script type="text/javascript" src="{!! asset('js/index.js') !!}"></script>
+  <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+  <script>
+      var OneSignal = window.OneSignal || [];
+      OneSignal.push(function() {
+          OneSignal.init({
+              appId: "3a5c67a0-1c84-41ee-946f-5a8509e90a78",
+          });
+      });
+  </script>
   </body>
 </html>
 
