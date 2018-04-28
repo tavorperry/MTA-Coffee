@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\ReportCreated;
 use App\Report;
+use App\Shift;
+use App\Station;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\PointsController;
@@ -11,7 +15,6 @@ use Alert;
 use Validator;
 use Illuminate\Support\Facades\DB;
 use Image;
-
 
 
 class ReportController extends Controller
@@ -44,6 +47,7 @@ class ReportController extends Controller
         $report->station_id = $request->get('station');
         $report->type = $request->get('type');
         $report->desc = $request->get('message');
+        $report->status = 0;
 
         //This 'if' is to save the image with "Image Intervention" package
         if($request->hasFile('picture')) {
@@ -52,6 +56,13 @@ class ReportController extends Controller
             Image::make($picture)->resize(600,400)->save('pictures/' . $filename);
             $report->picture = $filename;
         }
+
+        if($this->getCurrentShift($report->station_id) == NULL)
+        {
+            Alert::error(' קפה אמון ייפתח ביום ראשון בשעה 8:00 :)', 'סגורים, חביבי')->persistent("Close");
+            return redirect()->route('index');
+        }
+        //Add if getCurrentShift == null -> notify user
 
         $isReported = $report->save();
         if ($isReported) {
@@ -64,24 +75,28 @@ class ReportController extends Controller
             {
                 Alert::success('מזל טוב עלית רמה!','תותח/ית')->persistent("Close");
             }
+
+            $shift = Shift::find($this->getCurrentShift($request->station));
+            $shift->notify(new ReportCreated($report));
         }
-        $this->sendNotificationstoUsers($this->getUsersInCurrentShift($this->getCurrentShift($request)));
+
+        $this->sendNotificationstoUsers($this->getUsersInCurrentShift($this->getCurrentShift($request->station)));
         return redirect()->route('reports.create');
     }
 
-    public function getCurrentShift(Request $request){
-        $current_hour = (int)date("H");
-        $station_id = $request->get('station');
-        $current_day = date('w') + 1; //The function returns 0-6 values so we add 1 so that will fit the DB*/
+    public function getCurrentShift($stationId){
+        $current_hour = (int) date("H");
+        $current_day = date('w') + 1; /*The function returns 0-6 values so we add 1 so that will fit the DB*/
         $current_shift = DB::table('shifts')
             ->where([
-                ['station_id', '=', $station_id],
+                ['station_id', '=', $stationId],
                 ['day', '=', $current_day],
                 ['start_shift', '<', $current_hour],
                 ['end_shift', '>=', $current_hour]
             ])->value('id');
         return $current_shift;
     }
+
     public function getUsersInCurrentShift($current_shift){
         $users_in_current_shift = DB::table('shift_user')
             ->where([
@@ -90,12 +105,15 @@ class ReportController extends Controller
 
         return $users_in_current_shift;
     }
+
     public function sendNotificationstoUsers($users){
         //We need to write here(or in somewhere else) the function that sends notifications to all the users in the var $users
     }
+
     public function view(Report $report){
         return view('reports.view', compact('report'));
     }
+
     public function close(Request $request){
         $report_id= $request->get('report_id');
         $report_status = DB::table('reports')->where('id', $report_id)->pluck('status')->first();
@@ -103,11 +121,18 @@ class ReportController extends Controller
             Alert::error('הדיווח כבר סגור! תודה')->persistent("Close");
         }
         else{
-            //Update the close data in the DB
+            //Update the close data in the report table
             DB::table('reports')
                 ->where('id', $report_id)
                 ->update(['status' => 1,'comment' => $request->get('comment'), 'closing_user_id' => auth()->id()
                 ]);
+
+            //Update the close data in the notification table
+            DB::table('notifications')
+                ->where('data', 'LIKE', '{"report_id":'.$report_id.'%')
+                ->update(['read_at'=>Carbon::now()]
+                );
+
             //give the user more points
             $user = Auth::user();
             $prevLevel = $user->getLevel();
@@ -124,12 +149,14 @@ class ReportController extends Controller
         //
         //
 
-        
+
         return redirect()->route('report.view', compact('report_id'));
     }
+
     public static function findUser($user_id){
         return \App\User::find($user_id);
     }
+
     public static function getAllOpenReports(){
         $reports = DB::table('reports')->where('status', 0)->get();
         return $reports;

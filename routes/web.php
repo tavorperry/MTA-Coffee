@@ -12,8 +12,19 @@
 */
 
 Route::get('/', function () {
-    return view('index');
-});
+    $user = Auth::user();
+    $shifts = $user->shifts;
+    $unread_notifications = [];
+
+    foreach($shifts as $shift) {
+        foreach ($shift->notifications as $notification) {
+            if($notification->read_at == NULL)
+            array_push($unread_notifications, $notification);
+        }
+    }
+
+    return view('index', compact('unread_notifications'));
+})->name('index');
 
 //Auth
 Auth::routes();
@@ -32,6 +43,9 @@ Route::get('station', 'StationShiftController@pickStation')->name('station');
 Route::get('station/{station}/shifts/edit', 'StationShiftController@edit')->name('station.shifts.edit');
 Route::put('station/{station}/shifts' ,'StationShiftController@update')->name('station.shifts');
 
+//notifications
+Route::get('notifications/show', 'NotificationController@show')->name('notifications.show');
+Route::get('NotificationController@countNew')->name('count');
 
 //PayPal
 Route::get('paypal/express-checkout', 'PaypalController@expressCheckout')->name('paypal.express-checkout');

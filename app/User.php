@@ -40,7 +40,7 @@ class User extends Authenticatable
 
     public function reports()
     {
-        return $this->hasMany('App\Report');
+        return $this->hasMany('App\Report', 'opening_user_id');
     }
 
     public function orders()
@@ -102,6 +102,5 @@ class User extends Authenticatable
     {
         return $this->getLevel() > $prevLevel;
     }
-
 
 }

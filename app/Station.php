@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Station extends Model
 {
+    use Notifiable;
+
     protected $guarded = []; //all
 
     public function reports()
