@@ -12,19 +12,21 @@
 */
 
 Route::get('/', function () {
-    $user = Auth::user();
-    $shifts = $user->shifts;
-    $unread_notifications = [];
+    if(Auth::user()) {
+        $user = Auth::user();
+        $shifts = $user->shifts;
+        $unread_notifications = [];
 
-    foreach($shifts as $shift) {
-        foreach ($shift->notifications as $notification) {
-            if($notification->read_at == NULL)
-            array_push($unread_notifications, $notification);
+        foreach ($shifts as $shift) {
+            foreach ($shift->notifications as $notification) {
+                if ($notification->read_at == NULL)
+                    array_push($unread_notifications, $notification);
+            }
         }
     }
-
     return view('index', compact('unread_notifications'));
 })->name('index');
+
 
 //Auth
 Auth::routes();
@@ -77,3 +79,7 @@ Route::post('reports/close/{report}', 'ReportController@close')->name('report.cl
 Route::get('/reports/viewall', function () {
     return view('reports/viewall');
 });
+
+    Route::get('/paypal', function () {
+        return view('paypal');
+    });
