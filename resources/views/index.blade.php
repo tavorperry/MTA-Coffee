@@ -144,4 +144,3 @@
   @include('sweet::alert')
   </body>
 </html>
-
