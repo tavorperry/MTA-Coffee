@@ -124,7 +124,6 @@ return [
         /*
          * Laravel Framework Service Providers...
          */
-        Srmklive\PayPal\Providers\PayPalServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,

@@ -27,7 +27,6 @@ Route::get('/', function () {
     return view('index', compact('unread_notifications'));
 })->name('index');
 
-
 //Auth
 Auth::routes();
 
@@ -37,49 +36,25 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('login/google', 'SocialLoginController@redirectToProvider')->name('login.google');
 Route::get('login/google/callback', 'SocialLoginController@handleProviderCallback');
 
-//reports
+//Reports
 Route::resource('reports', 'ReportController', ['only' => ['create', 'store']]);
-
-Route::get('station', 'StationShiftController@pickStation')->name('station');
-
-Route::get('station/{station}/shifts/edit', 'StationShiftController@edit')->name('station.shifts.edit');
-Route::put('station/{station}/shifts' ,'StationShiftController@update')->name('station.shifts');
-
-//notifications
-Route::get('notifications/show', 'NotificationController@show')->name('notifications.show');
-Route::get('NotificationController@countNew')->name('count');
-
-//PayPal
-Route::get('paypal/express-checkout', 'PaypalController@expressCheckout')->name('paypal.express-checkout');
-Route::get('paypal/express-checkout-success', 'PaypalController@expressCheckoutSuccess');
-Route::post('paypal/notify', 'PaypalController@notify');
-Route::get('paypal','PaypalController@show')->name('paypal');
-
-
-//purcahseTest
-Route::get('/purchase', function () {
-    return view('purchase');
-});
-Route::get('/newPayPal', function () {
-    return view('NewPayPal');
-});
-
-//Tavor Added it for PayPal- Maybe we can delete it?
-Route::post('/JStoPHP', 'NewPayPalController@makeInvoice');
-Route::post('JStoPHP2', 'NewPayPalController@storeValue');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-//Tavor Added this to ViewReport page
+//Reports.viewall page
 Route::get('reports/view/{report}', 'ReportController@view')->name('report.view');
 Route::post('reports/close/{report}', 'ReportController@close')->name('report.close');
-
 Route::get('/reports/viewall', function () {
     return view('reports/viewall');
 });
 
-    Route::get('/paypal', function () {
-        return view('paypal');
-    });
+//Station
+Route::get('station', 'StationShiftController@pickStation')->name('station');
+Route::get('station/{station}/shifts/edit', 'StationShiftController@edit')->name('station.shifts.edit');
+Route::put('station/{station}/shifts' ,'StationShiftController@update')->name('station.shifts');
+
+//Notifications
+Route::get('notifications/show', 'NotificationController@show')->name('notifications.show');
+Route::get('NotificationController@countNew')->name('count');
+
+Route::get('/paypal', function () {
+    return view('paypal');
+});
+Route::post('/paypal', 'PayPalController@makeInvoice');

@@ -15,10 +15,12 @@ class CreateInvoicesTable extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
-            $table->double('price', 2);
-            $table->string('payment_status')->nullable();
-            $table->string('recurring_id')->nullable();
+            $table->integer('user')->unsigned()->nullable();
+            $table->string('email');
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->double('total_payment');
+            $table->foreign('user')->references('id')->on('users');
             $table->timestamps();
         });
     }

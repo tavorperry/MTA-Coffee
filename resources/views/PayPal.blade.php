@@ -1,7 +1,8 @@
-
 <html lang="heb">
 <head>
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <style>
         .width100{
             width: 100%;
@@ -47,9 +48,7 @@
     <label class="btn btn-primary col width30">
         <input type="radio" name="total" autocomplete="off" value="3"> 3
     </label>
-</div>
     <br>
-    <div class="btn-group btn-group-toggle row width100" data-toggle="buttons">
     <label class="btn btn-primary col width30">
         <input type="radio" name="total" autocomplete="off" value="4"> 4
     </label>
@@ -65,109 +64,15 @@
 <div id="paypal-button"></div>
 </div>
 </div>
-
-    <script>
-        function getTotal () {
-            var total = $('input[type="radio"][name="total"]:checked').val();
-            return total;
-        }
-</script>
-
-
-{{--
 <script>
-
-
-    // Render the PayPal button
-
-    paypal.Button.render({
-
-        // Pass in the Braintree SDK
-
-        braintree: braintree,
-
-        // Pass in your Braintree authorization key
-
-        client: {
-            sandbox: paypal.request.get('/demo/checkout/api/braintree/client-token/'),
-            production: '<insert production auth key>'
-        },
-
-        // Set your environment
-
-        env: 'sandbox', // sandbox | production
-
-        // Wait for the PayPal button to be clicked
-
-        payment: function(data, actions) {
-
-            // Make a call to create the payment
-
-            return actions.payment.create({
-                payment: {
-                    transactions: [
-                        {
-                            amount: { total: '0.01', currency: 'USD' }
-                        }
-                    ]
-                }
-            });
-        },
-
-        // Wait for the payment to be authorized by the customer
-
-        onAuthorize: function(data, actions) {
-
-            // Call your server with data.nonce to finalize the payment
-
-            console.log('Braintree nonce:', data.nonce);
-
-            // Get the payment and buyer details
-
-            return actions.payment.get().then(function(payment) {
-                console.log('Payment details:', payment);
-            });
-        }
-
-    }, '#paypal-button-container');
-
-
-
-
+    function getTotal () {
+        var total = $('input[type="radio"][name="total"]:checked').val();
+        return total;
+    }
 </script>
-
-
-
-
-
-
---}}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{{--//Normal Paypal - no Braintree
-//from here to ENDNormal--}}
 <script>
-    //I added this to try getting the ajax workng
-/*    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });*/
-
+    var total;
+    var price = 2;
     paypal.Button.render({
         env: 'sandbox', //'production' Or 'sandbox'
         style: {
@@ -178,8 +83,6 @@
             tagline: false
         },
 
-
-
         client: {
             sandbox:'AbHx3unTKagITRdRsL7Is4HfDD4rQB5kdDXf4xSKrGVK9JjIIyWagnFw7W42QsAWYAjn0pONpQrFe3Fq',
             production: 'xxxxxxxxx'
@@ -187,8 +90,6 @@
 
         commit: true, // Show a 'Pay Now' button
         payment: function(data, actions) {
-            var price = 2;
-            total=2; //This is default value if the user didn't choose any button
             total = getTotal();
             return actions.payment.create({
                 payment: {
@@ -197,6 +98,11 @@
                             amount: { total: (total*price), currency: 'ILS' }
                         }
                     ]
+                },
+                experience: {
+                    input_fields: {
+                        no_shipping: 1
+                    }
                 }
             });
         },
@@ -212,42 +118,41 @@
             /*
              * An error occurred during the transaction
              */
-            alert("An error occurred during the transaction ");
-            alert(err);
+            alert("An error occurred during the transaction " + err);
         },
         onAuthorize: function(data, actions) {
-            console.log($(this).data("data"));
-            console.log(data);
             return actions.payment.execute().then(function(payment) {
                 var payerData = payment.payer.payer_info;
-                console.log(payerData);
-                alert("Thank You " + payerData.first_name + " " + payerData.last_name);
-
-
-               //From here till End I am working on sending payerData to the Controller
-                /*var data = payerData ;
+               //From here till End I the method is sending payerData data to the Controller
+                var data = {
+                    email: payerData.email,
+                    first_name: payerData.first_name,
+                    last_name: payerData.last_name,
+                    total_payment: Number(getTotal()*price)
+                };
                 $.ajax({
-                    type: "POST",
-                    url: 'JStoPHP',
+                    method: "POST",
+                    url: location.href,
                     data: data,
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    success: function() {
-                        console.log("Value added " + data);
+                    success: function(InvoiceID) {
+                        console.log("Invoice No. " + InvoiceID + " Created");
+                        alert("Thank You " + payerData.first_name + " " + payerData.last_name + ". Invoice No." + InvoiceID + " Created");
                     }
-                });*/
+                });
                 //End
-
                 // The payment is complete!
                 // You can now show a confirmation message to the customer
-                var payer = data.payer;
-                console.log(payer);
             });
         }
 
     }, '#paypal-button');
 </script>
 {{--//ENDnormal--}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </body>
+@include('sweet::alert')
 </html>

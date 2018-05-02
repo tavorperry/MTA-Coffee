@@ -41,7 +41,7 @@ $reports = \App\Http\Controllers\ReportController::getAllOpenReports() ?>
         {{$report->created_at}}
     </td>
     <td>
-        <img src="../../public/pictures/{{$report->picture}}" alt="report picture" width="100px" height="100px">
+        <img src="../../pictures/{{$report->picture}}" alt="report picture" width="100px" height="100px">
     </td>
         </tr>
     @endforeach
