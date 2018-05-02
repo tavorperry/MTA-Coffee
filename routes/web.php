@@ -80,6 +80,6 @@ Route::get('/reports/viewall', function () {
     return view('reports/viewall');
 });
 
-    Route::get('/paypal', function () {
-        return view('paypal');
-    });
+//    Route::get('/paypal', function () {
+//        return view('paypal');
+//    });
