@@ -41,9 +41,6 @@ Route::resource('reports', 'ReportController', ['only' => ['create', 'store']]);
 //Reports.viewall page
 Route::get('reports/view/{report}', 'ReportController@view')->name('report.view');
 Route::post('reports/close/{report}', 'ReportController@close')->name('report.close');
-Route::get('/reports/viewall', function () {
-    return view('reports/viewall');
-});
 
 //Station
 Route::get('station', 'StationShiftController@pickStation')->name('station');
@@ -53,6 +50,10 @@ Route::put('station/{station}/shifts' ,'StationShiftController@update')->name('s
 //Notifications
 Route::get('notifications/show', 'NotificationController@show')->name('notifications.show');
 Route::get('NotificationController@countNew')->name('count');
+
+Route::get('/reports/viewall', function () {
+    return view('reports/viewall');
+});
 
 Route::get('/paypal', function () {
     return view('paypal');
