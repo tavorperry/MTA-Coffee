@@ -40,5 +40,4 @@ return [
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
         'redirect' => 'http://localhost/Kafe_Emon/public/login/google/callback',
     ],
-
 ];
