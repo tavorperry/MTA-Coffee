@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Mailgun\Mailgun;
 use App\Invoice;
 use Illuminate\Http\Request;
 use Auth;
 use Alert;
+use Illuminate\Support\Facades\Mail;
 
 class PayPalController extends Controller
 {
@@ -28,6 +29,7 @@ class PayPalController extends Controller
             {
                 Alert::success('מזל טוב עלית רמה!','התשלום בוצע! הרווחת 20 נקודות!')->persistent("Close");
             }
+            $this->sendEmailWithPaymentApproval($Invoice);
         }
 
         return response()->json($Invoice->id);
@@ -39,5 +41,12 @@ class PayPalController extends Controller
         echo $request->get(data);
         alert($request->get(data));
         Alert::success('צבור נקודות וזכה בפרסים! :)', 'המשמרות מעודכנות!')->persistent('Close');
+    }
+
+    public function sendEmailWithPaymentApproval($Invoice){
+        Mail::raw(('Toatl Paid =  '.$Invoice->total_payment. "ILS \n". 'Invoice No.'.$Invoice->id."\n"."Created at: ".$Invoice->created_at), function($message) use ($Invoice) {
+            $message->subject($Invoice->id);
+            $message->to('tavorp12@gmail.com');
+        });
     }
 }
