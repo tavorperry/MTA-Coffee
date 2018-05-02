@@ -57,5 +57,5 @@ Route::get('/reports/viewall', function () {
 
 Route::get('/paypal', function () {
     return view('paypal');
-});
+})->name('paypal');
 Route::post('/paypal', 'PayPalController@makeInvoice');
