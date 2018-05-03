@@ -44,9 +44,12 @@ class PayPalController extends Controller
     }
 
     public function sendEmailWithPaymentApproval($Invoice){
-        Mail::raw(('Toatl Paid =  '.$Invoice->total_payment. "ILS \n". 'Invoice No.'.$Invoice->id."\n"."Created at: ".$Invoice->created_at), function($message) use ($Invoice) {
-            $message->subject($Invoice->id);
-            $message->to('tavorp12@gmail.com');
+        $user = Auth::user();
+        $content = ('Hello '.$user->first_name."! \n"."Thank you for purchasing in  MTA_Coffee! \n Toatl Paid =  ".$Invoice->total_payment. "ILS \n"."Total points: ".$user->points."\n". 'Invoice No.'.$Invoice->id."\n"."Created at: ".$Invoice->created_at);
+        Mail::raw(($content), function($message) use ($Invoice) {
+            $message->subject('Your Payment Approval to MTA Coffee!');
+            $message->to(Auth::user()->email);
+            $message->from('mta-coffee@mta.ac.il', $name = 'MTA-Coffee');
         });
     }
 }
