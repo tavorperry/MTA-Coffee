@@ -65,7 +65,8 @@
         @if(Auth::user())
           <div class="to-the-right">
             <br>
-            <p><a href="{{ route('paypal') }}">לחץ כאן לתשלום</a></p>
+            <p><a href="{{ route('pay') }}">לחץ כאן לתשלום על קפה</a></p>
+            <p><a href="{{ route('payforcard') }}">לחץ כאן להטענת כרטיס נטען!</a></p>
             <p><a href="{{ route('reports.create') }}">לחץ כאן לדיווח</a></p>
             <p><a href="{{ route('station') }}">לחץ כאן לשיבוץ למשמרות</a></p>
           </div>

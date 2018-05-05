@@ -21,8 +21,8 @@
     </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- PayPal js file -->
     <script src="https://www.paypalobjects.com/api/checkout.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -31,6 +31,8 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Sweet Alerts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
 </head>
 <body>
 
@@ -58,11 +60,10 @@
     <label class="btn btn-primary col width30">
         <input type="radio" name="total" autocomplete="off" value="6"> 6
     </label>
-    </div>
+</div>
 <br>
     <div class="button">
 <div id="paypal-button"></div>
-</div>
 </div>
 <script>
     function getTotal () {
@@ -71,16 +72,19 @@
     }
 </script>
 <script>
+    $(document).ready(function () {
+        if(typeof jQuery=="undefined"){
+            alert("jQuery id undefined");
+        } else {
     var total;
     var price = 2;
     paypal.Button.render({
         env: 'sandbox', //'production' Or 'sandbox'
         style: {
-            label: 'paypal',
-            size:  'responsive',    // small | medium | large | responsive
-            shape: 'rect',     // pill | rect
-            color: 'blue',     // gold | blue | silver | black
-            tagline: false
+            label: 'pay',
+            size:  'responsive', // small | medium | large | responsive
+            shape: 'rect',   // pill | rect
+            color: 'gold'   // gold | blue | silver | black
         },
 
         client: {
@@ -123,12 +127,14 @@
         onAuthorize: function(data, actions) {
             return actions.payment.execute().then(function(payment) {
                 var payerData = payment.payer.payer_info;
-               //From here till End I the method is sending payerData data to the Controller
+               //From here till End its sending payerData data to the Controller
                 var data = {
                     email: payerData.email,
                     first_name: payerData.first_name,
                     last_name: payerData.last_name,
-                    total_payment: Number(getTotal()*price)
+                    total_payment: Number(getTotal()*price),
+                    coffee_or_card: 'Coffee',
+                    havecard: null
                 };
                 $.ajax({
                     method: "POST",
@@ -144,15 +150,13 @@
                 });
                 //End
                 // The payment is complete!
-                // You can now show a confirmation message to the customer
             });
         }
 
     }, '#paypal-button');
+        }
+    });
 </script>
-{{--//ENDnormal--}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </body>
 @include('sweet::alert')
 </html>

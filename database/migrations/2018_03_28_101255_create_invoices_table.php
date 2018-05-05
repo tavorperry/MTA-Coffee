@@ -20,6 +20,8 @@ class CreateInvoicesTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->double('total_payment');
+            $table->string('coffee_or_card');
+            $table->string('havecard')->nullable();
             $table->foreign('user')->references('id')->on('users');
             $table->timestamps();
         });

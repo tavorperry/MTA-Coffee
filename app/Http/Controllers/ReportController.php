@@ -59,7 +59,7 @@ class ReportController extends Controller
 
         if($this->getCurrentShift($report->station_id) == NULL)
         {
-            Alert::error(' קפה אמון ייפתח ביום ראשון בשעה 8:00 :)', 'סגורים, חביבי')->persistent("Close");
+            Alert::error(' קפה אמון ייפתח בשעה 8:00 :)', 'סגורים, חביבי')->persistent("Close");
             return redirect()->route('index');
         }
         //Add if getCurrentShift == null -> notify user

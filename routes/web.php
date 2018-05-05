@@ -55,7 +55,13 @@ Route::get('/reports/viewall', function () {
     return view('reports/viewall');
 });
 
-Route::get('/paypal', function () {
-    return view('paypal');
-})->name('paypal');
-Route::post('/paypal', 'PayPalController@makeInvoice');
+//Buy Coffee
+Route::get('/pay', function () {
+    return view('pay');})->name('pay');
+Route::post('/pay', 'PayPalController@makeInvoice');
+
+//Charge Card
+Route::get('/payforcard', function () {
+    return view('payforcard');})->name('payforcard');
+Route::post('/payforcard', 'PayPalController@makeInvoice');
+
