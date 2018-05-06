@@ -18,6 +18,36 @@
         h1{
             text-align: center;
         }
+        /* Start by setting display:none to make this hidden.
+   Then we position it in relation to the viewport window
+   with position:fixed. Width, height, top and left speak
+   for themselves. Background we set to 80% white with
+   our animation centered, and no-repeating */
+        .modal {
+            display:    none;
+            position:   fixed;
+            z-index:    1000;
+            top:        0;
+            left:       0;
+            height:     100%;
+            width:      100%;
+            background: rgba( 255, 255, 255, .8 )
+            url('http://i.stack.imgur.com/FhHRx.gif')
+            50% 50%
+            no-repeat;
+        }
+
+        /* When the body has the loading class, we turn
+           the scrollbar off with overflow:hidden */
+        body.loading .modal {
+            overflow: hidden;
+        }
+
+        /* Anytime the body has the loading class, our
+           modal element will be visible */
+        body.loading .modal {
+            display: block;
+        }
     </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,7 +65,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
 </head>
 <body>
-
+@if(session('message'))
+    <div>{{ session('message') }}</div>
+@endif
 <h1>?כמה כוסות תרצה לשתות</h1>
 
 <br>
@@ -126,7 +158,7 @@
         },
         onAuthorize: function(data, actions) {
             return actions.payment.execute().then(function(payment) {
-                alert("התשלום התקבל!");
+                alert("התשלום התקבל! - לצרכי בדיקה בלבד");
                 var payerData = payment.payer.payer_info;
                //From here till End its sending payerData data to the Controller
                 var data = {
@@ -146,7 +178,8 @@
                     },
                     success: function(InvoiceID) {
                         console.log("Invoice No. " + InvoiceID + " Created");
-                        alert("Thank You " + payerData.first_name + " " + payerData.last_name + ". Invoice No." + InvoiceID + " Created");
+                       // alert("Thank You " + payerData.first_name + " " + payerData.last_name + ". Invoice No." + InvoiceID + " Created");
+                        window.location.replace("/"); //redirect to main page
                     }
                 });
                 //End
@@ -158,6 +191,14 @@
         }
     });
 </script>
+<script>
+    $body = $("body");
+    $(document).on({
+        ajaxStart: function() { $body.addClass("loading");    },
+        ajaxStop: function() { $body.removeClass("loading"); }
+    });
+</script>
+<div class="modal"></div>
 </body>
 @include('sweet::alert')
 </html>

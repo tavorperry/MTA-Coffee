@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Mail;
 
 class PayPalController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     public function makeInvoice(Request $request){
         $Invoice = new Invoice();
         $Invoice->user = auth()->id();

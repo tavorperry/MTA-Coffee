@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class HomeController extends Controller
 {
@@ -11,10 +13,6 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     /**
      * Show the application dashboard.
@@ -23,6 +21,20 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('index');
+        if(Auth::user()) {
+            $user = Auth::user();
+            $shifts = $user->shifts;
+            $unread_notifications = [];
+
+            foreach ($shifts as $shift) {
+                foreach ($shift->notifications as $notification) {
+                    if ($notification->read_at == NULL)
+                        array_push($unread_notifications, $notification);
+                }
+            }
+            return view('index', compact('unread_notifications'));
+        }
+        else
+            return view('index');
     }
 }

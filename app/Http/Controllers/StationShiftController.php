@@ -9,6 +9,9 @@ use Alert;
 
 class StationShiftController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
     public function edit(Station $station)
     {
         return view('shifts.update', compact('station'));

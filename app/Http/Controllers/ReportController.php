@@ -157,8 +157,8 @@ class ReportController extends Controller
         return \App\User::find($user_id);
     }
 
-    public static function getAllOpenReports(){
-        $reports = DB::table('reports')->where('status', 0)->get();
+    public static function getAllReports(){
+        $reports = DB::table('reports')->get();
         return $reports;
     }
 }

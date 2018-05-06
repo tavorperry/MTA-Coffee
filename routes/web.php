@@ -11,25 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    if(Auth::user()) {
-        $user = Auth::user();
-        $shifts = $user->shifts;
-        $unread_notifications = [];
-
-        foreach ($shifts as $shift) {
-            foreach ($shift->notifications as $notification) {
-                if ($notification->read_at == NULL)
-                    array_push($unread_notifications, $notification);
-            }
-        }
-    }
-    return view('index', compact('unread_notifications'));
-})->name('index');
-
 //Auth
 Auth::routes();
-
+Route::get('/', 'HomeController@index')->name('index');
 Route::get('/home', 'HomeController@index')->name('home');
 
 //Google auth
@@ -39,7 +23,7 @@ Route::get('login/google/callback', 'SocialLoginController@handleProviderCallbac
 //Reports
 Route::resource('reports', 'ReportController', ['only' => ['create', 'store']]);
 //Reports.viewall page
-Route::get('reports/view/{report}', 'ReportController@view')->name('report.view');
+Route::get('reports/view/{report}', 'ReportController@view')->name('report.view')->middleware('auth');;
 Route::post('reports/close/{report}', 'ReportController@close')->name('report.close');
 
 //Station
@@ -51,17 +35,17 @@ Route::put('station/{station}/shifts' ,'StationShiftController@update')->name('s
 Route::get('notifications/show', 'NotificationController@show')->name('notifications.show');
 Route::get('NotificationController@countNew')->name('count');
 
-Route::get('/reports/viewall', function () {
-    return view('reports/viewall');
-});
+Route::get('/reports/view_all_open', function () {
+    return view('reports/view_all_open');})->middleware('auth');
 
 //Buy Coffee
 Route::get('/pay', function () {
-    return view('pay');})->name('pay');
+    return view('pay');})->name('pay')->middleware('auth');
 Route::post('/pay', 'PayPalController@makeInvoice');
 
 //Charge Card
 Route::get('/payforcard', function () {
-    return view('payforcard');})->name('payforcard');
+    return view('payforcard');})->name('payforcard')->middleware('auth');
 Route::post('/payforcard', 'PayPalController@makeInvoice');
+
 
