@@ -48,4 +48,12 @@ Route::get('/payforcard', function () {
     return view('payforcard');})->name('payforcard')->middleware('auth');
 Route::post('/payforcard', 'PayPalController@makeInvoice');
 
+Route::get('/test', function () {
+    Mail::raw('Text to e-mail', function ($message) {
+        $message->from('tavor@test.com', 'Laravel');
+
+        $message->to('tavorp12@gmail.com');
+    });
+});
+
 
