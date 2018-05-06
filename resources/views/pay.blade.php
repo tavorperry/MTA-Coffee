@@ -126,6 +126,7 @@
         },
         onAuthorize: function(data, actions) {
             return actions.payment.execute().then(function(payment) {
+                alert("התשלום התקבל!");
                 var payerData = payment.payer.payer_info;
                //From here till End its sending payerData data to the Controller
                 var data = {
