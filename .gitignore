@@ -19,3 +19,5 @@ config/services.php
 config/services.php
 config/services.php
 config/services.php
+composer.lock
+config/services.php
