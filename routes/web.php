@@ -56,4 +56,8 @@ Route::get('/test', function () {
     });
 });
 
+Route::get('/testing', function (){
+    $userId = 'e8e6f1c4-8380-4979-b6a5-81b70c7249ff';
+    OneSignal::sendNotificationToUser("Some Message", $userId, $url = null, $data = null, $buttons = null, $schedule = null);
+});
 
