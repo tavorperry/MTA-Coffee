@@ -1,20 +1,22 @@
-<!DOCTYPE html>
-<html dir="rtl">
-    <head>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    </head>
-    <h1>דווח על בעיה בעמדה</h1>
+@extends('layouts.master')
 
+@section('page-style')
+    <link href="{!! asset('css/create.css') !!}" media="all" rel="stylesheet" type="text/css" />
+@endsection
+
+@section('content')
+    <h1 class="service-description text-center">דווח על בעיה בעמדה</h1>
+    <hr>
     @if(session('message'))
         <div>{{ session('message') }}</div>
     @endif
     {{ Form::open(['route' => ['reports.store'],'files' => true]) }}
         @csrf
 
-        <div>
-            <label>עמדה</label><br>
-            <select name="station">
+        <div class=" text-center">
+            <label><h3 class="service-description">עמדה</h3></label><br>
+
+            <select id="check" name="station">
                 <option value="1">פומנטו</option>
                 <option value="2">ווסטון</option>
                 <option value="3">כלכלה</option>
@@ -23,42 +25,43 @@
 
         <br>
 
-        <div>
-            <label>סוג</label><br>
+        <div class=" text-center">
+            <label><h3 class="service-description">סוג</h3></label><br>
+
             <select name="type">
                 <option value="חסר משהו">חסר משהו</option>
                 <option value="יש תקלה">יש תקלה</option>
                 <option value="לא נקי">לא נקי</option>
                 <option value="אחר">אחר</option>
             </select>
+
         </div>
 
 
         <br>
 
-        <div>
-            <label>פרטים נוספים</label><br>
+        <div class=" text-center">
+            <label><h3 class="service-description">פרטים נוספים</h3></label><br>
             <textarea rows="4" cols="50" name="message" placeholder="נא לשמור על שפה תקינה, עד 50 תווים"></textarea><br>
             <span id="characters">0</span><span>/50</span>
         </div>
         <br>
-        <div>
-            <label>הוסף תמונה</label><br>
+        <div class=" text-center">
+            <label><h3 class="service-description">הוסף תמונה</h3></label><br>
             <input type="file" name="picture">
         </div>
         <br>
-        <div>
+        <div class=" text-center">
             <input type="submit" value="דווח!">
         </div>
     {!! Form::close() !!}
-{{--    </form>--}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
+@endsection
+
+@section('page-scripts')
     <script type='text/javascript'>
         $("textarea").keyup(function(){
             $("#characters").text($(this).val().length);
         });
     </script>
-    @include('sweet::alert')
-</html>
+@endsection
