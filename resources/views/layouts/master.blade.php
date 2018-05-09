@@ -32,7 +32,7 @@
             <a class="js-scroll-trigger" href="{{ route('pay') }}">שלם על קפה</a>
         </li>
         <li class="sidebar-nav-item">
-            <a class="js-scroll-trigger" href="{{ route('reports.create') }}">הטען כרטיס</a>
+            <a class="js-scroll-trigger" href="{{ route('payforcard') }}">הטען כרטיס</a>
         </li>
         <li class="sidebar-nav-item">
             <a class="js-scroll-trigger" href="{{ route('reports.create') }}">דיווח על תקלה</a>

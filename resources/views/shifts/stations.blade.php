@@ -1,11 +1,9 @@
-<html dir="rtl">
-    <head>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    </head>
+@extends('layouts.master')
 
-    <body>
-        <h1>המשמרות שלך</h1>
+
+@section('content')
+
+        <h1 class="service-description">המשמרות שלך</h1>
         @if(\App\Http\Controllers\StationShiftController::isUserHasShifts())
             <h2>עמדה:
                 @foreach (Auth::user()->shifts as $shift)
@@ -19,6 +17,9 @@
                     @break
                 @endforeach
             </h2>
+
+            <hr>
+
             <h2>משמרות:
             @foreach (Auth::user()->shifts as $shift)
                 <ul>
@@ -45,10 +46,11 @@
             @endif
         </h2>
 
-        <h1>עדכן משמרות</h1>
+
+        <h1 class="service-description">עדכן משמרות</h1>
         <a href="{{ action("StationShiftController@edit", "1") }}" class="btn btn-info" role="button">פומנטו - בניין 1</a>
         <a href="{{ action("StationShiftController@edit", "2") }}" class="btn btn-info" role="button">ווסטון - בניין 2</a>
         <a href="{{ action("StationShiftController@edit", "3") }}" class="btn btn-info" role="button">כלכלה - בניין 3</a>
 
-    </body>
-</html>
+@endsection
+

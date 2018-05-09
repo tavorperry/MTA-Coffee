@@ -1,45 +1,57 @@
-<html lang="heb" dir="rtl">
+@extends('layouts.master')
+
+@section('page-style')
+    <link href="{!! asset('css/payforcard.css') !!}" media="all" rel="stylesheet" type="text/css" />
+@endsection
+
+{{--<html lang="heb" dir="rtl">--}}
 <head>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <style>
-        .width100{
-            width: 100%;
-        }
-        .width50{
-            width: 50%;
-            margin: auto !important;
-            text-align: center !important;
-            direction: ltr; !important;
-            float: left; !important;
-        }
+    {{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">--}}
+    {{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">--}}
+    {{--<style>--}}
+        {{--.width100{--}}
+              {{--width: 100%;--}}
+          {{--}--}}
+        {{--.width50{--}}
+            {{--width: 50%;--}}
+            {{--margin: auto !important;--}}
+            {{--text-align: center !important;--}}
+            {{--direction: ltr; !important;--}}
+            {{--float: left; !important;--}}
+        {{--}--}}
 
-        h1{
-            text-align: center;
-        }
-        textarea{
-            text-align: center;
-            margin: auto;
-        }
-    </style>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+        {{--h1{--}}
+            {{--text-align: center;--}}
+        {{--}--}}
+        {{--textarea{--}}
+            {{--text-align: center;--}}
+            {{--margin: auto;--}}
+        {{--}--}}
+    {{--</style>--}}
+
+    {{--<meta charset="utf-8">--}}
+    {{--<meta name="viewport" content="width=device-width, initial-scale=1">--}}
     <!-- PayPal js file -->
     <script src="https://www.paypalobjects.com/api/checkout.js"></script>
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    {{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">--}}
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- Sweet Alerts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
+    {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>--}}
 </head>
-<body>
 
-<h1>באיזה סכום ברצונך להטעין את הכרטיס הנטען?</h1>
+
+
+@section('content')
+<body>
+<h1 class="service-description">באיזה סכום ברצונך להטעין את הכרטיס הנטען?</h1>
+
+<hr>
 
 <br>
 <p class="container" dir="rtl">
@@ -58,6 +70,11 @@
 <div class="button">
     <div id="paypal-button"></div>
 </div>
+
+@endsection
+
+@section('page-scripts')
+
 <script>
     function getTotal () {
         var total = $('input[type="text"][name="total"]').val();
@@ -156,6 +173,6 @@
         }
     });
 </script>
-</body>
+@endsection
+
 @include('sweet::alert')
-</html>
