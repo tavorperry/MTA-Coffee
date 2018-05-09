@@ -20,7 +20,7 @@
                         <div class="card-body">
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
-
+                                <input type="hidden" class="deviceUserId" name="device_id">
                                 <div class="form-group row">
                                     <label for="email" class="col-sm-4 col-form-label to-the-right">{{ __('כתובת מייל') }}</label>
 

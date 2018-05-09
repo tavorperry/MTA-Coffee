@@ -53,9 +53,14 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Shift');
     }
 
-    public function socials_user()
+    public function socialUser()
     {
         return $this->hasMany('App\SocialUser');
+    }
+
+    public function devicePushUser()
+    {
+        return $this->hasMany('App\DevicePushUser');
     }
 
     public function addPoints($points)

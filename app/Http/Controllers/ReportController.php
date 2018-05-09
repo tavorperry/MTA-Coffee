@@ -15,7 +15,7 @@ use Alert;
 use Validator;
 use Illuminate\Support\Facades\DB;
 use Image;
-
+use OneSignal;
 
 class ReportController extends Controller
 {
@@ -106,8 +106,14 @@ class ReportController extends Controller
         return $users_in_current_shift;
     }
 
-    public function sendNotificationstoUsers($users){
-        //We need to write here(or in somewhere else) the function that sends notifications to all the users in the var $users
+    public function sendNotificationstoUsers($users_id){
+        foreach($users_id as $user_id){
+            $devicePushUser = DB::table('device_push_users')
+                ->where([
+                    ['user_id', '=', $user_id]
+                ])->pluck('device_id');
+            OneSignal::sendNotificationToUser("דיווח חדש במשמרת!", $devicePushUser[0], $url = 'http://vmedu151.mtacloud.co.il/notifications/show');
+        }
     }
 
     public function view(Report $report){

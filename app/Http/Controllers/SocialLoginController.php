@@ -7,6 +7,7 @@ use App\SocialUser;
 use Laravel\Socialite\Facades\Socialite;
 use App\User;
 use Auth;
+use App\DevicePushUser;
 
 class SocialLoginController extends Controller
 {
@@ -15,8 +16,10 @@ class SocialLoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function redirectToProvider()
+    public function redirectToProvider(Request $request)
     {
+        session(['device_id' => $request->get('device_id')]);
+
         return Socialite::driver('google')->redirect();
     }
 
@@ -46,6 +49,19 @@ class SocialLoginController extends Controller
             $social->save();
             Auth::login($user);
         }
+
+        $deviceId = session('device_id');
+        if (!empty($deviceId)) {
+            $isDeviceEmpty = DevicePushUser::where('device_id', '=', $deviceId)->get()->isEmpty();
+            if ($isDeviceEmpty) {
+                $device = new DevicePushUser;
+                $device->device_id = $deviceId;
+                $device->user_id = $user->id;
+                $device->save();
+            }
+        }
+        session()->forget('device_id');
+
         return redirect()->back();
     }
 
