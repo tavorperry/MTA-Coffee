@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/css?family=Assistant" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
     <link href="{!! asset('css/index.css') !!}" media="all" rel="stylesheet" type="text/css" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     @yield('page-style')
     <title>MTAcoffee</title>
 </head>
