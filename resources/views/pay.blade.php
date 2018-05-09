@@ -105,7 +105,7 @@
     </label>
 </div>
 <br>
-<div class="button paypalbutton">
+<div class="  paypalbutton">
 <div id="paypal-button"></div>
 </div>
 
