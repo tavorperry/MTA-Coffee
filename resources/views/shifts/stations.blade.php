@@ -1,8 +1,6 @@
 @extends('layouts.master')
 
-
 @section('content')
-
         <h1 class="service-description">המשמרות שלך</h1>
         @if(\App\Http\Controllers\StationShiftController::isUserHasShifts())
             <h2>עמדה:
@@ -45,7 +43,6 @@
                 <h4>אין משמרות, לא חבל על הנקודות?</h4>
             @endif
         </h2>
-
 
         <h1 class="service-description">עדכן משמרות</h1>
         <a href="{{ action("StationShiftController@edit", "1") }}" class="btn btn-info" role="button">פומנטו - בניין 1</a>

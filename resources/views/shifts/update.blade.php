@@ -1,8 +1,8 @@
-<html dir="rtl">
-    <head>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <title></title>
+@extends('layouts.master')
+
+        {{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">--}}
+        {{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">--}}
+@section('content')
         <style>
             table {
                 /*border: 2px solid black;*/
@@ -18,7 +18,7 @@
         </style>
     </head>
     <body>
-        <h1>עדכן משמרות</h1>
+        <h1 class="service-description">עדכן משמרות</h1>
         <h4>
             @if($station->id == 1)
                 {{ "פומנטו" }}
@@ -69,7 +69,8 @@
             @method('PUT')
             <button type='submit'>נקה משמרות</button>
         </form>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
+
+        @endsection
+
+        {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>--}}
         @include('sweet::alert')
-    </body>
-</html>
