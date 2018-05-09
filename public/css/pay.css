@@ -42,3 +42,8 @@ body.loading .modal {
 body.loading .modal {
     display: block;
 }
+
+.paypalbutton
+{
+    margin-top: 20px;
+}

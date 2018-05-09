@@ -77,9 +77,12 @@
     <div>{{ session('message') }}</div>
 @endif
 
-<h1>?כמה כוסות תרצה לשתות</h1>
+<h1 class="service-description">על כמה כוסות תרצה לשלם?</h1>
+
+<hr>
 <br>
 <p class="container">
+
 <div class="btn-group btn-group-toggle row width100" data-toggle="buttons">
     <label class="btn btn-primary col width30">
         <input type="radio" name="total" autocomplete="off" value="1" checked> 1
@@ -102,9 +105,10 @@
     </label>
 </div>
 <br>
-    <div class="button">
+<div class="button paypalbutton">
 <div id="paypal-button"></div>
 </div>
+
 <div class="modal"></div>
 
 @endsection
