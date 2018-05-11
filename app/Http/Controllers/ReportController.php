@@ -62,7 +62,6 @@ class ReportController extends Controller
             Alert::error(' קפה אמון ייפתח בשעה 8:00 :)', 'סגורים, חביבי')->persistent("Close");
             return redirect()->route('index');
         }
-        //Add if getCurrentShift == null -> notify user
 
         $isReported = $report->save();
         if ($isReported) {
@@ -80,7 +79,7 @@ class ReportController extends Controller
             $shift->notify(new ReportCreated($report));
         }
 
-        $this->sendNotificationstoUsers($this->getUsersInCurrentShift($this->getCurrentShift($request->station)));
+        $this->sendNotificationsToUsers($this->getUsersInCurrentShift($this->getCurrentShift($request->station)));
         return redirect()->route('reports.create');
     }
 
@@ -94,6 +93,7 @@ class ReportController extends Controller
                 ['start_shift', '<', $current_hour],
                 ['end_shift', '>=', $current_hour]
             ])->value('id');
+
         return $current_shift;
     }
 
@@ -102,17 +102,21 @@ class ReportController extends Controller
             ->where([
                 ['shift_id', '=', $current_shift]
             ])->pluck('user_id');
-
         return $users_in_current_shift;
     }
 
-    public function sendNotificationstoUsers($users_id){
+    public function sendNotificationsToUsers($users_id){
         foreach($users_id as $user_id){
             $devicePushUser = DB::table('device_push_users')
                 ->where([
                     ['user_id', '=', $user_id]
                 ])->pluck('device_id');
-            OneSignal::sendNotificationToUser("דיווח חדש במשמרת!", $devicePushUser[0], $url = 'http://vmedu151.mtacloud.co.il/notifications/show');
+
+            if(isset($devicePushUser[0])){
+                OneSignal::sendNotificationToUser("דיווח חדש במשמרת!", $devicePushUser[0], $url = 'http://vmedu151.mtacloud.co.il/notifications/show');
+            } else {
+                continue;
+            }
         }
     }
 

@@ -47,7 +47,7 @@ $( document ).ready(function() {
         OneSignal.push(function () {
             OneSignal.getUserId(function (userId) {
                 var deviceUserId = $(".deviceUserId");
-                deviceUserId.attr('value', userId || '');
+                deviceUserId.attr('value', userId || null);
             });
         });
     }
