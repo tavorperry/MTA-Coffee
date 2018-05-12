@@ -94,6 +94,7 @@ body {
     background: rgba(52, 58, 64, 0.5);
     line-height: 50px;
     z-index: 999;
+    /*padding-top: 15px;*/
 }
 
 .menu-toggle:focus, .menu-toggle:hover {

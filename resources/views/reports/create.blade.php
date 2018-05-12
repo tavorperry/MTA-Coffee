@@ -42,10 +42,12 @@
 
         <div class=" text-center">
             <label><h3 class="service-description">פרטים נוספים</h3></label><br>
-            <textarea rows="4" cols="50" name="message" placeholder="נא לשמור על שפה תקינה, עד 50 תווים"></textarea><br>
+            <textarea rows="4" cols="30" name="message" placeholder="נא לשמור על שפה תקינה, עד 50 תווים"></textarea><br>
             <span id="characters">0</span><span>/50</span>
         </div>
+
         <br>
+
         <div class=" text-center">
             <label><h3 class="service-description">הוסף תמונה</h3></label><br>
             <input type="file" name="picture">

@@ -17,7 +17,6 @@
             }
         </style>
     </head>
-    <body>
         <h1 class="service-description">עדכן משמרות</h1>
         <h4>
             @if($station->id == 1)
@@ -71,6 +70,5 @@
         </form>
 
         @endsection
-
         {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>--}}
         @include('sweet::alert')
