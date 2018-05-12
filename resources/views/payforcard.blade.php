@@ -67,13 +67,15 @@
 </div>
 <br>
 <br>
-<div class="button">
-    <div id="paypal-button"></div>
+<div class="button" id="displayChange">
+    <div id="paypal-button" ></div>
 </div>
 
 @endsection
 
 @section('page-scripts')
+
+
 
 <script>
     function getTotal () {

@@ -19,10 +19,10 @@
 
 <body>
 <!-- Navigation -->
-<a class="menu-toggle rounded" href="#">
+<a  class="menu-toggle rounded" id="display-side-menu" href="#">
     <i class="fa fa-bars"></i>
 </a>
-<nav id="sidebar-wrapper">
+<nav   id="sidebar-wrapper" >
     <ul class="sidebar-nav">
         <li class="sidebar-brand">
             <a class="js-scroll-trigger" href="{{ route('home') }}">קפה אמון</a>
@@ -146,6 +146,18 @@
             appId: "3a5c67a0-1c84-41ee-946f-5a8509e90a78",
         });
     });
+</script>
+<script>
+
+    $("#display-side-menu").click(function() {
+        var x = $("#displayChange");
+        if (x.css("display") === "none") {
+            x.fadeIn(500);
+        } else {
+            x.fadeOut(500);
+        }
+    });
+
 </script>
 </body>
 </html>

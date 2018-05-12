@@ -15,6 +15,7 @@
 
 @section('content')
 
+
 @if(session('message'))
     <div>{{ session('message') }}</div>
 @endif
@@ -47,7 +48,7 @@
     </label>
 </div>
 <br>
-<div class="  paypalbutton">
+<div class="paypalbutton" id="displayChange">
 <div id="paypal-button"></div>
 </div>
 
@@ -73,7 +74,9 @@
         } else {
     var total;
     var price = 2;
-    paypal.Button.render({
+
+    paypal.Button.render(
+        {
         env: 'sandbox', //'production' Or 'sandbox'
         style: {
             label: 'pay',
