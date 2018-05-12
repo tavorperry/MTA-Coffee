@@ -23,29 +23,29 @@
 <h1 class="service-description">על כמה כוסות תרצה לשלם?</h1>
 
 <hr>
-<br>
-<p class="container">
 
-<div class="btn-group btn-group-toggle row width100" data-toggle="buttons">
-    <label class="btn btn-primary col width30">
-        <input type="radio" name="total" autocomplete="off" value="1" checked> 1
-    </label>
-    <label class="btn btn-primary col width30">
-        <input type="radio" name="total" autocomplete="off" value="2"> 2
-    </label>
-    <label class="btn btn-primary col width30">
-        <input type="radio" name="total" autocomplete="off" value="3"> 3
-    </label>
-    <br>
-    <label class="btn btn-primary col width30">
-        <input type="radio" name="total" autocomplete="off" value="4"> 4
-    </label>
-    <label class="btn btn-primary col width30">
-        <input type="radio" name="total" autocomplete="off" value="5"> 5
-    </label>
-    <label class="btn btn-primary col width30">
-        <input type="radio" name="total" autocomplete="off" value="6"> 6
-    </label>
+<div class="container">
+    <div class=" btn-group-toggle row " data-toggle="buttons">
+        <label class="btn btn-info col-6">
+            <input type="radio" name="total" autocomplete="off" value="1" checked> 1
+        </label>
+        <label class="btn btn-info col-6">
+            <input type="radio" name="total" autocomplete="off" value="2"> 2
+        </label>
+        <label class="btn btn-info col-6 ">
+            <input type="radio" name="total" autocomplete="off" value="3"> 3
+        </label>
+        <br>
+        <label class="btn btn-info col-6 ">
+            <input type="radio" name="total" autocomplete="off" value="4"> 4
+        </label>
+        <label class="btn btn-info col-6 ">
+            <input type="radio" name="total" autocomplete="off" value="5"> 5
+        </label>
+        <label class="btn btn-info col-6 ">
+            <input type="radio" name="total" autocomplete="off" value="6"> 6
+        </label>
+    </div>
 </div>
 <br>
 <div class="paypalbutton" id="displayChange">
