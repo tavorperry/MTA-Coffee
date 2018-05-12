@@ -21,33 +21,30 @@
   <nav id="sidebar-wrapper">
     <ul class="sidebar-nav">
       <li class="sidebar-brand">
-        <a class="js-scroll-trigger" href="#page-top">Start Bootstrap</a>
+        <a class="js-scroll-trigger" href="{{ route('home') }}">קפה אמון</a>
       </li>
       <li class="sidebar-nav-item">
-        <a class="js-scroll-trigger" href="#page-top">Home</a>
+        <a class="js-scroll-trigger" href="{{ route('home') }}">חזור לדף הבית</a>
       </li>
       <li class="sidebar-nav-item">
-        <a class="js-scroll-trigger" href="#about">About</a>
+        <a class="js-scroll-trigger" href="{{ route('pay') }}">שלם על קפה</a>
       </li>
       <li class="sidebar-nav-item">
-        <a class="js-scroll-trigger" href="#services">Services</a>
+        <a class="js-scroll-trigger" href="{{ route('payforcard') }}">הטען כרטיס</a>
       </li>
       <li class="sidebar-nav-item">
-        <a class="js-scroll-trigger" href="#portfolio">Portfolio</a>
+        <a class="js-scroll-trigger" href="{{ route('reports.create') }}">דיווח על תקלה</a>
       </li>
       <li class="sidebar-nav-item">
-        <a class="js-scroll-trigger" href="#contact">Contact</a>
+        <a class="js-scroll-trigger" href="{{ route('station') }}">עדכון משמרות</a>
       </li>
     </ul>
   </nav>
 
   <header class="master-head" id="page-top">
     <div class="notification-bar">
-      <div id="notification-icon">
-        <i class="far fa-bell"></i>
-      </div>
     </div>
-    <div class="container text-center my-auto">
+    <div class="container text-center my-auto" style="padding-bottom: 60px;">
       @if(Auth::user())
         <h1>{{ Auth::user()->first_name. ' ' .Auth::user()->last_name }}</h1>
         <!-- ADD LEVEL TAG -->
@@ -64,34 +61,45 @@
   <main class="func-buttons" style="position: relative;top: 50px;">
     <div class="container">
         @if(Auth::user())
-          <div class="to-the-right">
-            <br>
-            <p><a href="{{ route('pay') }}">לחץ כאן לתשלום על קפה</a></p>
-            <p><a href="{{ route('payforcard') }}">לחץ כאן להטענת כרטיס נטען!</a></p>
-            <p><a href="{{ route('reports.create') }}">לחץ כאן לדיווח</a></p>
-            <p><a href="{{ route('station') }}">לחץ כאן לשיבוץ למשמרות</a></p>
-          </div>
-
+        <div class="row">
+          <a href="{{ route('notifications.show') }}" class="btn menu-btn col"> <i class="far fa-flag menu-btn-icon"></i><br>
+            התראות
+            <span class="badge badge-pill badge-danger" style="position: absolute;
+    top: 10%;
+    right: 70%;">
+              {{ count($unread_notifications) }}
+            </span>
+          </a>
+          <a href="{{ route('reports.create') }}" class="btn menu-btn col"><i class="fas fa-exclamation-triangle menu-btn-icon"></i><br>
+            דווח!
+          </a>
+          <a href="{{ route('station') }}" class="btn menu-btn col"><i class="far fa-calendar-alt menu-btn-icon"></i><br>
+            משמרות
+          </a>
+        </div>
+        <div class="row">
+          <a href="{{ route('pay') }}" class="btn menu-btn col"><i class="far fa-credit-card menu-btn-icon"></i><br>
+            שלם עכשיו
+          </a>
+          <a href="{{ route('pay') }}" class="btn menu-btn col"><i class="far fa-envelope menu-btn-icon"></i><br>
+            צור קשר
+          </a>
+          <a href="{{ route('payforcard') }}" class="btn menu-btn col"><i class="far fa-id-card menu-btn-icon"></i><br>
+            הזמן כרטיס
+          </a>
+        </div>
           <form action="{{ route('logout') }}" method="POST" style="text-align: right; margin-top: 100px">
             @csrf
             <input type="hidden" class="deviceUserId" name="device_id">
             <button type="submit">LOGOUT</button>
-            <a href="{{ route('notifications.show') }}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">
-              התראות פתוחות <span class="badge badge-light">
-                {{ count($unread_notifications) }}
-              </span>
             </a>
           </form>
         </div>
         @else
-        <section id="login-form">
-          @yield('login')
-          @yield('reg')
-        </section>
         <hr>
-        <h2 class="service-description text-center">השירותים שלנו (או שלכם, אחריי קפה שחור ;)</h2>
+        <h2 class="service-description text-center">השירותים שלנו</h2>
         <div class="row">
-          <button type="button" class="btn menu-btn col" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" data-content="קבל התרעות מדיווחים של משתמשים אחרים וקבל נקודות!"> <i class="far fa-flag menu-btn-icon"></i><br>
+          <button type="button" href="{{ route('notifications.show') }}" class="btn menu-btn col" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" data-content="קבל התרעות מדיווחים של משתמשים אחרים וקבל נקודות!"> <i class="far fa-flag menu-btn-icon"></i><br>
             התרעות
           </button>
           <button type="button" class="btn menu-btn col" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" data-content="קבל התרעות מדיווחים של משתמשים אחרים וקבל נקודות!"><i class="fas fa-exclamation-triangle menu-btn-icon"></i><br>
@@ -116,7 +124,7 @@
           <form action="{{ route('login.google') }}">
             @csrf
             <input type="hidden" class="deviceUserId" name="device_id">
-            <button type="submit">GOOGLE</button>
+            <button type="submit" class="google-signin-btn" style="">GOOGLE</button>
           </form>
 
           <p><a href="{{ route('login') }}">לחץ כאן להתחברות</a></p>
