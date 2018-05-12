@@ -57,13 +57,15 @@
 <p class="container" dir="rtl">
     <input type="text" name="total" class="form-control bfh-number" value="10" data-min="5" data-max="25">
 <br>
-<div class="btn-group btn-group-toggle row width100" data-toggle="buttons">
-    <label class="btn btn-primary col width50 active">
-        <input type="radio" name="havecard" autocomplete="off" value="Yes" checked> יש ברשותי כבר כרטיס
-    </label>
-    <label class="btn btn-primary col width50">
-        <input type="radio" name="havecard" autocomplete="off" value="No"> רוצה להזמין כרטיס חדש
-    </label>
+<div class="container">
+    <div class=" btn-group-toggle row" data-toggle="buttons">
+        <label class="btn btn-info col-6  active">
+            <input type="radio" name="havecard" autocomplete="off" value="Yes" checked> יש ברשותי כבר כרטיס
+        </label>
+        <label class="btn btn-info col-6 ">
+            <input type="radio" name="havecard" autocomplete="off" value="No"> רוצה להזמין כרטיס חדש
+        </label>
+    </div>
 </div>
 <br>
 <br>
