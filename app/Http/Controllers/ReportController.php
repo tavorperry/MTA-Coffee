@@ -86,11 +86,13 @@ class ReportController extends Controller
     public function getCurrentShift($stationId){
         $current_hour = (int) date("H");
         $current_day = date('w') + 1; /*The function returns 0-6 values so we add 1 so that will fit the DB*/
+        if($current_hour == 14)
+            $current_hour++;
         $current_shift = DB::table('shifts')
             ->where([
                 ['station_id', '=', $stationId],
                 ['day', '=', $current_day],
-                ['start_shift', '<', $current_hour],
+                ['start_shift', '<=', $current_hour],
                 ['end_shift', '>=', $current_hour]
             ])->value('id');
 
