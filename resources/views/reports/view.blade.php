@@ -13,6 +13,7 @@
     <br>
     <br>
         <h1 class="service-description text-center"><b> דיווח מספר {{ $report->id }}: </b></h1>
+    <div class="text-center">
         <h4><u>בניין:</u>
             <span class="blue">
             @if($report->station_id == 1)
@@ -41,12 +42,12 @@
             {{\App\Http\Controllers\ReportController::findUser($report->opening_user_id)->first_name}}
                 {{\App\Http\Controllers\ReportController::findUser($report->opening_user_id)->last_name}}
             </span>
-            ב-
-            <span class="blue">
+        </h4>
+        <u>תאריך:</u>
+        <span class="blue">
             {{$report->created_at}}
             </span>
-        </h4>
-        <br>
+        <h4></h4>
         <h4>
             <u>סיבת הדיווח:</u>
             <span class="blue"> {{$report->type}}</span>
@@ -73,6 +74,7 @@
             @endif
             {{ Form::close() }}
         </div>
+    </div>
         {{----}}
         {{--@include('sweet::alert')--}}
 @endsection
