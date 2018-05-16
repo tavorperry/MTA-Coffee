@@ -1,4 +1,4 @@
-@extends('index')
+@extends('index2')
 
 @section('reg')
 <div class="container">

@@ -1,6 +1,6 @@
-@extends('index')
+@extends('layouts.index')
 
-@section('login')
+@section('content')
 <ul class="nav nav-pills mb-3 cent" id="pills-tab" role="tablist">
     <li class="nav-item">
         <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#login" role="tab" aria-controls="pills-home" aria-selected="true">התחברות</a>
@@ -116,7 +116,7 @@
                                     <label for="email" class="col-md-4 col-form-label to-the-right">{{ __('כתובת מייל') }}</label>
 
                                     <div class="col-md-6">
-                                        <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                                        <input id="email_reg" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
 
                                         @if ($errors->has('email'))
                                             <span class="invalid-feedback">
@@ -130,7 +130,7 @@
                                     <label for="password" class="col-md-4 col-form-label to-the-right">{{ __('סיסמא') }}</label>
 
                                     <div class="col-md-6">
-                                        <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                        <input id="password_reg" type="password" class="form-control{{ $errors->has('password_reg') ? ' is-invalid' : '' }}" name="password" required>
 
                                         @if ($errors->has('password'))
                                             <span class="invalid-feedback">
