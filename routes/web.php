@@ -1,4 +1,4 @@
--<?php
+<?php
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +22,7 @@ Route::get('login/google/callback', 'SocialLoginController@handleProviderCallbac
 
 //Reports
 Route::resource('reports', 'ReportController', ['only' => ['create', 'store']])->middleware('auth');
+
 //Reports.viewall page
 Route::get('reports/view/{report}', 'ReportController@view')->name('report.view')->middleware('auth');
 Route::post('reports/close/{report}', 'ReportController@close')->name('report.close')->middleware('auth');
