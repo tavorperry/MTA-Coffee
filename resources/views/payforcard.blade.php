@@ -59,13 +59,6 @@
         var havecard = $('input[type="radio"][name="havecard"]:checked').val();
             return havecard;
     }
-
-
-
-
-
-
-    
 </script>
 <script>
     $(document).ready(function () {
