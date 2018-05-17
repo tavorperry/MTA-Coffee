@@ -87,7 +87,6 @@
                         <div class="card-body">
                             <form method="POST" action="{{ route('register') }}">
                                 @csrf
-
                                 <div class="form-group row">
                                     <label for="first_name" class="col-sm-4 col-form-label to-the-right">{{ __('שם פרטי') }}</label>
                                     <div class="col-md-6">

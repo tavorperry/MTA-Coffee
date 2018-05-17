@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Assistant" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
     <link href="{!! asset('css/index.css') !!}" media="all" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Varela+Round" rel="stylesheet">
     {{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">--}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -63,7 +64,9 @@
 
 <main>
     <div class="container content text-right">
+        <br>
         @yield('content')
+        <br>
     </div>
 </main>
 
@@ -100,9 +103,9 @@
     $("#display-side-menu").click(function() {
         var x = $("#displayChange");
         if (x.css("display") === "none") {
-            x.fadeIn(500);
+            x.fadeIn(400);
         } else {
-            x.fadeOut(500);
+            x.fadeOut(400);
         }
     });
 

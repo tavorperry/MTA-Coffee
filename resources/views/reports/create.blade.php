@@ -15,7 +15,6 @@
 
         <div class=" text-center">
             <label><h3 class="service-description">עמדה</h3></label><br>
-
             <select id="check" name="station">
                 <option value="1">פומנטו</option>
                 <option value="2">ווסטון</option>
@@ -54,7 +53,8 @@
         </div>
         <br>
         <div class=" text-center">
-            <input type="submit" value="דווח!">
+            {{--<input type="submit" value="דווח!">--}}
+            <button type="submit" class="btn login-btn" value="דווח!">דווח!</button>
         </div>
     {!! Form::close() !!}
 

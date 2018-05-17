@@ -14,39 +14,35 @@
 </head>
 
 @section('content')
-
-
 @if(session('message'))
     <div>{{ session('message') }}</div>
 @endif
-
 <h1 class="service-description">על כמה כוסות תרצה לשלם?</h1>
-
 <hr>
-
 <div class="container">
-    <div class=" btn-group-toggle row " data-toggle="buttons">
-        <label class="btn btn-info col-6">
+    <div class=" btn-group-toggle row" data-toggle="buttons">
+        <label class="btn btn-primary col-6">
             <input type="radio" name="total" autocomplete="off" value="1" checked> 1
         </label>
-        <label class="btn btn-info col-6">
+        <label class="btn btn-primary col-6">
             <input type="radio" name="total" autocomplete="off" value="2"> 2
         </label>
-        <label class="btn btn-info col-6 ">
+        <label class="btn btn-primary col-6 ">
             <input type="radio" name="total" autocomplete="off" value="3"> 3
         </label>
         <br>
-        <label class="btn btn-info col-6 ">
+        <label class="btn btn-primary col-6 ">
             <input type="radio" name="total" autocomplete="off" value="4"> 4
         </label>
-        <label class="btn btn-info col-6 ">
+        <label class="btn btn-primary col-6 ">
             <input type="radio" name="total" autocomplete="off" value="5"> 5
         </label>
-        <label class="btn btn-info col-6 ">
+        <label class="btn btn-primary col-6 ">
             <input type="radio" name="total" autocomplete="off" value="6"> 6
         </label>
     </div>
 </div>
+
 <br>
 <div class="paypalbutton" id="displayChange">
 <div id="paypal-button"></div>
@@ -155,6 +151,11 @@
 
     }, '#paypal-button');
         }
+    });
+</script>
+<script>
+    $( document ).ready(function() {
+        $("#display-side-menu").css("padding-top", "15px");
     });
 </script>
 <script>

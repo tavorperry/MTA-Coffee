@@ -2,7 +2,7 @@
     width: 100%;
 }
 .width30{
-    width: 30%;
+    width: 50%;
 }
 .button{
     text-align: center;
@@ -12,7 +12,10 @@
 h1{
     text-align: center;
 }
-
+.to-center
+{
+    text-align: center;
+}
 /* Start by setting display:none to make this hidden.
 Then we position it in relation to the viewport window
 with position:fixed. Width, height, top and left speak

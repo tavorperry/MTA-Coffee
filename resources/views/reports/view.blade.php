@@ -1,17 +1,12 @@
 @extends('layouts.master')
-
-        {{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">--}}
-        {{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">--}}
-
         <style>
             .blue {
                 color: blue;
             }
-        </style>
 
+
+        </style>
 @section('content')
-    <br>
-    <br>
         <h1 class="service-description text-center"><b> דיווח מספר {{ $report->id }}: </b></h1>
     <div class="text-center">
         <h4><u>בניין:</u>
@@ -63,14 +58,16 @@
             {{ Form::open(['route' => ['report.close', $report->id]]) }}
             @csrf
             <h4><u>תגובת סוגר הדוח:</u></h4>
-            <textarea rows="4" cols="50" name="comment" placeholder="הכנס תגובה/הערות"
+            <textarea rows="4" cols="35" name="comment" placeholder="הכנס תגובה/הערות"
             <?php if($report->status == 1){
                 echo 'disabled';
             }echo'>'.$report->comment;?></textarea>
             <br>
             <input hidden name="report_id" value="{{$report->id}}">
             @if($report->status == 0)
-            <input type="submit" value="סגור דיווח">
+            <div class="container">
+                <button type="submit" class="btn login-btn width78" value="סגור דיווח">סגור דיווח!</button>
+            </div>
             @endif
             {{ Form::close() }}
         </div>
