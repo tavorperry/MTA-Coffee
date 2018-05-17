@@ -47,7 +47,7 @@
 @endsection
 
 @section('page-scripts')
-    
+
 <script>
     function getTotal () {
         var total = $('input[type="text"][name="total"]').val();
@@ -59,6 +59,13 @@
         var havecard = $('input[type="radio"][name="havecard"]:checked').val();
             return havecard;
     }
+
+
+
+
+
+
+    
 </script>
 <script>
     $(document).ready(function () {
