@@ -54,15 +54,17 @@
             <br>
             <div>
             @if($level == '11')
-                <i class="fas fa-trophy user-level"></i>
+                <i class="fas fa-trophy user-level user-level-top"></i>
             @else
-            @for($i=1; $i<10-$level; $i++)
-                <i class="fas fa-coffee user-grey"></i>
-            @endfor
-            @for($i=0; $i<$level; $i++)
-                <i class="fas fa-coffee user-level"></i>
-            @endfor
+                <i class="fas fa-trophy user-grey"></i>
+                @for($i=1; $i<10-$level; $i++)
+                    <i class="fas fa-coffee user-grey"></i>
+                @endfor
+                @for($i=0; $i<$level; $i++)
+                    <i class="fas fa-coffee user-level"></i>
+                @endfor
             @endif
+            <br>
             <h3>נקודות:&nbsp;{{ Auth::user()->points }}</h3>
             </div>
         @else

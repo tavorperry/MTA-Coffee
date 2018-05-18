@@ -275,9 +275,13 @@ li a {
 
 .user-level {
     color: #ffdd59;
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .user-grey {
     color: #dfe6e9;
+}
+
+.user-level-top {
+    font-size: 30px
 }
