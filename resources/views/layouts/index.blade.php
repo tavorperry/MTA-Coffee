@@ -44,11 +44,27 @@
 <header class="master-head" id="page-top">
     <div class="notification-bar">
     </div>
-    <div class="container text-center my-auto" style="padding-bottom: 60px;">
+    <div class="container text-center my-auto" style="padding-bottom: 25px;">
         @if(Auth::user())
-            <h1>{{ Auth::user()->first_name. ' ' .Auth::user()->last_name }}</h1>
-            <!-- ADD LEVEL TAG -->
-            <h2>נקודות:&nbsp;{{ Auth::user()->points }}</h2>
+            <section>
+                <h1 class="d-inline">{{ Auth::user()->first_name. ' ' .Auth::user()->last_name }}</h1>
+                <br>
+                <?php $level = Auth::user()->getLevel() ?>
+            </section>
+            <br>
+            <div>
+            @if($level == '11')
+                <i class="fas fa-trophy user-level"></i>
+            @else
+            @for($i=1; $i<10-$level; $i++)
+                <i class="fas fa-coffee user-grey"></i>
+            @endfor
+            @for($i=0; $i<$level; $i++)
+                <i class="fas fa-coffee user-level"></i>
+            @endfor
+            @endif
+            <h3>נקודות:&nbsp;{{ Auth::user()->points }}</h3>
+            </div>
         @else
             <h1>קפה אמון</h1>
             <h3>חזק, על בסיס אמון</h3>

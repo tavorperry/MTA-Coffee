@@ -118,7 +118,7 @@ body {
 h1,h2,
 h3,h4,
 h5,h6 {
-    /*color: white;*/
+    color: white;
 }
 
 .notification-bar {
@@ -207,6 +207,7 @@ h5,h6 {
         width: 100%;
         height: 38%;
     }
+
 }
 
 /*Scroll to top*/
@@ -272,3 +273,11 @@ li a {
     font-family: 'Varela Round', sans-serif;
 }
 
+.user-level {
+    color: #ffdd59;
+    font-size: 25px;
+}
+
+.user-grey {
+    color: #dfe6e9;
+}
