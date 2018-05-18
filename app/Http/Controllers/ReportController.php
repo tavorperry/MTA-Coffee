@@ -67,8 +67,8 @@ class ReportController extends Controller
         if ($isReported) {
             $user = Auth::user();
             $prevLevel = $user->getLevel();
-            $user->addPoints(20);
-            Alert::success('הרווחת 20 נקודות', 'הדיווח נשלח!')->persistent("Close");
+            $user->addPoints(10);
+            Alert::success('הרווחת 10 נקודות', 'הדיווח נשלח!')->persistent("Close");
 
             if($user->isLevelUp($prevLevel))
             {
@@ -148,11 +148,11 @@ class ReportController extends Controller
             //give the user more points
             $user = Auth::user();
             $prevLevel = $user->getLevel();
-            $user->addPoints(100);
-            Alert::success('הרווחת 100 נקודות', 'הדיווח נסגר כל הכבוד!')->persistent("Close");
+            $user->addPoints(15);
+            Alert::success('הרווחת 15 נקודות', 'הדיווח נסגר כל הכבוד!')->persistent("Close");
 
             if ($user->isLevelUp($prevLevel)) {
-                Alert::success('מזל טוב עלית רמה! ', 'הדיווח נסגר כל הכבוד!הרווחת 100 נקודות ')->persistent("Close");
+                Alert::success('מזל טוב עלית רמה! ', 'הדיווח נסגר כל הכבוד !הרווחת 15 נקודות')->persistent("Close");
             }
         }
 
