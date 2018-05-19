@@ -283,5 +283,6 @@ li a {
 }
 
 .user-level-top {
-    font-size: 30px
+    font-size: 40px;
+    margin: 8px;
 }

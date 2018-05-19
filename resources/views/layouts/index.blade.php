@@ -45,32 +45,7 @@
     <div class="notification-bar">
     </div>
     <div class="container text-center my-auto" style="padding-bottom: 25px;">
-        @if(Auth::user())
-            <section>
-                <h1 class="d-inline">{{ Auth::user()->first_name. ' ' .Auth::user()->last_name }}</h1>
-                <br>
-                <?php $level = Auth::user()->getLevel() ?>
-            </section>
-            <br>
-            <div>
-            @if($level == '11')
-                <i class="fas fa-trophy user-level user-level-top"></i>
-            @else
-                <i class="fas fa-trophy user-grey"></i>
-                @for($i=1; $i<10-$level; $i++)
-                    <i class="fas fa-coffee user-grey"></i>
-                @endfor
-                @for($i=0; $i<$level; $i++)
-                    <i class="fas fa-coffee user-level"></i>
-                @endfor
-            @endif
-            <br>
-            <h3>נקודות:&nbsp;{{ Auth::user()->points }}</h3>
-            </div>
-        @else
-            <h1>קפה אמון</h1>
-            <h3>חזק, על בסיס אמון</h3>
-        @endif
+        @yield('user-welcome')
     </div>
     <div class="overlay"></div>
     <div class="round-div"></div>

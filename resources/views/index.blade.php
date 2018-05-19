@@ -1,5 +1,31 @@
 @extends('layouts.index')
 
+@section('user-welcome')
+    @if(Auth::user())
+        <section>
+            <h1 class="d-inline">{{ Auth::user()->first_name. ' ' .Auth::user()->last_name }}</h1>
+            <?php $level = Auth::user()->getLevel() ?>
+        </section>
+        <div class="mt-4 mb-2">
+            @if($level == '11')
+                <i class="fas fa-trophy user-level user-level-top"></i>
+            @else
+                <i class="fas fa-trophy user-grey"></i>
+                @for($i=1; $i<10-$level; $i++)
+                    <i class="fas fa-coffee user-grey"></i>
+                @endfor
+                @for($i=0; $i<$level; $i++)
+                    <i class="fas fa-coffee user-level"></i>
+                @endfor
+            @endif
+        </div>
+        <h3>נקודות:&nbsp;{{ Auth::user()->points }}</h3>
+    @else
+        <h1>קפה אמון</h1>
+        <h3>חזק, על בסיס אמון</h3>
+    @endif
+@endsection
+
 @section('content')
     @if(Auth::user())
         <div class="row">
@@ -70,4 +96,10 @@
             <p><a href="{{ route('login') }}">לחץ כאן להתחברות/הרשמה</a></p>
         </div>
         @endif
+@endsection
+
+@section('page-script')
+    <script>
+
+    </script>
 @endsection
