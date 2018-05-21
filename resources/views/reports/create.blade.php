@@ -52,9 +52,11 @@
             <input type="file" name="picture">
         </div>
         <br>
-        <div class=" text-center">
-            {{--<input type="submit" value="דווח!">--}}
-            <button type="submit" class="btn login-btn" value="דווח!">דווח!</button>
+        <div class="container">
+            <div class="text-center">
+                {{--<input type="submit" value="דווח!">--}}
+                <button type="submit" class="btn login-btn" value="דווח!">דווח!</button>
+            </div>
         </div>
     {!! Form::close() !!}
 

@@ -33,15 +33,15 @@
             <div class="table-responsive">
                 <table class="table table-bordered">
                     <tr>
-                        <th>משמרת</th>
-                        <th>ראשון</th>
-                        <th>שני</th>
-                        <th>שלישי</th>
-                        <th>רביעי</th>
-                        <th>חמישי</th>
+                        <th scope="col">משמרת</th>
+                        <th scope="col">ראשון</th>
+                        <th scope="col">שני</th>
+                        <th scope="col">שלישי</th>
+                        <th scope="col">רביעי</th>
+                        <th scope="col">חמישי</th>
                     </tr>
                     <tr>
-                        <th>בוקר 8:00-14:00<br></th>
+                        <th scope="row">בוקר 8:00-14:00<br></th>
                         @foreach($station->shifts as $shift)
                             <td><input type="checkbox" name="shifts[]" value="{{ $shift->id }}"
                                         {{ \App\Http\Controllers\StationShiftController::isUserCheckThisShiftAlready($shift) }}
@@ -51,7 +51,7 @@
                         @endforeach
                     </tr>
                     <tr>
-                        <th>ערב 14:00-20:00<br></th>
+                        <th scope="row">ערב 14:00-20:00<br></th>
                         @for($i=5; $i < 10; $i++)
                             <td><input type="checkbox" name="shifts[]" value="{{ $station->shifts[$i]->id }}"
                                         {{ \App\Http\Controllers\StationShiftController::isUserCheckThisShiftAlready( $station->shifts[$i]) }}
@@ -61,12 +61,24 @@
                     </tr>
                 </table><br>
             </div>
-            <button type='submit'>עדכן משמרות</button>
+
+            <div class="container">
+                <div class="text-center">
+                    {{--<input type="submit" value="דווח!">--}}
+                    <button type="submit" class="btn login-btn" >עדכן משמרות</button>
+                </div>
+            </div>
         </form>
         <form action="{{ route('station.shifts', $station->id) }}" method="POST">
             @csrf
             @method('PUT')
-            <button type='submit'>נקה משמרות</button>
+            <div class="container">
+                <div class="text-left">
+                    {{--<input type="submit" value="דווח!">--}}
+                    <button type="submit" class="btn" >נקה משמרות</button>
+                </div>
+            </div>
+            {{--<button type='submit'>נקה משמרות</button>--}}
         </form>
 
         @endsection

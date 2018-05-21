@@ -118,7 +118,7 @@ body {
 h1,h2,
 h3,h4,
 h5,h6 {
-    color: white;
+    color: black;
 }
 
 .notification-bar {
@@ -271,6 +271,7 @@ li a {
     font-size: 1.8em;
     margin-right: 20px;
     font-family: 'Varela Round', sans-serif;
+    color: white;
 }
 
 .user-level {
@@ -285,4 +286,15 @@ li a {
 .user-level-top {
     font-size: 40px;
     margin: 8px;
+}
+
+.col-4{
+    padding-right: 1px;
+    padding-left: 1px;
+}
+
+.text-left
+{
+    text-align: left;
+    margin-top: 8px;
 }
