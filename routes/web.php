@@ -42,12 +42,12 @@ Route::get('/reports/view_all_open', function () {
 
 //Buy Coffee
 Route::get('/pay', function () {
-    return view('pay');})->name('pay')->middleware('auth');
+    return view('pay/payforcoffee');})->name('pay')->middleware('auth');
 Route::post('/pay', 'PayPalController@makeInvoice');
 
 //Charge Card
 Route::get('/payforcard', function () {
-    return view('payforcard');})->name('payforcard')->middleware('auth');
+    return view('pay/payforcard');})->name('payforcard')->middleware('auth');
 Route::post('/payforcard', 'PayPalController@makeInvoice')->middleware('auth');;
 
 Route::get('/test', function () {

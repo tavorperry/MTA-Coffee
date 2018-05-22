@@ -134,7 +134,8 @@
                             },
                             success: function(InvoiceID) {
                                 console.log("Invoice No. " + InvoiceID + " Created");
-                                alert("תודה ! התשלום התקבל ומספר הקבלה במערכת שלנו הינו: " + InvoiceID);
+                                //alert("תודה ! התשלום התקבל ומספר הקבלה במערכת שלנו הינו: " + InvoiceID);
+                                window.location.replace("/");
                             }
                         });
                         //End

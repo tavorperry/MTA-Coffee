@@ -47,23 +47,23 @@ class PayPalController extends Controller
         //Start - Sending Email to Customer
         Mail::send('emails.customer_payment_approval', ['user' => $user, 'Invoice' => $Invoice], function ($m) use ($user) {
             $m->from('mta-coffee@mta.ac.il', 'אגודת הסטודנטים והסטודנטיות');
-            $m->to($user->email, $user->first_name)->subject('תודה שקנית בקפה אמון!');
+            $m->to($user->email, $user->first_name)->subject('מייל ליוזר - תודה שקנית בקפה אמון!');
         });
         //End - Sending Email to Customer
 
-        //Start - Sending Email to Aguda
+        //Start - Sending Email to MTA-Coffee Manager
         Mail::send('emails.internal_payment_approval', ['user' => $user, 'Invoice' => $Invoice], function ($m) use ($user) {
             $m->from('mta-coffee@mta.ac.il', 'קפה אמון');
-            $m->to('tavorp12@gmail.com', $user->first_name)->subject('רכישה חדשה בקפה אמון!');
+            $m->to($user->email, $user->first_name)->subject('מייל למנהל קפה אמון - רכישה חדשה בקפה אמון!');
         });
-        //End - Sending Email to Aguda
+        //End - Sending Email to MTA-Coffee Manager
 
-        //This email is for Xsenia:
+        //This email is for the Front-Desk manager in the Aguda:
         //Start - Sending Email to Aguda to charge Card
         if($Invoice->coffee_or_card == "Card") {
             Mail::send('emails.internal_payment_approval', ['user' => $user, 'Invoice' => $Invoice], function ($m) use ($user) {
                 $m->from('mta-coffee@mta.ac.il', 'קפה אמון');
-                $m->to('tavorp12@gmail.com', $user->first_name)->subject('הטענת כרטיס!');
+                $m->to($user->email, $user->first_name)->subject('מייל למנהלת המשרד באגודה - הטענת כרטיס!');
             });
             //End - Sending Email to Aguda
         }

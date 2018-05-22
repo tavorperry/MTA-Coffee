@@ -80,7 +80,7 @@ class ReportController extends Controller
         }
 
         $this->sendNotificationsToUsers($this->getUsersInCurrentShift($this->getCurrentShift($request->station)));
-        return redirect()->route('reports.create');
+        return redirect()->route('index');
     }
 
     public function getCurrentShift($stationId){

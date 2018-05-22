@@ -1,7 +1,4 @@
 @extends('layouts.master')
-
-        {{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">--}}
-        {{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">--}}
 @section('content')
         <style>
             table {
@@ -63,7 +60,6 @@
             </div>
             <div class="container">
                 <div class="text-center">
-                    {{--<input type="submit" value="דווח!">--}}
                     <button type="submit" class="btn login-btn" >עדכן משמרות</button>
                 </div>
             </div>
@@ -73,12 +69,9 @@
             @method('PUT')
             <div class="container">
                 <div class="text-left">
-                    {{--<input type="submit" value="דווח!">--}}
                     <button type="submit" class="btn" >נקה משמרות</button>
                 </div>
             </div>
-            {{--<button type='submit'>נקה משמרות</button>--}}
         </form>
-
         @endsection
 

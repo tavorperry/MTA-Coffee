@@ -247,23 +247,13 @@
     </div>
     <!-- Preview Text Spacing Hack : END -->
 
-    <!-- Email Header : BEGIN -->
-    <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="600" style="margin: auto;" class="email-container">
-        <tr>
-            <td style="padding: 20px 0; text-align: center">
-                <img src="../../../public/pictures/logo_email.png" width="200px" height="50px" alt="alt_text" border="0" style="height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555;">
-            </td>
-        </tr>
-    </table>
-    <!-- Email Header : END -->
-
     <!-- Email Body : BEGIN -->
     <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="600" style="margin: auto;" class="email-container">
 
         <!-- Hero Image, Flush : BEGIN -->
         <tr>
             <td align="center" style="background-color: #ffffff;">
-                <img src="../../../public/pictures/thank_you.png" width="600" height="" alt="alt_text" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555; margin: auto;" class="g-img">
+                <img src="https://www.dropbox.com/s/lk52isfg8ew6k0k/thank_you.png?raw=1" width="600" height="" alt="alt_text" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555; margin: auto;" class="g-img">
             </td>
         </tr>
         <!-- Hero Image, Flush : END -->
@@ -275,13 +265,14 @@
                     <tr>
                         <td style="padding: 40px 40px 20px; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555;">
                             <h1 style="margin: 0 0 10px; font-size: 24px; line-height: 125%; color: #333333; font-weight: normal;">תודה שקנית בקפה אמון!</h1>
-                            <p style="margin: 0 0 10px;">Hello '.$user->first_name."! \n"."Thank you for purchasing in  MTA_Coffee!</p>
+                            <p style="margin: 0 0 10px;">Hello '.$user->first_name."! \n"."Thank you for purchasing in  MTA_Coffee!
                             <ul style="padding: 0; margin: 0; list-style-type: disc;">
                                 <li style="margin:0 0 10px 30px;" class="list-item-first">'Total Paid:  ".$Invoice->total_payment. "ILS \n".</li>
                                 <li style="margin:0 0 10px 30px;">"Total points: ".$user->points."\n".</li>
                                 <li style="margin:0 0 10px 30px;"> Created at: ".$Invoice->created_at</li>
                                 <li style="margin: 0 0 0 30px;" class="list-item-last">' ."Created at: ".$Invoice->created_at.</li>
                             </ul>
+                            </p>
                         </td>
                     </tr>
                     <tr>

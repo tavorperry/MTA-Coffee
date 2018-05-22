@@ -247,23 +247,13 @@
     </div>
     <!-- Preview Text Spacing Hack : END -->
 
-    <!-- Email Header : BEGIN -->
-    <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="600" style="margin: auto;" class="email-container">
-        <tr>
-            <td style="padding: 20px 0; text-align: center">
-                <img src="https://lh6.googleusercontent.com/Fyx0Elx7lYwbTqGzi3uInHByurWPLeDWocoUhKYze2sdetxajKwMWpIkF-C-vCFDOI7szM-zVUWAVd6x2aqc=w1920-h900" width="200px" height="50px" alt="logo-Coffee MTA" border="0" style="height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555;">
-            </td>
-        </tr>
-    </table>
-    <!-- Email Header : END -->
-
     <!-- Email Body : BEGIN -->
     <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="600" style="margin: auto;" class="email-container">
 
         <!-- Hero Image, Flush : BEGIN -->
         <tr>
             <td align="center" style="background-color: #ffffff;">
-                <img src="https://lh3.googleusercontent.com/tmIIo4AHP-p5XUTSEjMayo-rJM9ipYzaUvdZ4FibWLTmJJobDW44lEcHFYP91QZi5HndrSv4JyQPMXuGOoiy=w1920-h900-rw" width="600" height="" alt="Thank you" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555; margin: auto;" class="g-img">
+                <img src="https://www.dropbox.com/s/lk52isfg8ew6k0k/thank_you.png?raw=1" width="600" height="" alt="Thank you" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555; margin: auto;" class="g-img">
             </td>
         </tr>
         <!-- Hero Image, Flush : END -->
@@ -289,12 +279,13 @@
                         <tr>
                             <td style="padding: 40px 40px 20px; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555;">
                                 <h1 style="margin: 0 0 10px; font-size: 24px; line-height: 125%; color: #333333; font-weight: normal;">תודה שקנית בקפה אמון!</h1>
-                                <p style="margin: 0 0 10px;"><b><u>סיכום הרכישה</u></b> </p>
+                                <p style="margin: 0 0 10px;"><b><u>סיכום הרכישה</u></b>
                                 <ul style="padding: 0; margin: 0; list-style-type: disc;">
-                                    <li style="margin:0 0 10px 30px;" class="list-item-first">הטענת כרטיס על סך: <?php echo $Invoice->total_payment ?> ש"ח </li>
+                                    <li style="margin:0 0 10px 30px;">הטענת כרטיס על סך: <?php echo $Invoice->total_payment ?> ש"ח </li>
                                     <li style="margin:0 0 10px 30px;">מצב נקודות עדכני: <?php echo $user->points ?></li>
                                     <li style="margin:0 0 10px 30px;">תשלום בוצע ב:  <?php echo $Invoice->created_at ?></li>
                                 </ul>
+                                </p>
                             </td>
                         </tr>
                         <p style="margin: 0 0 10px;"><b>גשו למשרדי האגודה כדי לקבל את הכרטיס הטעון!</b> </p>
