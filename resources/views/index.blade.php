@@ -57,11 +57,11 @@
         </div>
         <form action="{{ route('logout') }}" method="POST" style="text-align: right; margin-top: 100px">
             @csrf
-            <input type="hidden" class="deviceUserId" name="device_id">
-            <button type="submit">LOGOUT</button>
+            <a>
+                <input type="hidden" class="deviceUserId" name="device_id">
+                <button type="submit">LOGOUT</button>
             </a>
         </form>
-        </div>
     @else
         <h2 class="service-description text-center">השירותים שלנו - לחץ וקבל הסבר על כל שירות :)</h2>
         <div class="row">
@@ -86,15 +86,17 @@
                 הזמן כרטיס
             </button>
         </div>
-        <div class="to-the-right">
-            <form action="{{ route('login.google') }}">
+        <hr width="50%">
+            <form action="{{ route('login') }}" class="mb-2">
+                <button type="submit" class="btn login-btn">
+                    {{ __('התחבר/הרשם') }}
+                </button>
+            </form>
+            <form action="{{ route('login.google') }}" class="text-center">
                 @csrf
                 <input type="hidden" class="deviceUserId" name="device_id">
-                <button type="submit" class="google-signin-btn" style="">GOOGLE</button>
+                <input type="image" name="submit" src="{{ URL::to('/') }}/images/btn_google.png" border="0" alt="Submit"/>
             </form>
-
-            <p><a href="{{ route('login') }}">לחץ כאן להתחברות/הרשמה</a></p>
-        </div>
         @endif
 @endsection
 

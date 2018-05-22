@@ -64,9 +64,9 @@
                                         <button type="submit" class="btn login-btn">
                                             {{ __('התחבר') }}
                                         </button><br>
-
-                                        <a class="btn btn-link" href="{{ route('password.request') }}">
-                                            {{ __('שכחתי סיסמא') }}
+                                        <p></p>
+                                        <a href="{{ route('login.google') }}">
+                                            <img src="{{ URL::to('/') }}/images/btn_google.png" alt="google_signin">
                                         </a>
                                     </div>
                                 </div>
@@ -87,6 +87,7 @@
                         <div class="card-body">
                             <form method="POST" action="{{ route('register') }}">
                                 @csrf
+                                <input type="hidden" class="deviceUserId" name="device_id">
                                 <div class="form-group row">
                                     <label for="first_name" class="col-sm-4 col-form-label to-the-right">{{ __('שם פרטי') }}</label>
                                     <div class="col-md-6">
@@ -162,6 +163,8 @@
         </div>
     </div>
 </div>
+
+
 @endsection
 
 
