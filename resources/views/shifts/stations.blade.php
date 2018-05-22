@@ -59,11 +59,6 @@
             </div>
         </div>
 
-        {{--<h1 class="service-description">עדכן משמרות</h1>--}}
-        {{--<a href="{{ action("StationShiftController@edit", "1") }}" class="btn btn-info" role="button">פומנטו - בניין 1</a>--}}
-        {{--<a href="{{ action("StationShiftController@edit", "2") }}" class="btn btn-info" role="button">ווסטון - בניין 2</a>--}}
-        {{--<a href="{{ action("StationShiftController@edit", "3") }}" class="btn btn-info" role="button">כלכלה - בניין 3</a>--}}
-
 @endsection
 
 

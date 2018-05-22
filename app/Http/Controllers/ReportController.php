@@ -145,24 +145,18 @@ class ReportController extends Controller
                 ->update(['read_at'=>Carbon::now()]
                 );
 
-            //give the user more points
+            //The following gives the user 20 points
             $user = Auth::user();
             $prevLevel = $user->getLevel();
-            $user->addPoints(15);
-            Alert::success('הרווחת 15 נקודות', 'הדיווח נסגר כל הכבוד!')->persistent("Close");
+            $user->addPoints(20);
+            Alert::success('הרווחת 20 נקודות', 'הדיווח נסגר כל הכבוד!')->persistent("Close");
 
             if ($user->isLevelUp($prevLevel)) {
-                Alert::success('מזל טוב עלית רמה! ', 'הדיווח נסגר כל הכבוד !הרווחת 15 נקודות')->persistent("Close");
+                Alert::success('מזל טוב עלית רמה! ', 'הדיווח נסגר כל הכבוד !הרווחת 20 נקודות')->persistent("Close");
             }
         }
 
-        //Add here Notification to the user who opened the report
-        //
-        //
-        //
-
-
-        return redirect()->route('report.view', compact('report_id'));
+        return redirect()->route('notifications.show');
     }
 
     public static function findUser($user_id){

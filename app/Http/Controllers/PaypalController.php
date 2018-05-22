@@ -29,7 +29,7 @@ class PayPalController extends Controller
         {
             $user = Auth::user();
             $prevLevel = $user->getLevel();
-            $user->addPoints(20* ($Invoice->total_payment/2)); //The user get 20 Points for each cup
+            $user->addPoints(5* ($Invoice->total_payment/2)); //The user get 5 Points for each cup
             Alert::success('הרווחת נקודות', 'התשלום בוצע!')->persistent("Close");
 
             if($user->isLevelUp($prevLevel))
@@ -47,7 +47,7 @@ class PayPalController extends Controller
         //Start - Sending Email to Customer
         Mail::send('emails.customer_payment_approval', ['user' => $user, 'Invoice' => $Invoice], function ($m) use ($user) {
             $m->from('mta-coffee@mta.ac.il', 'אגודת הסטודנטים והסטודנטיות');
-            $m->to($user->email, $user->first_name)->subject('מייל ליוזר - תודה שקנית בקפה אמון!');
+            $m->to($user->email, $user->first_name)->subject('מייל למשתמש - תודה שקנית בקפה אמון!');
         });
         //End - Sending Email to Customer
 

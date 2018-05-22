@@ -28,7 +28,7 @@ class StationShiftController extends Controller
             Alert::success('צבור נקודות וזכה בפרסים! :)', 'המשמרות מעודכנות!')->persistent('Close');
         }
         $userShifts->sync($shifts);
-        return redirect()->route('index');
+        return redirect()->route('station');
     }
 
     public function pickStation()

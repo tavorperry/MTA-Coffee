@@ -48,18 +48,4 @@ Route::post('/pay', 'PayPalController@makeInvoice');
 //Charge Card
 Route::get('/payforcard', function () {
     return view('pay/payforcard');})->name('payforcard')->middleware('auth');
-Route::post('/payforcard', 'PayPalController@makeInvoice')->middleware('auth');;
-
-Route::get('/test', function () {
-    Mail::raw('Text to e-mail', function ($message) {
-        $message->from('tavor@test.com', 'Laravel');
-
-        $message->to('tavorp12@gmail.com');
-    });
-});
-
-Route::get('/testing', function (){
-    $userId = 'e8e6f1c4-8380-4979-b6a5-81b70c7249ff';
-    OneSignal::sendNotificationToUser("Some Message", $userId, $url = null, $data = null, $buttons = null, $schedule = null);
-});
-
+Route::post('/payforcard', 'PayPalController@makeInvoice')->middleware('auth');
