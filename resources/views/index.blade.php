@@ -63,7 +63,7 @@
             </a>
         </form>
     @else
-        <h2 class="service-description text-center">השירותים שלנו - לחץ וקבל הסבר על כל שירות :)</h2>
+        <h2 class="service-description text-center">לחץ וקבל הסבר על כל שירות :)</h2>
         <div class="row">
             <button type="button" href="{{ route('notifications.show') }}" class="btn menu-btn col" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" data-content="קבל התרעות מדיווחים של משתמשים אחרים וקבל נקודות!"> <i class="far fa-flag menu-btn-icon"></i><br>
                 התראות
