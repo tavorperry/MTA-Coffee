@@ -2,6 +2,7 @@
 
 @section('page-style')
     <link href="{!! asset('css/payforcard.css') !!}" media="all" rel="stylesheet" type="text/css" />
+    <link href="{!! asset('css/pay.css') !!}" media="all" rel="stylesheet" type="text/css" />
 @endsection
 
 <head>
@@ -43,7 +44,7 @@
 <div class="button" id="displayChange">
     <div id="paypal-button" ></div>
 </div>
-
+<div class="modal"></div>
 @endsection
 
 @section('page-scripts')
@@ -55,7 +56,7 @@
             return total;
         else return 10; //This is a default value if the user didn't enter nothing
     }
-    function getHaveCareVal() {
+    function getHaveCardVal() {
         var havecard = $('input[type="radio"][name="havecard"]:checked').val();
             return havecard;
     }
@@ -123,7 +124,7 @@
                             last_name: payerData.last_name,
                             total_payment: Number(getTotal()*price),
                             coffee_or_card: 'Card',
-                            havecard: getHaveCareVal()
+                            havecard: getHaveCardVal()
                         };
                         $.ajax({
                             method: "POST",
@@ -147,13 +148,19 @@
         }
     });
 </script>
-
-@endsection
-
-
 <script>
     $( document ).ready(function() {
         $("#display-side-menu").css("padding-top", "15px");
     });
 </script>
+<script>
+    $body = $("body");
+    $(document).on({
+        ajaxStart: function() { $body.addClass("loading");},
+        ajaxStop: function() { $body.removeClass("loading"); }
+    });
+</script>
+@endsection
+
+
 

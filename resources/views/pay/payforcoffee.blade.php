@@ -121,7 +121,7 @@
         },
         onAuthorize: function(data, actions) {
             return actions.payment.execute().then(function(payment) {
-                alert("התשלום התקבל! - לצרכי בדיקה בלבד");
+                console.log("Payment accepted");
                 var payerData = payment.payer.payer_info;
                //From here till End its sending payerData data to the Controller
                 var data = {
@@ -141,7 +141,6 @@
                     },
                     success: function(InvoiceID) {
                         console.log("Invoice No. " + InvoiceID + " Created");
-                       // alert("Thank You " + payerData.first_name + " " + payerData.last_name + ". Invoice No." + InvoiceID + " Created");
                         window.location.replace("/"); //redirect to main page
                     }
                 });
