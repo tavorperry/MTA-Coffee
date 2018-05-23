@@ -16,10 +16,12 @@ use Validator;
 use Illuminate\Support\Facades\DB;
 use Image;
 use OneSignal;
+use Illuminate\Support\Facades\Mail;
 
 class ReportController extends Controller
 {
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware('auth');
     }
 
@@ -32,12 +34,11 @@ class ReportController extends Controller
     // POST /reports
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(),[
+        $validator = Validator::make($request->all(), [
             'message' => 'required|max:50'
         ]);
 
-        if($validator->fails())
-        {
+        if ($validator->fails()) {
             Alert::error(' אנא ספק פרטים נוספים לטיפול מהיר עד 50 תווים', 'תקלה בפרטים!')->persistent("Close");
             return redirect()->back()->withInput();
         }
@@ -50,15 +51,14 @@ class ReportController extends Controller
         $report->status = 0;
 
         //This 'if' is to save the image with "Image Intervention" package
-        if($request->hasFile('picture')) {
+        if ($request->hasFile('picture')) {
             $picture = $request->file('picture');
             $filename = time() . '_pic.' . $picture->getClientOriginalExtension();
-            Image::make($picture)->resize(600,400)->save('pictures/' . $filename);
+            Image::make($picture)->resize(600, 400)->save('pictures/' . $filename);
             $report->picture = $filename;
         }
 
-        if($this->getCurrentShift($report->station_id) == NULL)
-        {
+        if ($this->getCurrentShift($report->station_id) == NULL) {
             Alert::error(' קפה אמון ייפתח בשעה 8:00 :)', 'סגורים, חביבי')->persistent("Close");
             return redirect()->route('index');
         }
@@ -70,23 +70,25 @@ class ReportController extends Controller
             $user->addPoints(10);
             Alert::success('הרווחת 10 נקודות', 'הדיווח נשלח!')->persistent("Close");
 
-            if($user->isLevelUp($prevLevel))
-            {
-                Alert::success('מזל טוב עלית רמה!','תותח/ית')->persistent("Close");
+            if ($user->isLevelUp($prevLevel)) {
+                Alert::success('מזל טוב עלית רמה!', 'תותח/ית')->persistent("Close");
             }
 
             $shift = Shift::find($this->getCurrentShift($request->station));
             $shift->notify(new ReportCreated($report));
         }
 
-        $this->sendNotificationsToUsers($this->getUsersInCurrentShift($this->getCurrentShift($request->station)));
+        $users_in_current_shift = $this->getUsersInCurrentShift($this->getCurrentShift($request->station));
+        $this->sendEmailNotifications($users_in_current_shift, $report);
+        $this->sendNotificationsToUsers($users_in_current_shift);
         return redirect()->route('index');
     }
 
-    public function getCurrentShift($stationId){
-        $current_hour = (int) date("H");
+    public function getCurrentShift($stationId)
+    {
+        $current_hour = (int)date("H");
         $current_day = date('w') + 1; /*The function returns 0-6 values so we add 1 so that will fit the DB*/
-        if($current_hour == 14)
+        if ($current_hour == 14)
             $current_hour++;
         $current_shift = DB::table('shifts')
             ->where([
@@ -99,7 +101,8 @@ class ReportController extends Controller
         return $current_shift;
     }
 
-    public function getUsersInCurrentShift($current_shift){
+    public function getUsersInCurrentShift($current_shift)
+    {
         $users_in_current_shift = DB::table('shift_user')
             ->where([
                 ['shift_id', '=', $current_shift]
@@ -107,14 +110,15 @@ class ReportController extends Controller
         return $users_in_current_shift;
     }
 
-    public function sendNotificationsToUsers($users_id){
-        foreach($users_id as $user_id){
+    public function sendNotificationsToUsers($users_id)
+    {
+        foreach ($users_id as $user_id) {
             $devicePushUser = DB::table('device_push_users')
                 ->where([
                     ['user_id', '=', $user_id]
                 ])->pluck('device_id');
 
-            if(isset($devicePushUser[0])){
+            if (isset($devicePushUser[0])) {
                 OneSignal::sendNotificationToUser("דיווח חדש במשמרת!", $devicePushUser[0], $url = 'http://vmedu151.mtacloud.co.il/notifications/show');
             } else {
                 continue;
@@ -122,27 +126,28 @@ class ReportController extends Controller
         }
     }
 
-    public function view(Report $report){
+    public function view(Report $report)
+    {
         return view('reports.view', compact('report'));
     }
 
-    public function close(Request $request){
-        $report_id= $request->get('report_id');
+    public function close(Request $request)
+    {
+        $report_id = $request->get('report_id');
         $report_status = DB::table('reports')->where('id', $report_id)->pluck('status')->first();
-        if($report_status == 1) {
+        if ($report_status == 1) {
             Alert::error('הדיווח כבר סגור! תודה')->persistent("Close");
-        }
-        else{
+        } else {
             //Update the close data in the report table
             DB::table('reports')
                 ->where('id', $report_id)
-                ->update(['status' => 1,'comment' => $request->get('comment'), 'closing_user_id' => auth()->id()
+                ->update(['status' => 1, 'comment' => $request->get('comment'), 'closing_user_id' => auth()->id()
                 ]);
 
             //Update the close data in the notification table
             DB::table('notifications')
-                ->where('data', 'LIKE', '{"report_id":'.$report_id.'%')
-                ->update(['read_at'=>Carbon::now()]
+                ->where('data', 'LIKE', '{"report_id":' . $report_id . '%')
+                ->update(['read_at' => Carbon::now()]
                 );
 
             //The following gives the user 20 points
@@ -159,12 +164,27 @@ class ReportController extends Controller
         return redirect()->route('notifications.show');
     }
 
-    public static function findUser($user_id){
+    public static function findUser($user_id)
+    {
         return \App\User::find($user_id);
     }
 
-    public static function getAllReports(){
+    public static function getAllReports()
+    {
         $reports = DB::table('reports')->get();
         return $reports;
+    }
+
+    public function sendEmailNotifications($users_id, $report)
+    {
+        foreach ($users_id as $user_id) {
+            $user=self::findUser($user_id);
+            //Start - Sending Email to all users in shift
+            Mail::send('emails.new_report_notification', ['user' => $user, 'report' => $report], function ($m) use ($user) {
+                $m->from('mta-coffee@mta.ac.il', 'קפה אמון');
+                $m->to($user->email, $user->first_name)->subject("דיווח חדש במשמרת שלך");
+            });
+            //End - Sending Email to all users in shift
+        }
     }
 }

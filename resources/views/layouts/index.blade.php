@@ -80,6 +80,7 @@
             appId: "3a5c67a0-1c84-41ee-946f-5a8509e90a78",
         });
     });
+
 </script>
 @include('sweet::alert')
 </body>

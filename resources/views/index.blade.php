@@ -99,9 +99,6 @@
             </form>
         @endif
 @endsection
-
 @section('page-script')
-    <script>
 
-    </script>
 @endsection
