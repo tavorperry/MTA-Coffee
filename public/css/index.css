@@ -298,3 +298,19 @@ li a {
     text-align: left;
     margin-top: 8px;
 }
+
+/*css for the footer*/
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #9b59b6;
+    color: white;
+    text-align: center;
+}
+/*css for the footer*/
+
+.copyright{
+    color: white;
+}

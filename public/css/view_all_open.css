@@ -1,0 +1,20 @@
+table tr{
+    border-style: solid;
+}
+td ,th{
+    border-style: solid;
+    border-width: thin;
+    border-color: grey;
+}
+.width100{
+    width: 100%;
+}
+.width33{
+    width: 33.3333333333%;
+}
+.width25{
+    width: 25%;
+}
+input{
+    position:absolute;top:0;right:0;
+}

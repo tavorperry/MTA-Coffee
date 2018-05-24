@@ -71,6 +71,15 @@
 </main>
 
 
+<footer class="footer">
+    <div class="row">
+        <div class="col copyright">
+            <p>Made by Kafe Emon Team &copy; 2018</p>
+        </div>
+</footer>
+
+
+
 <!-- Scroll to Top Button-->
 <a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
     <i class="fa fa-angle-up"></i>
@@ -110,5 +119,7 @@
     });
 
 </script>
+
+
 </body>
 </html>
