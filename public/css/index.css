@@ -301,6 +301,7 @@ li a {
 
 /*css for the footer*/
 .footer {
+
     position: fixed;
     left: 0;
     bottom: 0;
@@ -308,9 +309,15 @@ li a {
     background-color: #9b59b6;
     color: white;
     text-align: center;
+
 }
 /*css for the footer*/
 
 .copyright{
     color: white;
+    margin-top: 1px;
+}
+p
+{
+    margin-bottom: 0;
 }
