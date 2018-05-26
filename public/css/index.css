@@ -254,6 +254,10 @@ h5,h6 {
     color: #9b59b6;
 }
 
+.service-description + h1,h2,h3,h4,h5,h6 {
+    color: #9b59b6;
+}
+
 /*login form*/
 
 .login-btn {
@@ -314,8 +318,6 @@ li a {
     text-align: left;
     margin-top: 8px;
 }
-
-
 
 /*css for the footer*/
 .footer {

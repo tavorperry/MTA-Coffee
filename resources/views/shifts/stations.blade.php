@@ -3,7 +3,7 @@
 @section('content')
         <h1 class="service-description">המשמרות שלך</h1>
         @if(\App\Http\Controllers\StationShiftController::isUserHasShifts())
-            <h2>עמדה:
+            <h4>עמדה:
                 @foreach (Auth::user()->shifts as $shift)
                     @if($shift->station_id == 1)
                         {{ "פומנטו" }}
@@ -14,11 +14,11 @@
                     @endif
                     @break
                 @endforeach
-            </h2>
+            </h4>
 
             <hr>
 
-            <h2>משמרות:
+            <h5>משמרות:
             @foreach (Auth::user()->shifts as $shift)
                 <ul>
                     <li>
@@ -34,15 +34,14 @@
                         @else
                             {{ "חמישי" }}
                         @endif
-                        {{ $shift->start_shift }}:00-
-                        {{ $shift->end_shift }}:00
+                        {{ $shift->start_shift }}:00-{{ $shift->end_shift }}:00
                     </li>
                 </ul>
             @endforeach
             @else
                 <h4>אין משמרות, לא חבל על הנקודות?</h4>
             @endif
-        </h2>
+        </h5>
         <h1 class="service-description">עדכן משמרות</h1>
 
         <div class="container">
@@ -58,7 +57,6 @@
                 </div>
             </div>
         </div>
-
 @endsection
 
 
