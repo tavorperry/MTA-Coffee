@@ -118,7 +118,7 @@ body {
 h1,h2,
 h3,h4,
 h5,h6 {
-    color: black;
+    color: white;
 }
 
 .notification-bar {
@@ -210,6 +210,15 @@ h5,h6 {
 
 }
 
+.service-icon {
+    color: #9b59b6;
+    font-size: 28px;
+}
+
+.service-icon + h3 {
+    color: #9b59b6;
+}
+
 /*Scroll to top*/
 .scroll-to-top {
     position: fixed;
@@ -251,6 +260,13 @@ h5,h6 {
     background-color: #9b59b6;
     color: white;
     width: 100%;
+}
+
+.login-btn-top {
+    background-color: #343a4063!important;
+    position: relative;
+    top:20px;
+    left:10px;
 }
 
 li a {
@@ -299,6 +315,8 @@ li a {
     margin-top: 8px;
 }
 
+
+
 /*css for the footer*/
 .footer {
 
@@ -309,15 +327,12 @@ li a {
     background-color: #9b59b6;
     color: white;
     text-align: center;
-
 }
-/*css for the footer*/
 
-.copyright{
+.copyright {
     color: white;
     margin-top: 1px;
 }
-p
-{
+p {
     margin-bottom: 0;
 }

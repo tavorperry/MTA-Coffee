@@ -43,8 +43,13 @@
 
 <header class="master-head" id="page-top">
     <div class="notification-bar">
+        @if(!Auth::user())
+            <a href="{{ route('login') }}" class="btn btn-secondary active login-btn-top" role="button" aria-pressed="true">התחברות</a>
+        @else
+            <a href="#" class="btn btn-secondary active login-btn-top" role="button" aria-pressed="true">צא</a>
+        @endif
     </div>
-    <div class="container text-center my-auto" style="padding-bottom: 25px;">
+    <div class="container text-center my-auto pb-4">
         @yield('user-welcome')
     </div>
     <div class="overlay"></div>

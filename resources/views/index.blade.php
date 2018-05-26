@@ -63,28 +63,87 @@
             </a>
         </form>
     @else
-        <h2 class="service-description text-center">לחץ וקבל הסבר על כל שירות :)</h2>
+        <h2 class="service-description text-center">השירותים שלנו :)</h2>
+        <hr width="50%">
+        {{--<div class="row">--}}
+            {{--<button type="button" href="{{ route('notifications.show') }}" class="btn menu-btn col" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" data-content="קבל התרעות מדיווחים של משתמשים אחרים וקבל נקודות!"> <i class="far fa-flag menu-btn-icon"></i><br>--}}
+                {{--התראות--}}
+            {{--</button>--}}
+            {{--<button type="button" class="btn menu-btn col" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" data-content="דווח על תקלות בעמדה וצבור נקודות!"><i class="fas fa-exclamation-triangle menu-btn-icon"></i><br>--}}
+                {{--דווח!--}}
+            {{--</button>--}}
+            {{--<button type="button" class="btn menu-btn col" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" data-content="שבץ עצמך מתי שאתה רוצה וקבל התראות על דיווחים מותאמים"><i class="far fa-calendar-alt menu-btn-icon"></i><br>--}}
+                {{--משמרות--}}
+            {{--</button>--}}
+        {{--</div>--}}
+        {{--<div class="row">--}}
+            {{--<button type="button" class="btn menu-btn col" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="bottom" data-content="שלם בקלות על המוצרים שאתה לוקח מעמדת קפה אמון"><i class="far fa-credit-card menu-btn-icon"></i><br>--}}
+                {{--שלם עכשיו--}}
+            {{--</button>--}}
+            {{--<button type="button" class="btn menu-btn col" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="bottom" data-content="לכל שאלה, בעיה והצעות שיפור/שימור - אנחנו זמינים!"><i class="far fa-envelope menu-btn-icon"></i><br>--}}
+                {{--צור קשר--}}
+            {{--</button>--}}
+            {{--<button type="button" class="btn menu-btn col" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="bottom" data-content="הזמן כרטיס נטען לעמדה והוא יחכה לך באגודת הסטודנטים"><i class="far fa-id-card menu-btn-icon"></i><br>--}}
+                {{--הזמן כרטיס--}}
+            {{--</button>--}}
+        {{--</div>--}}
         <div class="row">
-            <button type="button" href="{{ route('notifications.show') }}" class="btn menu-btn col" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" data-content="קבל התרעות מדיווחים של משתמשים אחרים וקבל נקודות!"> <i class="far fa-flag menu-btn-icon"></i><br>
-                התראות
-            </button>
-            <button type="button" class="btn menu-btn col" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" data-content="דווח על תקלות בעמדה וצבור נקודות!"><i class="fas fa-exclamation-triangle menu-btn-icon"></i><br>
-                דווח!
-            </button>
-            <button type="button" class="btn menu-btn col" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" data-content="שבץ עצמך מתי שאתה רוצה וקבל התראות על דיווחים מותאמים"><i class="far fa-calendar-alt menu-btn-icon"></i><br>
-                משמרות
-            </button>
+            <div class="col-lg-4">
+                <div class="mb-4 text-center">
+                    <div class="service-icon">
+                        <i class="far fa-flag"></i>
+                    </div>
+                    <h3>התראות</h3>
+                    <p class="lead mb-0">קבל התרעות מדיווחים של משתמשים אחרים וקבל נקודות!</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="mb-4 text-center">
+                    <div class="service-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h3>דווח!</h3>
+                    <p class="lead mb-0">דווח על תקלות בעמדה וצבור נקודות!</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="mb-5 mb-lg-0 mb-lg-3 text-center">
+                    <div class="service-icon">
+                        <i class="far fa-calendar-alt"></i>
+                    </div>
+                    <h3>משמרות</h3>
+                    <p class="lead mb-0">שבץ עצמך מתי שאתה רוצה וקבל התראות על דיווחים מותאמים</p>
+                </div>
+            </div>
         </div>
         <div class="row">
-            <button type="button" class="btn menu-btn col" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="bottom" data-content="שלם בקלות על המוצרים שאתה לוקח מעמדת קפה אמון"><i class="far fa-credit-card menu-btn-icon"></i><br>
-                שלם עכשיו
-            </button>
-            <button type="button" class="btn menu-btn col" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="bottom" data-content="לכל שאלה, בעיה והצעות שיפור/שימור - אנחנו זמינים!"><i class="far fa-envelope menu-btn-icon"></i><br>
-                צור קשר
-            </button>
-            <button type="button" class="btn menu-btn col" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="bottom" data-content="הזמן כרטיס נטען לעמדה והוא יחכה לך באגודת הסטודנטים"><i class="far fa-id-card menu-btn-icon"></i><br>
-                הזמן כרטיס
-            </button>
+            <div class="col-lg-4">
+                <div class="mb-4 text-center">
+                    <div class="service-icon">
+                        <i class="far fa-credit-card"></i>
+                    </div>
+                    <h3>שלם עכשיו</h3>
+                    <p class="lead mb-0">שלם בקלות על המוצרים שאתה לוקח מעמדת קפה אמון</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="mb-4 text-center">
+                    <div class="service-icon">
+                        <i class="far fa-envelope menu-btn-icon"></i>
+                    </div>
+                    <h3>צור קשר</h3>
+                    <p class="lead mb-0">לכל שאלה, בעיה והצעות שיפור/שימור - אנחנו זמינים</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="mb-4 text-center">
+                    <div class="service-icon">
+                        <i class="far fa-id-card"></i>
+                    </div>
+                    <h3>הזמן כרטיס</h3>
+                    <p class="lead mb-0">הזמן כרטיס נטען לעמדה והוא יחכה לך באגודת הסטודנטים</p>
+                </div>
+            </div>
         </div>
         <hr width="50%">
             <form action="{{ route('login') }}" class="mb-2">
