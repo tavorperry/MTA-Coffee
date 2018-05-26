@@ -55,11 +55,11 @@
                 הזמן כרטיס
             </a>
         </div>
-        <form action="{{ route('logout') }}" method="POST" style="text-align: right; margin-top: 100px">
+        <form action="{{ route('logout') }}" method="POST" class="mt-5">
             @csrf
             <a>
                 <input type="hidden" class="deviceUserId" name="device_id">
-                <button type="submit">LOGOUT</button>
+                <button type="submit" class="btn login-btn">התנתק והפסק לקבל התראות</button>
             </a>
         </form>
     @else

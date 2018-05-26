@@ -45,8 +45,6 @@
     <div class="notification-bar">
         @if(!Auth::user())
             <a href="{{ route('login') }}" class="btn btn-secondary active login-btn-top" role="button" aria-pressed="true">התחברות</a>
-        @else
-            <a href="#" class="btn btn-secondary active login-btn-top" role="button" aria-pressed="true">צא</a>
         @endif
     </div>
     <div class="container text-center my-auto pb-4">
