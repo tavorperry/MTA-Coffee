@@ -13,43 +13,37 @@
     {{ Form::open(['route' => ['reports.store'],'files' => true]) }}
         @csrf
 
-        <div class=" text-center">
+        <div class="text-center">
             <label><h3 class="service-description">עמדה</h3></label><br>
-            <select id="check" name="station">
+            <select  class="form-control-lg" id="check" name="station">
                 <option value="1">פומנטו</option>
                 <option value="2">ווסטון</option>
                 <option value="3">כלכלה</option>
             </select>
         </div>
-
         <br>
-
         <div class=" text-center">
             <label><h3 class="service-description">סוג</h3></label><br>
-
-            <select name="type">
+            <select class="form-control-lg" name="type">
                 <option value="חסר משהו">חסר משהו</option>
                 <option value="יש תקלה">יש תקלה</option>
                 <option value="לא נקי">לא נקי</option>
                 <option value="אחר">אחר</option>
             </select>
-
         </div>
-
-
         <br>
-
-        <div class=" text-center">
+        <div class="text-center">
             <label><h3 class="service-description">פרטים נוספים</h3></label><br>
             <textarea rows="4" cols="30" name="message" placeholder="נא לשמור על שפה תקינה, עד 50 תווים"></textarea><br>
             <span id="characters">0</span><span>/50</span>
         </div>
-
         <br>
-
-        <div class=" text-center">
-            <label><h3 class="service-description">הוסף תמונה</h3></label><br>
-            <input type="file" name="picture">
+        <h3 class="service-description text-center">הוסף תמונה</h3>
+        <div class="input-group mb-3">
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="inputGroupFile01" onchange="$('#upload-file-info').append('!File selected');">
+                <label class="custom-file-label text-left" id="upload-file-info" for="inputGroupFile01"></label>
+            </div>
         </div>
         <br>
         <div class="container">
