@@ -22,10 +22,13 @@ Route::get('login/google/callback', 'SocialLoginController@handleProviderCallbac
 
 //Reports
 Route::resource('reports', 'ReportController', ['only' => ['create', 'store']])->middleware('auth');
-
-//Reports.viewall page
 Route::get('reports/view/{report}', 'ReportController@view')->name('report.view')->middleware('auth');
 Route::post('reports/close/{report}', 'ReportController@close')->name('report.close')->middleware('auth');
+
+Route::get('reports/viewall', function () {
+    return view('reports.view_all');
+})->middleware('auth');
+
 
 //Station
 Route::get('station', 'StationShiftController@pickStation')->name('station')->middleware('auth');
@@ -36,9 +39,7 @@ Route::put('station/{station}/shifts' ,'StationShiftController@update')->name('s
 Route::get('notifications/show', 'NotificationController@show')->name('notifications.show')->middleware('auth');
 Route::get('NotificationController@countNew')->name('count')->middleware('auth');
 
-Route::get('/reports/view_all_open', function () {
-    return view('reports/view_all_open');
-})->middleware('auth');
+
 
 //Buy Coffee
 Route::get('/pay', function () {
