@@ -8,6 +8,7 @@
                 /*border: 1px solid black;*/
                 /*padding: 5px;*/
                 text-align: center;
+                font-size: 13px;
             }
             input[type='checkbox']{
                 zoom: 2;
