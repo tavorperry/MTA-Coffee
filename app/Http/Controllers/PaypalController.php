@@ -29,7 +29,11 @@ class PayPalController extends Controller
         {
             $user = Auth::user();
             $prevLevel = $user->getLevel();
-            $user->addPoints(5* ($Invoice->total_payment/2)); //The user get 5 Points for each cup
+            if($Invoice->coffee_or_card == 'Coffee') {
+                $user->addPoints(5 * ($Invoice->total_payment / 2)); //The user get 5 Points for each cup
+            }
+            else
+                $user->addPoints(20); //The user get 20 Points for charging card
             Alert::success('הרווחת נקודות', 'התשלום בוצע!')->persistent("Close");
 
             if($user->isLevelUp($prevLevel))
