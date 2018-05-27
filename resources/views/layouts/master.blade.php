@@ -64,7 +64,7 @@
         <footer class="footer">
             <div class="row">
                 <div class="col copyright">
-                    <p>Made by Kafe Emon Team &copy; 2018</p>
+                    <p>Made by MTA-Coffee Team &copy; 2018</p>
                 </div>
             </div>
         </footer>
