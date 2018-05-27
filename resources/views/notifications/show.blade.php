@@ -4,7 +4,7 @@
 
 <div class="container">
     <div>
-        <h2 class="service-description">דיווחים פתוחים</h2>
+        <h2 class="service-description text-center">דיווחים פתוחים</h2>
         @foreach($notifications as $notification)
             @if($notification->read_at == NULL)
                 <div class="alert alert-warning" role="alert">
@@ -18,7 +18,7 @@
             @endif
         @endforeach
         <hr>
-        <h2 class="service-description">דיווחים סגורים</h2>
+        <h2 class="service-description text-center">דיווחים סגורים</h2>
         @foreach($notifications as $notification)
             @if($notification->read_at != NULL)
                 <div class="alert alert-secondary" role="alert">

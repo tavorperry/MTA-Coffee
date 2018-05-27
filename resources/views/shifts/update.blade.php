@@ -15,7 +15,7 @@
             }
         </style>
     </head>
-        <h1 class="service-description">עדכן משמרות</h1>
+        <h1 class="service-description text-center">עדכן משמרות</h1>
         <h4>
             @if($station->id == 1)
                 {{ "פומנטו" }}

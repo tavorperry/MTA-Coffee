@@ -1,8 +1,7 @@
-@extends('index')
+@extends('layouts.index')
 
-@section('reg')
-<div class="container">
-    <div class="row justify-content-center">
+@section('content')
+    <div class="row justify-content-center position-relative" style="bottom:60px">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header text-center">{{ __('הרשמה') }}</div>
@@ -83,5 +82,4 @@
             </div>
         </div>
     </div>
-</div>
 @endsection

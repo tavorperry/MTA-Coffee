@@ -3,8 +3,6 @@
             .blue {
                 color: blue;
             }
-
-
         </style>
 @section('content')
         <h1 class="service-description text-center"><b> דיווח מספר {{ $report->id }}: </b></h1>

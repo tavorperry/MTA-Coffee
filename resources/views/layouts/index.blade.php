@@ -44,7 +44,8 @@
 <header class="master-head" id="page-top">
     <div class="notification-bar">
         @if(!Auth::user())
-            <a href="{{ route('login') }}" class="btn btn-secondary active login-btn-top" role="button" aria-pressed="true">התחברות</a>
+            <a href="{{ route('login') }}" class="btn btn-secondary active login-btn-top" role="button" aria-pressed="true">התחבר/י</a>
+            <a href="{{ route('register') }}" class="btn btn-secondary active login-btn-top" role="button" aria-pressed="true">הרשם/י</a>
         @endif
     </div>
     <div class="container text-center my-auto pb-4">
