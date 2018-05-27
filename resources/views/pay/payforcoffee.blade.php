@@ -4,25 +4,25 @@
     <link href="{!! asset('css/pay.css') !!}" media="all" rel="stylesheet" type="text/css" />
 @endsection
 <head>
-
     <!-- PayPal js file -->
     <script src="https://www.paypalobjects.com/api/checkout.js"></script>
-    <!-- jQuery library -->
+{{--    <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>--}}
 
+    <style>
+        .first_button{
+            margin-top: 8px; 
+        }
+    </style>
+</head>
 @section('content')
-@if(session('message'))
-    <div>{{ session('message') }}</div>
-@endif
 <h1 class="service-description">על כמה כוסות תרצה לשלם?</h1>
 <hr>
-
 <div class="container">
     <div class=" btn-group-toggle row" data-toggle="buttons">
-        <label class="btn btn-info col-4 btn-block">
+        <label class="btn btn-info col-4 btn-block first_button">
             <input type="radio" name="total" autocomplete="off" value="1" checked> 1
         </label>
         <label class="btn btn-info col-4 btn-block">
@@ -48,15 +48,9 @@
 <div class="paypalbutton" id="displayChange">
 <div id="paypal-button"></div>
 </div>
-
 <div class="modal"></div>
-
 @endsection
-
-
 @section('page-scripts')
-
-
 <script>
     function getTotal () {
         var total = $('input[type="radio"][name="total"]:checked').val();
