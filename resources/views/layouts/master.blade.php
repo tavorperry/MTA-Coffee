@@ -40,6 +40,9 @@
                 <li class="sidebar-nav-item">
                     <a class="js-scroll-trigger" href="{{ route('station') }}">עדכון משמרות</a>
                 </li>
+                <li class="sidebar-nav-item">
+                    <a class="js-scroll-trigger" href="{{ route('report.view.all') }}">צפייה בכל הדיווחים</a>
+                </li>
             </ul>
         </nav>
 

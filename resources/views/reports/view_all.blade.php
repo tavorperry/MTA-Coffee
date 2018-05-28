@@ -6,7 +6,7 @@
 <head>    <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <style>
-        @media only screen and (max-width: 800px) {
+        @media only screen and (max-width: 600px) {
             .clear_in_mobile{
                 display: none;
             }
@@ -33,7 +33,7 @@
     </div>
         <br>
     <div class="btn-group btn-group-toggle width100" data-toggle="buttons">
-        <label class="btn btn-primary col width25 actiid="displayChange"ve">
+        <label class="btn btn-primary col width25 active">
             <input type="radio" id="" name="station" autocomplete="off" checked> הכל
         </label>
         <label class="btn btn-primary col width25">
