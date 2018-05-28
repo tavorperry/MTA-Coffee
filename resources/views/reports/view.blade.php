@@ -74,3 +74,12 @@
         {{--@include('sweet::alert')--}}
 @endsection
 
+@section('page-scripts')
+<script>
+    $body = $("body");
+    $(document).on({
+        ajaxStart: function() { $body.addClass("loading");},
+        ajaxStop: function() { $body.removeClass("loading"); }
+    });
+</script>
+@endsection
