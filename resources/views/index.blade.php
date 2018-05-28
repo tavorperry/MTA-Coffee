@@ -48,8 +48,8 @@
             <a href="{{ route('pay') }}" class="btn menu-btn col"><i class="far fa-credit-card menu-btn-icon"></i><br>
                 שלם עכשיו
             </a>
-            <a href="{{ route('pay') }}" class="btn menu-btn col"><i class="far fa-envelope menu-btn-icon"></i><br>
-                צור קשר
+            <a href="{{ route('report.view.all') }}" class="btn menu-btn col"><i class="far fa-envelope menu-btn-icon"></i><br>
+                כל הדיווחים
             </a>
             <a href="{{ route('payforcard') }}" class="btn menu-btn col"><i class="far fa-id-card menu-btn-icon"></i><br>
                 הזמן כרטיס
@@ -104,15 +104,15 @@
                     <p class="lead mb-0">שלם בקלות על המוצרים שאתה לוקח מעמדת קפה אמון</p>
                 </div>
             </div>
-            <div class="col-lg-4">
+ {{--           <div class="col-lg-4">
                 <div class="mb-4 text-center">
                     <div class="service-icon">
                         <i class="far fa-envelope menu-btn-icon"></i>
                     </div>
-                    <h3>צור קשר</h3>
+                    <h3>כל הדיווחים</h3>
                     <p class="lead mb-0">לכל שאלה, בעיה והצעות שיפור/שימור - אנחנו זמינים</p>
                 </div>
-            </div>
+            </div>--}}
             <div class="col-lg-4">
                 <div class="mb-4 text-center">
                     <div class="service-icon">

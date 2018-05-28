@@ -131,6 +131,10 @@ class ReportController extends Controller
         return view('reports.view', compact('report'));
     }
 
+    public function viewAll(){
+        return view('reports.view_all');
+    }
+
     public function close(Request $request)
     {
         $report_id = $request->get('report_id');
