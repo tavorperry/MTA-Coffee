@@ -78,6 +78,11 @@
                             </div>
                         </div>
                     </form>
+                    <form action="{{ route('login.google') }}" class="text-center">
+                        @csrf
+                        <input type="hidden" class="deviceUserId" name="device_id">
+                        <input type="image" name="submit" src="{{ URL::to('/') }}/images/btn_google.png" border="0" alt="Submit"/>
+                    </form>
                 </div>
             </div>
         </div>

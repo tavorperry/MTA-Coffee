@@ -123,18 +123,6 @@
                 </div>
             </div>
         </div>
-        <hr width="50%">
-        <form action="{{ route('login') }}" class="mb-2">
-            <button type="submit" class="btn login-btn">
-                {{ __('התחברות') }}
-            </button>
-        </form>
-        <form action="{{ route('register') }}" class="mb-2">
-            <button type="submit" class="btn login-btn">
-                {{ __('הרשמה') }}
-            </button>
-        </form>
-
         @endif
 @endsection
 @section('page-script')
