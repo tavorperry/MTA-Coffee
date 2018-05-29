@@ -95,7 +95,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-6">
                 <div class="mb-4 text-center">
                     <div class="service-icon">
                         <i class="far fa-credit-card"></i>
@@ -104,16 +104,7 @@
                     <p class="lead mb-0">שלם בקלות על המוצרים שאתה לוקח מעמדת קפה אמון</p>
                 </div>
             </div>
- {{--           <div class="col-lg-4">
-                <div class="mb-4 text-center">
-                    <div class="service-icon">
-                        <i class="far fa-envelope menu-btn-icon"></i>
-                    </div>
-                    <h3>כל הדיווחים</h3>
-                    <p class="lead mb-0">לכל שאלה, בעיה והצעות שיפור/שימור - אנחנו זמינים</p>
-                </div>
-            </div>--}}
-            <div class="col-lg-4">
+            <div class="col-lg-6">
                 <div class="mb-4 text-center">
                     <div class="service-icon">
                         <i class="far fa-id-card"></i>
