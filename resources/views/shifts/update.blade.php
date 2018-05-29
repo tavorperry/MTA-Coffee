@@ -11,7 +11,7 @@
                 font-size: 10px;
             }
             input[type='checkbox']{
-                zoom: 1;
+                zoom: 2;
             }
         </style>
     </head>
