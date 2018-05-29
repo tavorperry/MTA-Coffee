@@ -47,9 +47,12 @@
         </nav>
 
         <header class="master-head" id="page-top">
+            <span>
+                <a href="{{route('home')}}" title="Home Page"><i class="fas fa-home back-to-home"></i></a>
+            </span>
             <div class="round-div"></div>
             <div class="container text-center my-auto">
-                <h3 id="navtext">חזק, על בסיס אמון</h3>
+                <a href="{{route('home')}}" title="Home Page" style="text-decoration: none"><h3 id="navtext">חזק, על בסיס אמון</h3></a>
             </div>
             <div class="overlay"></div>
         </header>
