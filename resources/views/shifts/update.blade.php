@@ -70,7 +70,7 @@
             @method('PUT')
             <div class="container">
                 <div class="text-left">
-                    <button type="submit" class="btn" >נקה משמרות</button>
+                    <button type="submit" class="btn w-100" >נקה משמרות</button>
                 </div>
             </div>
         </form>
