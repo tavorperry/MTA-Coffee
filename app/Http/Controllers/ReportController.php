@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\DB;
 use Image;
 use OneSignal;
 use Illuminate\Support\Facades\Mail;
-
 class ReportController extends Controller
 {
     public function __construct()
@@ -31,7 +30,11 @@ class ReportController extends Controller
         return view('reports.create');
     }
 
-    // POST /reports
+    /**
+     *Store all the information about the report from the form on reports.create view to reports table.
+     *Redirects to the main page
+     *POST /reports in routs
+     */
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -50,7 +53,7 @@ class ReportController extends Controller
         $report->desc = $request->get('message');
         $report->status = 0;
 
-        //This 'if' is to save the image with "Image Intervention" package
+        //This 'if' is to save the image with "Image Intervention" package that compress the image
         if ($request->hasFile('picture')) {
             $picture = $request->file('picture');
             $filename = time() . '_pic.' . $picture->getClientOriginalExtension();
@@ -78,12 +81,19 @@ class ReportController extends Controller
             $shift->notify(new ReportCreated($report));
         }
 
+        //This section is to send notifications(Emails & Push) to the specific users
         $users_in_current_shift = $this->getUsersInCurrentShift($this->getCurrentShift($request->station));
         $this->sendEmailNotifications($users_in_current_shift, $report);
         $this->sendNotificationsToUsers($users_in_current_shift);
         return redirect()->route('index');
+        //End Section
     }
 
+    /**
+     *Get station id
+     *Based on the current day and hour Returns the current shift
+     *Returns current shift (int)
+     */
     public function getCurrentShift($stationId)
     {
         $current_hour = (int)date("H");
@@ -101,6 +111,11 @@ class ReportController extends Controller
         return $current_shift;
     }
 
+    /**
+     *Get current shift number
+     *Searches in DB for the specific users that assigned to the current shift
+     *Returns all the users in current shift
+     */
     public function getUsersInCurrentShift($current_shift)
     {
         $users_in_current_shift = DB::table('shift_user')
@@ -110,31 +125,15 @@ class ReportController extends Controller
         return $users_in_current_shift;
     }
 
-    public function sendNotificationsToUsers($users_id)
-    {
-        foreach ($users_id as $user_id) {
-            $devicePushUser = DB::table('device_push_users')
-                ->where([
-                    ['user_id', '=', $user_id]
-                ])->pluck('device_id');
 
-            if (isset($devicePushUser[0])) {
-                OneSignal::sendNotificationToUser("דיווח חדש במשמרת!", $devicePushUser[0], $url = 'http://vmedu151.mtacloud.co.il/notifications/show');
-            } else {
-                continue;
-            }
-        }
-    }
-
-    public function view(Report $report)
-    {
-        return view('reports.view', compact('report'));
-    }
-
-    public function viewAll(){
-        return view('reports.view_all');
-    }
-
+    /**
+     *This function runs when user closes a report
+     *Get the Report object from the previous page
+     *Updated the report as closed with the comment
+     *Add points to user
+     *Redirects to notifications.show
+     *
+     */
     public function close(Request $request)
     {
         $report_id = $request->get('report_id');
@@ -168,17 +167,11 @@ class ReportController extends Controller
         return redirect()->route('notifications.show');
     }
 
-    public static function findUser($user_id)
-    {
-        return \App\User::find($user_id);
-    }
-
-    public static function getAllReports()
-    {
-        $reports = DB::table('reports')->get();
-        return $reports;
-    }
-
+    /**
+     *Get all users_id in the current shift + report
+     *Sends email notifications to the users
+     *
+     */
     public function sendEmailNotifications($users_id, $report)
     {
         foreach ($users_id as $user_id) {
@@ -190,5 +183,51 @@ class ReportController extends Controller
             });
             //End - Sending Email to all users in shift
         }
+    }
+
+    /**
+     *Get all users_id in the current shift
+     *Searches for the user's device id
+     *Sends web push notifications to the users
+     *
+     */
+    public function sendNotificationsToUsers($users_id)
+    {
+        foreach ($users_id as $user_id) {
+            $devicePushUser = DB::table('device_push_users')
+                ->where([
+                    ['user_id', '=', $user_id]
+                ])->pluck('device_id');
+
+            if (isset($devicePushUser[0])) {
+                OneSignal::sendNotificationToUser("דיווח חדש במשמרת!", $devicePushUser[0], $url = 'http://vmedu151.mtacloud.co.il/notifications/show');
+            } else {
+                continue;
+            }
+        }
+    }
+
+    //Helper Function
+    public static function findUser($user_id)
+    {
+        return \App\User::find($user_id);
+    }
+
+    //Helper function for view_all page
+    public static function getAllReports()
+    {
+        $reports = DB::table('reports')->get();
+        return $reports;
+    }
+
+    //Helper function for routing
+    public function view(Report $report)
+    {
+        return view('reports.view', compact('report'));
+    }
+
+    //Helper function for routing
+    public function viewAll(){
+        return view('reports.view_all');
     }
 }
