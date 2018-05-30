@@ -11,6 +11,9 @@
                 display: none;
             }
         }
+        th{
+            text-align: center !important;
+        }
     </style>
 
 @section('content')
@@ -63,7 +66,7 @@
                     <th scope="col">סטטוס</th>
                 </tr>
                 @foreach($reports as $report)
-                    <tr>
+                    <tr class="main-tr">
                         <td scope="row">
                             {{$report->id}}
                         </td>
@@ -112,10 +115,10 @@
 <script>
     $('input[type="radio"]').change(function () {
         var name = $('input[name="status"]:checked').prop('id') || '';
-        var position = $('input[name="station"]:checked').prop('id') || '';
-        $('tr').hide();
-        $('tr:contains(' + name + ')').show();
-        $('tr').not(':contains(' + position + ')').hide();
+        var station = $('input[name="station"]:checked').prop('id') || '';
+        $('.main-tr').hide();
+        $('.main-tr:contains(' + name + ')').show();
+        $('.main-tr').not(':contains(' + station + ')').hide();
     });
 
 </script>
