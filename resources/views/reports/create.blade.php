@@ -41,8 +41,8 @@
         <h3 class="service-description text-center">הוסף תמונה</h3>
         <div class="input-group mb-3">
             <div class="custom-file">
-                <input type="file" class="custom-file-input" name="picture" id="inputGroupFile01" onchange="$('#upload-file-info').append('!File selected');">
-                <label class="custom-file-label text-left" id="upload-file-info" for="inputGroupFile01"></label>
+                <input type="file" class="custom-file-input" name="picture" id="inputGroupFile01" onchange="$('#upload-file-info').replaceWith('<b>!File selected</b>');">
+                <label class="custom-file-label text-left" for="inputGroupFile01"><span id="upload-file-info"></span></label>
             </div>
         </div>
         <br>
