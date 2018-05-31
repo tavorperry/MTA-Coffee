@@ -268,7 +268,7 @@
                                 <p style="margin: 0 0 10px;"><b><u>סיכום הרכישה</u></b>
                                 <ul style="padding: 0; margin: 0; list-style-type: disc;">
                                     @if($Invoice->coffee_or_card == "Card")
-                                        @if($Invoice->havecard == 'Yes')
+                                        @if($Invoice->havecard == 'No')
                                             <li style="margin:0 0 10px 30px;" class="list-item-first"> <b>המשתמש הזמין כרטיס חדש</b> </li>
                                         @else
                                             <li style="margin:0 0 10px 30px;" class="list-item-first"> <b>המשתמש יגיע להטעין כרטיס קיים</b> </li>
