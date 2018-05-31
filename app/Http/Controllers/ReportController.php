@@ -62,7 +62,7 @@ class ReportController extends Controller
         }
 
         if ($this->getCurrentShift($report->station_id) == NULL) {
-            Alert::error(' קפה אמון ייפתח בשעה 8:00 :)', 'סגורים, חביבי')->persistent("Close");
+            Alert::error(' קפה אמון פתוח בימי חול החל משעה 8:00 :)', 'סגורים, חביבי')->persistent("Close");
             return redirect()->route('index');
         }
 
@@ -99,6 +99,8 @@ class ReportController extends Controller
         $current_hour = (int)date("H");
         $current_day = date('w') + 1; /*The function returns 0-6 values so we add 1 so that will fit the DB*/
         if ($current_hour == 14)
+            $current_hour++;
+        else if($current_hour == 20)
             $current_hour++;
         $current_shift = DB::table('shifts')
             ->where([
