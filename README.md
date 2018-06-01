@@ -1,4 +1,4 @@
-# Kafe_Emon
+# MTA-Coffee
 
 ## Getting started
 
@@ -32,6 +32,14 @@ php artisan migrate
  ```angular2html
 GOOGLE_CLIENT_ID=6***********-r***************.apps.googleusercontent.com
 GOOGLE_CLIENT_SECRET=vC-****************
+```
+Add To the ENV file also MailGun API details:
+```
+MAIL_USERNAME=postmaster@sandbox*************************.mailgun.org
+MAIL_PASSWORD=**********************-**********-**********
+MAIL_ENCRYPTION=null
+MAILGUN_DOMAIN=sandbox********************************.mailgun.org
+MAILGUN_SECRET=key-************************************
 ```
 
 ## Before starting any coding
