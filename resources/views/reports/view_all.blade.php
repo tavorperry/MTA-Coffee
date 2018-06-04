@@ -3,18 +3,8 @@
 @section('page-style')
     <link href="{!! asset('css/view_all_open.css') !!}" media="all" rel="stylesheet" type="text/css" />
 @endsection
-<head>    <!-- jQuery library -->
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <style>
-        @media only screen and (max-width: 600px) {
-            .clear_in_mobile{
-                display: none;
-            }
-        }
-        th{
-            text-align: center !important;
-        }
-    </style>
 
 @section('content')
   <div  id="displayChange">

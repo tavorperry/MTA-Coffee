@@ -1,9 +1,6 @@
 @extends('layouts.master')
-        <style>
-            .blue {
-                color: blue;
-            }
-        </style>
+<link href="{!! asset('css/view.css') !!}" media="all" rel="stylesheet" type="text/css" />
+
 @section('content')
         <h1 class="service-description text-center"><b> דיווח מספר {{ $report->id }}: </b></h1>
     <div class="text-center">

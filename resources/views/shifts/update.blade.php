@@ -1,20 +1,7 @@
 @extends('layouts.master')
+<link href="{!! asset('css/update.css') !!}" media="all" rel="stylesheet" type="text/css" />
+
 @section('content')
-        <style>
-            table {
-                /*border: 2px solid black;*/
-            }
-            th, td {
-                /*border: 1px solid black;*/
-                /*padding: 5px;*/
-                text-align: center;
-                font-size: 10px;
-            }
-            input[type='checkbox']{
-                zoom: 2;
-            }
-        </style>
-    </head>
         <h1 class="service-description text-center">עדכן משמרות</h1>
         <h4>
             @if($station->id == 1)
