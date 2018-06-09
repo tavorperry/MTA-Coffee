@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -98,14 +100,26 @@ class User extends Authenticatable
             return 10;
         }
         else{
-            return 11;
+            return 11; //Once user have 1001+ points he will stay in the last Level
         }
         return 0;
     }
 
     public function isLevelUp($prevLevel)
     {
-        return $this->getLevel() > $prevLevel;
+        $currentLevel = $this->getLevel();
+        $isLevelUp = $currentLevel > $prevLevel;
+        $this->notifyOnceUserAtHighestLevel($isLevelUp,$currentLevel);
+        return  $isLevelUp;
     }
 
+    public function notifyOnceUserAtHighestLevel($isLevelUp,$currentLevel){
+        if($isLevelUp == 1 && $currentLevel == 11){
+            $user = Auth::user();
+                    Mail::send('emails.userAtHighestLevel', ['user' => $user], function ($m) use ($user) {
+                        $m->from('mta-coffee@mta.ac.il', 'קפה אמון');
+                        $m->to($user->email, $user->first_name)->subject("מייל למנהלת המשרד - משתמש הגיע לרמה הכי גבוהה!");
+                    });
+        }
+    }
 }

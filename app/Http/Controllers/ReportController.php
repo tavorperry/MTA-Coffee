@@ -53,17 +53,17 @@ class ReportController extends Controller
         $report->desc = $request->get('message');
         $report->status = 0;
 
+            if ($this->getCurrentShift($report->station_id) == NULL) {
+            Alert::error(' קפה אמון פתוח בימי חול החל משעה 8:00 :)', 'סגורים, חביבי')->persistent("Close");
+            return redirect()->route('index');
+        }
+
         //This 'if' is to save the image with "Image Intervention" package that compress the image
         if ($request->hasFile('picture')) {
             $picture = $request->file('picture');
             $filename = time() . '_pic.' . $picture->getClientOriginalExtension();
             Image::make($picture)->resize(600, 400)->save('pictures/' . $filename);
             $report->picture = $filename;
-        }
-
-        if ($this->getCurrentShift($report->station_id) == NULL) {
-            Alert::error(' קפה אמון פתוח בימי חול החל משעה 8:00 :)', 'סגורים, חביבי')->persistent("Close");
-            return redirect()->route('index');
         }
 
         $isReported = $report->save();
