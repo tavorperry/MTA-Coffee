@@ -16,7 +16,7 @@
         "laravelcollective/html": "5.6.*",
         "uxweb/sweet-alert": "^1.4"
     },
-    "require-dev": {
+    "require": {
         "filp/whoops": "^2.0",
         "fzaninotto/faker": "^1.4",
         "mockery/mockery": "^1.0",
