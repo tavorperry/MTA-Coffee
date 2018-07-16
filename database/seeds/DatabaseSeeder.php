@@ -15,8 +15,7 @@ class DatabaseSeeder extends Seeder
             UserTableSeeder::class,
             StationTableSeeder::class,
             ShiftTableSeeder::class,
-            ShiftUserTableSeeder::class,
-            ReportTableSeeder::class
+            ShiftUserTableSeeder::class
         ]);
     }
 }
