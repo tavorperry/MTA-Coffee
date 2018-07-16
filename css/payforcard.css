@@ -1,0 +1,18 @@
+.width100{
+    width: 100%;
+}
+.width50{
+    width: 50%;
+    margin: auto !important;
+    text-align: center !important;
+    direction: ltr; !important;
+    float: left; !important;
+}
+
+h1{
+    text-align: center;
+}
+textarea{
+    text-align: center;
+    margin: auto;
+}
