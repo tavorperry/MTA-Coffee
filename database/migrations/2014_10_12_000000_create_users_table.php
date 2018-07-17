@@ -20,6 +20,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password')->nullable(); //for google auth
             $table->integer('points')->unsigned()->default(0);
+            $table->boolean('notifications')->default(true);
+            $table->string('secret_token',32);
             $table->rememberToken();
             $table->timestamps();
         });
@@ -34,4 +36,5 @@ class CreateUsersTable extends Migration
     {
         Schema::dropIfExists('users');
     }
+
 }

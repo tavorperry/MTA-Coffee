@@ -44,3 +44,36 @@ Route::post('/pay', 'PayPalController@makeInvoice');
 Route::get('/payforcard', function () {
     return view('pay/payforcard');})->name('payforcard')->middleware('auth');
 Route::post('/payforcard', 'PayPalController@makeInvoice')->middleware('auth');
+
+//Unsubscribe
+Route::get('notifications/unsubscribe/{user_id}', 'EmailController@unsubscribe')->name('Emails.unsubscribe');
+
+
+
+
+
+
+
+
+//Tests
+    Route::get('/Email', function () {
+        Mail::raw('Sending emails with Mailgun and Laravel is easy!', function($message)
+        {
+            $message->subject('Mailgun and Laravel are awesome!');
+            $message->from('no-reply@website_name.com', 'Website Name');
+            $message->to('tavorp12@gmail.com');
+        });
+    });
+
+    Route::get('/Time', function () {
+       // dd(date('w') + 1);
+        dd((int)date("H")+10);
+    });
+
+    Route::get('/remove', function () {
+        $user_id = auth()->id();
+        $user = \App\User::find($user_id);
+        $user->notifications = false;
+        $user->save();
+    });
+

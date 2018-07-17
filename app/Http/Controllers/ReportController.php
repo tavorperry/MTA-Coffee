@@ -96,7 +96,7 @@ class ReportController extends Controller
      */
     public function getCurrentShift($stationId)
     {
-        $current_hour = (int)date("H");
+        $current_hour = (int)date("H")+10;
         $current_day = date('w') + 1; /*The function returns 0-6 values so we add 1 so that will fit the DB*/
         if ($current_hour == 14)
             $current_hour++;
@@ -124,6 +124,7 @@ class ReportController extends Controller
             ->where([
                 ['shift_id', '=', $current_shift]
             ])->pluck('user_id');
+
         return $users_in_current_shift;
     }
 
@@ -178,11 +179,13 @@ class ReportController extends Controller
     {
         foreach ($users_id as $user_id) {
             $user=self::findUser($user_id);
-            //Start - Sending Email to all users in shift
-            Mail::send('emails.new_report_notification', ['user' => $user, 'report' => $report], function ($m) use ($user) {
-                $m->from('mta-coffee@mta.ac.il', 'קפה אמון');
-                $m->to($user->email, $user->first_name)->subject("דיווח חדש במשמרת שלך");
-            });
+            if($user->notifications == true) {
+                //Start - Sending Email to all users in shift
+                Mail::send('emails.new_report_notification', ['user' => $user, 'report' => $report], function ($m) use ($user) {
+                    $m->from('mta-coffee@mta.ac.il', 'קפה אמון');
+                    $m->to($user->email, $user->first_name)->subject("דיווח חדש במשמרת שלך");
+                });
+            }
             //End - Sending Email to all users in shift
         }
     }

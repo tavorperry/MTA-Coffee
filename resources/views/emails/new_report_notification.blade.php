@@ -59,13 +59,27 @@
         <h4>
                 <?php
                 if($report->picture != null){
-                    $link= 'http://vmedu151.mtacloud.co.il/pictures/'.$report->picture;
+                    $link= 'http://whispering-scrubland-84389.herokuapp.com/pictures/'.$report->picture;
                 echo "<u> <a href=".$link."> לחץ כאן על מנת לעבור לתמונה המצורפת </u> </a>";
                 }
                 ?>
         </h4>
-            <a href="http://vmedu151.mtacloud.co.il/reports/view/{{$report->id}}"><img src="https://www.dropbox.com/s/ytx3hj3aox0omkl/Go%20to%20report.png?raw=1" alt="לחץ כאן לעבור לדיווח "> </a>
+            <a href="http://whispering-scrubland-84389.herokuapp.com/reports/view/{{$report->id}}"><img src="https://www.dropbox.com/s/ytx3hj3aox0omkl/Go%20to%20report.png?raw=1" alt="לחץ כאן לעבור לדיווח "> </a>
     </div>
-</body>
+    <div>
+        <!-- Email Footer : BEGIN -->
+        <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+            <tr>
+                <td style="padding: 40px 10px; font-family: sans-serif; font-size: 12px; line-height: 140%; text-align: center; color: #888888;">
+                    <br><br>
+                    אגודת הסטודנטים<br><span class="unstyle-auto-detected-links">רבנו ירוחם 12, תל אביב<br>03-9292929</span>
+                    <br><br>
+                    <a href="http://whispering-scrubland-84389.herokuapp.com/notifications/unsubscribe/{{$user->secret_token}}"> <unsubscribe style="color: #888888; text-decoration: underline;">unsubscribe</unsubscribe> </a>
+                </td>
+            </tr>
+        </table>
+        <!-- Email Footer : END -->
+        </div>
+    </body>
 </html>
 

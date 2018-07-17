@@ -48,6 +48,7 @@ class PayPalController extends Controller
     public function sendEmailWithPaymentApproval($Invoice){
         $user = Auth::user();
 
+
         //Start - Sending Email to Customer
         Mail::send('emails.customer_payment_approval', ['user' => $user, 'Invoice' => $Invoice], function ($m) use ($user) {
             $m->from('mta-coffee@mta.ac.il', 'אגודת הסטודנטים והסטודנטיות');
