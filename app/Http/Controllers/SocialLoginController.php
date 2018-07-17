@@ -41,6 +41,7 @@ class SocialLoginController extends Controller
             $user->last_name = $socialUser->user['name']['familyName'];
             $user->email = $socialUser->getEmail();
             $user->secret_token = str_random(32);
+            dd($user);
             $user->save();
 
             $social = new SocialUser;
