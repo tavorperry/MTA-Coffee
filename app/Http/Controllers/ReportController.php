@@ -96,7 +96,7 @@ class ReportController extends Controller
      */
     public function getCurrentShift($stationId)
     {
-        $current_hour = (int)date("H")+10;
+        $current_hour = (int)date("H");
         $current_day = date('w') + 1; /*The function returns 0-6 values so we add 1 so that will fit the DB*/
         if ($current_hour == 14)
             $current_hour++;
