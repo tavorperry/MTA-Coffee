@@ -205,7 +205,7 @@ class ReportController extends Controller
                 ])->pluck('device_id');
 
             if (isset($devicePushUser[0])) {
-                OneSignal::sendNotificationToUser("דיווח חדש במשמרת!", $devicePushUser[0], $url = 'http://vmedu151.mtacloud.co.il/notifications/show');
+                OneSignal::sendNotificationToUser("דיווח חדש במשמרת!", $devicePushUser[0], $url = 'http://mtacoffee.mta.ac.il/notifications/show');
             } else {
                 continue;
             }
