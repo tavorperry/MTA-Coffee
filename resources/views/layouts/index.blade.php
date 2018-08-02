@@ -11,6 +11,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
     <link href="{!! asset('css/index.css') !!}" media="all" rel="stylesheet" type="text/css" />
     <title>MTAcoffee</title>
+
+
+    <!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-123340064-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-123340064-1');
+    </script>
+
+    <!-- End of Google Analytics -->
 </head>
 
 <body>
