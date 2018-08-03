@@ -76,7 +76,7 @@
                             <img src="../../pictures/{{$report->picture}}" alt="report picture" width="70px" height="70px">
                         </td>
                         <td>
-                            <a href="/reports/view/{{$report->id}}"><span id="status_id_{{$report->id}}"> {{$report->status}}</span> </a>
+                            <a href="{{env('APP_URL')}}/reports/view/{{$report->id}}"><span id="status_id_{{$report->id}}"> {{$report->status}}</span> </a>
                         </td>
                     </tr>
                     <script>

@@ -47,7 +47,7 @@
             <span class="blue">
                 {{$report->desc}} </span>
         </h4>
-        <a href="../../../pictures/{{$report->picture}}" ><img src="../../../pictures/{{$report->picture}}" alt="report picture" width="300px" height="300px"></a>
+        <a href="{{env('APP_URL')}}/pictures/{{$report->picture}}" ><img src="{{env('APP_URL')}}/pictures/{{$report->picture}}" alt="report picture" width="300px" height="300px"></a>
         <br><br>
         <div>
             {{ Form::open(['route' => ['report.close', $report->id]]) }}

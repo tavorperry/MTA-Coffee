@@ -182,7 +182,7 @@ class ReportController extends Controller
             if($user->notifications == true) {
                 //Start - Sending Email to all users in shift
                 Mail::send('emails.new_report_notification', ['user' => $user, 'report' => $report], function ($m) use ($user) {
-                    $m->from('mta-coffee@mta.ac.il', 'קפה אמון');
+                    $m->from(env('EMAIL_FROM'), 'קפה אמון');
                     $m->to($user->email, $user->first_name)->subject("דיווח חדש במשמרת שלך");
                 });
             }
@@ -205,7 +205,7 @@ class ReportController extends Controller
                 ])->pluck('device_id');
 
             if (isset($devicePushUser[0])) {
-                OneSignal::sendNotificationToUser("דיווח חדש במשמרת!", $devicePushUser[0], $url = 'http://mtacoffee.mta.ac.il/notifications/show');
+                OneSignal::sendNotificationToUser("דיווח חדש במשמרת!", $devicePushUser[0], $url = '{{env(\'APP_URL\')}}/notifications/show');
             } else {
                 continue;
             }

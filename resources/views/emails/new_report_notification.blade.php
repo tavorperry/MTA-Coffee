@@ -59,12 +59,12 @@
         <h4>
                 <?php
                 if($report->picture != null){
-                    $link= 'http://mtacoffee.mta.ac.il/pictures/'.$report->picture;
-                echo "<u> <a href=".$link."> לחץ כאן על מנת לעבור לתמונה המצורפת </u> </a>";
+                    $link = env('APP_URL')."/pictures/".$report->picture;
+                    echo "<u> <a href=".$link."> לחץ כאן על מנת לעבור לתמונה המצורפת </u> </a>";
                 }
                 ?>
         </h4>
-            <a href="http://mtacoffee.mta.ac.il/reports/view/{{$report->id}}"><img src="https://www.dropbox.com/s/ytx3hj3aox0omkl/Go%20to%20report.png?raw=1" alt="לחץ כאן לעבור לדיווח "> </a>
+            <a href="{{env('APP_URL')}}/reports/view/{{$report->id}}"><img src="https://www.dropbox.com/s/ytx3hj3aox0omkl/Go%20to%20report.png?raw=1" alt="לחץ כאן לעבור לדיווח "> </a>
     </div>
     <div>
         <!-- Email Footer : BEGIN -->
@@ -74,7 +74,7 @@
                     <br><br>
                     אגודת הסטודנטים<br><span class="unstyle-auto-detected-links">רבנו ירוחם 12, תל אביב<br>03-9292929</span>
                     <br><br>
-                    <a href="http://mtacoffee.mta.ac.il/notifications/unsubscribe/{{$user->secret_token}}"> <unsubscribe style="color: #888888; text-decoration: underline;">unsubscribe</unsubscribe> </a>
+                    <a href="{{env('APP_URL')}}/notifications/unsubscribe/{{$user->secret_token}}"> <unsubscribe style="color: #888888; text-decoration: underline;">unsubscribe</unsubscribe> </a>
                 </td>
             </tr>
         </table>
