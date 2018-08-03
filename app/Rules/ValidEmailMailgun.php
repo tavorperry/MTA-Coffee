@@ -44,6 +44,6 @@ class ValidEmailMailgun implements Rule
      */
     public function message()
     {
-        return 'The validation error message.';
+        return 'אנא הזן דוא"ל פעיל';
     }
 }
