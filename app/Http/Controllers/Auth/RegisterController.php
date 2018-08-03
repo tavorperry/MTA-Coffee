@@ -1,15 +1,18 @@
 <?php
-
 namespace App\Http\Controllers\Auth;
 
+use App\Rules\ValidEmailMailgun;
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Mail\Transport\MailgunTransport;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
 use Alert;
+use MG_Email;
+use Mailgun\Mailgun;
 
 class RegisterController extends Controller
 {
@@ -54,7 +57,8 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:users|ValidEmailMailgun',
+            'email' =>  new ValidEmailMailgun,
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
