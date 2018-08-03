@@ -48,8 +48,8 @@ Route::post('/payforcard', 'PayPalController@makeInvoice')->middleware('auth');
 //Unsubscribe
 Route::get('notifications/unsubscribe/{user_id}', 'EmailController@unsubscribe')->name('Emails.unsubscribe');
 
-
-
+//View Logs
+    Route::get('782521IUTdfscbasdqwedkhvgacdhjsvrygikq987432qwde1563as', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 
 
