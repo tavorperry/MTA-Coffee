@@ -16,3 +16,4 @@ env
 composer.lock
 config/services.php
 config/services.php
+composer.lock
