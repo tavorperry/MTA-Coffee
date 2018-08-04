@@ -60,10 +60,30 @@ class ReportController extends Controller
 
         //This 'if' is to save the image with "Image Intervention" package that compress the image
         if ($request->hasFile('picture')) {
-            $picture = $request->file('picture');
-            $filename = time() . '_pic.' . $picture->getClientOriginalExtension();
-            Image::make($picture)->resize(600, 400)->save('pictures/' . $filename);
-            $report->picture = $filename;
+                $file_extension = $request->file('picture')->getClientOriginalExtension();
+                //This switch is to check if the file is really a photo.
+                //If not, we will not save the file.
+            $hasValidExtension = false;
+                    switch ($file_extension) {
+                        case 'jpg':
+                            $hasValidExtension = true;
+                        case 'png':
+                            $hasValidExtension = true;
+                        case 'gif':
+                            $hasValidExtension = true;
+                        case 'JPG':
+                            $hasValidExtension = true;
+                        case 'PNG':
+                            $hasValidExtension = true;
+                        case 'GIF':
+                            $hasValidExtension = true;
+                    }
+                    if($hasValidExtension) {
+                        $picture = $request->file('picture');
+                        $filename = time() . '_pic.' . $picture->getClientOriginalExtension();
+                        Image::make($picture)->resize(600, 400)->save('pictures/' . $filename);
+                        $report->picture = $filename;
+                    }
         }
 
         $isReported = $report->save();
