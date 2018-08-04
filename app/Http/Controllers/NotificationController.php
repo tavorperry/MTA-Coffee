@@ -23,7 +23,6 @@ class NotificationController extends Controller
             }
         }
         $notifications = collect($notifications) ->sortBy('created_at')->reverse();
-        dd($notifications);
         return view('notifications.show', compact('notifications'));
     }
 
