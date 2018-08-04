@@ -40,19 +40,13 @@
             <a href="{{ route('reports.create') }}" class="btn menu-btn col"><i class="fas fa-exclamation-triangle menu-btn-icon"></i><br>
                 דווח!
             </a>
-            <a href="{{ route('station') }}" class="btn menu-btn col"><i class="far fa-calendar-alt menu-btn-icon"></i><br>
-                משמרות
-            </a>
         </div>
         <div class="row">
-            <a href="{{ route('pay') }}" class="btn menu-btn col"><i class="far fa-credit-card menu-btn-icon"></i><br>
-                שלם עכשיו
-            </a>
             <a href="{{ route('report.view.all') }}" class="btn menu-btn col"><i class="far fa-envelope menu-btn-icon"></i><br>
                 כל הדיווחים
             </a>
-            <a href="{{ route('payforcard') }}" class="btn menu-btn col"><i class="far fa-id-card menu-btn-icon"></i><br>
-                הזמן כרטיס
+            <a href="{{ route('station') }}" class="btn menu-btn col"><i class="far fa-calendar-alt menu-btn-icon"></i><br>
+                משמרות
             </a>
         </div>
         <form action="{{ route('logout') }}" method="POST" class="mt-5">
@@ -91,26 +85,6 @@
                     </div>
                     <h3>משמרות</h3>
                     <p class="lead mb-0">שבץ עצמך מתי שאתה רוצה וקבל התראות על דיווחים מותאמים</p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="mb-4 text-center">
-                    <div class="service-icon">
-                        <i class="far fa-credit-card"></i>
-                    </div>
-                    <h3>שלם עכשיו</h3>
-                    <p class="lead mb-0">שלם בקלות על המוצרים שאתה לוקח מעמדת קפה אמון</p>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="mb-4 text-center">
-                    <div class="service-icon">
-                        <i class="far fa-id-card"></i>
-                    </div>
-                    <h3>הזמן כרטיס</h3>
-                    <p class="lead mb-0">הזמן כרטיס נטען לעמדה והוא יחכה לך באגודת הסטודנטים</p>
                 </div>
             </div>
         </div>

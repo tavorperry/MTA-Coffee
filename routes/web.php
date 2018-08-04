@@ -35,28 +35,15 @@ Route::put('station/{station}/shifts' ,'StationShiftController@update')->name('s
 Route::get('notifications/show', 'NotificationController@show')->name('notifications.show')->middleware('auth');
 Route::get('NotificationController@countNew')->name('count')->middleware('auth');
 
-//Buy Coffee
-Route::get('/pay', function () {
-    return view('pay/payforcoffee');})->name('pay')->middleware('auth');
-Route::post('/pay', 'PayPalController@makeInvoice');
-
-//Charge Card
-Route::get('/payforcard', function () {
-    return view('pay/payforcard');})->name('payforcard')->middleware('auth');
-Route::post('/payforcard', 'PayPalController@makeInvoice')->middleware('auth');
-
 //Unsubscribe
 Route::get('notifications/unsubscribe/{user_id}', 'EmailController@unsubscribe')->name('Emails.unsubscribe');
 
 //View Logs
-    Route::get('782521IUTdfscbasdqwedkhvgacdhjsvrygikq987432qwde1563as', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+Route::get('782521IUTdfscbasdqwedkhvgacdhjsvrygikq987432qwde1563as', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 //Terms
 Route::get('/terms', function () {
     return view('terms');})->name('terms');
-
-
-
 
 //Tests
     Route::get('/Email', function () {
