@@ -29,7 +29,7 @@ class ValidEmailMailgun implements Rule
         try {
         # Instantiate the client.
         $mgClient = new Mailgun('pubkey-7250f008ac3e46a83d068f6f561b6143');
-        $validateAddress = $attribute;
+        $validateAddress = $value;
 # Issue the call to the client.
        // $result = $mgClient->get("address/validate", array('address' => $validateAddress));
             $result = $mgClient->get("address/validate", array('address' => $validateAddress));
