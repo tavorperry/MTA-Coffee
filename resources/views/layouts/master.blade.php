@@ -40,13 +40,7 @@
                     <a class="js-scroll-trigger" href="{{ route('home') }}">קפה אמון</a>
                 </li>
                 <li class="sidebar-nav-item">
-                    <a class="js-scroll-trigger" href="{{ route('home') }}">חזור לדף הבית</a>
-                </li>
-                <li class="sidebar-nav-item">
-                    <a class="js-scroll-trigger" href="{{ route('pay') }}">שלם על קפה</a>
-                </li>
-                <li class="sidebar-nav-item">
-                    <a class="js-scroll-trigger" href="{{ route('payforcard') }}">הטען כרטיס</a>
+                    <a class="js-scroll-trigger" href="{{ route('home') }}">דף הבית</a>
                 </li>
                 <li class="sidebar-nav-item">
                     <a class="js-scroll-trigger" href="{{ route('reports.create') }}">דיווח על תקלה</a>
@@ -104,18 +98,9 @@
 
         <!-- Index JavaScript -->
         <script type="text/javascript" src="{!! asset('js/index.js') !!}"></script>
-        <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
         @yield('page-scripts')
         @include('sweet::alert')
 
-        <script>
-            var OneSignal = window.OneSignal || [];
-            OneSignal.push(function() {
-                OneSignal.init({
-                    appId: "3a5c67a0-1c84-41ee-946f-5a8509e90a78",
-                });
-            });
-        </script>
         <script>
             $("#display-side-menu").click(function() {
                 var x = $("#displayChange");

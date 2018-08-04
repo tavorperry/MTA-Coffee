@@ -39,31 +39,5 @@ $( document ).ready(function() {
     }
   });
 
-  $(document).ready(function(){
-    $('[data-toggle="popover"]').popover();   
-  });
-
-    function getUserDevice() {
-        OneSignal.push(function () {
-            OneSignal.getUserId(function (userId) {
-                var deviceUserId = $(".deviceUserId");
-                deviceUserId.attr('value', userId || null);
-            });
-        });
-    }
-    getUserDevice();
-	
-	    OneSignal.push(function() {
-        // Occurs when the user's subscription changes to a new value.
-        OneSignal.on('subscriptionChange', function (isSubscribed) {
-            console.log("The user's subscription state is now:", isSubscribed);
-            getUserDevice();
-        });
-    });
-
-    //local testing
-    // var deviceUserId = $(".deviceUserId");
-    // deviceUserId.attr('value', '6ba04ba8-d76f-4fdb-9ab0-530142541159');
-
 });
 

@@ -228,21 +228,21 @@ class ReportController extends Controller
      *Sends web push notifications to the users
      *
      */
-    public function sendNotificationsToUsers($users_id)
-    {
-        foreach ($users_id as $user_id) {
-            $devicePushUser = DB::table('device_push_users')
-                ->where([
-                    ['user_id', '=', $user_id]
-                ])->pluck('device_id');
-
-            if (isset($devicePushUser[0])) {
-                OneSignal::sendNotificationToUser("דיווח חדש במשמרת!", $devicePushUser[0], $url = '{{env(\'APP_URL\')}}/notifications/show');
-            } else {
-                continue;
-            }
-        }
-    }
+//    public function sendNotificationsToUsers($users_id)
+//    {
+//        foreach ($users_id as $user_id) {
+//            $devicePushUser = DB::table('device_push_users')
+//                ->where([
+//                    ['user_id', '=', $user_id]
+//                ])->pluck('device_id');
+//
+//            if (isset($devicePushUser[0])) {
+//                OneSignal::sendNotificationToUser("דיווח חדש במשמרת!", $devicePushUser[0], $url = '{{env(\'APP_URL\')}}/notifications/show');
+//            } else {
+//                continue;
+//            }
+//        }
+//    }
 
     //Helper Function
     public static function findUser($user_id)
