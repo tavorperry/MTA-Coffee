@@ -51,6 +51,9 @@ Route::get('notifications/unsubscribe/{user_id}', 'EmailController@unsubscribe')
 //View Logs
     Route::get('782521IUTdfscbasdqwedkhvgacdhjsvrygikq987432qwde1563as', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
+//Terms
+Route::get('/terms', function () {
+    return view('terms');})->name('terms');
 
 
 
@@ -67,10 +70,10 @@ Route::get('notifications/unsubscribe/{user_id}', 'EmailController@unsubscribe')
 
     Route::get('/Time', function () {
        // dd(date('w') + 1);
-        dd((int)date("H")+10);
+        dd((int)date("H"));
     });
 
-    Route::get('/remove', function () {
+    Route::get('/removemyself', function () {
         $user_id = auth()->id();
         $user = \App\User::find($user_id);
         $user->notifications = false;

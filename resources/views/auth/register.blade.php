@@ -1,13 +1,23 @@
 @extends('layouts.index')
 
 @section('content')
+    <script>
+        function validateForm() {
+            var checkbox = document.getElementById("terms");
+            console.log(checkbox);
+                if(checkbox.checked == false){
+                    alert("חובה לאשר את תנאי השימוש ומדיניות הפרטיות");
+                    return false;
+                }
+        }
+    </script>
     <div class="row justify-content-center position-relative" style="bottom:60px">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header text-center">{{ __('הרשמה') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form name="register" method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -70,6 +80,11 @@
                             </div>
                         </div>
 
+                        <div class="text-center">
+                        <span>קראתי, הבנתי ואני מסכים/ה
+                            <a href="{{env('APP_URL')}}/terms"> לתנאי שימוש ולמדיניות הפרטיות</a></span>
+                            <input type="checkbox" id="terms" name="terms" required>
+                        </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-12 text-center">
                                 <button type="submit" class="btn login-btn">
@@ -81,8 +96,7 @@
                     <br>
                     <form action="{{ route('login.google') }}" class="text-center">
                         @csrf
-                        <input type="hidden" class="deviceUserId" name="device_id">
-                        <input type="image" name="submit" src="{{ URL::to('/') }}/images/btn_google.png" border="0" alt="Submit"/>
+                        <input type="image" name="submit" src="{{ URL::to('/') }}/images/btn_google.png" border="0" alt="Submit" onclick="return validateForm()"/>
                     </form>
                 </div>
             </div>
