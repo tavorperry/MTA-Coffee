@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\DB;
 use Image;
 use OneSignal;
 use Illuminate\Support\Facades\Mail;
+use App\Rules\ValidPicture;
+
+
 class ReportController extends Controller
 {
     public function __construct()
@@ -30,6 +33,14 @@ class ReportController extends Controller
         return view('reports.create');
     }
 
+    protected function validator($data)
+    {
+        return Validator::make($data, [
+            'message' => 'required|max:50',
+            'picture' => new ValidPicture,
+        ]);
+    }
+
     /**
      *Store all the information about the report from the form on reports.create view to reports table.
      *Redirects to the main page
@@ -37,14 +48,7 @@ class ReportController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'message' => 'required|max:50'
-        ]);
-
-        if ($validator->fails()) {
-            Alert::error(' אנא ספק פרטים נוספים לטיפול מהיר עד 50 תווים', 'תקלה בפרטים!')->persistent("Close");
-            return redirect()->back()->withInput();
-        }
+        $this->validator($request->all())->validate();
 
         $report = new Report();
         $report->opening_user_id = auth()->id();
@@ -83,6 +87,9 @@ class ReportController extends Controller
                         $filename = time() . '_pic.' . $picture->getClientOriginalExtension();
                         Image::make($picture)->resize(600, 400)->save('pictures/' . $filename);
                         $report->picture = $filename;
+                    }
+                    else{
+
                     }
         }
 
