@@ -78,6 +78,7 @@
                             </div>
                         </div>
                     </form>
+                    <br>
                     <form action="{{ route('login.google') }}" class="text-center">
                         @csrf
                         <input type="hidden" class="deviceUserId" name="device_id">
