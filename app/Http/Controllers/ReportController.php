@@ -84,7 +84,7 @@ class ReportController extends Controller
         //This section is to send notifications(Emails & Push) to the specific users
         $users_in_current_shift = $this->getUsersInCurrentShift($this->getCurrentShift($request->station));
         $this->sendEmailNotifications($users_in_current_shift, $report);
-        $this->sendNotificationsToUsers($users_in_current_shift);
+        /*$this->sendNotificationsToUsers($users_in_current_shift);*/
         return redirect()->route('index');
         //End Section
     }
@@ -180,13 +180,18 @@ class ReportController extends Controller
         foreach ($users_id as $user_id) {
             $user=self::findUser($user_id);
             if($user->notifications == true) {
-                //Start - Sending Email to all users in shift
-                Mail::send('emails.new_report_notification', ['user' => $user, 'report' => $report], function ($m) use ($user) {
-                    $m->from(env('EMAIL_FROM'), 'קפה אמון');
-                    $m->to($user->email, $user->first_name)->subject("דיווח חדש במשמרת שלך");
-                });
+                try {
+                    //Start - Sending Email to all users in shift
+                    Mail::send('emails.new_report_notification', ['user' => $user, 'report' => $report], function ($m) use ($user) {
+                        $m->from(env('EMAIL_FROM'), 'קפה אמון');
+                        $m->to($user->email, $user->first_name)->subject("דיווח חדש במשמרת שלך");
+                    });
+                //End - Sending Email to all users in shift
+                } catch (\Exception $exception) {
+                    return report($exception);
             }
-            //End - Sending Email to all users in shift
+            }
+
         }
     }
 
