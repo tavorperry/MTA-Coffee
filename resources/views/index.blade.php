@@ -53,7 +53,7 @@
             @csrf
             <a>
                 <input type="hidden" class="deviceUserId" name="device_id">
-                <button type="submit" class="btn login-btn">התנתק והפסק לקבל התראות</button>
+                <button type="submit" class="btn login-btn">התנתק</button>
             </a>
         </form>
     @else
