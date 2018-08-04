@@ -73,7 +73,7 @@
                             {{$report->created_at}}
                         </td>
                         <td class="clear_in_mobile">
-                            <img src="../../pictures/{{$report->picture}}" alt="report picture" width="70px" height="70px">
+                            <img src="{{env('APP_URL')}}/pictures/{{$report->picture}}" alt="report picture" width="70px" height="70px">
                         </td>
                         <td>
                             <a href="{{env('APP_URL')}}/reports/view/{{$report->id}}"><span id="status_id_{{$report->id}}"> {{$report->status}}</span> </a>
