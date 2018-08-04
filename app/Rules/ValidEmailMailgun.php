@@ -26,14 +26,18 @@ class ValidEmailMailgun implements Rule
      */
     public function passes($attribute, $value)
     {
+        try {
         # Instantiate the client.
         $mgClient = new Mailgun('pubkey-7250f008ac3e46a83d068f6f561b6143');
         $validateAddress = $attribute;
-
 # Issue the call to the client.
-        $result = $mgClient->get("address/validate", array('address' => $validateAddress));
+       // $result = $mgClient->get("address/validate", array('address' => $validateAddress));
+            $result = $mgClient->get("address/validate", array('address' => $validateAddress));
 # is_valid is 0 or 1
         $isValid = $result->http_response_body->is_valid;
+        } catch (\Exception $exception) {
+            return report($exception);
+        }
       return $isValid;
     }
 
@@ -44,6 +48,6 @@ class ValidEmailMailgun implements Rule
      */
     public function message()
     {
-        return 'אנא הזן דוא"ל פעיל';
+        return 'האימייל שהזנת אינו פעיל. אנא בדוק את הקלט והקלד אימייל פעיל';
     }
 }
