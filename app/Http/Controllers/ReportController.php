@@ -66,7 +66,9 @@ class ReportController extends Controller
         if ($request->hasFile('picture')) {
             $picture = $request->file('picture');
             $filename = time() . '_pic.' . $picture->getClientOriginalExtension();
-            Image::make($picture)->save('pictures/' . $filename);
+            $img = Image::make($picture);
+            $img->orientate();
+            $img->save('pictures/' . $filename);
             $report->picture = $filename;
         }
 
