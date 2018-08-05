@@ -25,7 +25,7 @@ class StationShiftController extends Controller
         if ($shifts == null) {
             Alert::warning('לא תקבל התראות ולא תוכל לצבור נקודות, לא חבל?', 'אין משמרות')->persistent('Close');
         } else {
-            Alert::success('צבור נקודות וזכה בפרסים! :)', 'המשמרות מעודכנות!')->persistent('Close');
+            Alert::success('מעכשיו תתקבל התראה באימייל כשיפתח דיווח במשמרת שלך', 'המשמרות מעודכנות!')->persistent('Close');
         }
         $userShifts->sync($shifts);
         return redirect()->route('station');
