@@ -11,6 +11,7 @@
                 }
         }
     </script>
+    <?php Alert::success('אנו לא אוספים ומבצעים שום שימוש בפרטי חשבון הגוגל :)','אנו ממליצים להתחבר דרך גוגל להרשמה מהירה')->persistent("Close"); ?>
     <div class="row justify-content-center position-relative" style="bottom:60px">
         <div class="col-md-8">
             <div class="card">
