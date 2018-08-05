@@ -63,36 +63,6 @@ class ReportController extends Controller
         }
 
         //This 'if' is to save the image with "Image Intervention" package that compress the image
-        if ($request->hasFile('picture')) {
-                $file_extension = $request->file('picture')->getClientOriginalExtension();
-                //This switch is to check if the file is really a photo.
-                //If not, we will not save the file.
-            $hasValidExtension = false;
-                    switch ($file_extension) {
-                        case 'jpg':
-                            $hasValidExtension = true;
-                        case 'png':
-                            $hasValidExtension = true;
-                        case 'gif':
-                            $hasValidExtension = true;
-                        case 'JPG':
-                            $hasValidExtension = true;
-                        case 'PNG':
-                            $hasValidExtension = true;
-                        case 'GIF':
-                            $hasValidExtension = true;
-                    }
-                    if($hasValidExtension) {
-                        $picture = $request->file('picture');
-                        $filename = time() . '_pic.' . $picture->getClientOriginalExtension();
-                        Image::make($picture)->resize(600, 400)->save('pictures/' . $filename);
-                        $report->picture = $filename;
-                    }
-                    else{
-
-                    }
-        }
-
         $isReported = $report->save();
         if ($isReported) {
             $user = Auth::user();
@@ -110,7 +80,7 @@ class ReportController extends Controller
 
         //This section is to send notifications(Emails & Push) to the specific users
         $users_in_current_shift = $this->getUsersInCurrentShift($this->getCurrentShift($request->station));
-        $this->sendEmailNotifications($users_in_current_shift, $report);
+        $this->sendEmailNotifications($users_in_current_shift, $report, "דיווח חדש במשמרת שלך");
         /*$this->sendNotificationsToUsers($users_in_current_shift);*/
         return redirect()->route('index');
         //End Section
@@ -192,6 +162,23 @@ class ReportController extends Controller
             if ($user->isLevelUp($prevLevel)) {
                 Alert::success('מזל טוב עלית רמה! ', 'הדיווח נסגר כל הכבוד !הרווחת 20 נקודות')->persistent("Close");
             }
+
+            $report = DB::table('reports')->where('id', $report_id)->first();
+
+            if ($user->notifications == true) {
+                try {
+                    //Start - Sending Email to all users in shift
+                    Mail::send('emails.close_report_notification', ['user' => $user, 'report' => $report], function ($m) use ($user) {
+                        $m->from(env('EMAIL_FROM'), 'קפה אמון');
+                        $m->to($user->email, $user->first_name)->subject("הדיווח טופל");
+                    });
+                    //End - Sending Email to all users in shift
+                } catch (\Exception $exception) {
+                    return report($exception);
+
+
+                }
+            }
         }
 
         return redirect()->route('notifications.show');
@@ -202,16 +189,16 @@ class ReportController extends Controller
      *Sends email notifications to the users
      *
      */
-    public function sendEmailNotifications($users_id, $report)
+    public function sendEmailNotifications($users_id, $report, $subject)
     {
         foreach ($users_id as $user_id) {
             $user=self::findUser($user_id);
             if($user->notifications == true) {
                 try {
                     //Start - Sending Email to all users in shift
-                    Mail::send('emails.new_report_notification', ['user' => $user, 'report' => $report], function ($m) use ($user) {
+                    Mail::send('emails.new_report_notification', ['user' => $user, 'report' => $report], function ($m) use ($user,$subject) {
                         $m->from(env('EMAIL_FROM'), 'קפה אמון');
-                        $m->to($user->email, $user->first_name)->subject("דיווח חדש במשמרת שלך");
+                        $m->to($user->email, $user->first_name)->subject($subject);
                     });
                 //End - Sending Email to all users in shift
                 } catch (\Exception $exception) {
