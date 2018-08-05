@@ -63,6 +63,14 @@ class ReportController extends Controller
         }
 
         //This 'if' is to save the image with "Image Intervention" package that compress the image
+        if ($request->hasFile('picture')) {
+            $picture = $request->file('picture');
+            $filename = time() . '_pic.' . $picture->getClientOriginalExtension();
+            Image::make($picture)->save('pictures/' . $filename);
+            $report->picture = $filename;
+        }
+
+
         $isReported = $report->save();
         if ($isReported) {
             $user = Auth::user();
