@@ -15,7 +15,7 @@
         @if(empty($notifications))
             <h5 class="text-center">הידד! אין דיווחים</h5>
         @else
-            <div class="">
+            <div>
                 <table class="text-center table table-striped">
                     <tr>
                         <th scope="col">בניין</th>
@@ -76,7 +76,7 @@
         @if(empty($notifications))
             <h5 class="text-center">הידד! אין דיווחים</h5>
         @else
-                    <div class="table-responsive">
+                    <div>
                         <table class="text-center table table-striped">
                             <tr>
                                 <th scope="col">בניין</th>

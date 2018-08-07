@@ -19,7 +19,7 @@ input{
     position:absolute;top:0;right:0;
 }
 
-@media only screen and (max-width: 345px) {
+@media only screen and (max-width: 319px) {
     .clear_in_mobile{
         display: none;
     }
