@@ -1,10 +1,10 @@
 @extends('layouts.master')
 
 @section('page-style')
-    <link href="{!! asset('css/view_all_open.css') !!}" media="all" rel="stylesheet" type="text/css"
+    <link href="{!! asset('css/notifications.css') !!}" media="all" rel="stylesheet" type="text/css"
           xmlns="http://www.w3.org/1999/html"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="{{env('APP_URL')}}/js/reports.js"></script>
+    <script src="{{env('APP_URL')}}/js/notifications.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 @endsection
 
@@ -15,7 +15,7 @@
         @if(empty($notifications))
             <h5 class="text-center">הידד! אין דיווחים</h5>
         @else
-            <div class="table-responsive">
+            <div class="">
                 <table class="text-center table table-striped">
                     <tr>
                         <th scope="col">בניין</th>
