@@ -72,11 +72,12 @@ class RegisterController extends Controller
 
         event(new Registered($user = $this->create($request->all())));
 
-        //$this->guard()->login($user);
+        $this->guard()->login($user);
 
         Alert::success('ברוך הבא!', 'את/ה יכול/ה להתחבר כעת')->persistent("Close");
 
-        return $this->registered($request, $user)
+        // $this->registered($request, $user)
+        return $this->guard()->login($user)
             ?: redirect($this->redirectPath());
     }
 
