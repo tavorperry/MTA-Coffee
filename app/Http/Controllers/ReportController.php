@@ -154,7 +154,7 @@ class ReportController extends Controller
             //Update the close data in the report table
             DB::table('reports')
                 ->where('id', $report_id)
-                ->update(['status' => 1, 'comment' => $request->get('comment'), 'closing_user_id' => auth()->id()
+                ->update(['status' => 1, 'comment' => $request->get('comment'), 'closing_user_id' => auth()->id(), 'updated_at' => Carbon::now()
                 ]);
 
             //Update the close data in the notification table
