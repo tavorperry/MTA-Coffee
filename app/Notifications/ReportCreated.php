@@ -65,6 +65,7 @@ class ReportCreated extends Notification
             'type' => $this->report->type,
             'description' => $this->report->desc,
             'station' => $this->report->station->id,
+            'picture' => $this->report->picture,
             'user' => [
                 'first_name' => $this->report->user->first_name,
                 'last_name' => $this->report->user->last_name,
