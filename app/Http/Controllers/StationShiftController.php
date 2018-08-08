@@ -19,15 +19,18 @@ class StationShiftController extends Controller
 
     public function update(Request $request)
     {
+        $user = Auth::user();
         $userShifts = $request->user()->shifts();
         $shifts = $request->input('shifts');
 
         if ($shifts == null) {
             Alert::warning('לא תקבל התראות ולא תוכל לצבור נקודות, לא חבל?', 'אין משמרות')->persistent('Close');
         } else {
+            $user->notifications = true;
             Alert::success('מעכשיו תתקבל התראה באימייל כשיפתח דיווח במשמרת שלך', 'המשמרות מעודכנות!')->persistent('Close');
         }
         $userShifts->sync($shifts);
+        $user->save();
         return redirect()->route('station');
     }
 
