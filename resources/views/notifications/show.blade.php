@@ -11,37 +11,38 @@
 @section('content')
 <div class="container">
     <div>
-        <h2 class="service-description text-center">דיווחים פתוחים</h2>
+        <?php
+            if(($notifications[0]->data['station']) == 1)
+                $station_name = 'פומנטו';
+            if(($notifications[0]->data['station']) == 2)
+                $station_name = 'ווסטון';
+            if(($notifications[0]->data['station']) == 3)
+                $station_name = 'כלכלה';
+            ?>
+        <h2 class="service-description text-center">דיווחים פתוחים - בניין {{$station_name}}</h2>
         @if(empty($notifications))
             <h5 class="text-center">הידד! אין דיווחים</h5>
         @else
             <div>
                 <table class="text-center table table-striped">
                     <tr>
-                        <th scope="col">בניין</th>
                         <th scope="col" class="clear_in_mobile">סוג</th>
                         <th scope="col" class="">מועד דיווח</th>
                         <th scope="col" class="">תמונה</th>
-                      {{--  <th scope="col" class="">סטטוס</th>--}}
+                        <th scope="col">לינק לדיווח</th>
                     </tr>
             @foreach($notifications as $notification)
                 @if($notification->read_at == NULL)
                             <tr class="main-tr">
-                                <td scope="row">
-                                    <a href="{{env('APP_URL')}}/reports/view/{{$notification->data['report_id']}}">
-                                        <span id="station_id_{{$notification->data['report_id']}}">
-                                            {{ $notification->data['station'] }}
-                                    </span></a>
-                                </td>
                                 <td class="clear_in_mobile">
-                                    <a href="{{env('APP_URL')}}/reports/view/{{$notification->data['report_id']}}">
-                                    {{ $notification->data['type'] }}
-                                    </a>
+                                    {{--<a href="{{env('APP_URL')}}/reports/view/{{$notification->data['report_id']}}">--}}
+                                    {{$notification->data['type']}}
+                                    {{--</a>--}}
                                 </td>
                                 <td>
-                                    <a href="{{env('APP_URL')}}/reports/view/{{$notification->data['report_id']}}">
-                                    {{ \App\Http\Controllers\NotificationController::calcTime($notification) }}
-                                    </a>
+                                    {{--<a href="{{env('APP_URL')}}/reports/view/{{$notification->data['report_id']}}">--}}
+                                    {{\App\Http\Controllers\NotificationController::calcTime($notification)}}
+                                    {{--</a>--}}
                                 </td>
                                 <td>
                                     @if(!empty($notification->data['picture']))
@@ -53,6 +54,11 @@
                                                 <img src="{{env('APP_URL')}}/pictures/no_pic.png" alt="report picture" class="report_pic">
                                             </a>
                                     @endif
+                                </td>
+                                <td>
+                                    <a href="{{env('APP_URL')}}/reports/view/{{$notification->data['report_id']}}">
+                                        לחץ כאן
+                                    </a>
                                 </td>
 {{--                                <td>
                                     <a href="{{env('APP_URL')}}/reports/view/{{$notification->data['report_id']}}">
@@ -79,30 +85,23 @@
                     <div>
                         <table class="text-center table table-striped">
                             <tr>
-                                <th scope="col">בניין</th>
                                 <th scope="col" class="clear_in_mobile">סוג</th>
                                 <th scope="col" class="">מועד דיווח</th>
                                 <th scope="col" class="">תמונה</th>
-                              {{--  <th scope="col" class="">סטטוס</th>--}}
+                                <th scope="col">לינק לדיווח</th>
                             </tr>
             @foreach($notifications as $notification)
                 @if($notification->read_at != NULL)
                         <tr class="main-tr">
-                            <td scope="row">
-                                <a href="{{env('APP_URL')}}/reports/view/{{$notification->data['report_id']}}">
-                                        <span id="station_id_{{$notification->data['report_id']}}">
-                                            {{ $notification->data['station'] }}
-                                    </span></a>
-                            </td>
                             <td class="clear_in_mobile">
-                                <a href="{{env('APP_URL')}}/reports/view/{{$notification->data['report_id']}}">
+                                {{--<a href="{{env('APP_URL')}}/reports/view/{{$notification->data['report_id']}}">--}}
                                     {{ $notification->data['type'] }}
-                                </a>
+                               {{-- </a>--}}
                             </td>
                             <td>
-                                <a href="{{env('APP_URL')}}/reports/view/{{$notification->data['report_id']}}">
+                           {{-- <a href="{{env('APP_URL')}}/reports/view/{{$notification->data['report_id']}}">--}}
                                     {{ \App\Http\Controllers\NotificationController::calcTime($notification) }}
-                                </a>
+                               {{-- </a>--}}
                             </td>
                             <td>
                                 @if(!empty($notification->data['picture']))
@@ -114,6 +113,11 @@
                                         <img src="{{env('APP_URL')}}/pictures/no_pic.png" alt="report picture" class="report_pic">
                                     </a>
                                 @endif
+                            </td>
+                            <td>
+                                <a href="{{env('APP_URL')}}/reports/view/{{$notification->data['report_id']}}">
+                                    לחץ כאן
+                                </a>
                             </td>
                            {{-- <td>
                                 <a href="{{env('APP_URL')}}/reports/view/{{$notification->data['report_id']}}">
