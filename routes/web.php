@@ -45,25 +45,4 @@ Route::get(env('LOG_PATH'), '\Rap2hpoutre\LaravelLogViewer\LogViewerController@i
 Route::get('/terms', function () {
     return view('terms');})->name('terms');
 
-//Tests
-    Route::get('/Email', function () {
-        Mail::raw('Sending emails with Mailgun and Laravel is easy!', function($message)
-        {
-            $message->subject('Mailgun and Laravel are awesome!');
-            $message->from('no-reply@website_name.com', 'Website Name');
-            $message->to('tavorp12@gmail.com');
-        });
-    });
-
-    Route::get('/Time', function () {
-       // dd(date('w') + 1);
-        dd((int)date("H"));
-    });
-
-    Route::get('/removemyself', function () {
-        $user_id = auth()->id();
-        $user = \App\User::find($user_id);
-        $user->notifications = false;
-        $user->save();
-    });
 
