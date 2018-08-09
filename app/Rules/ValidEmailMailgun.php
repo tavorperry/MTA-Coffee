@@ -36,7 +36,7 @@ class ValidEmailMailgun implements Rule
         # is_valid is 0 or 1
         $isValid = $result->http_response_body->is_valid;
         } catch (\Exception $exception) {
-            return report($exception);
+            return compact('isValid','exception') ;
         }
       return $isValid;
     }
