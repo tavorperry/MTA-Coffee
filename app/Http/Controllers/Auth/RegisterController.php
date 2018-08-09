@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
 use Alert;
+use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
 {
@@ -77,6 +78,13 @@ class RegisterController extends Controller
         Alert::success('ברוך הבא!', 'את/ה יכול/ה להתחבר כעת')->persistent("Close");
 
         // $this->registered($request, $user)
+
+
+        if (env('NOTIFY_XENIA'))
+            $this->SendEmailNotification($user, 'aguda@mta.ac.il');
+        if(env('NOTIFY_TAVOR'))
+            $this->SendEmailNotification($user,'tavorp12@gmail.com');
+
         return $this->guard()->login($user)
             ?: redirect($this->redirectPath());
     }
@@ -98,4 +106,21 @@ class RegisterController extends Controller
 
         ]);
     }
+
+    public function SendEmailNotification($user,$email){
+        try {
+            Mail::send('emails.notification_when_new_user_registered', ['user' => $user, $email], function ($m) use ($user,$email) {
+                $m->from(env('EMAIL_FROM'), 'קפה אמון');
+                $m->to($email)->subject("משתמש חדש נרשם למערכת!");
+            });
+        } catch (\Exception $exception) {
+            return report($exception);
+        }
+    }
 }
+
+
+
+
+
+//End - Sending Email to all users in shift
