@@ -8,6 +8,7 @@ use Laravel\Socialite\Facades\Socialite;
 use App\User;
 use Auth;
 use App\DevicePushUser;
+use App\Http\Controllers\Auth\RegisterController;
 
 class SocialLoginController extends Controller
 {
@@ -48,6 +49,12 @@ class SocialLoginController extends Controller
             $social->provider_id = $socialUser->getId();
             $social->provider_name = $socialUser->getName();
             $social->save();
+            //Send notification to Tavor and Xenia
+                if (env('NOTIFY_XENIA'))
+                    RegisterController::SendEmailNotification($user, 'aguda@mta.ac.il');
+                if(env('NOTIFY_TAVOR'))
+                    RegisterController::SendEmailNotification($user,'tavorp12@gmail.com');
+            //End
             Auth::login($user);
         }
 
