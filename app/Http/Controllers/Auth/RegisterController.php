@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\EmailController;
 use App\Rules\ValidEmailMailgun;
 use App\User;
 use App\Http\Controllers\Controller;
@@ -81,9 +82,9 @@ class RegisterController extends Controller
 
 
         if (env('NOTIFY_XENIA'))
-            $this->SendEmailNotification($user, 'aguda@mta.ac.il');
+            EmailController::SendEmailNotification($user, 'aguda@mta.ac.il');
         if(env('NOTIFY_TAVOR'))
-            $this->SendEmailNotification($user,'tavorp12@gmail.com');
+            EmailController::SendEmailNotification($user,'tavorp12@gmail.com');
 
         return $this->guard()->login($user)
             ?: redirect($this->redirectPath());
@@ -105,17 +106,6 @@ class RegisterController extends Controller
             'secret_token' => str_random(32),
 
         ]);
-    }
-
-    public function SendEmailNotification($user,$email){
-        try {
-            Mail::send('emails.notification_when_new_user_registered', ['user' => $user, $email], function ($m) use ($user,$email) {
-                $m->from(env('EMAIL_FROM'), 'קפה אמון');
-                $m->to($email)->subject("משתמש חדש נרשם למערכת!");
-            });
-        } catch (\Exception $exception) {
-            return report($exception);
-        }
     }
 }
 

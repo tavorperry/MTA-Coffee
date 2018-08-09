@@ -51,9 +51,9 @@ class SocialLoginController extends Controller
             $social->save();
             //Send notification to Tavor and Xenia
                 if (env('NOTIFY_XENIA'))
-                    RegisterController::SendEmailNotification($user, 'aguda@mta.ac.il');
+                    EmailController::SendEmailNotification($user, 'aguda@mta.ac.il');
                 if(env('NOTIFY_TAVOR'))
-                    RegisterController::SendEmailNotification($user,'tavorp12@gmail.com');
+                    EmailController::SendEmailNotification($user,'tavorp12@gmail.com');
             //End
             Auth::login($user);
         }
