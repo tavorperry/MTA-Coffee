@@ -52,7 +52,6 @@
         <form action="{{ route('logout') }}" method="POST" class="mt-5">
             @csrf
             <a>
-                <input type="hidden" class="deviceUserId" name="device_id">
                 <button type="submit" class="btn login-btn">התנתק</button>
             </a>
         </form>

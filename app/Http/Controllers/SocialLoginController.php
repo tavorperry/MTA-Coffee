@@ -19,7 +19,7 @@ class SocialLoginController extends Controller
      */
     public function redirectToProvider(Request $request)
     {
-        session(['device_id' => $request->get('device_id')]);
+//        session(['device_id' => $request->get('device_id')]);
 
         return Socialite::driver('google')->redirect();
     }
@@ -58,17 +58,17 @@ class SocialLoginController extends Controller
             Auth::login($user);
         }
 
-        $deviceId = session('device_id');
-        if (!empty($deviceId)) {
-            $isDeviceEmpty = DevicePushUser::where('device_id', '=', $deviceId)->get()->isEmpty();
-            if ($isDeviceEmpty) {
-                $device = new DevicePushUser;
-                $device->device_id = $deviceId;
-                $device->user_id = $user->id;
-                $device->save();
-            }
-        }
-        session()->forget('device_id');
+//        $deviceId = session('device_id');
+//        if (!empty($deviceId)) {
+//            $isDeviceEmpty = DevicePushUser::where('device_id', '=', $deviceId)->get()->isEmpty();
+//            if ($isDeviceEmpty) {
+//                $device = new DevicePushUser;
+//                $device->device_id = $deviceId;
+//                $device->user_id = $user->id;
+//                $device->save();
+//            }
+//        }
+//        session()->forget('device_id');
 
         return redirect()->back();
     }
