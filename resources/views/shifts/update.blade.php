@@ -24,19 +24,20 @@
                         <th>שלישי</th>
                         <th>רביעי</th>
                         <th>חמישי</th>
+                        <th>שישי</th>
                     </tr>
                     <tr>
-                        <th>בוקר 8:00-14:00<br></th>
+                        <th>בוקר 7:00-14:00<br><    /th>
                         @foreach($station->shifts as $shift)
                             <td><input type="checkbox" name="shifts[]" value="{{ $shift->id }}"
                                         {{ \App\Http\Controllers\StationShiftController::isUserCheckThisShiftAlready($shift) }}
                                 >{{--this line call a function that checks the checkbox if the user is already listed in the current shift--}}
                             </td>
-                            @break($loop->index == 4)
+                            @break($loop->index == 5)
                         @endforeach
                     </tr>
                     <tr>
-                        <th>ערב 14:00-20:00<br></th>
+                        <th>ערב 14:00-22:00<br></th>
                         @for($i=5; $i < 10; $i++)
                             <td><input type="checkbox" name="shifts[]" value="{{ $station->shifts[$i]->id }}"
                                         {{ \App\Http\Controllers\StationShiftController::isUserCheckThisShiftAlready( $station->shifts[$i]) }}

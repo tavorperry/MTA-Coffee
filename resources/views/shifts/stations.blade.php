@@ -46,8 +46,10 @@
                             {{ "שלישי" }}
                         @elseif($day == 4)
                             {{ "רביעי" }}
-                        @else
+                        @elseif($day == 5)
                             {{ "חמישי" }}
+                        @else
+                            {{ "שישי" }}
                         @endif
                         {{ $shift->start_shift }}:00-{{ $shift->end_shift }}:00
                     </li>

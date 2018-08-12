@@ -11,7 +11,7 @@
                 }
         }
     </script>
-    <?php Alert::success(' מלבד שם ודוא"ל, איננו אוספים שום פרטים אישיים מחשבון הגוגל :)','אנו ממליצים להתחבר דרך גוגל להרשמה מהירה')->persistent("Close"); ?>
+    <?php Alert::success(' מלבד שם ודוא"ל, איננו אוספים שום פרטים אישיים מחשבון הגוגל :)','אנו ממליצים להתחבר דרך גוגל להרשמה מהירה')->autoclose(3000); ?>
     <div class="row justify-content-center position-relative" style="bottom:60px">
         <div class="col-md-8">
             <div class="card">
@@ -97,7 +97,7 @@
                     <br>
                     <form action="{{ route('login.google') }}" class="text-center">
                         @csrf
-                        <input type="image" name="submit" src="{{ URL::to('/') }}/images/btn_google.png" border="0" alt="Submit" onclick="return validateForm()"/>
+                        <input autofocus type="image" name="submit" src="{{ URL::to('/') }}/images/btn_google.png" border="0" alt="Submit" onclick="return validateForm()"/>
                     </form>
                 </div>
             </div>

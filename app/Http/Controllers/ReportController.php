@@ -58,7 +58,7 @@ class ReportController extends Controller
         $report->status = 0;
 
             if ($this->getCurrentShift($report->station_id) == NULL) {
-            Alert::error(' קפה אמון פתוח בימי חול החל משעה 8:00 :)', 'סגורים, חביבי')->persistent("Close");
+            Alert::error(' קפה אמון פתוח בימים ראשון-שישי משעה 7:00 :)', 'סגורים, חביבי')->persistent("Close");
             return redirect()->route('index');
         }
 
