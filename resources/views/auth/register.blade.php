@@ -11,7 +11,10 @@
                 }
         }
     </script>
-    <?php Alert::success(' מלבד שם ודוא"ל, איננו אוספים שום פרטים אישיים מחשבון הגוגל :)','אנו ממליצים להתחבר דרך גוגל להרשמה מהירה')->autoclose(3000); ?>
+    <?php
+            if (   !($errors->has('first_name')) && !($errors->has('last_name'))  && !($errors->has('email')) && !($errors->has('password'))  )
+                Alert::success(' מלבד שם ודוא"ל, איננו אוספים שום פרטים אישיים מחשבון הגוגל :)','אנו ממליצים להתחבר דרך גוגל להרשמה מהירה')->autoclose(4000);
+    ?>
     <div class="row justify-content-center position-relative" style="bottom:60px">
         <div class="col-md-8">
             <div class="card">
