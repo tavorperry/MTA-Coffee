@@ -54,10 +54,7 @@
                                 </div>
                             </div>
                         </form>
-                        <form action="{{ route('login.google') }}" class="text-center">
-                            @csrf
-                            <input type="image" name="submit" src="{{ URL::to('/') }}/images/btn_google.png" border="0" alt="Submit"/>
-                        </form>
+                        <a href="{{ route('login.google') }}" onclick="return validateForm()" class="gpsignin col-md-12" style="color: white;">  התחברות דרך גוגל  </a>
                     </div>
                 </div>
             </div>
