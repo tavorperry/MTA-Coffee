@@ -82,6 +82,7 @@ body {
     -ms-transition: all 0.4s ease 0s;
     -o-transition: all 0.4s ease 0s;
     transition: all 0.4s ease 0s;
+    opacity: 0.9;
 }
 
 .menu-toggle {
