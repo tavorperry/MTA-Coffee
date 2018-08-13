@@ -29,25 +29,25 @@
 
 <body>
 <!-- Navigation -->
-<a class="menu-toggle rounded" href="#">
-    <i class="fa fa-bars"></i>
+<a class="menu-toggle rounded part-of-nav" href="#">
+    <i class="fa fa-bars part-of-nav"></i>
 </a>
 <nav id="sidebar-wrapper">
-    <ul class="sidebar-nav">
-        <li class="sidebar-brand">
-            <a class="js-scroll-trigger" href="{{ route('home') }}">קפה אמון</a>
+    <ul class="sidebar-nav part-of-nav">
+        <li class="sidebar-brand part-of-nav">
+            <a class="js-scroll-trigger part-of-nav" href="{{ route('home') }}">קפה אמון</a>
         </li>
-        <li class="sidebar-nav-item">
-            <a class="js-scroll-trigger" href="{{ route('home') }}">דף הבית</a>
+        <li class="sidebar-nav-item part-of-nav">
+            <a class="js-scroll-trigger part-of-nav" href="{{ route('home') }}">דף הבית</a>
         </li>
-        <li class="sidebar-nav-item">
-            <a class="js-scroll-trigger" href="{{ route('reports.create') }}">דיווח על תקלה</a>
+        <li class="sidebar-nav-item part-of-nav">
+            <a class="js-scroll-trigger part-of-nav" href="{{ route('reports.create') }}">דיווח על תקלה</a>
         </li>
-        <li class="sidebar-nav-item">
-            <a class="js-scroll-trigger" href="{{ route('station') }}">עדכון משמרות</a>
+        <li class="sidebar-nav-item part-of-nav">
+            <a class="js-scroll-trigger part-of-nav" href="{{ route('station') }}">עדכון משמרות</a>
         </li>
-        <li class="sidebar-nav-item">
-            <a class="js-scroll-trigger" href="{{ route('report.view.all') }}">צפייה בכל הדיווחים</a>
+        <li class="sidebar-nav-item part-of-nav">
+            <a class="js-scroll-trigger part-of-nav" href="{{ route('report.view.all') }}">צפייה בכל הדיווחים</a>
         </li>
     </ul>
 </nav>

@@ -21,13 +21,33 @@ $( document ).ready(function() {
         }
       }
     });
-  
+
     // Closes responsive menu when a scroll trigger link is clicked
     $('#sidebar-wrapper .js-scroll-trigger').click(function() {
-      $("#sidebar-wrapper").removeClass("active");
-      $(".menu-toggle").removeClass("active");
-      $(".menu-toggle > .fa-bars, .menu-toggle > .fa-times").toggleClass("fa-bars fa-times");
+        $("#sidebar-wrapper").removeClass("active");
+        $(".menu-toggle").removeClass("active");
+        $(".menu-toggle > .fa-bars, .menu-toggle > .fa-times").toggleClass("fa-bars fa-times");
     });
+
+    // Closes responsive menu when a click anywhere on screen
+    $('body').click(function(evt) {
+        if ($(event.target).hasClass('part-of-nav')) {
+            return;
+        }
+        else {
+            if ($("#sidebar-wrapper").hasClass('active')) {
+                $("#sidebar-wrapper").removeClass("active");
+                $(".menu-toggle").removeClass("active");
+                $(".menu-toggle > .fa-bars, .menu-toggle > .fa-times").toggleClass("fa-bars fa-times");
+            }
+        }
+    });
+
+   /* $('.row').click(function(evt){
+        $("#sidebar-wrapper").removeClass("active");
+        $(".menu-toggle").removeClass("active");
+        $(".menu-toggle > .fa-bars, .menu-toggle > .fa-times").toggleClass("fa-bars fa-times");
+    });*/
 
       // Scroll to top button appear
     $(document).scroll(function() {
