@@ -7,7 +7,6 @@
     <script src="{{env('APP_URL')}}/js/notifications.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 @endsection
-
 @section('content')
 <div class="container">
     <div>
@@ -19,7 +18,7 @@
             if(($notifications[0]->data['station']) == 3)
                 $station_name = 'כלכלה';
             ?>
-        <h2 class="service-description text-center">דיווחים פתוחים - בניין {{$station_name}}</h2>
+        <h2 class="service-description text-center preety_font">דיווחים פתוחים - בניין {{$station_name}}</h2>
         @if(empty($notifications))
             <h5 class="text-center">הידד! אין דיווחים</h5>
         @else
@@ -78,7 +77,7 @@
             </table>
         @endif
         <hr>
-        <h2 class="service-description text-center">דיווחים סגורים</h2>
+        <h2 class="service-description text-center preety_font">דיווחים סגורים</h2>
         @if(empty($notifications))
             <h5 class="text-center">הידד! אין דיווחים</h5>
         @else
