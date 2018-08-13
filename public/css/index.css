@@ -349,3 +349,33 @@ p {
     top: 31px;
     color: ghostwhite;
 }
+
+.gpsignin::before {
+    content: '';
+    display: block;
+    width: 34px;
+    height: 40px;
+    background: url(../images/google_icon.png) 0 0 no-repeat;
+    position: absolute;
+    z-index: 0;
+    right: 10px;
+    top: 14%;
+}
+
+.gpsignin {
+    background: #e24929;
+    padding: 12px 10px;
+    cursor: pointer;
+    display: block;
+    border-radius: 4px;
+    position: relative;
+    z-index: 0;
+    text-align: center;
+    color: white;
+}
+
+:after, :before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}

@@ -25,9 +25,9 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="first_name" class="col-sm-4 col-form-label to-the-right">{{ __('שם פרטי') }}</label>
+                            <label for="first_name" class="col-sm-3 col-form-label to-the-right">{{ __('שם פרטי') }}</label>
                             <div class="col-md-6">
-                                <input id="first_name" type="text" class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}" name="first_name" value="{{ old('first_name') }}" required autofocus>
+                                <input id="first_name" type="text" class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}" name="first_name" value="{{ old('first_name') }}" required>
                                 @if ($errors->has('first_name'))
                                     <span class="invalid-feedback">
                                         <strong>{{ $errors->first('first_name') }}</strong>
@@ -39,7 +39,7 @@
                         <div class="form-group row">
                             <label for="last_name" class="col-md-4 col-form-label to-the-right">{{ __('שם משפחה') }}</label>
                             <div class="col-md-6">
-                                <input id="last_name" type="text" class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}" name="last_name" value="{{ old('last_name') }}" required autofocus>
+                                <input id="last_name" type="text" class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}" name="last_name" value="{{ old('last_name') }}" required>
                                 @if ($errors->has('last_name'))
                                     <span class="invalid-feedback">
                                         <strong>{{ $errors->first('last_name') }}</strong>
@@ -87,7 +87,7 @@
                         <div class="text-center">
                         <span>קראתי, הבנתי ואני מסכים/ה
                             <a href="{{env('APP_URL')}}/terms"> לתנאי שימוש ולמדיניות הפרטיות</a></span>
-                            <input type="checkbox" id="terms" name="terms" required>
+                            <input autofocus type="checkbox" id="terms" name="terms" required>
                         </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-12 text-center">
@@ -98,10 +98,10 @@
                         </div>
                     </form>
                     <br>
-                    <form action="{{ route('login.google') }}" class="text-center">
-                        @csrf
-                        <input autofocus type="image" name="submit" src="{{ URL::to('/') }}/images/btn_google.png" border="0" alt="Submit" onclick="return validateForm()"/>
-                    </form>
+                        <a href="{{ route('login.google') }}" onclick="return validateForm()" class="gpsignin col-md-12" style="color: white;">  הרשמה דרך גוגל  </a>
+                   {{-- <div class="text-center">
+                    <a href="{{ route('login.google') }}"> <img src="{{ URL::to('/') }}/images/btn_google.png" id="google_btn" border="0" alt="Submit" onclick="return validateForm()"/> </a>
+                    </div>--}}
                 </div>
             </div>
         </div>
