@@ -55,13 +55,6 @@
         </span>
     </h4>
     <h4>
-        <?php
-        if($report->picture != null){
-            $link = env('APP_URL')."/pictures/".$report->picture;
-            echo "<u> <a href=".$link."> לחץ כאן על מנת לעבור לתמונה המצורפת </u> </a>";
-            echo "<img src='.$link.' height='42' width='42'>";
-        }
-        ?>
     </h4>
     <a href="{{env('APP_URL')}}/reports/view/{{$report->id}}"><img src="https://www.dropbox.com/s/ytx3hj3aox0omkl/Go%20to%20report.png?raw=1" alt="לחץ כאן לעבור לדיווח "> </a>
 </p>
