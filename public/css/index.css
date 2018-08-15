@@ -379,3 +379,6 @@ p {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
+.padding-bottom-3{
+    padding-bottom: 3px;!important;
+}
