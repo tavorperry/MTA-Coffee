@@ -72,7 +72,7 @@
                     <li><span style="font-weight: 400;"> האגודה מקפידה על קיום הוראות החוק ומכבדת את זכות משתמשי המערכת ואחרים לפרטיות. ככל שישנה סברה כי במערכת פורסם תוכן פוגע כלשהו, או מהווה הפרת זכות יוצרים ו/או הפרה של הדין, ניתן לפנות אלינו בכתובת הדואר האלקטרוני הנ"ל: </span>
                       <br> </li> <a href="mailto:aguda@mta.ac.il"><span style="font-weight: 400;">aguda@mta.ac.il</span></a>
                 <p><span style="font-weight: 400;">או </span></p>
-                <p><a href="mailto:tavorp12@gmail.com"><span style="font-weight: 400;">tavorp12@gmail.com</span></a></p>
+                <p><a href="mailto:mtacoffe@gmail.com"><span style="font-weight: 400;">mtacoffe@gmail.com</span></a></p>
                 </ol>
                 <p><br /><br /></p>
 

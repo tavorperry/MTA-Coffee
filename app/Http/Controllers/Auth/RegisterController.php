@@ -84,7 +84,7 @@ class RegisterController extends Controller
         if (env('NOTIFY_XENIA'))
             EmailController::SendEmailNotification($user, 'aguda@mta.ac.il');
         if(env('NOTIFY_TAVOR'))
-            EmailController::SendEmailNotification($user,'tavorp12@gmail.com');
+            EmailController::SendEmailNotification($user,'mtacoffe@gmail.com');
 
         return $this->guard()->login($user)
             ?: redirect($this->redirectPath());
