@@ -1,11 +1,19 @@
 @extends('layouts.index')
 
 @section('content')
-        <div class="row justify-content-center position-relative" style="bottom:60px">
+        <div id="main_div" class="row justify-content-center position-relative" style="bottom:10px">
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header text-center">{{ __('התחברות') }}</div>
                     <div class="card-body">
+                        <a id="googlebtn" href="{{ route('login.google') }}" onclick="return validateForm()" class="gpsignin col-md-12" style="color: white;">  התחברות דרך גוגל  </a>
+                        <br>
+                        <div id="normal_btn">
+                        <button onclick="openForm()" class="btn login-btn">
+                            {{ __('התחברות רגילה') }}
+                        </button>
+                        </div>
+                        <div class="form-popup" id="form">
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
                             <div class="form-group row">
@@ -50,11 +58,11 @@
                                 <div class="col-md-12 text-center">
                                     <button type="submit" class="btn login-btn">
                                         {{ __('התחבר') }}
-                                    </button><br>
+                                    </button>
                                 </div>
                             </div>
                         </form>
-                        <a href="{{ route('login.google') }}" onclick="return validateForm()" class="gpsignin col-md-12" style="color: white;">  התחברות דרך גוגל  </a>
+                        </div>
                     </div>
                 </div>
             </div>
