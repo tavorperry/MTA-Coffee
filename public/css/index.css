@@ -382,3 +382,9 @@ p {
 .padding-bottom-3{
     padding-bottom: 3px;!important;
 }
+
+/* The popup form - hidden by default */
+.form-popup {
+    display: none;
+
+}

@@ -10,19 +10,35 @@
                     return false;
                 }
         }
+
+        function openForm() {
+            document.getElementById("register").style.display = "block";
+            document.getElementById("normal_register_btn").innerHTML = "";
+            document.getElementById("googlebtn").style.opacity = "0.5";
+            document.getElementById("main_div").style.bottom = "80px";
+        }
     </script>
     <?php
             if (   !($errors->has('first_name')) && !($errors->has('last_name'))  && !($errors->has('email')) && !($errors->has('password'))  )
                 Alert::success(' מלבד שם ודוא"ל, איננו אוספים שום פרטים אישיים מחשבון הגוגל :)','אנו ממליצים להתחבר דרך גוגל להרשמה מהירה')->autoclose(4000);
     ?>
-    <div class="row justify-content-center position-relative" style="bottom:80px">
+    <div id="main_div" class="row justify-content-center position-relative" style="bottom:10px">
         <div class="col-sm-8">
             <div class="card">
                 <div class="card-header text-center padding-bottom-3" style="padding-top: 5px">{{ ('הרשמה') }}</div>
                 <div class="card-body" style="padding-top: 5px;">
-                    <form name="register" method="POST" action="{{ route('register') }}">
+                        <a id="googlebtn" href="{{ route('login.google') }}" onclick="return validateForm()" class="gpsignin" style="color: white;margin-top:13px">  הרשמה דרך גוגל  </a>
+                        <br>
+                    <div id="normal_register_btn">
+                        <button onclick="openForm()" class="btn login-btn">
+                            {{ __('הרשמה רגילה  ') }}
+                        </button>
+                    <br>
+                    <br>
+                    </div>
+                    <div class="form-popup" id="register">
+                    <form name="register" class="" method="POST" action="{{ route('register') }}">
                         @csrf
-
                         <div class="form-group row">
                             <label for="first_name" class="col-sm-4 to-the-right">{{ __('שם פרטי') }}</label>
                             <div class="col-md-6">
@@ -84,18 +100,18 @@
                         </div>
                         <div class="text-center col">
                             <span style="font-size: 14px">אני מסכים/ה
-                            <a href="{{env('APP_URL')}}/terms"> לתנאי השימוש ולמדיניות הפרטיות</a></span>
-                            <input autofocus type="checkbox" id="terms" name="terms" required>
+                            <a href="{{env('APP_URL')}}/terms"> לתנאי השימוש ולמדיניות </a>הפרטיות</span>
+                            <input type="checkbox" id="terms" name="terms" required style="width: 15px; height: 15px;">
                         </div>
                         <div class="form-group row mb-0" style="margin-top: 8px">
                             <div class="col-md-12 text-center">
                                 <button type="submit" class="btn login-btn">
-                                    {{ __('הרשם') }}
+                                    {{ __('תרשמו אותי!') }}
                                 </button>
                             </div>
                         </div>
                     </form>
-                        <a href="{{ route('login.google') }}" onclick="return validateForm()" class="gpsignin" style="color: white;margin-top:13px">  הרשמה דרך גוגל  </a>
+                    </div>
                 </div>
             </div>
         </div>
