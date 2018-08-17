@@ -13,7 +13,7 @@
     </script>--}}
     <?php
             if (   !($errors->has('first_name')) && !($errors->has('last_name'))  && !($errors->has('email')) && !($errors->has('password'))  )
-                Alert::success(' מלבד שם ודוא"ל, איננו אוספים שום פרטים אישיים מחשבון הגוגל :)','אנו ממליצים להתחבר דרך גוגל להרשמה מהירה')->autoclose(4000);
+                Alert::success(' מלבד שם ודוא"ל, איננו אוספים שום פרטים אישיים מחשבון הגוגל :)','אנו ממליצים להירשם דרך גוגל להרשמה מהירה')->autoclose(4000);
     ?>
     <div id="main_div" class="row justify-content-center position-relative" style="bottom:10px">
         <div class="col-sm-8">
