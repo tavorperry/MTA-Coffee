@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
 use Alert;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
@@ -56,8 +57,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users|ValidEmailMailgun',
-            'email' =>  new ValidEmailMailgun,
+            'email' => ['unique:users,email','required','string','email','max:255',new ValidEmailMailgun],
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -84,8 +84,11 @@ class RegisterController extends Controller
         if(env('NOTIFY_TAVOR'))
             EmailController::SendEmailNotification($user,'mtacoffe@gmail.com');
 
+
+       // return redirect()->to('/volunteer');
+
         return $this->guard()->login($user)
-            ?: redirect(route('volunteer'));
+            ?: redirect()->to('/volunteer');
     }
 
     /**

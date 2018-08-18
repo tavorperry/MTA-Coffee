@@ -36,6 +36,7 @@ class SocialLoginController extends Controller
 
         if($user) {
             Auth::login($user);
+            return redirect()->back();
         } else {
             $user = new User;
             $user->first_name = $socialUser->user['name']['givenName'];
@@ -69,8 +70,8 @@ class SocialLoginController extends Controller
 //            }
 //        }
 //        session()->forget('device_id');
-
-        return redirect()->back();
+        $google = true;
+        return view('volunteer', compact('google'));
     }
 
     /**
