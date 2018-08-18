@@ -1,6 +1,9 @@
 @extends('layouts.master')
 
 @section('content')
+    <?php if(isset($google))
+        Alert::message('בשימוש במערכת אני מאשר שקראתי והסכמתי לתנאי השימוש והפרטיות במערכת')->persistent("מאשר");
+        ?>
     <div class="container">
         <div class="row justify-content-center position-relative" style="bottom:30px">
             <div class="col-md-8">
