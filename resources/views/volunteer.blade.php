@@ -12,7 +12,7 @@
                     <div class="card-body container">
                         <div class="row">
                         <div class="col-sm-12 width100">
-                            <a href="{{route("select.building")}}" class="btn btn-success" role="button" style="width: 100%">אני רוצה לקבל התראות ולעזור כשאוכל !</a>
+                            <a href="{{route("select.building")}}" class="btn btn-success" role="button" style="width: 100%">אני רוצה לעזור כשאוכל ולקבל התראות !</a>
                         </div>
                         </div>
                         <br>
