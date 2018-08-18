@@ -23,7 +23,7 @@
         }
         ?>
         @if($notifications->count() <= 0)
-            <h2 class=" service-description text-center">הידד! אין דיווחים</h2>
+            <h2 class=" service-description text-center preety_font">הידד! אין דיווחים</h2>
         @else
             <div>
                 <table class="text-center table table-striped">
