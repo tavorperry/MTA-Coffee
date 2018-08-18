@@ -46,7 +46,7 @@
                 כל הדיווחים
             </a>
             <a href="{{ route('station') }}" class="btn menu-btn col"><i class="far fa-calendar-alt menu-btn-icon"></i><br>
-                משמרות
+                התנדבות
             </a>
         </div>
         <form action="{{ route('logout') }}" method="POST" class="mt-5">
@@ -82,7 +82,7 @@
                     <div class="service-icon">
                         <i class="far fa-calendar-alt"></i>
                     </div>
-                    <h3>משמרות</h3>
+                    <h3>התנדבות</h3>
                     <p class="lead mb-0">שבץ עצמך מתי שאתה רוצה וקבל התראות על דיווחים מותאמים</p>
                 </div>
             </div>
