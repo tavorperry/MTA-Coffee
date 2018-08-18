@@ -16,7 +16,7 @@
             @csrf
             @method('PUT')
             <div class="table-responsive">
-                <table class="table table-bordered">
+                <table class="table">
                     <tr>
                         <th>משמרת</th>
                         <th>ראשון</th>
@@ -27,7 +27,7 @@
                         <th>שישי</th>
                     </tr>
                     <tr>
-                        <th>בוקר 7:00-14:00<br><    /th>
+                        <th>בוקר 7:00-14:00<br></th>
                         @foreach($station->shifts as $shift)
                             <td><input type="checkbox" name="shifts[]" value="{{ $shift->id }}"
                                         {{ \App\Http\Controllers\StationShiftController::isUserCheckThisShiftAlready($shift) }}
