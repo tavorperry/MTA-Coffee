@@ -54,11 +54,4 @@ $( document ).ready(function() {
   });
 });
 
-//Register and logins page
-function openForm() {
-    document.getElementById("form").style.display = "block";
-    document.getElementById("normal_btn").innerHTML = "";
-    document.getElementById("googlebtn").style.opacity = "0.5";
-    document.getElementById("main_div").style.bottom = "80px";
-}
 

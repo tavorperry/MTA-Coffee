@@ -15,12 +15,13 @@
             if (   !($errors->has('first_name')) && !($errors->has('last_name'))  && !($errors->has('email')) && !($errors->has('password'))  )
                 Alert::success(' מלבד שם ודוא"ל, איננו אוספים שום פרטים אישיים מחשבון הגוגל :)','אנו ממליצים להירשם דרך גוגל להרשמה מהירה')->autoclose(4000);
     ?>
+
     <div id="main_div" class="row justify-content-center position-relative" style="bottom:10px">
         <div class="col-sm-8">
             <div class="card">
                 <div class="card-header text-center">{{ ('הרשמה') }}</div>
                 <div class="card-body" style="padding-top: 5px;">
-                        <a id="googlebtn" href="{{ route('login.google') }}" onclick="return validateForm()" class="gpsignin" style="color: white;margin-top:13px">  הרשמה דרך גוגל  </a>
+                        <a id="googlebtn" href="{{ route('login.google') }}" class="gpsignin" style="color: white;margin-top:13px">  הרשמה דרך גוגל  </a>
                         <br>
                     <div id="normal_btn">
                         <button onclick="openForm()" class="btn login-btn">
@@ -74,7 +75,7 @@
                             <label for="password" class="col-md-4  to-the-right">{{ __('סיסמא') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class=" form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                <input id="password" type="password" class=" form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required @if($errors->has('password'))autofocus @endif >
 
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback">
@@ -88,7 +89,7 @@
                             <label for="password-confirm" class="col-md-4  to-the-right">{{ __('סיסמא בשנית') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control " name="password_confirmation" required>
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
                         <div class="text-center col">
@@ -109,4 +110,15 @@
             </div>
         </div>
     </div>
+  <script>
+      @if(!$errors->isEmpty())
+      openForm();
+      @endif
+      function openForm() {
+          document.getElementById("form").style.display = "block";
+          document.getElementById("normal_btn").innerHTML = "";
+          document.getElementById("googlebtn").style.opacity = "0.5";
+          document.getElementById("main_div").style.bottom = "80px";
+      }
+  </script>
 @endsection
