@@ -11,16 +11,19 @@
 <div class="container">
     <div>
         <?php
+
+        if($notifications->count() > 0){
             if(($notifications[0]->data['station']) == 1)
                 $station_name = 'פומנטו';
             if(($notifications[0]->data['station']) == 2)
                 $station_name = 'ווסטון';
             if(($notifications[0]->data['station']) == 3)
                 $station_name = 'כלכלה';
-            ?>
-        <h2 class="service-description text-center preety_font">דיווחים פתוחים - בניין {{$station_name}}</h2>
-        @if(empty($notifications))
-            <h5 class="text-center">הידד! אין דיווחים</h5>
+       echo '<h2 class="service-description text-center preety_font">דיווחים פתוחים - בניין '.$station_name.'</h2>';
+        }
+        ?>
+        @if($notifications->count() <= 0)
+            <h2 class=" service-description text-center">הידד! אין דיווחים</h2>
         @else
             <div>
                 <table class="text-center table table-striped">
@@ -75,12 +78,8 @@
             @endif
             @endforeach
             </table>
-        @endif
         <hr>
         <h2 class="service-description text-center preety_font">דיווחים סגורים</h2>
-        @if(empty($notifications))
-            <h5 class="text-center">הידד! אין דיווחים</h5>
-        @else
                     <div>
                         <table class="text-center table table-striped">
                             <tr>
