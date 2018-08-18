@@ -44,7 +44,7 @@
     <br>
 
     <?php $reports = \App\Http\Controllers\ReportController::getAllReports() ?>
-        <div class="table-responsive">
+        <div class="">
             <table class="text-center table table-striped">
                 <tr>
                     <th scope="col">#</th>
