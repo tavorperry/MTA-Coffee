@@ -76,8 +76,6 @@ class RegisterController extends Controller
 
         $this->guard()->login($user);
 
-        Alert::success('ברוך הבא!', 'את/ה יכול/ה להתחבר כעת')->persistent("Close");
-
         // $this->registered($request, $user)
 
 
@@ -87,7 +85,7 @@ class RegisterController extends Controller
             EmailController::SendEmailNotification($user,'mtacoffe@gmail.com');
 
         return $this->guard()->login($user)
-            ?: redirect($this->redirectPath());
+            ?: redirect(route('volunteer'));
     }
 
     /**

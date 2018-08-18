@@ -30,6 +30,10 @@ Route::get('reports/viewall', 'ReportController@viewAll')->name('report.view.all
 Route::get('station', 'StationShiftController@pickStation')->name('station')->middleware('auth');
 Route::get('station/{station}/shifts/edit', 'StationShiftController@edit')->name('station.shifts.edit')->middleware('auth');
 Route::put('station/{station}/shifts' ,'StationShiftController@update')->name('station.shifts')->middleware('auth');
+Route::get('/select_building', function () {
+   return view('shifts.select_building');})->name('select.building')->middleware('auth');
+
+
 
 //Notifications
 Route::get('notifications/show', 'NotificationController@show')->name('notifications.show')->middleware('auth');
@@ -44,5 +48,9 @@ Route::get(env('LOG_PATH'), '\Rap2hpoutre\LaravelLogViewer\LogViewerController@i
 //Terms
 Route::get('/terms', function () {
     return view('terms');})->name('terms');
+
+//Volunteer
+    Route::get('/volunteer', function () {
+        return view('volunteer');})->name('volunteer')->middleware('auth');
 
 
