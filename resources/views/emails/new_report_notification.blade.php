@@ -63,10 +63,12 @@
 </h4>
 <h4>
 </h4>
+<div dir="rtl" style="text-align: right">
 <a href="{{env('APP_URL')}}/reports/view/{{$report->id}}"><img src="https://www.dropbox.com/s/ytx3hj3aox0omkl/Go%20to%20report.png?raw=1" alt="לחץ כאן לעבור לדיווח "> </a>
-</p>
+</div>
 </div>
 <div>
+</p>
     <!-- Email Footer : BEGIN -->
     <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
         <tr>
