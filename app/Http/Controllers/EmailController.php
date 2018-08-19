@@ -23,7 +23,7 @@ class EmailController extends Controller
         try {
             Mail::send('emails.notification_when_new_user_registered', ['user' => $user, $email], function ($m) use ($user,$email) {
                 $m->from(env('EMAIL_FROM'), 'קפה אמון');
-                $m->to($email)->subject("משתמש חדש נרשם למערכת!");
+                $m->to($email)->subject('משתמש חדש במערכת: '.$user->last_name.' '.$user->first_name);
             });
         } catch (\Exception $exception) {
             return report($exception);
