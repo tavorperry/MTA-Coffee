@@ -6,29 +6,16 @@
             color: blue;
         }
         *{
-            
             text-align: right;
-            font-family: 'Varela Round', sans-serif;
-
-        }
-        h1{
-            text-align: center;
         }
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <h1 class="service-description"><b> דיווח מספר: {{ $report->id }} </b></h1>
 </head>
-<body>
 <p dir="rtl">
-            <h1 class="service-description"><b> דיווח מספר {{ $report->id }} </b></h1>
-    <table>
-     <tr> 
-        <td>
-             בניין
-        </td>
-         
-        <td>   
+    <h4><u>בניין:</u>
+        <span class="blue">
             @if($report->station_id == 1)
                 {{ "פומנטו" }}
             @elseif($report->station_id == 2)
@@ -36,63 +23,44 @@
             @else
                 {{ "כלכלה" }}
             @endif
-        </td>
-     </tr>
-    
-     <tr>
-         <td>
-             סטטוס
-         </td>    
-         
-         <td>
-            @if($report->status == 0)
-                פתוח - דרוש טיפול
-            @else
-                סגור - טופל עי"
+            </span>
+    </h4>
+    <h4 dir="rtl">
+        <u>סטטוס:</u>
+        @if($report->status == 0)
+            <span style="color: red"> פתוח - דרוש טיפול </span>
+        @else
+            <span style="color: limegreen"> סגור - טופל עי":
 
-                    {{\App\Http\Controllers\ReportController::findUser($report->closing_user_id)->first_name}}
-                    {{\App\Http\Controllers\ReportController::findUser($report->closing_user_id)->last_name}}
+                {{\App\Http\Controllers\ReportController::findUser($report->closing_user_id)->first_name}}
+                {{\App\Http\Controllers\ReportController::findUser($report->closing_user_id)->last_name}}
 
-
-            @endif
-         </td>
-     </tr>   
-        
-        <tr> 
-            <td>
-                מועד פתיחת הדיווח
-            </td>
-            
-            <td>   
-                 {{$report->created_at}}
-            </td>
-        </tr>
-        
-        <tr> 
-        <td>
-            סיבת הדיווח
-        </td>
-            
-        <td>   
-            {{$report->type}}
-        </td>
-        </tr>
-        
-        <tr> 
-            <td>
-               תיאור
-            </td>
-            
-            <td>   
-                {{$report->desc}}
-            </td>
-     </tr>        
-    </table>
-    
+                </span>
+        @endif
+    </h4>
+    <h4 dir="rtl">
+        <u>מועד פתיחת הדיווח:</u>
+        <span class="blue">
+                {{$report->created_at}}
+        </span>
+    </h4>
+    <h4 dir="rtl">
+        <u>סיבת הדיווח:</u>
+        <span class="blue"> {{$report->type}}</span>
+    </h4>
+    <h4 dir="rtl">
+        <u>תיאור:</u>
+        <span class="blue">
+            {{$report->desc}}
+        </span>
+    </h4>
+    <h4>
+    </h4>
 <div dir="rtl" style="text-align: right">
     <a href="{{env('APP_URL')}}/reports/view/{{$report->id}}"><img src="https://www.dropbox.com/s/ytx3hj3aox0omkl/Go%20to%20report.png?raw=1" alt="לחץ כאן לעבור לדיווח "> </a>
 </div>
-
+    </p>
+</div>
 <div>
     <!-- Email Footer : BEGIN -->
     <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
