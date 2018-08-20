@@ -177,12 +177,12 @@ class ReportController extends Controller
 
             if ($user->notifications == true) {
                 try {
-                    //Start - Sending Email to all users in shift
+                    //Start
                     Mail::send('emails.close_report_notification', ['user' => $user, 'report' => $report], function ($m) use ($user) {
                         $m->from(env('EMAIL_FROM'), 'קפה אמון');
                         $m->to($user->email, $user->first_name)->subject("הדיווח טופל");
                     });
-                    //End - Sending Email to all users in shift
+                    //End
                 } catch (\Exception $exception) {
                     return report($exception);
 
