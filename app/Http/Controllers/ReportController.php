@@ -174,13 +174,13 @@ class ReportController extends Controller
             }
 
             $report = DB::table('reports')->where('id', $report_id)->first();
-
-            if ($user->notifications == true) {
+            $opening_user = DB::table('users')->where('id', $report->opening_user_id)->first();
+            if ($opening_user->notifications == true) {
                 try {
                     //Start
-                    Mail::send('emails.close_report_notification', ['user' => $user, 'report' => $report], function ($m) use ($user) {
+                    Mail::send('emails.close_report_notification', ['user' => $opening_user, 'report' => $report], function ($m) use ($opening_user) {
                         $m->from(env('EMAIL_FROM'), 'קפה אמון');
-                        $m->to($user->email, $user->first_name)->subject("הדיווח טופל");
+                        $m->to($opening_user->email, $opening_user->first_name)->subject("הדיווח טופל");
                     });
                     //End
                 } catch (\Exception $exception) {
