@@ -17,13 +17,13 @@
 
             <!-- Google Analytics -->
             <!-- Global site tag (gtag.js) - Google Analytics -->
-            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-123340064-1"></script>
+            <script async src="https://www.googletagmanager.com/gtag/js?id={{env('Google_Analytics_id')}}"></script>
             <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
 
-                gtag('config', 'UA-123340064-1');
+                gtag('config','{{env('Google_Analytics_id')}}');
             </script>
 
             <!-- End of Google Analytics -->
