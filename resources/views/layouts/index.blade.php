@@ -9,7 +9,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Assistant" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
-    <link href="{{env('APP_URL')}}" media="all" rel="stylesheet" type="text/css" />
+    <link href="{{env('APP_URL')/css/index.css}}" media="all" rel="stylesheet" type="text/css" />
     <title>MTAcoffee</title>
 
 
