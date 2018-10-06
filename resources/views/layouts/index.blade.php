@@ -85,7 +85,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.compatibility.js"></script>
 <!-- Index JavaScript -->
-<script type="text/javascript" src="{!! asset('js/index.js') !!}"></script>
+<script type="text/javascript" src="{{env('APP_URL')}}/js/index.js"></script>
 
 @include('sweet::alert')
 </body>

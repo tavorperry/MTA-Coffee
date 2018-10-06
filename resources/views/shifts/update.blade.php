@@ -1,5 +1,5 @@
 @extends('layouts.master')
-<link href="{!! asset('css/update.css') !!}" media="all" rel="stylesheet" type="text/css" />
+<link href="{{env('APP_URL')}}/css/update.css" media="all" rel="stylesheet" type="text/css" />
 
 @section('content')
         <h1 class="service-description text-center">באילו ימים אני נמצא במכללה</h1>

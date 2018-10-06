@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('page-style')
-    <link href="{!! asset('css/view_all_open.css') !!}" media="all" rel="stylesheet" type="text/css" />
+    <link href="{{env('APP_URL')}}/css/view_all_open.css" media="all" rel="stylesheet" type="text/css" />
 @endsection
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
