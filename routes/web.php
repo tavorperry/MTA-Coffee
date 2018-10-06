@@ -11,11 +11,6 @@
 |
 */
 
-//Force HTTPS
-    if (env('APP_ENV') === 'production') {
-        URL::forceSchema('https');
-    }
-
 //Auth
 Auth::routes();
 Route::get('/', 'HomeController@index')->name('index');
