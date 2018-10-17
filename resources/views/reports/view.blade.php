@@ -1,5 +1,5 @@
 @extends('layouts.master')
-<link href="{!! asset('css/view.css') !!}" media="all" rel="stylesheet" type="text/css" />
+<link href="{{env('APP_URL')}}/css/view.css" media="all" rel="stylesheet" type="text/css" />
 
 @section('content')
 

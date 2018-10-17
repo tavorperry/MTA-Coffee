@@ -1,8 +1,8 @@
 @extends('layouts.master')
 
 @section('page-style')
-    <link href="{!! asset('css/payforcard.css') !!}" media="all" rel="stylesheet" type="text/css" />
-    <link href="{!! asset('css/pay.css') !!}" media="all" rel="stylesheet" type="text/css" />
+    <link href="{{env('APP_URL')}}/css/payforcard.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="{{env('APP_URL')}}/css/pay.css" media="all" rel="stylesheet" type="text/css" />
 @endsection
 
 <head>

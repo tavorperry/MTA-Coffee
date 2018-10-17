@@ -9,7 +9,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Assistant" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
-    <link href="{!! asset('css/index.css') !!}" media="all" rel="stylesheet" type="text/css" />
+    <link href="{{env('APP_URL')}}/css/index.css" media="all" rel="stylesheet" type="text/css" />
     <title>MTAcoffee</title>
 
 
@@ -85,7 +85,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.compatibility.js"></script>
 <!-- Index JavaScript -->
-<script type="text/javascript" src="{!! asset('js/index.js') !!}"></script>
+<script type="text/javascript" src="{{env('APP_URL')}}/js/index.js"></script>
 
 @include('sweet::alert')
 </body>

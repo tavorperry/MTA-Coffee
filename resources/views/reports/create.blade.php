@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('page-style')
-    <link href="{!! asset('css/create.css') !!}" media="all" rel="stylesheet" type="text/css" />
+    <link href="{{env('APP_URL')}}/css/create.css" media="all" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')

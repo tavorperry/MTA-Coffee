@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('page-style')
-    <link href="{!! asset('css/notifications.css') !!}" media="all" rel="stylesheet" type="text/css"
+    <link href="{{env('APP_URL')}}/css/notifications.css" media="all" rel="stylesheet" type="text/css"
           xmlns="http://www.w3.org/1999/html"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="{{env('APP_URL')}}/js/notifications.js"></script>
