@@ -263,7 +263,7 @@
                 <div dir="rtl">
                     <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                         <tr>
-                            <td style="padding: 40px 40px 20px; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555;">
+                            <p style="padding: 40px 40px 20px; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555;">
                                 <h1 style="margin: 0 0 10px; font-size: 24px; line-height: 125%; color: #333333; font-weight: normal;"> דיווח מספר: {{ $report->id }}</h1>
                                 <p style="margin: 0 0 10px;"><b><u>פרטי הדיווח:</u></b>
                                 <ul style="padding: 0; margin: 0; list-style-type: disc;">
@@ -276,24 +276,29 @@
                                             כלכלה
                                         @endif
                                     </b> </li>
-
-                                    <li style="margin:0 0 10px 30px;" class="list-item-first">סטאטוס: <b>
-                                            @if($report->status == 0)
-                                                <span style="color: red"> פתוח - דרוש טיפול </span>
-                                            @else
-                                                <span style="color: limegreen"> סגור - טופל ע"י:
-                                                    {{\App\Http\Controllers\ReportController::findUser($report->closing_user_id)->first_name}}
-                                                    {{\App\Http\Controllers\ReportController::findUser($report->closing_user_id)->last_name}}
-                                                </span>
-                                            @endif
-                                        </b> </li>
-
                                     <li style="margin:0 0 10px 30px;"> מועד פתיחת הדיווח: {{$report->created_at}}</li>
                                     <li style="margin:0 0 10px 30px;">דווח על ידי: {{\App\Http\Controllers\ReportController::findUser($report->opening_user_id)->first_name}}
                                         {{\App\Http\Controllers\ReportController::findUser($report->opening_user_id)->last_name}}</li>
                                     <li style="margin:0 0 10px 30px;">סיבת הדיווח: {{$report->type}}</li>
                                     <li style="margin:0 0 10px 30px;" class="list-item-first">תיאור: {{$report->desc}}</li>
                                 </ul>
+                                <br>
+                                <p>
+
+                                    @if($report->type == 'חסר משהו' && $report->station_id == 2)
+                                        <h2 style="margin: 0 0 10px; font-size: 15px; line-height: 125%; color: #333333; font-weight: normal;"><u>איך לטפל בדיווח?</u></h2>
+                                        <h4> במידה והמכונה מציגה הודעת "חסר מים": יש לקחת את כד המים שנמצא מתחת לשולחן השמאלי ולמלא מים במכונה. מיכל המים של המכונה נמצא בחלקה השמאלי ביותר: יש לשלוף את המכסה של מיכל המים ולמלא את המיכל מהכד.</h4>
+                                        <h4>במידה וחסר חלב: יש לגשת לחנות האגודה בחדר הצמוד לעמדת הקפה (חדר 28) ולבקש חלב עבור קפה אמון.</h4>
+                                    @elseif($report->type == 'חסר משהו' && $report->station_id != 2)
+                                          <h2 style="margin: 0 0 10px; font-size: 15px; line-height: 125%; color: #333333; font-weight: normal;"><u>איך לטפל בדיווח?</u></h2>
+                                        <h4>במידה וחסר חלב: יש לגשת לחנות האגודה בבניין ווסטון, חדר 28, ולבקש חלב עבור קפה אמון.</h4>
+                                    @elseif($report->type == 'לא נקי')
+                                         <h2 style="margin: 0 0 10px; font-size: 15px; line-height: 125%; color: #333333; font-weight: normal;"><u>איך לטפל בדיווח?</u></h2>
+                                        <h4>בכל עמדה צריך להיות מיכל עם מגבונים וגליל נייר כדי לשמור על ניקיון העמדה. </h4>
+                                    @endif
+                                    <h3>עדיין לא בטוחים מה לעשות? פנו לאורי ששו - רכז קפה אמון בטלפון <a href="tel:052-8477546">052-8477546</a> </h3>
+
+                                 </p>
                                 </p>
                             </td>
                         </tr>
@@ -303,7 +308,7 @@
                                 <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" style="margin: auto;">
                                     <tr>
                                         <td class="button-td button-td-primary" style="border-radius: 4px; background: #222222;">
-                                            <a class="button-a button-a-primary" href="{{env('APP_URL')}}/reports/view/{{$report->id}}" style="background: #222222; border: 1px solid #000000; font-family: sans-serif; font-size: 15px; line-height: 15px; text-decoration: none; padding: 13px 17px; display: block; border-radius: 4px;"><span class="button-link" style="color:#ffffff">מעבר לדיווח!</span></a>
+                                            <a class="button-a button-a-primary" href="{{env('APP_URL')}}/reports/view/{{$report->id}}" style="background: #9A59B5; border: 1px solid #000000; font-family: sans-serif; font-size: 15px; line-height: 15px; text-decoration: none; padding: 13px 17px; display: block; border-radius: 4px;"><span class="button-link" style="color:#ffffff">מעבר לדיווח!</span></a>
                                         </td>
                                     </tr>
                                 </table>
@@ -332,7 +337,7 @@
         <tr>
             <td style="padding: 40px 10px; font-family: sans-serif; font-size: 12px; line-height: 140%; text-align: center; color: #888888;">
                 <br><br>
-                אגודת הסטודנטים<br><span class="unstyle-auto-detected-links">רבנו ירוחם 12, תל אביב<br>03-9292929</span>
+                אגודת הסטודנטים<br><span class="unstyle-auto-detected-links">רבנו ירוחם 12, תל אביב<br><a href="tel:03-9292929">03-9292929</a></span>
                 <br><br>
                 <a href="{{env('APP_URL')}}/notifications/unsubscribe/{{$user->secret_token}}"> <unsubscribe style="color: #888888; text-decoration: underline;">unsubscribe</unsubscribe> </a>
             </td>
