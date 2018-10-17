@@ -38,7 +38,7 @@
                     </tr>
                     <tr>
                         <th>ערב 14:00-22:00<br></th>
-                        @for($i=5; $i < 10; $i++)
+                        @for($i=6; $i < 11; $i++)
                             <td><input type="checkbox" name="shifts[]" value="{{ $station->shifts[$i]->id }}"
                                         {{ \App\Http\Controllers\StationShiftController::isUserCheckThisShiftAlready( $station->shifts[$i]) }}
                                 >{{--this line call a function that checks the checkbox if the user is already listed in the current shift--}}
