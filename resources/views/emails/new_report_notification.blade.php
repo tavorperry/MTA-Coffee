@@ -252,7 +252,7 @@
         <!-- Hero Image, Flush : BEGIN -->
         <tr>
             <td align="center" style="background-color: #ffffff;">
-                <img src="{{env('APP_URL')}}/images/logo1.png" width="100%" height="" alt="New Report!" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555; margin: auto;" class="g-img">
+                <img src="{{env('APP_URL')}}/images/logo1.png" width="100%" height="" alt="logo_pic!" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555; margin: auto;" class="g-img">
             </td>
         </tr>
         <!-- Hero Image, Flush : END -->
