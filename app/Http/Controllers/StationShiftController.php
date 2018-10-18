@@ -28,7 +28,7 @@ class StationShiftController extends Controller
         } else {
             $user->notifications = true;
             Alert::success('מעכשיו תתקבל התראה באימייל כשיפתח דיווח במשמרת שלך
-             (ניתן להירשם למשמרות רק בבניין אחד במקביל)', 'המשמרות מעודכנות!')->persistent('Close');
+             (ניתן להירשם למשמרות רק בבניין אחד)', 'המשמרות מעודכנות!')->persistent('Close');
 
         }
         $userShifts->sync($shifts);
