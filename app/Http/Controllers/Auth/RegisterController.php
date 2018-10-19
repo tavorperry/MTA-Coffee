@@ -109,9 +109,3 @@ class RegisterController extends Controller
         ]);
     }
 }
-
-
-
-
-
-//End - Sending Email to all users in shift
