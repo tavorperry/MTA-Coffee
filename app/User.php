@@ -117,8 +117,8 @@ class User extends Authenticatable
         if($isLevelUp == 1 && $currentLevel == 11){
             $user = Auth::user();
                     Mail::send('emails.userAtHighestLevel', ['user' => $user], function ($m) use ($user) {
-                        $m->from(env('EMAIL_FROM'), 'קפה אמון');
-                        $m->to($user->email, $user->first_name)->subject("מייל למנהלת המשרד - משתמש הגיע לרמה הכי גבוהה!");
+                            $m->from(env('EMAIL_FROM'), 'קפה אמון');
+                        $m->to('mtacoffe@gmail.com', $user->first_name)->subject("מייל למנהלת המשרד - משתמש הגיע לרמה הכי גבוהה!");
                     });
         }
     }
