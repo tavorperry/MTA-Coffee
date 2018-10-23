@@ -250,11 +250,7 @@
     <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="margin: auto;" class="email-container">
 
         <!-- Hero Image, Flush : BEGIN -->
-        <tr>
-            <td align="center" style="background-color: #ffffff;">
-                <img src="{{env('APP_URL')}}/images/logo1.png" width="100%" height="" alt="logo_pic!" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555; margin: auto;" class="g-img">
-            </td>
-        </tr>
+
         <!-- Hero Image, Flush : END -->
 
         <!-- 1 Column Text + Button : BEGIN -->
@@ -263,28 +259,28 @@
                 <div dir="rtl">
                     <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                         <tr>
-                            <p style="padding: 40px 40px 20px; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555;">
-                            <h1 style="margin: 0 0 10px; font-size: 24px; line-height: 125%; color: #333333; font-weight: normal;"> דיווח מספר: {{ $report->id }}</h1>
-                            <p style="margin: 0 0 10px;"><b><u>פרטי הדיווח:</u></b>
+                            <div style="padding: 40px 40px 20px; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555;">
+                            <tr>
+                                <td align="center" style="background-color: #ffffff;">
+                                    <img src="https://coffee.mta.ac.il/images/logo1.png" width="100px" height="100px" alt="logo_pic!" border="0" align="center" style="width: 50%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555; margin: auto;" class="g-img">
+                                </td>
+                            </tr>
+                        <br>
+                            <h1 style="margin: 0 0 10px; font-size: 24px; line-height: 125%; color: #333333; font-weight: normal;">חיכינו לך! כיף שהצטרפת אלינו</h1>
+
+                            <div style="margin: 0 0 10px;">
+                            <h2>מה אפשר לעשות במערכת קפה אמון?</h2>
                             <ul style="padding: 0; margin: 0; list-style-type: disc;">
-                                <li style="margin:0 0 10px 30px;" class="list-item-first">בניין: <b>
-                                        @if($report->station_id == 1)
-                                            פומנטו
-                                        @elseif($report->station_id == 2)
-                                            ווסטון
-                                        @else
-                                            כלכלה
-                                        @endif
-                                    </b> </li>
-                                <li style="margin:0 0 10px 30px;"> מועד פתיחת הדיווח: {{$report->created_at}}</li>
-                                <li style="margin:0 0 10px 30px;">טופל על ידי:
-                                    {{\App\Http\Controllers\ReportController::findUser($report->closing_user_id)->first_name}}
-                                    {{\App\Http\Controllers\ReportController::findUser($report->closing_user_id)->last_name}}</li>
-                                <li style="margin:0 0 10px 30px;">סיבת הדיווח: {{$report->type}}</li>
-                                <li style="margin:0 0 10px 30px;" class="list-item-first">תיאור: {{$report->desc}}</li>
+                                <li style="margin:0 0 10px 30px;"><b>נגמר החלב בעמדה? יש תקלה במכונה?</b> מהיום אתם לא צריכים לחפש את נציגי האגודה כדי שיעזרו, פתחו דיווח בתקלה ומהתנדבים החרוצים שלנו מיד יגיעו</li>
+                                <li style="margin:0 0 10px 30px;">חשוב לזכור שקפה אמון מבוסס על מתנדבים ולכן אנחנו צריכים גם אתכם! <b>התנדבות לא כרוכה בשום התחייבות מצידכם. פשוט אשרו קבלת תראות ואם תהיו ליד העמדה תקפצו לראות אם אפשר לעזור.</b></li>
+                                <li style="margin:0 0 10px 30px;">שימו לב שמערכת קפה אמון זמינה דרך הדפדפן, בקרוב גם באפליקציה</li>
+                                <li style="margin:0 0 10px 30px;" class="list-item-first"><b>הפיצו את הבשורה! שלחו את לינק המערכת לחברים בתואר ובקבוצות וביחד נשתה קפה טעים וזול יותר!</b></li>
                             </ul>
                             <br>
-                            </p>
+                            <p>
+                            <h3>לכל שאלה ניתן לפנות לאורי ששו - רכז קפה אמון בטלפון <a href="tel:052-8477546">052-8477546</a> </h3>
+                            </div>
+                            </div>
                             </td>
                         </tr>
                         <tr>
@@ -293,7 +289,6 @@
                                 <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" style="margin: auto;">
                                     <tr>
                                         <td class="button-td button-td-primary" style="border-radius: 4px; background: #222222;">
-                                            <a class="button-a button-a-primary" href="{{env('APP_URL')}}/reports/view/{{$report->id}}" style="background: #9A59B5; border: 1px solid #000000; font-family: sans-serif; font-size: 15px; line-height: 15px; text-decoration: none; padding: 13px 17px; display: block; border-radius: 4px;"><span class="button-link" style="color:#ffffff">מעבר לדיווח!</span></a>
                                         </td>
                                     </tr>
                                 </table>

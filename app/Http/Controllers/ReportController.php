@@ -208,7 +208,7 @@ class ReportController extends Controller
                     //Start - Sending Email to all users in shift
                     Mail::send('emails.new_report_notification', ['user' => $user, 'report' => $report], function ($m) use ($user) {
                         $m->from(env('EMAIL_FROM'), 'קפה אמון');
-                        $m->to($user->email, $user->first_name)->subject("דיווח חדש במשמרת שלך");
+                        $m->to($user->email, $user->first_name)->subject("דיווח חדש בעמדת קפה אמון");
                     });
                 //End - Sending Email to all users in shift
                 } catch (\Exception $exception) {
