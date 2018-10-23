@@ -262,7 +262,7 @@
                             <div style="padding: 40px 40px 20px; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555;">
                             <tr>
                                 <td align="center" style="background-color: #ffffff;">
-                                    <img src="https://coffee.mta.ac.il/images/logo1.png" width="100px" height="100px" alt="logo_pic!" border="0" align="center" style="width: 50%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555; margin: auto;" class="g-img">
+                                    <img src="{{env('APP_URL')}}/images/logo1.png" width="100px" height="100px" alt="logo_pic!" border="0" align="center" style="width: 50%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555; margin: auto;" class="g-img">
                                 </td>
                             </tr>
                         <br>
