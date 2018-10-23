@@ -29,4 +29,15 @@ class EmailController extends Controller
             return report($exception);
         }
     }
+
+    public static function SendWelcomeEmail($user,$email){
+        try {
+            Mail::send('emails.welcome', ['user' => $user, $email], function ($m) use ($user,$email) {
+                $m->from(env('EMAIL_FROM'), 'קפה אמון');
+                $m->to($email)->subject('כיף שהצטרפת למערכת קפה אמון!');
+            });
+        } catch (\Exception $exception) {
+            return report($exception);
+        }
+    }
 }

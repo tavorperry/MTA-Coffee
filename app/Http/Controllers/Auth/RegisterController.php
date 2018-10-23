@@ -77,12 +77,15 @@ class RegisterController extends Controller
         $this->guard()->login($user);
 
         // $this->registered($request, $user)
-
+        //Welcome Email:
+        EmailController::SendWelcomeEmail($user,$user->email);
 
         if (env('NOTIFY_XENIA'))
             EmailController::SendEmailNotification($user, 'aguda@mta.ac.il');
         if(env('NOTIFY_TAVOR'))
             EmailController::SendEmailNotification($user,'mtacoffe@gmail.com');
+
+
 
 
        // return redirect()->to('/volunteer');

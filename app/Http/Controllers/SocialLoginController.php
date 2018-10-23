@@ -50,6 +50,10 @@ class SocialLoginController extends Controller
             $social->provider_id = $socialUser->getId();
             $social->provider_name = $socialUser->getName();
             $social->save();
+
+            //Welcome Email:
+            EmailController::SendWelcomeEmail($user,$user->email);
+
             //Send notification to Tavor and Xenia
                 if (env('NOTIFY_XENIA'))
                     EmailController::SendEmailNotification($user, 'aguda@mta.ac.il');
