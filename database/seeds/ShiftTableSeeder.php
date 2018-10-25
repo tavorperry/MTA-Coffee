@@ -152,7 +152,7 @@ class ShiftTableSeeder extends Seeder
             [
                 'station_id' => '2',
                 'day' => '6',
-                'start_shift' => '07',
+                'start_shift' => '7',
                 'end_shift' => '18',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -246,7 +246,7 @@ class ShiftTableSeeder extends Seeder
             [
                 'station_id' => '3',
                 'day' => '6',
-                'start_shift' => '07',
+                'start_shift' => '7',
                 'end_shift' => '18',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
