@@ -268,7 +268,7 @@
                         <br>
                             <h1 style="margin: 0 0 10px; font-size: 24px; line-height: 125%; color: #333333; font-weight: normal;">חיכינו לך! כיף שהצטרפת אלינו</h1>
 
-                            <div style="margin: 0 0 10px;">
+                            <h3 style="margin: 0 0 10px;">
                             <h2>מה אפשר לעשות במערכת קפה אמון?</h2>
                             <ul style="padding: 0; margin: 0; list-style-type: disc;">
                                 <li style="margin:0 0 10px 30px;"><b>נגמר החלב בעמדה? יש תקלה במכונה?</b> מהיום אתם לא צריכים לחפש את נציגי האגודה כדי שיעזרו, פתחו דיווח בתקלה והמתנדבים החרוצים שלנו מיד יגיעו</li>
@@ -278,8 +278,13 @@
                             </ul>
                             <br>
                             <p>
-                            <h3>לכל שאלה ניתן לפנות לאורי ששו - רכז קפה אמון בטלפון <a href="tel:052-8477546">052-8477546</a>   -  <a href="https://api.whatsapp.com/send?phone=972528477546"> <img src="{{env('APP_URL')}}/images/WhatsApp_Logo.png"></a> </h3>
-
+                            <h3>לכל שאלה ניתן לפנות לאורי ששו - רכז קפה אמון בטלפון <a href="tel:052-8477546">052-8477546</a> </h3>
+                            </h3>
+                        <tr>
+                            <td>
+                                <h3><a href="https://api.whatsapp.com/send?phone=972528477546"> או בוואטסאפ:<img src="{{env('APP_URL')}}/images/WhatsApp_NEW_Logo.png" height="35px" height="35px"> </a></h3>
+                            </td>
+                        </tr>
                             </div>
                             </div>
                             </td>
