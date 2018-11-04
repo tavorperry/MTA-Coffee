@@ -278,7 +278,8 @@
                             </ul>
                             <br>
                             <p>
-                            <h3>לכל שאלה ניתן לפנות לאורי ששו - רכז קפה אמון בטלפון <a href="tel:052-8477546">052-8477546</a> </h3>
+                            <h3>לכל שאלה ניתן לפנות לאורי ששו - רכז קפה אמון בטלפון <a href="tel:052-8477546">052-8477546</a>   -  <a href="https://api.whatsapp.com/send?phone=972528477546"> <img src="{{env('APP_URL')}}/images/WhatsApp_Logo.png"></a> </h3>
+
                             </div>
                             </div>
                             </td>
