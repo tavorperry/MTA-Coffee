@@ -14,7 +14,7 @@ class EmailController extends Controller
         if(!is_null($user)) {
             DB::table('users')
                 ->where('secret_token', $secret_token)
-                ->update(['notifications' => 0, 'updated_at' => Carbon::now()]);
+                ->update(['notifications' => 0], ['updated_at' => Carbon::now()]);
             echo "<h1> הוסרתם בהצלחה מרשימת התפוצה שלנו.  <br> חבל, אבל לא תקבלו יותר התראות על דיווחים חדשים במשמרות שלכם </h1> ";
         }else echo "יש לנו תקלה ולא הצלחנו למחוק אתכם מרשימת התפוצה שלנו!  <br> <br> אנא הודיעו לנו שנוכל לטפל בה! תודה  <br><br>  054-7981961";
     }
