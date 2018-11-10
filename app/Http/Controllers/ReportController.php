@@ -38,6 +38,8 @@ class ReportController extends Controller
         return Validator::make($data, [
             'message' => 'required|max:50',
             'picture' => new ValidPicture,
+            'station' => 'in:1,2,3',
+            'type' => 'in:חסר משהו,לא נקי,יש תקלה,אחר'
         ]);
     }
 

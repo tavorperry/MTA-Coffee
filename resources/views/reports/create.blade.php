@@ -20,6 +20,11 @@
                 <option value="2">ווסטון</option>
                 <option value="3">כלכלה</option>
             </select>
+            @if ($errors->has('station'))
+                <span class="invalid-feedback" style="display: block !important; text-align: center">
+                    <strong>נראה שמידע מסויים שונה לא כראוי, אנא נסו שוב</strong>
+                </span>
+            @endif
         </div>
         <div class="row">
             <label class="to-the-right col-3"><h4 class="service-description">סוג</h4></label>
@@ -29,13 +34,18 @@
                 <option value="לא נקי">לא נקי</option>
                 <option value="אחר">אחר</option>
             </select>
+            @if ($errors->has('type'))
+                <span class="invalid-feedback" style="display: block !important; text-align: center">
+                    <strong>נראה שמידע מסויים שונה לא כראוי, אנא נסו שוב</strong>
+                </span>
+            @endif
         </div>
         <br><br>
         <div class="row">
             <label class="to-the-right col-3"><h4 class="service-description">פרטים נוספים</h4></label>
             <textarea rows="4" cols="30" id="message" type="text" class="col-9 form-control{{ $errors->has('message') ? ' is-invalid' : '' }}" name="message" value="{{ old('message') }}" required placeholder="פרטו בקצרה על הליקוי, עד 50 תווים"></textarea>
             @if ($errors->has('message'))
-                <span class="invalid-feedback" style="display: block !important;">
+                <span class="invalid-feedback" style="display: block !important; text-align: center">
                     <strong>אנא הקלידו מעט פרטים כדי שהמתנדבים שלנו יוכלו לעזור :)</strong>
                 </span>
             @endif
