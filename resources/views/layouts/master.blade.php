@@ -34,10 +34,10 @@
         <a  class="menu-toggle rounded part-of-nav" id="display-side-menu" href="#">
             <i class="fa fa-bars part-of-nav"></i>
         </a>
-        <nav   id="sidebar-wrapper" class="part-of-nav">
+        <nav id="sidebar-wrapper">
             <ul class="sidebar-nav part-of-nav">
                 <li class="sidebar-brand part-of-nav">
-                    <a class="js-scroll-trigger part-of-nav" href="{{ route('home') }}">קפה אמון</a>
+                    <a class="js-scroll-trigger part-of-nav">קפה אמון</a>
                 </li>
                 <li class="sidebar-nav-item part-of-nav">
                     <a class="js-scroll-trigger part-of-nav" href="{{ route('home') }}">דף הבית</a>
@@ -50,6 +50,9 @@
                 </li>
                 <li class="sidebar-nav-item part-of-nav">
                     <a class="js-scroll-trigger part-of-nav" href="{{ route('report.view.all') }}">צפייה בכל הדיווחים</a>
+                </li>
+                <li class="sidebar-nav-item part-of-nav">
+                    <a class="js-scroll-trigger part-of-nav" href="{{ route('contact-us') }}">צור קשר</a>
                 </li>
             </ul>
         </nav>
@@ -65,7 +68,7 @@
             <div class="overlay"></div>
         </header>
 
-        <main>
+        <main class="container">
             <div class="container content text-right">
                 <br>
                 @yield('content')
