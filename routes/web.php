@@ -52,5 +52,11 @@ Route::get('/volunteer', function () {
     return view('volunteer');})->name('volunteer')->middleware('auth');
 
 //ContactUs
-Route::get('contact-us', 'ContactUSController@contactUS')->middleware('auth');
-Route::post('contact-us/send', 'ContactUSController@sendMailToAdmin')->name('contact-us.send')->middleware('auth');
+Route::get('contact-us', 'ContactUSController@contactUS')->name('contact-us');
+Route::post('contact-us/send', 'ContactUSController@sendMailToAdmin')->name('contact-us.send');
+
+//Profile page
+Route::get('profile', 'ProfileController@show')->name('profile')->middleware('auth');
+Route::post('profile/changeDetails', 'ProfileController@changeDetails')->name('profile.changeDetails')->middleware('auth');
+Route::post('profile/changePassword', 'ProfileController@changePassword')->name('profile.changePassword')->middleware('auth');
+Route::post('profile/deactivation', 'ProfileController@deactivation')->name('profile.deactivation')->middleware('auth');
