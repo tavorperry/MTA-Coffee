@@ -2,6 +2,7 @@
 
 @section('page-style')
     <link href="{{env('APP_URL')}}/css/view_all_open.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" media="all" rel="stylesheet" type="text/css" />
 @endsection
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -43,18 +44,23 @@
 
     <br>
 
-    <?php $reports = \App\Http\Controllers\ReportController::getAllReports() ?>
+    <?php $reports = \App\Http\Controllers\ReportController::getAllReports();
+      $reports = $reports->reverse();
+      ?>
         <div class="">
-            <table class="text-center table table-striped">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">עמדה</th>
-                    <th scope="col" class="clear_in_mobile">סוג</th>
-                    <th scope="col" class="clear_in_mobile">תיאור</th>
-                    <th scope="col" class="clear_in_mobile">מועד דיווח</th>
-                    <th scope="col" class="clear_in_mobile">תמונה</th>
-                    <th scope="col">סטטוס</th>
-                </tr>
+            <table class="text-center table table-striped" id="all_reports">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">עמדה</th>
+                        <th scope="col" class="clear_in_mobile">סוג</th>
+                        <th scope="col" class="clear_in_mobile">תיאור</th>
+                        <th scope="col" class="clear_in_mobile">מועד דיווח</th>
+                        <th scope="col" class="clear_in_mobile">תמונה</th>
+                        <th scope="col">סטטוס</th>
+                    </tr>
+                </thead>
+                <tbody>
                 @foreach($reports as $report)
                     <tr class="main-tr">
                         <td scope="row">
@@ -97,8 +103,8 @@
                         $(status_id).html(replaced_status);
 
                     </script>
-
                 @endforeach
+                </tbody>
             </table>
         </div>
 </div>
@@ -118,5 +124,37 @@
         $("#display-side-menu").css("padding-top", "15px");
     });
 </script>
+{{--  I tried to add DataTables but it doesnt look good.
+  I add it and comment it if we will want to use it in the future--}}
+  {{--  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" defer></script>--}}
+  {{--<script type="text/javascript">
+      $(document).ready(function() {
+          $('#all_reports').DataTable( {
+              "language": {
+                  "processing":   "מעבד...",
+                  "lengthMenu":   "הצג _MENU_ פריטים",
+                  "zeroRecords":  "לא נמצאו רשומות מתאימות",
+                  "emptyTable":   "לא נמצאו רשומות מתאימות",
+                  "info": "_START_ עד _END_ מתוך _TOTAL_ רשומות" ,
+                  "infoEmpty":    "0 עד 0 מתוך 0 רשומות",
+                  "infoFiltered": "(מסונן מסך _MAX_  רשומות)",
+                  "infoPostFix":  "",
+                  "search":       "חפש:",
+                  "url":          "",
+                  "paginate": {
+                      "first":    "ראשון",
+                      "previous": "קודם",
+                      "next":     "הבא",
+                      "last":     "אחרון"
+                  }
+              },
+              "order": [[ 0, "desc" ]],
+              searchPlaceholder: "חפש דיווחים",
+              "pageLength": 100,
+              "lengthChange": false,
+              "dom": '<lf<t>ip>'
+          } );
+      } );
+  </script>--}}
 
 @endsection

@@ -262,23 +262,29 @@
                             <div style="padding: 40px 40px 20px; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555;">
                             <tr>
                                 <td align="center" style="background-color: #ffffff;">
-                                    <img src="https://coffee.mta.ac.il/images/logo1.png" width="100px" height="100px" alt="logo_pic!" border="0" align="center" style="width: 50%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555; margin: auto;" class="g-img">
+                                    <img src="{{env('APP_URL')}}/images/logo1.png" width="100px" height="100px" alt="logo_pic!" border="0" align="center" style="width: 50%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555; margin: auto;" class="g-img">
                                 </td>
                             </tr>
                         <br>
                             <h1 style="margin: 0 0 10px; font-size: 24px; line-height: 125%; color: #333333; font-weight: normal;">חיכינו לך! כיף שהצטרפת אלינו</h1>
 
-                            <div style="margin: 0 0 10px;">
+                            <h3 style="margin: 0 0 10px;">
                             <h2>מה אפשר לעשות במערכת קפה אמון?</h2>
                             <ul style="padding: 0; margin: 0; list-style-type: disc;">
-                                <li style="margin:0 0 10px 30px;"><b>נגמר החלב בעמדה? יש תקלה במכונה?</b> מהיום אתם לא צריכים לחפש את נציגי האגודה כדי שיעזרו, פתחו דיווח בתקלה ומהתנדבים החרוצים שלנו מיד יגיעו</li>
-                                <li style="margin:0 0 10px 30px;">חשוב לזכור שקפה אמון מבוסס על מתנדבים ולכן אנחנו צריכים גם אתכם! <b>התנדבות לא כרוכה בשום התחייבות מצידכם. פשוט אשרו קבלת תראות ואם תהיו ליד העמדה תקפצו לראות אם אפשר לעזור.</b></li>
+                                <li style="margin:0 0 10px 30px;"><b>נגמר החלב בעמדה? יש תקלה במכונה?</b> מהיום אתם לא צריכים לחפש את נציגי האגודה כדי שיעזרו, פתחו דיווח בתקלה והמתנדבים החרוצים שלנו מיד יגיעו</li>
+                                <li style="margin:0 0 10px 30px;">חשוב לזכור שקפה אמון מבוסס על מתנדבים ולכן אנחנו צריכים גם אתכם! <b>התנדבות לא כרוכה בשום התחייבות מצידכם. פשוט אשרו קבלת התראות ואם תהיו ליד העמדה תקפצו לראות אם אפשר לעזור.</b></li>
                                 <li style="margin:0 0 10px 30px;">שימו לב שמערכת קפה אמון זמינה דרך הדפדפן, בקרוב גם באפליקציה</li>
                                 <li style="margin:0 0 10px 30px;" class="list-item-first"><b>הפיצו את הבשורה! שלחו את לינק המערכת לחברים בתואר ובקבוצות וביחד נשתה קפה טעים וזול יותר!</b></li>
                             </ul>
                             <br>
                             <p>
                             <h3>לכל שאלה ניתן לפנות לאורי ששו - רכז קפה אמון בטלפון <a href="tel:052-8477546">052-8477546</a> </h3>
+                            </h3>
+                        <tr>
+                            <td>
+                                <h3><a href="https://api.whatsapp.com/send?phone=972528477546"> או בוואטסאפ:<img src="{{env('APP_URL')}}/images/WhatsApp_NEW_Logo.png" height="35px" height="35px"> </a></h3>
+                            </td>
+                        </tr>
                             </div>
                             </div>
                             </td>

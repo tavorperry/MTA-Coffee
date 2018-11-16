@@ -282,6 +282,9 @@
                                     {{\App\Http\Controllers\ReportController::findUser($report->closing_user_id)->last_name}}</li>
                                 <li style="margin:0 0 10px 30px;">סיבת הדיווח: {{$report->type}}</li>
                                 <li style="margin:0 0 10px 30px;" class="list-item-first">תיאור: {{$report->desc}}</li>
+                                @if($report->comment != null)
+                                 <h3>תגובת סוגר הדיווח: {{$report->comment}}</h3>
+                                @endif
                             </ul>
                             <br>
                             </p>

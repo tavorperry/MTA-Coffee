@@ -35,7 +35,7 @@ class SocialLoginController extends Controller
         $user = User::where('email', $socialUser->getEmail())->first();
 
         if($user) {
-            Auth::login($user);
+            Auth::login($user, true);
             return redirect()->back();
         } else {
             $user = new User;

@@ -33,8 +33,6 @@ Route::put('station/{station}/shifts' ,'StationShiftController@update')->name('s
 Route::get('/select_building', function () {
    return view('shifts.select_building');})->name('select.building')->middleware('auth');
 
-
-
 //Notifications
 Route::get('notifications/show', 'NotificationController@show')->name('notifications.show')->middleware('auth');
 Route::get('NotificationController@countNew')->name('count')->middleware('auth');
@@ -50,7 +48,15 @@ Route::get('/terms', function () {
     return view('terms');})->name('terms');
 
 //Volunteer
-    Route::get('/volunteer', function () {
-        return view('volunteer');})->name('volunteer')->middleware('auth');
+Route::get('/volunteer', function () {
+    return view('volunteer');})->name('volunteer')->middleware('auth');
 
+//ContactUs
+Route::get('contact-us', 'ContactUsController@contactUS')->name('contact-us');
+Route::post('contact-us/send', 'ContactUsController@sendMailToAdmin')->name('contact-us.send');
 
+//Profile page
+Route::get('profile', 'ProfileController@show')->name('profile')->middleware('auth');
+Route::post('profile/changeDetails', 'ProfileController@changeDetails')->name('profile.changeDetails')->middleware('auth');
+Route::post('profile/changePassword', 'ProfileController@changePassword')->name('profile.changePassword')->middleware('auth');
+Route::post('profile/deactivation', 'ProfileController@deactivation')->name('profile.deactivation')->middleware('auth');
