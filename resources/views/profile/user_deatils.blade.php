@@ -119,7 +119,7 @@
                                     <div class="form-group row mb-0" style="margin-top: 8px">
                                         <div class="col-md-12 text-center">
                                             <button type="submit" class="btn login-btn">
-                                                {{ __('שנה פרטים') }}
+                                                {{ __('שנה סיסמא') }}
                                             </button>
                                         </div>
                                     </div>
