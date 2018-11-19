@@ -38,19 +38,19 @@ class ContactUsController extends Controller
         if (Auth::check())
         {
             $user = auth()->user();
-            $userName = $user->first_name.' '.$user->last_name;
-            $userEmail = $user->email;
-            $userMessage = $request->get('user-message');
+            $user_name = $user->first_name.' '.$user->last_name;
+            $user_email = $user->email;
+            $user_message = $request->get('user-message');
 
         } else {
-            $userName = $request->get('username');
-            $userEmail = $request->get('user-email');
-            $userMessage = $request->get('user-message');
+            $user_name = $request->get('username');
+            $user_email = $request->get('user-email');
+            $user_message = $request->get('user-message');
         }
 
-        Mail::raw("User's Email: ".$userEmail."\n\n"."User's message: "."\n".$userMessage, function($message) use ($userName)
+        Mail::raw("User's Email: ".$user_email."\n\n"."Name: ".$user_name."\n\n"."User's message: "."\n".$user_message, function($message) use ($user_name)
         {
-            $message->subject('הודעה חדשה ממשתמש קפה אמון'.' '.$userName);
+            $message->subject('הודעה חדשה ממשתמש קפה אמון'.' '.$user_name);
             $message->from(env('EMAIL_FROM'));
             $message->to(env('ADMIN_EMAIL'));
         });
