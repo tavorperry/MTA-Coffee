@@ -55,6 +55,18 @@
         <li class="sidebar-nav-item part-of-nav">
             <a class="js-scroll-trigger part-of-nav" href="{{ route('contact-us') }}">צור קשר</a>
         </li>
+        @if(Auth::user())
+            <li class="sidebar-nav-item part-of-nav">
+                <a class="js-scroll-trigger part-of-nav" href="{{ route('logout') }}">התנתקות</a>
+            </li>
+        @else
+            <li class="sidebar-nav-item part-of-nav">
+                <a class="js-scroll-trigger part-of-nav" href="{{ route('register') }}">הרשמה</a>
+            </li>
+            <li class="sidebar-nav-item part-of-nav">
+                <a class="js-scroll-trigger part-of-nav" href="{{ route('login') }}">התחברות</a>
+            </li>
+        @endif
     </ul>
 </nav>
 

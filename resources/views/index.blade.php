@@ -53,7 +53,7 @@
         <form action="{{ route('logout') }}" method="POST" class="mt-5">
             @csrf
             <a>
-                <button type="submit" class="btn login-btn">התנתק</button>
+                <button type="submit" class="btn login-btn">התנתקות</button>
             </a>
         </form>
     @else
@@ -66,7 +66,7 @@
                         <i class="far fa-flag"></i>
                     </div>
                     <h3>התראות</h3>
-                    <p class="lead mb-0">קבל התרעות מדיווחים של משתמשים אחרים וקבל נקודות!</p>
+                    <p class="lead mb-0">קבל התראות מדיווחים של משתמשים אחרים וקבל נקודות!</p>
                 </div>
             </div>
             <div class="col-lg-4">
