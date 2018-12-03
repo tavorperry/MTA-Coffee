@@ -85,7 +85,7 @@ class ReportController extends Controller
             }
             else {
                 $user->addPoints(20);
-                Alert::success('הרווחת 20 נקודות', 'הדיווח נסגר כל הכבוד!')->persistent("Close");
+                Alert::success('הרווחת 20 נקודות', 'הדיווח נשלח כל הכבוד!')->persistent("Close");
                 if ($user->isLevelUp($prevLevel)) {
                     Alert::success('מזל טוב עלית רמה!', 'תותח/ית')->persistent("Close");
                 }
@@ -213,9 +213,10 @@ class ReportController extends Controller
      */
     public function sendEmailNotifications($users_id, $report)
     {
+        $current_user = Auth::user();
         foreach ($users_id as $user_id) {
             $user=self::findUser($user_id);
-            if($user->notifications == true) {
+            if($user->notifications == true && $user->id !=$current_user->id) {
                 try {
                     //Start - Sending Email to all users in shift
                     Mail::send('emails.new_report_notification', ['user' => $user, 'report' => $report], function ($m) use ($user) {
