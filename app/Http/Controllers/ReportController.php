@@ -79,11 +79,16 @@ class ReportController extends Controller
         if ($isReported) {
             $user = Auth::user();
             $prevLevel = $user->getLevel();
-            $user->addPoints(10);
-            Alert::success('הרווחת 10 נקודות', 'הדיווח נשלח!')->persistent("Close");
-
-            if ($user->isLevelUp($prevLevel)) {
-                Alert::success('מזל טוב עלית רמה!', 'תותח/ית')->persistent("Close");
+            if ($user->points == 0){
+                $user->addPoints(100);
+                Alert::success('מזל טוב עלית רמה! ', 'הדיווח הראשון שלך נשלח! הרווחת 100 נקודות')->persistent("Close");
+            }
+            else {
+                $user->addPoints(20);
+                Alert::success('הרווחת 20 נקודות', 'הדיווח נסגר כל הכבוד!')->persistent("Close");
+                if ($user->isLevelUp($prevLevel)) {
+                    Alert::success('מזל טוב עלית רמה!', 'תותח/ית')->persistent("Close");
+                }
             }
 
             $shift = Shift::find($this->getCurrentShift($request->station));
@@ -168,11 +173,16 @@ class ReportController extends Controller
             //The following gives the user 20 points
             $user = Auth::user();
             $prevLevel = $user->getLevel();
-            $user->addPoints(20);
-            Alert::success('הרווחת 20 נקודות', 'הדיווח נסגר כל הכבוד!')->persistent("Close");
-
-            if ($user->isLevelUp($prevLevel)) {
-                Alert::success('מזל טוב עלית רמה! ', 'הדיווח נסגר כל הכבוד !הרווחת 20 נקודות')->persistent("Close");
+            if ($user->points == 0){
+                $user->addPoints(100);
+                Alert::success('מזל טוב עלית רמה! ', 'הדיווח נסגר כל הכבוד !הרווחת 100 נקודות')->persistent("Close");
+            }
+            else {
+                $user->addPoints(20);
+                Alert::success('הרווחת 20 נקודות', 'הדיווח נסגר כל הכבוד!')->persistent("Close");
+                if ($user->isLevelUp($prevLevel)) {
+                    Alert::success('מזל טוב עלית רמה! ', 'הדיווח נסגר כל הכבוד !הרווחת   נקודות')->persistent("Close");
+                }
             }
 
             $report = DB::table('reports')->where('id', $report_id)->first();

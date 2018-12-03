@@ -1,17 +1,18 @@
+<?php $auth_user = Auth::user() ?>
 @extends('layouts.index')
 
 @section('user-welcome')
-    @if(Auth::user())
+    @if($auth_user)
         <section>
-            <h1 class="d-inline">{{ Auth::user()->first_name. ' ' .Auth::user()->last_name }}</h1>
-            <?php $level = Auth::user()->getLevel() ?>
+            <h1 class="d-inline">{{ $auth_user->first_name. ' ' .$auth_user->last_name }}</h1>
+            <?php $level = $auth_user->getLevel() ?>
         </section>
         <div class="mt-4 mb-2">
-            @if($level == '11')
+            @if($level == '10s')
                 <i class="fas fa-trophy user-level user-level-top"></i>
             @else
                 <i class="fas fa-trophy user-grey"></i>
-                @for($i=1; $i<=10-$level; $i++)
+                @for($i=1; $i<=9-$level; $i++)
                     <i class="fas fa-coffee user-grey"></i>
                 @endfor
                 @for($i=0; $i<$level; $i++)
@@ -19,7 +20,7 @@
                 @endfor
             @endif
         </div>
-        <h3>נקודות:&nbsp;{{ Auth::user()->points }}</h3>
+        <h3>נקודות:&nbsp;{{ $auth_user->points }}</h3>
     @else
         <h1>קפה אמון</h1>
         <h3>חזק, על בסיס אמון</h3>
@@ -27,7 +28,7 @@
 @endsection
 
 @section('content')
-    @if(Auth::user())
+    @if($auth_user)
         <div class="row">
             <a href="{{ route('notifications.show') }}" class="btn menu-btn col"> <i class="far fa-flag menu-btn-icon"></i><br>
                 התראות
