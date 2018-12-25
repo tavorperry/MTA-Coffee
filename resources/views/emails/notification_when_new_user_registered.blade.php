@@ -264,8 +264,9 @@
                     <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                             <p style="padding: 40px 40px 20px; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555;">
                                 <h2> היידד! </h2>
-                                <h2> משתמש חדש נרשם למערכת!</h2>
+                        <h2> משתמש חדש נרשם למערכת!</h2>
                             <ul style="padding: 0; margin: 0; list-style-type: disc;">
+                                <li style="margin:0 0 10px 30px;"><b> סביבה: {{ env('APP_ENV') }} </b></li>
                                 <li style="margin:0 0 10px 30px;"><b> שם פרטי: {{ $user->first_name }} </b></li>
                                 <li style="margin:0 0 10px 30px;"><b> שם משפחה: {{ $user->last_name }} </b></li>
                                 <li style="margin:0 0 10px 30px;"><b> אימייל: {{ $user->email }} </b></li>

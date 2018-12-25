@@ -60,10 +60,10 @@ class User extends Authenticatable
         return $this->hasMany('App\SocialUser');
     }
 
-    public function devicePushUser()
+/*    public function devicePushUser()
     {
         return $this->hasMany('App\DevicePushUser');
-    }
+    }*/
 
     public function addPoints($points)
     {
@@ -78,31 +78,30 @@ class User extends Authenticatable
     {
         $currentPoints = $this->points;
 
-        if($currentPoints <= self::LEVEL_ONE){
+        if($currentPoints < self::LEVEL_ONE){
+            return 0;
+        } elseif ($currentPoints < self::LEVEL_TWO){
             return 1;
-        } elseif ($currentPoints <= self::LEVEL_TWO){
+        } elseif ($currentPoints < self::LEVEL_THREE) {
             return 2;
-        } elseif ($currentPoints <= self::LEVEL_THREE) {
+        } elseif ($currentPoints < self::LEVEL_FOUR){
             return 3;
-        } elseif ($currentPoints <= self::LEVEL_FOUR){
+        } elseif ($currentPoints < self::LEVEL_FIVE) {
             return 4;
-        } elseif ($currentPoints <= self::LEVEL_FIVE) {
+        } elseif ($currentPoints < self::LEVEL_SIX) {
             return 5;
-        } elseif ($currentPoints <= self::LEVEL_SIX) {
+        } elseif ($currentPoints < self::LEVEL_SEVEN) {
             return 6;
-        } elseif ($currentPoints <= self::LEVEL_SEVEN) {
+        } elseif ($currentPoints < self::LEVEL_EIGHT) {
             return 7;
-        } elseif ($currentPoints <= self::LEVEL_EIGHT) {
+        } elseif ($currentPoints < self::LEVEL_NINE) {
             return 8;
-        } elseif ($currentPoints <= self::LEVEL_NINE) {
+        }elseif ($currentPoints < self::LEVEL_TEN) {
             return 9;
-        }elseif ($currentPoints <= self::LEVEL_TEN) {
-            return 10;
         }
         else{
-            return 11; //Once user have 1001+ points he will stay in the last Level
+            return 10; //Once user have 1000+ points he will stay in the last Level
         }
-        return 0;
     }
 
     public function isLevelUp($prevLevel)
