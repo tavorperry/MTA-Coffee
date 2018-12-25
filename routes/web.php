@@ -15,6 +15,8 @@
 Auth::routes();
 Route::get('/', 'HomeController@index')->name('index');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name("logout");
+
 
 //Google auth
 Route::get('login/google', 'SocialLoginController@redirectToProvider')->name('login.google');
