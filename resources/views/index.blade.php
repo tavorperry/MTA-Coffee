@@ -8,7 +8,7 @@
             <?php $level = $auth_user->getLevel() ?>
         </section>
         <div class="mt-4 mb-2">
-            @if($level == '10s')
+            @if($level == '10')
                 <i class="fas fa-trophy user-level user-level-top"></i>
             @else
                 <i class="fas fa-trophy user-grey"></i>

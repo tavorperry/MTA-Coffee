@@ -178,7 +178,7 @@ class ReportController extends Controller
                 Alert::success('מזל טוב עלית רמה! ', 'הדיווח נסגר כל הכבוד !הרווחת 100 נקודות')->persistent("Close");
             }
             else {
-                $user->addPoints(20);
+                $user->addPoints(40);
                 Alert::success('הרווחת 20 נקודות', 'הדיווח נסגר כל הכבוד!')->persistent("Close");
                 if ($user->isLevelUp($prevLevel)) {
                     Alert::success('מזל טוב עלית רמה! ', 'הדיווח נסגר כל הכבוד !הרווחת   נקודות')->persistent("Close");
