@@ -20,6 +20,7 @@
         "php-http/guzzle6-adapter": "^1.1",
         "php-http/message": "^1.6",
         "rap2hpoutre/laravel-log-viewer": "^0.19.1",
+        "silviolleite/laravelpwa": "^1.0",
         "uxweb/sweet-alert": "^1.4"
     },
     "require-dev": {
