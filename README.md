@@ -27,19 +27,51 @@ php artisan key:generate
 php artisan migrate
  ```
  
- Now we have Google Auth - How great is that? 
- Add the ID and the secret code to the .env (ask me for the details):
+Your ENV should include:
  ```angular2html
-GOOGLE_CLIENT_ID=6***********-r***************.apps.googleusercontent.com
-GOOGLE_CLIENT_SECRET=vC-****************
-```
-Add To the ENV file also MailGun API details:
-```
-MAIL_USERNAME=postmaster@sandbox*************************.mailgun.org
-MAIL_PASSWORD=**********************-**********-**********
-MAIL_ENCRYPTION=null
-MAILGUN_DOMAIN=sandbox********************************.mailgun.org
-MAILGUN_SECRET=key-************************************
+ APP_NAME=
+APP_ENV=
+APP_KEY=
+APP_DEBUG=
+APP_URL=
+
+TZ='Asia/Jerusalem'
+
+LOG_CHANNEL=stack
+
+DB_CONNECTION=mysql
+DB_HOST=
+DB_PORT=
+DB_DATABASE=
+DB_USERNAME=
+DB_PASSWORD=
+
+BROADCAST_DRIVER=log
+CACHE_DRIVER=file
+SESSION_DRIVER=file
+SESSION_LIFETIME=120
+QUEUE_DRIVER=sync
+
+MAIL_DRIVER=smtp
+MAIL_HOST=smtp.mailgun.org
+MAIL_PORT=
+MAIL_USERNAME=
+MAIL_PASSWORD=
+MAIL_ENCRYPTION=
+MAILGUN_DOMAIN=
+MAILGUN_SECRET=
+
+EMAIL_FROM=
+
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+
+LOG_PATH=
+
+NOTIFY_TAVOR=
+NOTIFY_XENIA=
+
+Google_Analytics_id =
 ```
 
 ## Before starting any coding
