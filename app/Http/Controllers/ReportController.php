@@ -39,7 +39,8 @@ class ReportController extends Controller
             'message' => 'required|max:50',
             'picture' => new ValidPicture,
             'station' => 'in:1,2,3',
-            'type' => 'in:חסר משהו,לא נקי,יש תקלה,אחר'
+            'type' => 'in:חסר משהו,לא נקי,יש תקלה,אחר',
+            'g-recaptcha-response' => 'required|captcha'
         ]);
     }
 
