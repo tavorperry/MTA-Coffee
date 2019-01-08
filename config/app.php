@@ -150,6 +150,7 @@ return [
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
         Berkayk\OneSignal\OneSignalServiceProvider::class,
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
+        AlbertCht\InvisibleReCaptcha\InvisibleReCaptchaServiceProvider::class,
 
         /*
          * Package Service Providers...
