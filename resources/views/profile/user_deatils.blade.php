@@ -14,17 +14,19 @@
                 <div class="mt-4 mb-2">
                     <h2>נקודות:&nbsp;{{ $user->points }}</h2>
                     <?php $level = $user->getLevel() ?>
-                    @if($level == '11')
-                        <i class="fas fa-trophy user-level user-level-top"></i>
-                    @else
-                        <i class="fas fa-trophy user-grey"></i>
-                        @for($i=1; $i<=10-$level; $i++)
-                            <i class="fas fa-coffee user-grey"></i>
-                        @endfor
-                        @for($i=0; $i<$level; $i++)
-                            <i class="fas fa-coffee user-level"></i>
-                        @endfor
-                    @endif
+                    <div class="mt-4 mb-2">
+                        @if($level == '10')
+                            <i class="fas fa-trophy user-level user-level-top"></i>
+                        @else
+                            <i class="fas fa-trophy user-grey"></i>
+                            @for($i=1; $i<=9-$level; $i++)
+                                <i class="fas fa-coffee user-grey"></i>
+                            @endfor
+                            @for($i=0; $i<$level; $i++)
+                                <i class="fas fa-coffee user-level"></i>
+                            @endfor
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
