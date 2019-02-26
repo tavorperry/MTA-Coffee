@@ -37,34 +37,46 @@
         <li class="sidebar-brand part-of-nav">
             <a class="js-scroll-trigger part-of-nav">קפה אמון</a>
         </li>
-        <li class="sidebar-nav-item part-of-nav">
-            <a class="js-scroll-trigger part-of-nav" href="{{ route('home') }}">דף הבית</a>
-        </li>
-        <li class="sidebar-nav-item part-of-nav">
-            <a class="js-scroll-trigger part-of-nav" href="{{ route('profile') }}">הפרופיל שלי</a>
-        </li>
-        <li class="sidebar-nav-item part-of-nav">
-            <a class="js-scroll-trigger part-of-nav" href="{{ route('reports.create') }}">דיווח על תקלה</a>
-        </li>
-        <li class="sidebar-nav-item part-of-nav">
-            <a class="js-scroll-trigger part-of-nav" href="{{ route('station') }}">עדכון משמרות</a>
-        </li>
-        <li class="sidebar-nav-item part-of-nav">
-            <a class="js-scroll-trigger part-of-nav" href="{{ route('report.view.all') }}">צפייה בכל הדיווחים</a>
-        </li>
-        <li class="sidebar-nav-item part-of-nav">
-            <a class="js-scroll-trigger part-of-nav" href="{{ route('contact-us') }}">צור קשר</a>
-        </li>
         @if(Auth::user())
+            <li class="sidebar-nav-item part-of-nav">
+                <a class="js-scroll-trigger part-of-nav" href="{{ route('home') }}">דף הבית</a>
+            </li>
+            <li class="sidebar-nav-item part-of-nav">
+                <a class="js-scroll-trigger part-of-nav" href="{{ route('profile') }}">הפרופיל שלי</a>
+            </li>
+            <li class="sidebar-nav-item part-of-nav">
+                <a class="js-scroll-trigger part-of-nav" href="{{ route('reports.create') }}">דיווח על תקלה</a>
+            </li>
+            <li class="sidebar-nav-item part-of-nav">
+                <a class="js-scroll-trigger part-of-nav" href="{{ route('station') }}">עדכון משמרות</a>
+            </li>
+            <li class="sidebar-nav-item part-of-nav">
+                <a class="js-scroll-trigger part-of-nav" href="{{ route('report.view.all') }}">צפייה בכל הדיווחים</a>
+            </li>
+            <li class="sidebar-nav-item part-of-nav">
+                <a class="js-scroll-trigger part-of-nav" href="{{ route('contact-us') }}">צור קשר</a>
+            </li>
+            <li class="sidebar-nav-item part-of-nav">
+                <a class="js-scroll-trigger part-of-nav" href="{{ route('terms') }}">תקנון</a>
+            </li>
             <li class="sidebar-nav-item part-of-nav">
                 <a class="js-scroll-trigger part-of-nav" href="{{ route('logout') }}">התנתקות</a>
             </li>
         @else
             <li class="sidebar-nav-item part-of-nav">
+                <a class="js-scroll-trigger part-of-nav" href="{{ route('home') }}">דף הבית</a>
+            </li>
+            <li class="sidebar-nav-item part-of-nav">
                 <a class="js-scroll-trigger part-of-nav" href="{{ route('register') }}">הרשמה</a>
             </li>
             <li class="sidebar-nav-item part-of-nav">
                 <a class="js-scroll-trigger part-of-nav" href="{{ route('login') }}">התחברות</a>
+            </li>
+            <li class="sidebar-nav-item part-of-nav">
+                <a class="js-scroll-trigger part-of-nav" href="{{ route('contact-us') }}">צור קשר</a>
+            </li>
+            <li class="sidebar-nav-item part-of-nav">
+                <a class="js-scroll-trigger part-of-nav" href="{{ route('terms') }}">תקנון</a>
             </li>
         @endif
     </ul>
