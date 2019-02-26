@@ -88,7 +88,7 @@
                 <strong>כתובת</strong>
             </td>
             <td style="text-align: right">
-                רבחנו ירוחם 12, תל אביב-יפו
+                רבנו ירוחם 12, תל אביב-יפו
             </td>
         </tr>
         <tr>
