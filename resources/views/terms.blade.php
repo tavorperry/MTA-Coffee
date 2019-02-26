@@ -51,10 +51,10 @@
                 <p><span style="font-weight: 400;">21.3 כל מחלוקת, טענה, תביעה, דרישה או הליכים משפטיים, ככל שיתעוררו, בינך לבין האגודה/יוצרי המערכת(לרבות חברות קשורות ו/או מי מטעמה) יתבררו בבית המשפט המוסמך בעיר תל &ndash;אביב יפו.</span></p>
                 <p><span style="font-weight: 400;">21.4 בכל מקרה בו לדעת האגודה מסירת המידע נחוצה כדי למנוע נזק חמור לגופך או לרכושך.</span></p>
                 <ol start="22">
-                    <li><span style="font-weight: 400;"> לידיעתך, כי המערכת משתמשת בשירותי צד שלישי למגוון שירותים כגון: שליחת אימיילים, תשלום, ניתוחים סטטיסטיים ועוד העשויים לשמור על פרטים מסויימים. כל השירותים איתם מערכת עובדת, עומדים בתקני פרטיות מחמירים ביותר.</span></li>
+                    <li><span style="font-weight: 400;"> לידיעתך, כי המערכת משתמשת בשירותי צד שלישי למגוון שירותים כגון: שליחת אימיילים, תשלום, ניתוחים סטטיסטיים ועוד העשויים לשמור על פרטים מסויימים. כל השירותים איתם המערכת עובדת, עומדים בתקני פרטיות מחמירים ביותר.</span></li>
                 </ol>
                 <p><span style="font-weight: 400;">שירותי צד ג לדוגמא:</span></p>
-                <p><span style="font-weight: 400;">Mailgun, Paypal, Google Analytics, OneSignal</span></p>
+                <p><span style="font-weight: 400;">Mailgun, Google Auth, Google+, Google Analytics, EasyCard, ישראכרט</span></p>
                 <p><span style="font-weight: 400;">22.1. האגודה רשאית להוסיף ולגרוע שירותי צד שלישי נוספים מבלי כל הודעה מוקדמת.</span></p>
                 <p><strong> Cookies</strong>
                 <ol start="23" >
@@ -70,12 +70,31 @@
                 <p><strong>ט. שירות לקוחות</strong></p>
                 <ol start="25">
                     <li><span style="font-weight: 400;"> האגודה מקפידה על קיום הוראות החוק ומכבדת את זכות משתמשי המערכת ואחרים לפרטיות. ככל שישנה סברה כי במערכת פורסם תוכן פוגע כלשהו, או מהווה הפרת זכות יוצרים ו/או הפרה של הדין, ניתן לפנות אלינו בכתובת הדואר האלקטרוני הנ"ל: </span>
-                      <br> </li> <a href="mailto:aguda@mta.ac.il"><span style="font-weight: 400;">aguda@mta.ac.il</span></a>
+                      <br> </li> <a href="mailto:mtacoffe@gmail.com"><span style="font-weight: 400;">mtacoffe@gmail.com</span></a>
                 <p><span style="font-weight: 400;">או </span></p>
-                <p><a href="mailto:mtacoffe@gmail.com"><span style="font-weight: 400;">mtacoffe@gmail.com</span></a></p>
+                <p><a href="mailto:aguda@mta.ac.il"><span style="font-weight: 400;">aguda@mta.ac.il</span></a></p>
                 </ol>
-                <p><br /><br /></p>
 
+                <strong style="text-align: center; font-size: 22px">פרטים ליצירת קשר</strong>
+                <br>
+                <table style="text-align: center">
+                    <tr>
+                        <td style="text-align: left">
+                            <strong>כתובת</strong>
+                        </td>
+                        <td>
+                            רבחנו ירוחם 12, תל אביב-יפו
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left">
+                            <strong>טלפון</strong>
+                        </td>
+                        <td>
+                            03-6817011
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>

@@ -74,7 +74,31 @@
         <div class="text-center">
             <button type="submit" class="btn login-btn" value="שלח הודעה">שלח הודעה!</button>
         </div>
-
         {!! Form::close() !!}
     @endif
+
+    {{--More details to contact us--}}
+    <br><br>
+    <div style="text-align: center"; align="center">
+    <strong style="text-align: center; font-size: 22px">פרטים נוספים ליצירת קשר</strong>
+    <br>
+    <table style="text-align: center"; align="center">
+        <tr>
+            <td style="text-align: left">
+                <strong>כתובת</strong>
+            </td>
+            <td style="text-align: right">
+                רבחנו ירוחם 12, תל אביב-יפו
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: left">
+                <strong>טלפון</strong>
+            </td>
+            <td style="text-align: right">
+                03-6817011
+            </td>
+        </tr>
+    </table>
+    </div>
 @endsection
