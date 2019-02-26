@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
+use App\Wallet;
 
 class User extends Authenticatable
 {
@@ -121,4 +122,22 @@ class User extends Authenticatable
                     });
         }
     }
+    private function initWallet($wallet)
+    {
+        $wallet->create([
+            'user_id' => $this->id,
+            'balance' => 0,
+        ]);
+    }
+
+    public function wallet()
+    {
+        $wallet = $this->hasOne(Wallet::class, "user_id", "id");
+        if ($wallet->count() == 0) {
+            $this->initWallet($wallet);
+            $wallet = $this->hasOne(Wallet::class , "user_id", "id");
+        }
+        return $wallet;
+    }
+
 }

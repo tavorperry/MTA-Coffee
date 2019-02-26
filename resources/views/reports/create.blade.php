@@ -71,7 +71,7 @@
     <br>
         <div class="container">
             <div class="text-center">
-                {!! app('captcha')->render(); !!}
+                {!! app('captcha')->render() !!}
                 {{--<input type="submit" value="דווח!">--}}
                 <button type="submit" class="btn login-btn" value="דווח!">דווח!</button>
             </div>

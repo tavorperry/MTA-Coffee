@@ -2,8 +2,16 @@
 
 namespace App;
 
+use Exception;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use App\Transaction;
+use App\User;
 
+/**
+ * @property mixed $transactions
+ */
 class Wallet extends Model
 {
 
@@ -13,6 +21,8 @@ class Wallet extends Model
     {
         $this->table = 'users_wallets';
         parent::__construct($attributes);
+       // $this->balance = 0;
+        //$this->user_id = auth()->id();
     }
 
     public function user(){
@@ -50,16 +60,20 @@ class Wallet extends Model
         try{
             $this->balance += $amount;
             $this->save();
-            $this->transactions()->create([
+            $transaction = new Transaction([
                 'transaction_type' => 'deposit',
                 'amount'           => $amount,
                 'comment'          => $comment,
+                'wallet_id'        => $this->id,
+                'new_balance'      => $this->balance(),
             ]);
+            $transaction->save();
+
             DB::commit();
             return true;
         }catch (Exception $e){
             DB::rollback();
-            Log::error("Failed to depoosit. user " + $this->user_id + " Exception: " + $e);
+            Log::error("Failed to deposit. user ".$this->user_id . " Exception: " .$e);
             return false;
         }
     }
@@ -104,7 +118,7 @@ class Wallet extends Model
                 return true;
             }catch (Exception $e){
                 DB::rollback();
-                Log::error("Failed to pay. user " + $this->user_id + " Exception: " + $e);
+                Log::error("Failed to pay. user ".$this->user_id ." Exception: " .$e);
                 return false;
             }
         }
@@ -138,7 +152,7 @@ class Wallet extends Model
                 return true;
             }catch (Exception $e){
                 DB::rollback();
-                Log::error("Failed to transfer money to user " + $toUser + " Exception: " + $e);
+                Log::error("Failed to transfer money to user " .$toUser ." Exception: " .$e);
             }
         }
         return false;

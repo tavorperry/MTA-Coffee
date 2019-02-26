@@ -62,3 +62,7 @@ Route::get('profile', 'ProfileController@show')->name('profile')->middleware('au
 Route::post('profile/changeDetails', 'ProfileController@changeDetails')->name('profile.changeDetails')->middleware('auth');
 Route::post('profile/changePassword', 'ProfileController@changePassword')->name('profile.changePassword')->middleware('auth');
 Route::post('profile/deactivation', 'ProfileController@deactivation')->name('profile.deactivation')->middleware('auth');
+
+//Wallet
+Route::get('wallet/charge', 'WalletController@manualCharge')->name('wallet.manualCharge')->middleware('auth');
+Route::post('wallet/charge', 'WalletController@confirmCharge')->name('wallet.confirmCharge')->middleware('auth');
