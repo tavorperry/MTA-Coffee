@@ -8,6 +8,7 @@
         "php": "^7.1.3",
         "albertcht/invisible-recaptcha": "^1.8",
         "berkayk/onesignal-laravel": "^0.9.9",
+        "econea/nusoap": "^0.9.6",
         "fideloper/proxy": "^4.0",
         "fzaninotto/faker": "^1.4",
         "guzzlehttp/guzzle": "~5.3|~6.0",

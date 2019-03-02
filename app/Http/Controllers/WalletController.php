@@ -6,11 +6,38 @@ use App\Wallet;
 use Illuminate\Http\Request;
 use Auth;
 use Alert;
+use soapclient;
 use Validator;
 use Illuminate\Support\Facades\DB;
 
 class WalletController extends Controller
 {
+    public function testSoap(){
+        $wsdl = "https://secure.e-c.co.il/Service/Service.asmx?wsdl";
+        $client = new soapclient($wsdl);
+
+        $postArray = array('ClientID' => '2', 'Password' => '123');
+
+        $response = $client->DoDeal($postArray);
+        dd($response);
+
+        $linesArray = explode("&",$response->DoDealResult);
+
+$res = null;
+        foreach($linesArray as $key => $val)
+        {
+            $keyValArray = explode("=", $val);
+
+            if ($keyValArray [0] == "Code") { $code = $res[1]; }
+            if ($keyValArray [0] == "ErrorDesc") { $error = $res[1]; }
+            if ($keyValArray [0] == "DealNumber") { $deal = $res[1]; }
+            if ($keyValArray [0] == "AuthNum") { $auth = $res[1]; }
+        }
+
+
+
+        dd($client);
+    }
     public function manualCharge()
     {
         return view('wallet.charge');
@@ -25,6 +52,7 @@ class WalletController extends Controller
 
     public function confirmCharge(Request $request)
     {
+        $this->testSoap();
 
         $this->validator($request->all())->validate();
 
