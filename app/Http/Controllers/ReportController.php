@@ -109,7 +109,7 @@ class ReportController extends Controller
      *Based on the current day and hour Returns the current shift
      *Returns current shift (int)
      */
-    public function getCurrentShift($stationId)
+    private function getCurrentShift($stationId)
     {
         $current_hour = (int)date("H");
         $current_day = date('w') + 1; /*The function returns 0-6 values so we add 1 so that will fit the DB*/
@@ -133,7 +133,7 @@ class ReportController extends Controller
      *Searches in DB for the specific users that assigned to the current shift
      *Returns all the users in current shift
      */
-    public function getUsersInCurrentShift($current_shift)
+    private function getUsersInCurrentShift($current_shift)
     {
         $users_in_current_shift = DB::table('shift_user')
             ->where([
@@ -212,7 +212,7 @@ class ReportController extends Controller
      *Sends email notifications to the users
      *
      */
-    public function sendEmailNotifications($users_id, $report)
+    private function sendEmailNotifications($users_id, $report)
     {
         $current_user = Auth::user();
         foreach ($users_id as $user_id) {
