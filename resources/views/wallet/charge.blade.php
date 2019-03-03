@@ -1,5 +1,4 @@
 @extends('layouts.master')
-<?php use Illuminate\Support\Facades\Auth; ?>
 @section('page-style')
 @endsection
 
@@ -14,6 +13,11 @@
     <div class="row">
         <label class="to-the-right col-3"><h4 class="service-description">אימייל של הסטודנט להטענה</h4></label>
         <input id="email" name="email" type="email" class="col-9 form-control required" required placeholder="אימייל" ></input>
+        @if ($errors->has('email'))
+            <span class="invalid-feedback" style="display: block !important; text-align: center">
+                    <strong>האימייל לא נמצא במערכת</strong>
+                </span>
+        @endif
     </div>
     <br>
     <div class="row">
@@ -28,10 +32,15 @@
     </div>
     <br>
     <div class="row">
-        <label class="to-the-right col-3"><h4 class="service-description">שם המטעין והערות נוספות</h4></label>
-        <input id="comment" name="comment" type="text" class="col-9 form-control required" placeholder="שם המטעין והערות נוספות" required >
+        <label class="to-the-right col-3"><h4 class="service-description">הערות נוספות</h4></label>
+        <input id="comment" name="comment" type="text" maxlength="100" class="col-9 form-control" placeholder="שם המטעין והערות נוספות" >
 
         </input>
+        @if ($errors->has('comment'))
+            <span class="invalid-feedback" style="display: block !important; text-align: center">
+                    <strong>אנא הקלידו הערה תקינה. בלי תווים מיוחדים ועד 100 תווים</strong>
+                </span>
+        @endif
     </div>
     <br>
     <div class="container">

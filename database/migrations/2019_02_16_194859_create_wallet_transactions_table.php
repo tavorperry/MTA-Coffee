@@ -18,7 +18,7 @@
                 $table->double("amount");
                 $table->double("new_balance");
                 $table->integer("station_id")->unsigned()->nullable();
-                $table->string('comment')->nullable();
+                $table->string('comment','255')->nullable();
                 $table->timestamps();
                 $table->foreign('wallet_id')->references('id')->on('users_wallets')->onDelete('cascade');
                 $table->foreign('station_id')->references('id')->on('stations')->onDelete('cascade');;

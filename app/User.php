@@ -140,4 +140,7 @@ class User extends Authenticatable
         return $wallet;
     }
 
+    public static function getUserByEmail($email){
+        return User::where('email',$email) -> first();
+    }
 }
