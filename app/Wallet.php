@@ -19,6 +19,7 @@ class Wallet extends Model
 
     public function __construct(array $attributes = [])
     {
+        log::info("Creating new Wallet. attributes: ".serialize($attributes));
         $this->table = 'users_wallets';
         parent::__construct($attributes);
        // $this->balance = 0;
@@ -56,6 +57,7 @@ class Wallet extends Model
      */
 
     public function deposit($amount, $comment = "No Comment!"){
+        log::info("Starting deposit() for wallat: ".$this);
         DB::beginTransaction();
         try{
             $this->balance += $amount;
@@ -70,10 +72,35 @@ class Wallet extends Model
             $transaction->save();
 
             DB::commit();
+            log::info("deposit succeed for: ".$amount." ILS");
             return true;
         }catch (Exception $e){
             DB::rollback();
-            Log::error("Failed to deposit. user ".$this->user_id . " Exception: " .$e);
+            Log::error("Failed to deposit. user ".$this->user_id . " Exception: " .$e->getMessage());
+            return false;
+        }
+    }
+
+    public function logTransaction($amount, $comment, $wallet)
+    {
+        log::info("Starting logTransaction() for Wallet: ".$wallet);
+        DB::beginTransaction();
+        try {
+            $transaction = new Transaction([
+                'transaction_type' => 'deposit',
+                'amount' => $amount,
+                'comment' => $comment,
+                'wallet_id' => $wallet->id,
+                'new_balance' => $wallet->balance(),
+            ]);
+            $transaction->save();
+
+            DB::commit();
+            log::info("Exit logTransaction() for Wallet: ");
+            return true;
+        } catch (Exception $e) {
+            DB::rollback();
+            Log::error("Failed to create Transaction. Wallet: " . $wallet->id . " Exception: " . $e->getMessage());
             return false;
         }
     }
@@ -118,7 +145,7 @@ class Wallet extends Model
                 return true;
             }catch (Exception $e){
                 DB::rollback();
-                Log::error("Failed to pay. user ".$this->user_id ." Exception: " .$e);
+                Log::error("Failed to pay. user ".$this->user_id ." Exception: " .$e->getMessage());
                 return false;
             }
         }
@@ -152,7 +179,7 @@ class Wallet extends Model
                 return true;
             }catch (Exception $e){
                 DB::rollback();
-                Log::error("Failed to transfer money to user " .$toUser ." Exception: " .$e);
+                Log::error("Failed to transfer money to user " .$toUser ." Exception: " .$e->getMessage());
             }
         }
         return false;

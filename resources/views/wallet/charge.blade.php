@@ -33,7 +33,7 @@
     <br>
     <div class="row">
         <label class="to-the-right col-3"><h4 class="service-description">הערות נוספות</h4></label>
-        <input id="comment" name="comment" type="text" maxlength="100" class="col-9 form-control" placeholder="שם המטעין והערות נוספות" >
+        <input id="comment" name="comment" type="text" maxlength="100" class="col-9 form-control" placeholder="הערות נוספות" >
 
         </input>
         @if ($errors->has('comment'))

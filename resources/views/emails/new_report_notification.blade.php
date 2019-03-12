@@ -296,10 +296,10 @@
                                          <h2 style="margin: 0 0 10px; font-size: 15px; line-height: 125%; color: #333333; font-weight: normal;"><u>איך לטפל בדיווח?</u></h2>
                                         <h4>בכל עמדה צריך להיות מיכל עם מגבונים וגליל נייר כדי לשמור על ניקיון העמדה. </h4>
                                     @endif
-                                   <h3>לכל שאלה ניתן לפנות לאורי ששו - רכז קפה אמון בטלפון <a href="tel:052-8477546">052-8477546</a> </h3>
+                                   <h3>לכל שאלה ניתן לפנות ל{{env('Kafe_Emun_Manager')}} -  בטלפון <a href="{{env('Kafe_Emun_Manager_Phone')}}">{{env('Kafe_Emun_Manager_Phone')}}</a> </h3>
                                 <tr>
                                     <td>
-                                        <h3><a href="https://api.whatsapp.com/send?phone=972528477546"> או בוואטסאפ:<img src="{{env('APP_URL')}}/images/WhatsApp_NEW_Logo.png" height="35px" height="35px"> </a></h3>
+                                        <h3><a href="https://api.whatsapp.com/send?phone=972528477546"> או בוואטסאפ:<img src="tel:{{env('APP_URL')}}/images/WhatsApp_NEW_Logo.png" height="35px" height="35px"> </a></h3>
                                     </td>
                                 </tr>
 
