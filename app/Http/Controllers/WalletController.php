@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Wallet;
+use http\Exception;
 use Illuminate\Http\Request;
 use Auth;
 use Alert;
@@ -87,37 +88,40 @@ class WalletController extends Controller
             'tz' =>['string','required','max:9', 'min:9'],
         ]);
 
-        $user = Auth::user();
-        //Collect attributes from the form
-        $amount = $request->get('amount');
-        $creditCardNumber = $request->get('creditCardNumber');
-        $month = $request->get('month');
-        $year = $request->get('year');
-        $cvv = $request->get('cvv');
-        $comment = $request->get('comment');
-        $tz = $request->get('tz');
+        try {
+            $user = Auth::user();
+            //Collect attributes from the form
+            $amount = $request->get('amount');
+            $creditCardNumber = $request->get('creditCardNumber');
+            $month = $request->get('month');
+            $year = $request->get('year');
+            $cvv = $request->get('cvv');
+            $comment = $request->get('comment');
+            $tz = $request->get('tz');
 
-        $email = $user->email;
+            $email = $user->email;
 
-        $response = $this->chargeCreditCard($amount,$creditCardNumber,$month,$year,$cvv,$comment,$tz);
-        $newComment = $comment.". ".$response[7].", ".$response[17].", ".$response[20];
+            $response = $this->chargeCreditCard($amount, $creditCardNumber, $month, $year, $cvv, $comment, $tz);
+            $newComment = $comment . ". " . $response[7] . ", " . $response[17] . ", " . $response[20];
 
-        if($response[0]== 'Code=000'){
-            if(env('APP_ENV') == 'production' && $response[1] != "CardNumber=0000") //if this is PRODUCTION, do not allow test cards.
-                $user->wallet->deposit($amount, $newComment);
-            else if(env('APP_ENV') != 'production' && $response[1] == "CardNumber=0000")
-                $user->wallet->deposit($amount, $newComment);
-            else {
-                log::critical("Someone trying to use the test Card!!!! User: " . $email.". ".$response[1]);
-                return back();
+            if ($response[0] == 'Code=000') {
+                if (env('APP_ENV') == 'production' && $response[1] != "CardNumber=0000") //if this is PRODUCTION, do not allow test cards.
+                    $user->wallet->deposit($amount, $newComment);
+                else if (env('APP_ENV') != 'production' && $response[1] == "CardNumber=0000")
+                    $user->wallet->deposit($amount, $newComment);
+                else {
+                    log::critical("Someone trying to use the test Card!!!! User: " . $email . ". " . $response[1]);
+                    return back();
+                }
+                $newComment = $comment . ". " . substr($response[20], 10, strlen($response[20]));
+            } else {
+                log::warning("Failed to confirmCreditCardCharge(). newComment: " . $newComment);
             }
-            $newComment = $comment.". ".substr($response[20],10, strlen($response[20]));
+            log::info("Exit confirmCreditCardCharge(). Comment: " . $newComment);
+            return back()->with(['message' => true, 'comment' => $newComment, 'amount' => $amount, 'email' => $email]);
+        }catch (Exception $e){
+            log::warning("Failed to confirmCreditCardCharge(). Exception: " .$e->getMessage());
         }
-        else{
-            log::warning("Failed to confirmCreditCardCharge(). newComment: ".$newComment);
-        }
-        log::info("Exit confirmCreditCardCharge(). Comment: ".$newComment);
-        return back()->with(['message' => true, 'comment' => $newComment, 'amount' => $amount, 'email' => $email]);
     }
 
     protected function validator($data)
