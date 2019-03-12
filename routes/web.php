@@ -66,3 +66,5 @@ Route::post('profile/deactivation', 'ProfileController@deactivation')->name('pro
 //Wallet
 Route::get('wallet/charge', 'WalletController@manualCharge')->name('wallet.manualCharge')->middleware('auth');
 Route::post('wallet/charge', 'WalletController@confirmCharge')->name('wallet.confirmCharge')->middleware('auth');
+Route::get('wallet/creditCardCharge', 'WalletController@CreditCardCharge')->name('wallet.manualCreditCardCharge')->middleware('auth');
+Route::post('wallet/creditCardCharge', 'WalletController@confirmCreditCardCharge')->name('wallet.confirmCreditCardCharge')->middleware('auth');

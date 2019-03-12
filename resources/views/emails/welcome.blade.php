@@ -278,7 +278,7 @@
                             </ul>
                             <br>
                             <p>
-                            <h3>לכל שאלה ניתן לפנות לאורי ששו - רכז קפה אמון בטלפון <a href="tel:052-8477546">052-8477546</a> </h3>
+                            <h3>לכל שאלה ניתן לפנות {{env('Kafe_Emun_Manager')}} בטלפון <a href="tel:{{env('Kafe_Emun_Manager_Phone')}}">{{env('Kafe_Emun_Manager_Phone')}}</a> </h3>
                             </h3>
                         <tr>
                             <td>
