@@ -11,7 +11,6 @@ use Alert;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
-use soapclient;
 use Validator;
 use Illuminate\Support\Facades\DB;
 
@@ -21,7 +20,7 @@ class WalletController extends Controller
         log::info("Starting chargeCreditCard()");
 
         $wsdl = "https://secure.e-c.co.il/Service/Service.asmx?wsdl";
-        $client = new soapclient($wsdl);
+        $client = new \SoapClient($wsdl);
 
         $postArray = array('ClientID' => env('EasyCard_ClientID'), 'Password' => env('EasyCard_Password'), 'CardNumber' => $creditCardNumber, 'ActionMethod' => '00', 'ValMonth' => $month, 'ValYear' => $year, 'TotalSum' => $amount, 'CVV' => $cvv, 'PayNumber' => '1', 'TZ' => $tz, 'DealType' => '1', 'MType' => '1', 'Opt' => '01', 'Note' => $comment);
 
