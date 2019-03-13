@@ -161,7 +161,7 @@
     <br>
     <div class="container">
         <div class="text-center">
-            @if(env('APP_ENV' != 'local'))
+            @if(env('APP_ENV') != 'local'))
                 {!! app('captcha')->render(); !!}
             @endif
             <button type="submit" class="btn login-btn" value="דווח!">הטען!</button>
