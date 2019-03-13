@@ -161,10 +161,15 @@
     <br>
     <div class="container">
         <div class="text-center">
-            @if(env('APP_ENV') != 'local'))
+            @if(env('APP_ENV') == 'local')
                 {!! app('captcha')->render(); !!}
             @endif
             <button type="submit" class="btn login-btn" value="דווח!">הטען!</button>
+                @if ($errors->has('g-recaptcha-response'))
+                    <span class="invalid-feedback" style="display: block !important; text-align: center">
+                    <strong>g-recaptcha-response</strong>
+                </span>
+                @endif
         </div>
     </div>
     {!! Form::close() !!}
