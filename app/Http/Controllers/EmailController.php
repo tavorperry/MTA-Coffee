@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use http\Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
 
@@ -44,5 +46,18 @@ class EmailController extends Controller
         } catch (\Exception $exception) {
             return report($exception);
         }
+    }
+
+    public static function sendErrorMessage($message){
+        log::info("Starting sendErrorMessage()");
+        try {
+            Mail::send('emails.error_email', ['errorMessage' => $message], function ($m) {
+                $m->from(env('EMAIL_FROM'), 'קפה אמון');
+                $m->to('tavorp12@gmail.com')->subject('שגיאה בפרודקשן!!!!');
+            });
+        }catch (Exception $e){
+            Log::notice("sendErrorMessage Failed! Exception: ".$e->getMessage());
+        }
+        log::info("Exit sendErrorMessage()");
     }
 }
