@@ -130,6 +130,7 @@ class Wallet extends Model
      * @return boolean
      */
     public function pay($amount, $comment="No Comment!", $station){
+        log::info("Starting pay()");
         if($this->isEnoughBalance($amount)){
             DB::beginTransaction();
             try{
@@ -149,6 +150,7 @@ class Wallet extends Model
                 return false;
             }
         }
+        log::info("Exit pay()");
         return false;
     }
 

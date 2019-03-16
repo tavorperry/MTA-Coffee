@@ -18,7 +18,7 @@ class WalletController extends Controller
 {
     private function chargeCreditCard($amount,$creditCardNumber,$month,$year,$cvv,$comment,$tz){
         log::info("Starting chargeCreditCard()");
-
+    try {
         $wsdl = "https://secure.e-c.co.il/Service/Service.asmx?wsdl";
         $client = new \SoapClient($wsdl);
 
@@ -26,8 +26,10 @@ class WalletController extends Controller
 
         $response = $client->DoDeal($postArray);
 
-        $linesArray = explode("&",$response->DoDealResult);
-
+        $linesArray = explode("&", $response->DoDealResult);
+    }   catch (Exception $e){
+        log::error("Failed to chargeCreditCard!!!"." Exception: ".$e->getMessage());
+    }
         log::info("Exit chargeCreditCard()");
         return $linesArray;
     }
@@ -86,6 +88,7 @@ class WalletController extends Controller
             'cvv' => ['string','required','max:3','min:3'],
             'tz' =>['string','required','max:9', 'min:9'],
         ]);
+        log::debug("Validator Pass. Starting to collect input from form");
 
         try {
             $user = Auth::user();
