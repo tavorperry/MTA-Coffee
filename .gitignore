@@ -4,6 +4,7 @@
 /public/storage
 /storage/*.key
 /vendor
+!/vendor/laravel/framework/src/Illuminate/Log/Logger.php
 /.idea
 /.vscode
 /.vagrant
