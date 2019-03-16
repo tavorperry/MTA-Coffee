@@ -42,8 +42,9 @@ Route::get('NotificationController@countNew')->name('count')->middleware('auth')
 //Unsubscribe
 Route::get('notifications/unsubscribe/{user_id}', 'EmailController@unsubscribe')->name('Emails.unsubscribe');
 
-//View Logs
-Route::get(env('LOG_PATH'), '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+//Logs
+Route::get(env('LOG_PATH'), '\Rap2hpoutre\LaravelLogViewer\LogViewerController@getLogsPasswordView');
+Route::post(env('LOG_PATH'), '\Rap2hpoutre\LaravelLogViewer\LogViewerController@confirmLogsPassword')->name('enterLogs');
 
 //Terms
 Route::get('/terms', function () {
