@@ -4,7 +4,6 @@
 /public/storage
 /storage/*.key
 /vendor
-!/vendor/laravel/framework/src/Illuminate/Log/Logger.php
 /.idea
 /.vscode
 /.vagrant
@@ -16,3 +15,5 @@ yarn-error.log
 env
 config/services.php
 config/session.php
+!/vendor/rap2hpoutre/laravel-log-viewer/src/controllers/LogViewerController.php
+!/vendor/laravel/framework/src/Illuminate/Log/Logger.php
