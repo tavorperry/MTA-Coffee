@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\CreditCardTransaction;
 use App\User;
 use App\Wallet;
 use http\Exception;
 use Illuminate\Http\Request;
 use Auth;
 use Alert;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Validator;
-use Illuminate\Support\Facades\DB;
 
 class WalletController extends Controller
 {
     private function chargeCreditCard($amount,$creditCardNumber,$month,$year,$cvv,$comment,$tz){
         log::info("Starting chargeCreditCard()");
+        $creditCardTransactionObject = new CreditCardTransaction();
     try {
         $wsdl = "https://secure.e-c.co.il/Service/Service.asmx?wsdl";
         $client = new \SoapClient($wsdl);
@@ -25,13 +25,37 @@ class WalletController extends Controller
         $postArray = array('ClientID' => env('EasyCard_ClientID'), 'Password' => env('EasyCard_Password'), 'CardNumber' => $creditCardNumber, 'ActionMethod' => '00', 'ValMonth' => $month, 'ValYear' => $year, 'TotalSum' => $amount, 'CVV' => $cvv, 'PayNumber' => '1', 'TZ' => $tz, 'DealType' => '1', 'MType' => '1', 'Opt' => '01', 'Note' => $comment);
 
         $response = $client->DoDeal($postArray);
-
         $linesArray = explode("&", $response->DoDealResult);
+
+        foreach($linesArray as $key => $val)
+        {
+            $keyValArray = explode("=", $val);
+
+            if ($keyValArray [0] == "Code") { $creditCardTransactionObject->Code = $keyValArray[1]; }
+            if ($keyValArray [0] == "ErrorDesc") { $creditCardTransactionObject->ErrorDesc = $keyValArray[1]; }
+            if ($keyValArray [0] == "DealNumber") { $creditCardTransactionObject->DealNumber = $keyValArray[1]; }
+            if ($keyValArray [0] == "AuthNum") { $creditCardTransactionObject->AuthNum = $keyValArray[1]; }
+            if ($keyValArray [0] == "ManpikID") { $creditCardTransactionObject->ManpikID = $keyValArray[1]; }
+            if ($keyValArray [0] == "CardNumber") { $creditCardTransactionObject->CardNumber = $keyValArray[1]; }
+            if ($keyValArray [0] == "PayDate") { $creditCardTransactionObject->PayDate = $keyValArray[1]; }
+            if ($keyValArray [0] == "Terminal") { $creditCardTransactionObject->Terminal = $keyValArray[1]; }
+            if ($keyValArray [0] == "DealID") { $creditCardTransactionObject->DealID = $keyValArray[1]; }
+            if ($keyValArray [0] == "DealType") { $creditCardTransactionObject->DealType = $keyValArray[1]; }
+            if ($keyValArray [0] == "DealTypeOut") { $creditCardTransactionObject->DealTypeOut = $keyValArray[1]; }
+            if ($keyValArray [0] == "OkNumber") { $creditCardTransactionObject->OkNumber = $keyValArray[1]; }
+            if ($keyValArray [0] == "DealDate") { $creditCardTransactionObject->DealDate = $keyValArray[1]; }
+            if ($keyValArray [0] == "TotalSum") { $creditCardTransactionObject->TotalSum = $keyValArray[1]; }
+            if ($keyValArray [0] == "CardName") { $creditCardTransactionObject->CardName = $keyValArray[1]; }
+            if ($keyValArray [0] == "CardNameID") { $creditCardTransactionObject->CardNameID = $keyValArray[1]; }
+            if ($keyValArray [0] == "MutagID") { $creditCardTransactionObject->MutagID = $keyValArray[1]; }
+        }
+
     }   catch (Exception $e){
         log::error("Failed to chargeCreditCard!!!"." Exception: ".$e->getMessage());
     }
         log::info("Exit chargeCreditCard()");
-        return $linesArray;
+
+        return $creditCardTransactionObject;
     }
 
     public function manualCharge()
@@ -78,10 +102,10 @@ class WalletController extends Controller
 
     public function confirmCreditCardCharge(Request $request){
         log::info("Starting confirmCreditCardCharge()");
+        $isDepositSucceed = false;
         $validateData = $request->validate([
             'amount' => ['required', 'integer', 'min:' . env('MINIMUM_AMOUNT_TO_MANUALLY_CHARGE'), 'max:' . env("MAXIMUM_AMOUNT_TO_MANUALLY_CHARGE")],
             'comment' => ['string', 'max:50','nullable'],
-            'g-recaptcha-response' => ['required', 'captcha'],
             'creditCardNumber' => ['string','required','max:16','min:16'],
             'month' => ['string','required','max:2','min:2'],
             'year' => ['string','required','max:2','min:2'],
@@ -92,6 +116,7 @@ class WalletController extends Controller
 
         try {
             $user = Auth::user();
+            $email = $user->email;
             //Collect attributes from the form
             $amount = $request->get('amount');
             $creditCardNumber = $request->get('creditCardNumber');
@@ -101,28 +126,37 @@ class WalletController extends Controller
             $comment = $request->get('comment');
             $tz = $request->get('tz');
 
-            $email = $user->email;
-
+            //Charge the credit card
             $response = $this->chargeCreditCard($amount, $creditCardNumber, $month, $year, $cvv, $comment, $tz);
-            $newComment = $comment . ". " . $response[7] . ", " . $response[17] . ", " . $response[20];
+            //Save the credit card transaction
+            $response->user = $user->id;
+            $creditCardTransactionId = CreditCardTransaction::saveObjectToDB($response);
 
-            if ($response[0] == 'Code=000') {
-                if (env('APP_ENV') == 'production' && $response[1] != "CardNumber=0000") //if this is PRODUCTION, do not allow test cards.
-                    $user->wallet->deposit($amount, $newComment);
-                else if (env('APP_ENV') != 'production' && $response[1] == "CardNumber=0000")
-                    $user->wallet->deposit($amount, $newComment);
+            $commentToSaveInDBAndLogs = "Code: ".$response->Code.". "."CardNumber: ".$response->CardNumber."ErrorDesc: ".$response->ErrorDesc."AuthNum: ".$response->AuthNum.". Comment: ".$comment . ". ";
+
+            if ($response->Code == '000') {
+                if (env('APP_ENV') == 'production' && $response->CardNumber != "0000") //if this is PRODUCTION, do not allow test cards.
+                    $isDepositSucceed = $user->wallet->deposit($amount, $commentToSaveInDBAndLogs, $creditCardTransactionId);
+                else if (env('APP_ENV') != 'production' && $response->CardNumber == "0000")
+                    $isDepositSucceed = $user->wallet->deposit($amount, $commentToSaveInDBAndLogs, $creditCardTransactionId);
                 else {
                     log::critical("Someone trying to use the test Card!!!! User: " . $email . ". " . $response[1]);
                     return back();
                 }
-                $newComment = $comment . ". " . substr($response[20], 10, strlen($response[20]));
+                if ($isDepositSucceed)
+                    log::info("Deposit Succeed! User: ".$email);
+                else
+                    log::error("Deposit Failed! User: ".$email);
             } else {
-                log::warning("Failed to confirmCreditCardCharge(). newComment: " . $newComment);
+                log::warning("Failed to charge credit card. commentToSaveInDBAndLogs: " . $commentToSaveInDBAndLogs);
             }
-            log::info("Exit confirmCreditCardCharge(). Comment: " . $newComment);
-            return back()->with(['message' => true, 'comment' => $newComment, 'amount' => $amount, 'email' => $email]);
+
+            $currentBalance = $user->wallet->balance();
+            log::info("Exit confirmCreditCardCharge(). commentToSaveInDBAndLogs: " . $commentToSaveInDBAndLogs);
+            return back()->with(['message' => true, 'Code' => $response->Code, 'isDepositSucceed' =>$isDepositSucceed, 'comment' => $comment, 'ErrorDesc' => $response->ErrorDesc, 'amount' => $amount, 'email' => $email, 'currentBalance' => $currentBalance]);
         }catch (Exception $e){
-            log::warning("Failed to confirmCreditCardCharge(). Exception: " .$e->getMessage());
+            log::error("Failed to confirmCreditCardCharge() .Exception: " .$e->getMessage());
+            return route('home');
         }
     }
 

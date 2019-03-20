@@ -10,11 +10,26 @@
         $email = session()->get('email');
         $amount = session()->get('amount');
         $comment = session()->get('comment');
+        $errorDesc = session()->get('ErrorDesc');
+        $currentBalance = session()->get('currentBalance');
+        $isDepositSucceed = session()->get('isDepositSucceed');
+        $code = session()->get('Code');
         $user = App\User::getUserByEmail($email);
         $first_name = $user->first_name;
         $last_name = $user->last_name;
         $chargerUser = Illuminate\Support\Facades\Auth::user();
         ?>
+        @if(!$isDepositSucceed && $code == '000')
+            <h2 style="color: black">
+                חיוב בוצע אך טעינה נכשלה!!!
+                <br>
+                אנא צלם הודעה זו ופנה למנהלי מערכת קפה אמון לצורך בירור וזיכוי!
+                <br>
+                תודה וסליחה על אי הנעימות
+                <br>
+                {{$email}}
+            </h2>
+        @else
         <div class="container">
             <div class="row justify-content-center position-relative" style="bottom:30px">
                 <div class="col-md-8">
@@ -24,7 +39,7 @@
                             <table>
                                 <tr style="width: 100%">
                                     <td style="width: 30%">
-                                        שם הסטודנט:
+                                        שם:
                                     </td>
                                     <td style="width: 69%">
                                         <span style="color: limegreen">
@@ -33,11 +48,11 @@
                                     </td>
                                 <tr>
                                     <td>
-                                        סכום הטענה:
+                                        סכום:
                                     </td>
                                     <td>
                                     <span style="color: limegreen">
-                                        {{$amount}}
+                                        {{$amount}} ש"ח
                                         </span>
                                     </td>
                                 <tr>
@@ -50,10 +65,31 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        הערה נוספת:
+                                        סטטוס:
+                                    </td>
+                                    <td>
+                                        @if($code == '000')
+                                            <span style="color: limegreen">{{$errorDesc}}</span>
+                                        @else
+                                            <span style="color: red"> לא בוצע חיוב! {{$errorDesc}}</span>
+                                        @endif
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        הערה:
                                     </td>
                                     <td>
                                         <span style="color: limegreen"> {{$comment}}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        יתרה מעודכנת:
+                                    </td>
+                                    <td>
+                                        <span style="color: limegreen"> {{$currentBalance}} ש"ח </span>
                                     </td>
                                 </tr>
                             </table>
@@ -64,6 +100,7 @@
                 </div>
             </div>
         </div>
+        @endif
         @else
     {{ Form::open(['route' => ['wallet.confirmCreditCardCharge']])}}
     @csrf
@@ -174,6 +211,7 @@
     </div>
     {!! Form::close() !!}
     @endif
+
 
 @endsection
 

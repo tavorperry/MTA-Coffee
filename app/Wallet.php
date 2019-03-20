@@ -19,7 +19,6 @@ class Wallet extends Model
 
     public function __construct(array $attributes = [])
     {
-        log::info("Creating new Wallet. attributes: ".serialize($attributes));
         $this->table = 'users_wallets';
         parent::__construct($attributes);
        // $this->balance = 0;
@@ -56,8 +55,8 @@ class Wallet extends Model
      * @return boolean
      */
 
-    public function deposit($amount, $comment = "No Comment!"){
-        log::info("Starting deposit() for wallat: ".$this);
+    public function deposit($amount, $comment = "No Comment!", $creditCardTransactionId = null){
+        log::info("Starting deposit() for wallet: ".$this);
         DB::beginTransaction();
         try{
             $this->balance += $amount;
@@ -68,6 +67,7 @@ class Wallet extends Model
                 'comment'          => $comment,
                 'wallet_id'        => $this->id,
                 'new_balance'      => $this->balance(),
+                'credit_card_transaction' => $creditCardTransactionId,
             ]);
             $transaction->save();
 
