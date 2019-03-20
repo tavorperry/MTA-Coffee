@@ -43,10 +43,10 @@ class SocialLoginController extends Controller
                 Auth::login($user, true);
                 return redirect()->back();
             } else {
-                log::debug("User is NOT registered. collect user attributes, save in DB, notify by email and redirect back");
+                log::debug("User is NOT registered. starting to collect user attributes");
                 $user = new User;
-                $user->first_name = $socialUser->user['name']['givenName'];
-                $user->last_name = $socialUser->user['name']['familyName'];
+                $user->first_name = $socialUser->user['given_name'];
+                $user->last_name = $socialUser->user['family_name'];
                 $user->email = $socialUser->getEmail();
                 $user->secret_token = str_random(32);
                 $user->save();
@@ -62,7 +62,7 @@ class SocialLoginController extends Controller
                 try {
                     EmailController::SendWelcomeEmail($user, $user->email);
                 }catch (Exception $e){
-                    log::error("Failed to send WelcomeEmail");
+                    log::error("Failed to send WelcomeEmail. Exception: ".$e->getMessage());
                 }
                 //Send notification to Tavor and Xenia
                 if (env('NOTIFY_XENIA'))
