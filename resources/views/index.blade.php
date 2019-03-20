@@ -20,7 +20,12 @@
                 @endfor
             @endif
         </div>
-        <h3>נקודות:&nbsp;{{ $auth_user->points }}</h3>
+        <h5 style="color: white">נקודות:&nbsp;{{ $auth_user->points }}</h5>
+        <h1>יתרה בארנק הדיגיטלי:
+            <span @if($auth_user->wallet->balance() <= 0) style="color:red" @endif>
+            {{$auth_user->wallet->balance()}} ש"ח
+            </span>
+        </h1>
     @else
         <h1>קפה אמון</h1>
         <h3>חזק, על בסיס אמון</h3>
