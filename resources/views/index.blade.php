@@ -48,8 +48,10 @@
             </a>
         </div>
         <div class="row">
-            <a href="{{ route('report.view.all') }}" class="btn menu-btn col"><i class="far fa-envelope menu-btn-icon"></i><br>
-                כל הדיווחים
+            <a href="{{ route('wallet.confirmCreditCardCharge') }}" class="btn menu-btn col"><i class="fas fa-money-check-alt menu-btn-icon"></i><br>
+                הטענת ארנק
+                <br>
+                דיגיטלי
             </a>
             <a href="{{ route('station') }}" class="btn menu-btn col"><i class="far fa-calendar-alt menu-btn-icon"></i><br>
                 התנדבות

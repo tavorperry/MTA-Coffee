@@ -5,7 +5,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Assistant" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
@@ -43,6 +43,9 @@
             </li>
             <li class="sidebar-nav-item part-of-nav">
                 <a class="js-scroll-trigger part-of-nav" href="{{ route('profile') }}">הפרופיל שלי</a>
+            </li>
+            <li class="sidebar-nav-item part-of-nav">
+                <a class="js-scroll-trigger part-of-nav" href="{{ route('wallet.confirmCreditCardCharge') }}">הטענת ארנק</a>
             </li>
             <li class="sidebar-nav-item part-of-nav">
                 <a class="js-scroll-trigger part-of-nav" href="{{ route('reports.create') }}">דיווח על תקלה</a>
