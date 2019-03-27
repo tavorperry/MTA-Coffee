@@ -262,7 +262,7 @@
                             <div style="padding: 40px 40px 20px; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555;">
                             <tr>
                                 <td align="center" style="background-color: #ffffff;">
-                                    <img src="{{env('APP_URL')}}/images/logo1.png" width="100px" height="100px" alt="logo_pic!" border="0" align="center" style="width: 50%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555; margin: auto;" class="g-img">
+                                    <img src="{{env('PRD_URL')}}/images/logo1.png" width="100px" height="100px" alt="logo_pic!" border="0" align="center" style="width: 50%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555; margin: auto;" class="g-img">
                                 </td>
                             </tr>
                         <br>
@@ -282,7 +282,7 @@
                             </h3>
                         <tr>
                             <td>
-                                <h3><a href="https://api.whatsapp.com/send?phone=972528477546"> או בוואטסאפ:<img src="{{env('APP_URL')}}/images/WhatsApp_NEW_Logo.png" height="35px" height="35px"> </a></h3>
+                                <h3><a href="https://api.whatsapp.com/send?phone=972528477546"> או בוואטסאפ:<img src="{{env('PRD_URL')}}/images/WhatsApp_NEW_Logo.png" height="35px" height="35px"> </a></h3>
                             </td>
                         </tr>
                             </div>
@@ -325,7 +325,7 @@
                 <br><br>
                 אגודת הסטודנטים<br><span class="unstyle-auto-detected-links">רבנו ירוחם 12, תל אביב<br><a href="tel:03-9292929">03-9292929</a></span>
                 <br><br>
-                <a href="{{env('APP_URL')}}/notifications/unsubscribe/{{$user->secret_token}}"> <unsubscribe style="color: #888888; text-decoration: underline;">unsubscribe</unsubscribe> </a>
+                <a href="{{env('PRD_URL')}}/notifications/unsubscribe/{{$user->secret_token}}"> <unsubscribe style="color: #888888; text-decoration: underline;">unsubscribe</unsubscribe> </a>
             </td>
         </tr>
     </table>

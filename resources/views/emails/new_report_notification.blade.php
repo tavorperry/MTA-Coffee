@@ -252,7 +252,7 @@
         <!-- Hero Image, Flush : BEGIN -->
         <tr>
             <td align="center" style="background-color: #ffffff;">
-                <img src="{{env('APP_URL')}}/images/logo1.png" width="100%" height="" alt="logo_pic!" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555; margin: auto;" class="g-img">
+                <img src="{{env('PRD_URL')}}/images/logo1.png" width="100%" height="" alt="logo_pic!" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555; margin: auto;" class="g-img">
             </td>
         </tr>
         <!-- Hero Image, Flush : END -->
@@ -299,7 +299,7 @@
                                    <h3>לכל שאלה ניתן לפנות ל{{env('Kafe_Emun_Manager')}} -  בטלפון <a href="{{env('Kafe_Emun_Manager_Phone')}}">{{env('Kafe_Emun_Manager_Phone')}}</a> </h3>
                                 <tr>
                                     <td>
-                                        <h3><a href="https://api.whatsapp.com/send?phone=972528477546"> או בוואטסאפ:<img src="tel:{{env('APP_URL')}}/images/WhatsApp_NEW_Logo.png" height="35px" height="35px"> </a></h3>
+                                        <h3><a href="https://api.whatsapp.com/send?phone=972528477546"> או בוואטסאפ:<img src="tel:{{env('PRD_URL')}}/images/WhatsApp_NEW_Logo.png" height="35px" height="35px"> </a></h3>
                                     </td>
                                 </tr>
 
@@ -313,7 +313,7 @@
                                 <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" style="margin: auto;">
                                     <tr>
                                         <td class="button-td button-td-primary" style="border-radius: 4px; background: #222222;">
-                                            <a class="button-a button-a-primary" href="{{env('APP_URL')}}/reports/view/{{$report->id}}" style="background: #9A59B5; border: 1px solid #000000; font-family: sans-serif; font-size: 15px; line-height: 15px; text-decoration: none; padding: 13px 17px; display: block; border-radius: 4px;"><span class="button-link" style="color:#ffffff">מעבר לדיווח!</span></a>
+                                            <a class="button-a button-a-primary" href="{{env('PRD_URL')}}/reports/view/{{$report->id}}" style="background: #9A59B5; border: 1px solid #000000; font-family: sans-serif; font-size: 15px; line-height: 15px; text-decoration: none; padding: 13px 17px; display: block; border-radius: 4px;"><span class="button-link" style="color:#ffffff">מעבר לדיווח!</span></a>
                                         </td>
                                     </tr>
                                 </table>
@@ -344,7 +344,7 @@
                 <br><br>
                 אגודת הסטודנטים<br><span class="unstyle-auto-detected-links">רבנו ירוחם 12, תל אביב<br><a href="tel:03-9292929">03-9292929</a></span>
                 <br><br>
-                <a href="{{env('APP_URL')}}/notifications/unsubscribe/{{$user->secret_token}}"> <unsubscribe style="color: #888888; text-decoration: underline;">unsubscribe</unsubscribe> </a>
+                <a href="{{env('PRD_URL')}}/notifications/unsubscribe/{{$user->secret_token}}"> <unsubscribe style="color: #888888; text-decoration: underline;">unsubscribe</unsubscribe> </a>
             </td>
         </tr>
     </table>
