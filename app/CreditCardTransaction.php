@@ -2,6 +2,7 @@
 
 namespace App;
 
+use http\Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
 
@@ -16,7 +17,7 @@ class CreditCardTransaction extends Model
         try {
             $isSaved = $creditCardTransactionObject->save();
         }catch (Exception $e){
-            Log::error("saveObjectToDB Faild! EXcpetion: ".$e->getMessage());
+            Log::error("saveObjectToDB Failed! Excpetion: ".$e->getMessage());
         }
         if ($isSaved) {
             Log::info("creditCardTransactionObject successfully saved!");
