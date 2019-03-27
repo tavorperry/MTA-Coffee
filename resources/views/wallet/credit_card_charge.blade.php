@@ -38,10 +38,10 @@
                         <div class="card-body container">
                             <table>
                                 <tr style="width: 100%">
-                                    <td style="width: 30%">
+                                    <td style="width: 40%">
                                         שם:
                                     </td>
-                                    <td style="width: 69%">
+                                    <td style="width: 59%">
                                         <span style="color: limegreen">
                                             {{$first_name}} {{$last_name}}
                                 </span>
@@ -105,8 +105,8 @@
     {{ Form::open(['route' => ['wallet.confirmCreditCardCharge']])}}
     @csrf
     <div class="row">
-        <label class="to-the-right col-3"><h4 class="service-description">סכום להטענה</h4></label>
-        <input id="amount" name="amount" type="number" class="col-9 form-control{{ $errors->has('amount') ? ' is-invalid' : '' }}" value="{{ old('amount') }}" min="{{env("MINIMUM_AMOUNT_TO_MANUALLY_CHARGE")}}" max="{{env('MAXIMUM_AMOUNT_TO_MANUALLY_CHARGE')}}" required placeholder="סכום להטענה">
+        <label class="to-the-right col-4"><h4 class="service-description">סכום להטענה</h4></label>
+        <input id="amount" name="amount" type="number" class="col-8 form-control{{ $errors->has('amount') ? ' is-invalid' : '' }}" value="{{ old('amount') }}" min="{{env("MINIMUM_AMOUNT_TO_MANUALLY_CHARGE")}}" max="{{env('MAXIMUM_AMOUNT_TO_MANUALLY_CHARGE')}}" required placeholder="סכום להטענה">
         </input>
         @if ($errors->has('amount'))
             <span class="invalid-feedback" style="display: block !important; text-align: center">
@@ -114,10 +114,9 @@
                 </span>
         @endif
     </div>
-    <br>
     <div class="row">
-        <label class="to-the-right col-3"><h4 class="service-description">מספר כרטיס אשראי</h4></label>
-        <input id="creditCardNumber" name="creditCardNumber" type="text" class="col-9 form-control{{ $errors->has('creditCardNumber') ? ' is-invalid' : '' }}" value="{{ old('creditCardNumber') }}" required placeholder="מספר כרטיס אשראי" maxlength="16" minlength="16">
+        <label class="to-the-right col-4"><h4 class="service-description">מספר כרטיס אשראי</h4></label>
+        <input id="creditCardNumber" name="creditCardNumber" type="text" class="col-8 form-control{{ $errors->has('creditCardNumber') ? ' is-invalid' : '' }}" value="{{ old('creditCardNumber') }}" required placeholder="מספר כרטיס אשראי" maxlength="16" minlength="16">
         </input>
         @if ($errors->has('creditCardNumber'))
             <span class="invalid-feedback" style="display: block !important; text-align: center">
@@ -126,8 +125,8 @@
         @endif
     </div>
     <div class="row">
-        <label class="to-the-right col-3"><h4 class="service-description">חודש</h4></label>
-        <select id="month" name="month" class="col-9 form-control{{ $errors->has('month') ? ' is-invalid' : '' }}" value="{{ old('month') }}" required>
+        <label class="to-the-right col-4"><h4 class="service-description">חודש</h4></label>
+        <select id="month" name="month" class="col-8 form-control{{ $errors->has('month') ? ' is-invalid' : '' }}" value="{{ old('month') }}" required>
             <option value="01">01</option>
             <option value="02">02</option>
             <option value="03">03</option>
@@ -148,8 +147,8 @@
         @endif
     </div>
     <div class="row">
-        <label class="to-the-right col-3"><h4 class="service-description">שנה</h4></label>
-        <select id="year" name="year" class="col-9 form-control{{ $errors->has('year') ? ' is-invalid' : '' }}" value="{{ old('year') }}" required>
+        <label class="to-the-right col-4"><h4 class="service-description">שנה</h4></label>
+        <select id="year" name="year" class="col-8 form-control{{ $errors->has('year') ? ' is-invalid' : '' }}" value="{{ old('year') }}" required>
             <option value="19">19</option>
             <option value="20">20</option>
             <option value="21">21</option>
@@ -165,8 +164,8 @@
         @endif
     </div>
     <div class="row">
-        <label class="to-the-right col-3"><h4 class="service-description">3 ספרות בגב כרטיס</h4></label>
-        <input id="cvv" name="cvv" type="text" class="col-9 form-control{{ $errors->has('cvv') ? ' is-invalid' : '' }}" value="{{ old('cvv') }}" required maxlength="3" minlength="3" placeholder="CVV">
+        <label class="to-the-right col-4"><h4 class="service-description">3 ספרות בגב כרטיס</h4></label>
+        <input id="cvv" name="cvv" type="text" class="col-8 form-control{{ $errors->has('cvv') ? ' is-invalid' : '' }}" value="{{ old('cvv') }}" required maxlength="3" minlength="3" placeholder="CVV">
         </input>
         @if ($errors->has('cvv'))
             <span class="invalid-feedback" style="display: block !important; text-align: center">
@@ -175,8 +174,8 @@
         @endif
     </div>
     <div class="row">
-        <label class="to-the-right col-3"><h4 class="service-description">ת"ז של בעל הכרטיס</h4></label>
-        <input id="tz" name="tz" type="text" class="col-9 form-control{{ $errors->has('tz') ? ' is-invalid' : '' }}" value="{{ old('tz') }}" required maxlength="9" minlength="9" placeholder="תז">
+        <label class="to-the-right col-4"><h4 class="service-description">ת"ז של בעל הכרטיס</h4></label>
+        <input id="tz" name="tz" type="text" class="col-8 form-control{{ $errors->has('tz') ? ' is-invalid' : '' }}" value="{{ old('tz') }}" required maxlength="9" minlength="9" placeholder="תז">
         </input>
         @if ($errors->has('tz'))
             <span class="invalid-feedback" style="display: block !important; text-align: center">
@@ -185,8 +184,8 @@
         @endif
     </div>
     <div class="row">
-        <label class="to-the-right col-3"><h4 class="service-description">הערות נוספות</h4></label>
-        <input id="comment" name="comment" type="text" maxlength="50" class="col-9 form-control" placeholder="הערות נוספות(עד 50 תווים)" >
+        <label class="to-the-right col-4"><h4 class="service-description">הערות נוספות</h4></label>
+        <input id="comment" name="comment" type="text" maxlength="50" class="col-8 form-control" placeholder="הערות נוספות(עד 50 תווים)" >
 
         </input>
         @if ($errors->has('comment'))
