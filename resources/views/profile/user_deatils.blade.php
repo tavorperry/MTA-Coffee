@@ -12,7 +12,6 @@
             <div class="card-header text-center">{{ ('נקודות') }}</div>
             <div class="card-body" style="padding-top: 5px;">
                 <div class="mt-4 mb-2">
-                    <h2>נקודות:&nbsp;{{ $user->points }}</h2>
                     <?php $level = $user->getLevel() ?>
                     <div class="mt-4 mb-2">
                         @if($level == '10')
@@ -27,6 +26,12 @@
                             @endfor
                         @endif
                     </div>
+                    <h5>נקודות:&nbsp;{{ $user->points }}</h5>
+                    <h1 class="service-description">יתרה בארנק הדיגיטלי:
+                        <span @if($user->wallet->balance() <= 0) style="color:red" @endif>
+            {{$user->wallet->balance()}} ש"ח
+            </span>
+                    </h1>
                 </div>
             </div>
         </div>
@@ -143,7 +148,7 @@
         </div>
     <script>
         function deleteUser() {
-            if (confirm("פעולה זו תמחק את המשתמש מהמערכת לצמיתות. פעולה זו לא ניתנת לשחזור!! האם את/ה בטוח/ה?")) {
+            if (confirm("פעולה זו תמחק את המשתמש מהמערכת לצמיתות, כולל את יתרתך הכספית! פעולה זו לא ניתנת לשחזור!! האם את/ה בטוח/ה?")) {
                 return true;
             } else {
                 return false;
