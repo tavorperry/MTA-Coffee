@@ -143,8 +143,10 @@ class WalletController extends Controller
                     log::critical("Someone trying to use the test Card!!!! User: " . $email . ". " . $response[1]);
                     return back();
                 }
-                if ($isDepositSucceed)
-                    log::info("Deposit Succeed! User: ".$email);
+                if ($isDepositSucceed) {
+                    log::info("Deposit Succeed! User: " . $email);
+                    EmailController::SendChargeConfirmationEmail($user, $response->Code, $comment, $response->ErrorDesc, $amount, $email, $user->wallet->balance());
+                }
                 else
                     log::error("Deposit Failed! User: ".$email);
             } else {
