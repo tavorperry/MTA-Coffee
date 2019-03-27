@@ -54,9 +54,6 @@
                 <a class="js-scroll-trigger part-of-nav" href="{{ route('station') }}">עדכון משמרות</a>
             </li>
             <li class="sidebar-nav-item part-of-nav">
-                <a class="js-scroll-trigger part-of-nav" href="{{ route('report.view.all') }}">צפייה בכל הדיווחים</a>
-            </li>
-            <li class="sidebar-nav-item part-of-nav">
                 <a class="js-scroll-trigger part-of-nav" href="{{ route('contact-us') }}">צור קשר</a>
             </li>
             <li class="sidebar-nav-item part-of-nav">
