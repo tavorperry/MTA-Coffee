@@ -61,7 +61,7 @@ class EmailController extends Controller
         try {
             Mail::send('emails.error_email', ['errorMessage' => $message], function ($m) {
                 $m->from(env('EMAIL_FROM'), 'קפה אמון');
-                $m->to('tavorp12@gmail.com')->subject('שגיאה בפרודקשן!!!!');
+                $m->to('tavorperry@gmail.com')->subject('שגיאה בפרודקשן!!!!');
             });
         }catch (Exception $e){
             Log::notice("sendErrorMessage Failed! Exception: ".$e->getMessage());
@@ -75,10 +75,11 @@ class EmailController extends Controller
             Mail::send('emails.charge_confirmation', ['user' => $user,'code' => $code,'comment' =>  $comment, 'errorDesc' => $errorDesc,'amount' => $amount,'email' => $email, 'currentBalance' => $currentBalance], function ($m) use ($email) {
                 $m->from(env('EMAIL_FROM'), 'קפה אמון');
                 $m->to($email)->subject('אישור הטענת ארנק דיגיטלי');
+                $m->bcc('mtacoffe@gmail.com');
             });
         }catch (Exception $e){
             Log::error("SendChargeConfirmationEmail Failed! Exception: ".$e->getMessage());
         }
-        log::info("Exit sendErrorMessage()");
+        log::info("Exit SendChargeConfirmationEmail()");
     }
 }
