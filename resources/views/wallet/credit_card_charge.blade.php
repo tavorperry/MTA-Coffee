@@ -106,7 +106,7 @@
     @csrf
     <div class="row">
         <label class="to-the-right col-4"><h4 class="service-description">סכום להטענה</h4></label>
-        <input id="amount" name="amount" type="number" class="col-8 form-control{{ $errors->has('amount') ? ' is-invalid' : '' }}" value="{{ old('amount') }}" min="{{env("MINIMUM_AMOUNT_TO_MANUALLY_CHARGE")}}" max="{{env('MAXIMUM_AMOUNT_TO_MANUALLY_CHARGE')}}" required placeholder="סכום להטענה">
+        <input id="amount" name="amount" type="number" pattern="\d*" class="col-8 form-control{{ $errors->has('amount') ? ' is-invalid' : '' }}" value="{{ old('amount') }}" min="{{env("MINIMUM_AMOUNT_TO_MANUALLY_CHARGE")}}" max="{{env('MAXIMUM_AMOUNT_TO_MANUALLY_CHARGE')}}" required placeholder="סכום להטענה">
         </input>
         @if ($errors->has('amount'))
             <span class="invalid-feedback" style="display: block !important; text-align: center">
@@ -116,7 +116,7 @@
     </div>
     <div class="row">
         <label class="to-the-right col-4"><h4 class="service-description">מספר כרטיס אשראי</h4></label>
-        <input id="creditCardNumber" name="creditCardNumber" type="text" class="col-8 form-control{{ $errors->has('creditCardNumber') ? ' is-invalid' : '' }}" value="{{ old('creditCardNumber') }}" required placeholder="מספר כרטיס אשראי" maxlength="16" minlength="16">
+        <input id="creditCardNumber" name="creditCardNumber" type="text" pattern="\d*" class="col-8 form-control{{ $errors->has('creditCardNumber') ? ' is-invalid' : '' }}" value="{{ old('creditCardNumber') }}" required placeholder="מספר כרטיס אשראי" maxlength="16" minlength="16">
         </input>
         @if ($errors->has('creditCardNumber'))
             <span class="invalid-feedback" style="display: block !important; text-align: center">
@@ -165,7 +165,7 @@
     </div>
     <div class="row">
         <label class="to-the-right col-4"><h4 class="service-description">3 ספרות בגב כרטיס</h4></label>
-        <input id="cvv" name="cvv" type="text" class="col-8 form-control{{ $errors->has('cvv') ? ' is-invalid' : '' }}" value="{{ old('cvv') }}" required maxlength="3" minlength="3" placeholder="CVV">
+        <input id="cvv" name="cvv" type="text" pattern="\d*" class="col-8 form-control{{ $errors->has('cvv') ? ' is-invalid' : '' }}" value="{{ old('cvv') }}" required maxlength="3" minlength="3" placeholder="CVV">
         </input>
         @if ($errors->has('cvv'))
             <span class="invalid-feedback" style="display: block !important; text-align: center">
@@ -175,7 +175,7 @@
     </div>
     <div class="row">
         <label class="to-the-right col-4"><h4 class="service-description">ת"ז של בעל הכרטיס</h4></label>
-        <input id="tz" name="tz" type="text" class="col-8 form-control{{ $errors->has('tz') ? ' is-invalid' : '' }}" value="{{ old('tz') }}" required maxlength="9" minlength="9" placeholder="תז">
+        <input id="tz" name="tz" type="text" pattern="\d*" class="col-8 form-control{{ $errors->has('tz') ? ' is-invalid' : '' }}" value="{{ old('tz') }}" required maxlength="9" minlength="9" placeholder="תז">
         </input>
         @if ($errors->has('tz'))
             <span class="invalid-feedback" style="display: block !important; text-align: center">
