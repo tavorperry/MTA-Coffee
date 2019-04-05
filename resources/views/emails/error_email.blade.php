@@ -260,60 +260,53 @@
                     <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                         <tr>
                             <div style="padding: 40px 40px 20px; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555;">
-                            <tr>
-                                <td align="center" style="background-color: #ffffff;">
-                                    <img src="{{env('PRD_URL')}}/images/logo1.png" width="100px" height="100px" alt="logo_pic!" border="0" align="center" style="width: 50%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555; margin: auto;" class="g-img">
-                                </td>
-                            </tr>
+                        <tr>
+                            <td align="center" style="background-color: #ffffff;">
+                                <img src="{{env('PRD_URL')}}/images/logo1.png" width="100px" height="100px" alt="logo_pic!" border="0" align="center" style="width: 50%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555; margin: auto;" class="g-img">
+                            </td>
+                        </tr>
                         <br>
-                            <h1 style="margin: 0 0 10px; font-size: 24px; line-height: 125%; color: #333333; font-weight: normal;">חיכינו לך! כיף שהצטרפת אלינו</h1>
+                        <h1 style="margin: 0 0 10px; font-size: 24px; line-height: 125%; color: #333333; font-weight: normal;">שגיאה קרתה בפרודקשן!</h1>
 
-                            <h3 style="margin: 0 0 10px;">
-                            <h2>מה אפשר לעשות במערכת קפה אמון?</h2>
-                            <ul style="padding: 0; margin: 0; list-style-type: disc;">
-                                <li style="margin:0 0 10px 30px;"><b>נגמר החלב בעמדה? יש תקלה במכונה?</b> מהיום אתם לא צריכים לחפש את נציגי האגודה כדי שיעזרו, פתחו דיווח בתקלה והמתנדבים החרוצים שלנו מיד יגיעו</li>
-                                <li style="margin:0 0 10px 30px;">חשוב לזכור שקפה אמון מבוסס על מתנדבים ולכן אנחנו צריכים גם אתכם! <b>התנדבות לא כרוכה בשום התחייבות מצידכם. פשוט אשרו קבלת התראות ואם תהיו ליד העמדה תקפצו לראות אם אפשר לעזור.</b></li>
-                                <li style="margin:0 0 10px 30px;">שימו לב שמערכת קפה אמון זמינה דרך הדפדפן, בקרוב גם באפליקציה</li>
-                                <li style="margin:0 0 10px 30px;" class="list-item-first"><b>הפיצו את הבשורה! שלחו את לינק המערכת לחברים בתואר ובקבוצות וביחד נשתה קפה טעים וזול יותר!</b></li>
-                            </ul>
+                        <h3 style="margin: 0 0 10px;">
+                            {{$errorMessage}}
                             <br>
                             <p>
                             <h3>לכל שאלה ניתן לפנות {{env('Kafe_Emun_Manager')}} בטלפון <a href="tel:{{env('Kafe_Emun_Manager_Phone')}}">{{env('Kafe_Emun_Manager_Phone')}}</a> </h3>
-                            </h3>
                         <tr>
                             <td>
                                 <h3><a href="https://api.whatsapp.com/send?phone=972528477546"> או בוואטסאפ:<img src="{{env('PRD_URL')}}/images/WhatsApp_NEW_Logo.png" height="35px" height="35px"> </a></h3>
                             </td>
                         </tr>
-                            </div>
-                            </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 0 40px 40px; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555;">
-                                <!-- Button : BEGIN -->
-                                <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" style="margin: auto;">
-                                    <tr>
-                                        <td class="button-td button-td-primary" style="border-radius: 4px; background: #222222;">
-                                        </td>
-                                    </tr>
-                                </table>
-                                <!-- Button : END -->
-                            </td>
-                        </tr>
-
-                    </table>
+                </div>
                 </div>
             </td>
         </tr>
-        <!-- 1 Column Text + Button : END -->
+        <tr>
+            <td style="padding: 0 40px 40px; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555;">
+                <!-- Button : BEGIN -->
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" style="margin: auto;">
+                    <tr>
+                        <td class="button-td button-td-primary" style="border-radius: 4px; background: #222222;">
+                        </td>
+                    </tr>
+                </table>
+                <!-- Button : END -->
+            </td>
+        </tr>
 
-        <!-- Background Image with Text : BEGIN -->
+    </table>
+    </div>
+    </td>
+    </tr>
+    <!-- 1 Column Text + Button : END -->
 
-        <!-- Background Image with Text : END -->
-        <!-- 2 Even Columns : END -->
+    <!-- Background Image with Text : BEGIN -->
 
-        <!-- Thumbnail Left, Text Right : BEGIN -->
+    <!-- Background Image with Text : END -->
+    <!-- 2 Even Columns : END -->
+
+    <!-- Thumbnail Left, Text Right : BEGIN -->
     </table>
     </table>
     <!-- Email Body : END -->
@@ -325,7 +318,6 @@
                 <br><br>
                 אגודת הסטודנטים<br><span class="unstyle-auto-detected-links">רבנו ירוחם 12, תל אביב<br><a href="tel:03-9292929">03-9292929</a></span>
                 <br><br>
-                <a href="{{env('PRD_URL')}}/notifications/unsubscribe/{{$user->secret_token}}"> <unsubscribe style="color: #888888; text-decoration: underline;">unsubscribe</unsubscribe> </a>
             </td>
         </tr>
     </table>

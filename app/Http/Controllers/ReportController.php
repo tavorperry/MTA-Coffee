@@ -8,6 +8,7 @@ use App\Shift;
 use App\Station;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\PointsController;
 use Auth;
@@ -51,55 +52,69 @@ class ReportController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validator($request->all())->validate();
+        log::info("Starting store()");
 
-        $report = new Report();
-        $report->opening_user_id = auth()->id();
-        $report->station_id = $request->get('station');
-        $report->type = $request->get('type');
-        $report->desc = $request->get('message');
-        $report->status = 0;
+        try {
+            $this->validator($request->all())->validate();
 
-            if ($this->getCurrentShift($report->station_id) == NULL) {
-            Alert::error(' קפה אמון פתוח בימים ראשון-שישי משעה 7:00 :)', 'סגורים, חביבי')->persistent("Close");
-            return redirect()->route('index');
-        }
+            log::debug("Validator pass. Starting collect user params.");
+            $report = new Report();
+            $report->opening_user_id = auth()->id();
+            $report->station_id = $request->get('station');
+            $report->type = $request->get('type');
+            $report->desc = $request->get('message');
+            $report->status = 0;
 
-        //This 'if' is to save the image with "Image Intervention" package that compress the image
-        if ($request->hasFile('picture')) {
-            $picture = $request->file('picture');
-            $filename = time() . '_pic.' . $picture->getClientOriginalExtension();
-            $img = Image::make($picture);
-            $img->orientate();
-            $img->save('pictures/' . $filename);
-            $report->picture = $filename;
-        }
-
-
-        $isReported = $report->save();
-        if ($isReported) {
-            $user = Auth::user();
-            $prevLevel = $user->getLevel();
-            if ($user->points == 0){
-                $user->addPoints(100);
-                Alert::success('מזל טוב עלית רמה! ', 'הדיווח הראשון שלך נשלח! הרווחת 100 נקודות')->persistent("Close");
-            }
-            else {
-                $user->addPoints(20);
-                Alert::success('הרווחת 20 נקודות', 'הדיווח נשלח כל הכבוד!')->persistent("Close");
-                if ($user->isLevelUp($prevLevel)) {
-                    Alert::success('מזל טוב עלית רמה!', 'תותח/ית')->persistent("Close");
-                }
-            }
+            log::debug("UserID: " . $report->opening_user_id);
 
             $shift = Shift::find($this->getCurrentShift($request->station));
-            $shift->notify(new ReportCreated($report));
-        }
 
-        //This section is to send notifications(Emails & Push) to the specific users
-        $users_in_current_shift = $this->getUsersInCurrentShift($this->getCurrentShift($request->station));
-        $this->sendEmailNotifications($users_in_current_shift, $report);
-        /*$this->sendNotificationsToUsers($users_in_current_shift);*/
+            if ($shift == NULL) {
+                Alert::error(' קפה אמון פתוח בימים ראשון-שישי משעה 7:00 :)', 'סגורים, חביבי')->persistent("Close");
+                log::debug("Coffee is closed now. try tomorrow. Exit store()");
+                return redirect()->route('index');
+            }
+
+            //This 'if' is to save the image with "Image Intervention" package that compress the image
+            if ($request->hasFile('picture')) {
+                $picture = $request->file('picture');
+                $filename = time() . '_pic.' . $picture->getClientOriginalExtension();
+                $img = Image::make($picture);
+                $img->orientate();
+                $img->save('pictures/' . $filename);
+                $report->picture = $filename;
+                log::debug("Saving picture -> pictures/" . $filename);
+            }
+
+
+            $isReported = $report->save();
+            if ($isReported) {
+                $user = Auth::user();
+                $prevLevel = $user->getLevel();
+                if ($user->points == 0) {
+                    $user->addPoints(100);
+                    Alert::success('מזל טוב עלית רמה! ', 'הדיווח הראשון שלך נשלח! הרווחת 100 נקודות')->persistent("Close");
+                    log::debug("Adding 100 points to user for first report");
+                } else {
+                    $user->addPoints(20);
+                    Alert::success('הרווחת 20 נקודות', 'הדיווח נשלח כל הכבוד!')->persistent("Close");
+                    if ($user->isLevelUp($prevLevel)) {
+                        Alert::success('מזל טוב עלית רמה!', 'תותח/ית')->persistent("Close");
+                    }
+                    log::debug("Adding 20 points to user");
+                }
+
+                $shift->notify(new ReportCreated($report));
+            }
+
+            //This section is to send notifications(Emails & Push) to the specific users
+            $users_in_current_shift = $this->getUsersInCurrentShift($this->getCurrentShift($request->station));
+            $this->sendEmailNotifications($users_in_current_shift, $report);
+            /*$this->sendNotificationsToUsers($users_in_current_shift);*/
+        }catch (Exception $e){
+            log::error("Failed to store report!!!"." Exception: ".$e->getMessage());
+        }
+        log::info("Exit chargeCreditCard()");
         return redirect()->route('index');
         //End Section
     }
@@ -109,7 +124,7 @@ class ReportController extends Controller
      *Based on the current day and hour Returns the current shift
      *Returns current shift (int)
      */
-    public function getCurrentShift($stationId)
+    private function getCurrentShift($stationId)
     {
         $current_hour = (int)date("H");
         $current_day = date('w') + 1; /*The function returns 0-6 values so we add 1 so that will fit the DB*/
@@ -133,7 +148,7 @@ class ReportController extends Controller
      *Searches in DB for the specific users that assigned to the current shift
      *Returns all the users in current shift
      */
-    public function getUsersInCurrentShift($current_shift)
+    private function getUsersInCurrentShift($current_shift)
     {
         $users_in_current_shift = DB::table('shift_user')
             ->where([
@@ -212,7 +227,7 @@ class ReportController extends Controller
      *Sends email notifications to the users
      *
      */
-    public function sendEmailNotifications($users_id, $report)
+    private function sendEmailNotifications($users_id, $report)
     {
         $current_user = Auth::user();
         foreach ($users_id as $user_id) {

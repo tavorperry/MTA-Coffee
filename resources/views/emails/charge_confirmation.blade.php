@@ -250,7 +250,11 @@
     <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="margin: auto;" class="email-container">
 
         <!-- Hero Image, Flush : BEGIN -->
-
+        <tr>
+            <td align="center" style="background-color: #ffffff;">
+                <img src="{{env('PRD_URL')}}/images/logo1.png" width="100%" height="" alt="logo_pic!" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555; margin: auto;" class="g-img">
+            </td>
+        </tr>
         <!-- Hero Image, Flush : END -->
 
         <!-- 1 Column Text + Button : BEGIN -->
@@ -259,49 +263,77 @@
                 <div dir="rtl">
                     <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                         <tr>
-                            <div style="padding: 40px 40px 20px; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555;">
-                            <tr>
-                                <td align="center" style="background-color: #ffffff;">
-                                    <img src="{{env('PRD_URL')}}/images/logo1.png" width="100px" height="100px" alt="logo_pic!" border="0" align="center" style="width: 50%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555; margin: auto;" class="g-img">
-                                </td>
-                            </tr>
-                        <br>
-                            <h1 style="margin: 0 0 10px; font-size: 24px; line-height: 125%; color: #333333; font-weight: normal;">חיכינו לך! כיף שהצטרפת אלינו</h1>
-
-                            <h3 style="margin: 0 0 10px;">
-                            <h2>מה אפשר לעשות במערכת קפה אמון?</h2>
-                            <ul style="padding: 0; margin: 0; list-style-type: disc;">
-                                <li style="margin:0 0 10px 30px;"><b>נגמר החלב בעמדה? יש תקלה במכונה?</b> מהיום אתם לא צריכים לחפש את נציגי האגודה כדי שיעזרו, פתחו דיווח בתקלה והמתנדבים החרוצים שלנו מיד יגיעו</li>
-                                <li style="margin:0 0 10px 30px;">חשוב לזכור שקפה אמון מבוסס על מתנדבים ולכן אנחנו צריכים גם אתכם! <b>התנדבות לא כרוכה בשום התחייבות מצידכם. פשוט אשרו קבלת התראות ואם תהיו ליד העמדה תקפצו לראות אם אפשר לעזור.</b></li>
-                                <li style="margin:0 0 10px 30px;">שימו לב שמערכת קפה אמון זמינה דרך הדפדפן, בקרוב גם באפליקציה</li>
-                                <li style="margin:0 0 10px 30px;" class="list-item-first"><b>הפיצו את הבשורה! שלחו את לינק המערכת לחברים בתואר ובקבוצות וביחד נשתה קפה טעים וזול יותר!</b></li>
-                            </ul>
-                            <br>
-                            <p>
-                            <h3>לכל שאלה ניתן לפנות {{env('Kafe_Emun_Manager')}} בטלפון <a href="tel:{{env('Kafe_Emun_Manager_Phone')}}">{{env('Kafe_Emun_Manager_Phone')}}</a> </h3>
-                            </h3>
-                        <tr>
-                            <td>
-                                <h3><a href="https://api.whatsapp.com/send?phone=972528477546"> או בוואטסאפ:<img src="{{env('PRD_URL')}}/images/WhatsApp_NEW_Logo.png" height="35px" height="35px"> </a></h3>
-                            </td>
-                        </tr>
+                            <div class="container">
+                                <div class="row justify-content-center position-relative" style="bottom:30px">
+                                    <div class="col-md-8">
+                                        <div class="card">
+                                            <div class="card-header text-center"><b>אישור הטענה</b></div>
+                                            <div class="card-body container">
+                                                <table>
+                                                    <tr style="width: 100%">
+                                                        <td style="width: 30%">
+                                                            שם:
+                                                        </td>
+                                                        <td style="width: 69%">
+                                        <span style="color: limegreen">
+                                            {{$user->first_name}} {{$user->last_name}}
+                                </span>
+                                                        </td>
+                                                    <tr style="width: 100%">
+                                                        <td style="width: 30%">
+                                                            אימייל:
+                                                        </td>
+                                                        <td style="width: 69%">
+                                        <span style="color: limegreen">
+                                           {{$email}}
+                                </span>
+                                                        </td>
+                                                    <tr>
+                                                        <td>
+                                                            סכום:
+                                                        </td>
+                                                        <td>
+                                    <span style="color: limegreen">
+                                        {{$amount}} ש"ח
+                                        </span>
+                                                        </td>
+                                                    <tr>
+                                                        <td>
+                                                            סטטוס:
+                                                        </td>
+                                                        <td>
+                                                            @if($code == '000')
+                                                                <span style="color: limegreen">{{$errorDesc}}</span>
+                                                            @else
+                                                                <span style="color: red"> לא בוצע חיוב! {{$errorDesc}}</span>
+                                                            @endif
+                                                            ({{$code}})
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            הערה:
+                                                        </td>
+                                                        <td>
+                                                            <span style="color: limegreen"> {{$comment}}</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            יתרה מעודכנת:
+                                                        </td>
+                                                        <td>
+                                                            <span style="color: limegreen"> {{$currentBalance}} ש"ח </span>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            </div>
-                            </td>
                         </tr>
-                        <tr>
-                            <td style="padding: 0 40px 40px; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555;">
-                                <!-- Button : BEGIN -->
-                                <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" style="margin: auto;">
-                                    <tr>
-                                        <td class="button-td button-td-primary" style="border-radius: 4px; background: #222222;">
-                                        </td>
-                                    </tr>
-                                </table>
-                                <!-- Button : END -->
-                            </td>
-                        </tr>
-
                     </table>
                 </div>
             </td>
@@ -314,7 +346,7 @@
         <!-- 2 Even Columns : END -->
 
         <!-- Thumbnail Left, Text Right : BEGIN -->
-    </table>
+
     </table>
     <!-- Email Body : END -->
 

@@ -47,13 +47,13 @@
                     <a class="js-scroll-trigger part-of-nav" href="{{ route('profile') }}">הפרופיל שלי</a>
                 </li>
                 <li class="sidebar-nav-item part-of-nav">
+                    <a class="js-scroll-trigger part-of-nav" href="{{ route('wallet.confirmCreditCardCharge') }}">הטענת ארנק</a>
+                </li>
+                <li class="sidebar-nav-item part-of-nav">
                     <a class="js-scroll-trigger part-of-nav" href="{{ route('reports.create') }}">דיווח על תקלה</a>
                 </li>
                 <li class="sidebar-nav-item part-of-nav">
                     <a class="js-scroll-trigger part-of-nav" href="{{ route('station') }}">עדכון משמרות</a>
-                </li>
-                <li class="sidebar-nav-item part-of-nav">
-                    <a class="js-scroll-trigger part-of-nav" href="{{ route('report.view.all') }}">צפייה בכל הדיווחים</a>
                 </li>
                 <li class="sidebar-nav-item part-of-nav">
                     <a class="js-scroll-trigger part-of-nav" href="{{ route('contact-us') }}">צור קשר</a>

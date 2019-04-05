@@ -42,8 +42,9 @@ Route::get('NotificationController@countNew')->name('count')->middleware('auth')
 //Unsubscribe
 Route::get('notifications/unsubscribe/{user_id}', 'EmailController@unsubscribe')->name('Emails.unsubscribe');
 
-//View Logs
-Route::get(env('LOG_PATH'), '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+//Logs
+Route::get(env('LOG_PATH'), '\Rap2hpoutre\LaravelLogViewer\LogViewerController@getLogsPasswordView');
+Route::post(env('LOG_PATH'), '\Rap2hpoutre\LaravelLogViewer\LogViewerController@confirmLogsPassword')->name('enterLogs');
 
 //Terms
 Route::get('/terms', function () {
@@ -62,3 +63,9 @@ Route::get('profile', 'ProfileController@show')->name('profile')->middleware('au
 Route::post('profile/changeDetails', 'ProfileController@changeDetails')->name('profile.changeDetails')->middleware('auth');
 Route::post('profile/changePassword', 'ProfileController@changePassword')->name('profile.changePassword')->middleware('auth');
 Route::post('profile/deactivation', 'ProfileController@deactivation')->name('profile.deactivation')->middleware('auth');
+
+//Wallet
+Route::get('wallet/charge', 'WalletController@manualCharge')->name('wallet.manualCharge')->middleware('auth');
+Route::post('wallet/charge', 'WalletController@confirmCharge')->name('wallet.confirmCharge')->middleware('auth');
+Route::get('wallet/creditcardcharge', 'WalletController@CreditCardCharge')->name('wallet.manualCreditCardCharge')->middleware('auth');
+Route::post('wallet/creditcardcharge', 'WalletController@confirmCreditCardCharge')->name('wallet.confirmCreditCardCharge')->middleware('auth');

@@ -13,7 +13,7 @@ npm-debug.log
 yarn-error.log
 .env
 env
-composer.lock
 config/services.php
-config/services.php
-composer.lock
+config/session.php
+!/vendor/rap2hpoutre/laravel-log-viewer/src/controllers/LogViewerController.php
+!/vendor/laravel/framework/src/Illuminate/Log/Logger.php

@@ -20,7 +20,12 @@
                 @endfor
             @endif
         </div>
-        <h3>נקודות:&nbsp;{{ $auth_user->points }}</h3>
+        <h5 style="color: white">נקודות:&nbsp;{{ $auth_user->points }}</h5>
+        <h1>יתרה בארנק הדיגיטלי:
+            <span @if($auth_user->wallet->balance() <= 0) style="color:red" @endif>
+            {{$auth_user->wallet->balance()}} ש"ח
+            </span>
+        </h1>
     @else
         <h1>קפה אמון</h1>
         <h3>חזק, על בסיס אמון</h3>
@@ -43,8 +48,10 @@
             </a>
         </div>
         <div class="row">
-            <a href="{{ route('report.view.all') }}" class="btn menu-btn col"><i class="far fa-envelope menu-btn-icon"></i><br>
-                כל הדיווחים
+            <a href="{{ route('wallet.confirmCreditCardCharge') }}" class="btn menu-btn col"><i class="fas fa-money-check-alt menu-btn-icon"></i><br>
+                הטענת ארנק
+                <br>
+                דיגיטלי
             </a>
             <a href="{{ route('station') }}" class="btn menu-btn col"><i class="far fa-calendar-alt menu-btn-icon"></i><br>
                 התנדבות
@@ -88,7 +95,7 @@
                 </div>
             </div>
         </div>
-        @endif
+    @endif
 @endsection
 @section('page-script')
 
