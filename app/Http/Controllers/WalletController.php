@@ -60,6 +60,12 @@ class WalletController extends Controller
 
     public function manualCharge()
     {
+        $chargerUser = Auth::user();
+        if(!Str::contains(env("MANAGMENT_USERS"),$chargerUser->email)) {
+            log::warning("### Someone trying to enter the manual charge!!! ".$chargerUser->email);
+            Alert::error('אינך מנהל! ')->persistent("Close");
+            return redirect()->route('index');
+        }
         return view('wallet.charge');
     }
 
