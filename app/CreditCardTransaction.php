@@ -17,7 +17,7 @@ class CreditCardTransaction extends Model
         try {
             $isSaved = $creditCardTransactionObject->save();
         }catch (Exception $e){
-            Log::error("saveObjectToDB Failed! Excpetion: ".$e->getMessage());
+            Log::error("saveObjectToDB Failed! Exception: ".$e->getMessage());
         }
         if ($isSaved) {
             Log::info("creditCardTransactionObject successfully saved!");

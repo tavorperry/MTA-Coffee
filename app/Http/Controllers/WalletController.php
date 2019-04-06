@@ -71,7 +71,13 @@ class WalletController extends Controller
 
     public function CreditCardCharge()
     {
-        return view('wallet.credit_card_charge');
+        if (env("IS_CREDIT_CARD_CHARGE_ACTIVATE"))
+            return view('wallet.credit_card_charge');
+        else{
+            log::warning("Someone trying to enter creditCardCharge view");
+            Alert::error('השירות עדיין לא פעיל ויופעל בקרוב! :)')->persistent("Close");
+            return redirect()->route('index');
+        }
     }
 
     public function confirmChargeView(){
@@ -84,6 +90,7 @@ class WalletController extends Controller
 
     public function confirmCharge(Request $request)
     {
+        log::info("Starting confirmCharge()");
         $chargerUser = Auth::user();
         if(!Str::contains(env("MANAGMENT_USERS"),$chargerUser->email)) {
             log::warning("### Someone trying to hack the manual charge!!! ".$chargerUser->email);
@@ -97,13 +104,24 @@ class WalletController extends Controller
         $comment = $request->get('comment');
 
         $user = User::getUserByEmail($email);
-        if(/*$this->testSoap($request)*/true){
-            $wallet = $user->wallet();
+        $newComment = "ENV: ".env('APP_ENV')." Manual Charger: ".$chargerUser->first_name." Comment: ".$comment;
+try{
+    $isDepositSucceed = $user->wallet->deposit($amount, $newComment);
 
-            $newComment = "Charger: ".$chargerUser->first_name." Comment: ".$comment;
-            $user->wallet->deposit($amount, $newComment);
-        }
-        return view('wallet.confirm_charge', compact('comment','amount', 'email'));
+    if ($isDepositSucceed) {
+        log::info("Manual Deposit Succeed! To user: " . $email);
+        EmailController::SendChargeConfirmationEmail($user, 'Manual Deposit', $newComment, 'Manual Deposit', $amount, $email, $user->wallet->balance());
+    }
+    else
+        log::error("Deposit Failed! User: ".$email);
+
+    $currentBalance = $user->wallet->balance();
+    log::info("Exit confirmCharge()");
+    return back()->with(['message' => true, 'Code' => "Manual Charge", 'isDepositSucceed' =>$isDepositSucceed, 'comment' => $comment, 'ErrorDesc' => 'Manual Deposit', 'amount' => $amount, 'email' => $email, 'currentBalance' => $currentBalance]);
+}catch (Exception $e){
+    log::error("Failed to confirmCharge() .Exception: " .$e->getMessage());
+    return route('home');
+}
     }
 
     public function confirmCreditCardCharge(Request $request){

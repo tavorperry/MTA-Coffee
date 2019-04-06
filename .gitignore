@@ -14,6 +14,6 @@ yarn-error.log
 .env
 env
 config/services.php
-config/session.php
 !/vendor/rap2hpoutre/laravel-log-viewer/src/controllers/LogViewerController.php
+config/session.php
 !/vendor/laravel/framework/src/Illuminate/Log/Logger.php
