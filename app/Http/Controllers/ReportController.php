@@ -7,6 +7,7 @@ use App\Report;
 use App\Shift;
 use App\Station;
 use Carbon\Carbon;
+use http\Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
@@ -55,7 +56,7 @@ class ReportController extends Controller
         log::info("Starting store()");
 
         try {
-            $this->validator($request->all())->validate();
+            $this->validator($request->all());
 
             log::debug("Validator pass. Starting collect user params.");
             $report = new Report();
@@ -114,7 +115,7 @@ class ReportController extends Controller
         }catch (Exception $e){
             log::error("Failed to store report!!!"." Exception: ".$e->getMessage());
         }
-        log::info("Exit chargeCreditCard()");
+        log::info("Exit store()");
         return redirect()->route('index');
         //End Section
     }
@@ -229,9 +230,11 @@ class ReportController extends Controller
      */
     private function sendEmailNotifications($users_id, $report)
     {
+        log::info("Starting sendEmailNotifications()");
         $current_user = Auth::user();
         foreach ($users_id as $user_id) {
             $user=self::findUser($user_id);
+            log::debug("user->notifications: ".$user->notifications . ". user_id: ". $user->id. ". current_user->id: ". $current_user->id);
             if($user->notifications == true && $user->id !=$current_user->id) {
                 try {
                     //Start - Sending Email to all users in shift
@@ -240,12 +243,15 @@ class ReportController extends Controller
                         $m->to($user->email, $user->first_name)->subject("דיווח חדש בעמדת קפה אמון");
                     });
                 //End - Sending Email to all users in shift
-                } catch (\Exception $exception) {
+                } catch (Exception $exception) {
+                    log::error("Error in sendEmailNotifications().Exception: ". $exception->getMessage());
                     return report($exception);
             }
             }
 
         }
+        log::info("Exit sendEmailNotifications()");
+        return true;
     }
 
     /**

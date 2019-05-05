@@ -275,7 +275,7 @@
                             <h3>לכל שאלה ניתן לפנות {{env('Kafe_Emun_Manager')}} בטלפון <a href="tel:{{env('Kafe_Emun_Manager_Phone')}}">{{env('Kafe_Emun_Manager_Phone')}}</a> </h3>
                         <tr>
                             <td>
-                                <h3><a href="https://api.whatsapp.com/send?phone=972528477546"> או בוואטסאפ:<img src="{{env('PRD_URL')}}/images/WhatsApp_NEW_Logo.png" height="35px" height="35px"> </a></h3>
+                                <h3><a href="https://api.whatsapp.com/send?phone={{env('Kafe_Emun_Manager_Phone_STR')}}"> או בוואטסאפ:<img src="{{env('PRD_URL')}}/images/WhatsApp_NEW_Logo.png" height="35px" height="35px"> </a></h3>
                             </td>
                         </tr>
                 </div>
