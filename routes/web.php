@@ -70,6 +70,6 @@ Route::post('wallet/charge', 'WalletController@confirmCharge')->name('wallet.con
 Route::get('wallet/creditcardcharge', 'WalletController@CreditCardCharge')->name('wallet.manualCreditCardCharge')->middleware('auth');
 Route::post('wallet/creditcardcharge', 'WalletController@confirmCreditCardCharge')->name('wallet.confirmCreditCardCharge')->middleware('auth');
 
-//Machine
+///Machine
 Route::get('getcoffee', 'MachineController@view')->name('getCoffee')->middleware('auth');
 Route::post('getcoffee/buy', 'MachineController@buyCoffee')->name('getCoffee.buy')->middleware('auth');

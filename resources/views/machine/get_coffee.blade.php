@@ -17,6 +17,7 @@
         </select>
     </div>
 
+
     {{--<div class="row">
         <label class="to-the-right col-3"><h4 class="service-description">הערות</h4></label>
         <input id="comment" name="comment" type="text" maxlength="50" class="col-9 form-control" placeholder="הערות (עד 50 תווים)" >

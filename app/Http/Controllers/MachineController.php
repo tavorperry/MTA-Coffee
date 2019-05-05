@@ -34,9 +34,6 @@ class MachineController extends Controller
 
     }
 
-
-
-
     public function openMachine($user_id, $machineNumber){
         $client = new Client();
         $url = 'https://qa2-lynx.nayax.com/Payment/v1/Cortina/[PaymentMethodName]/start';
@@ -52,18 +49,6 @@ class MachineController extends Controller
         dd($response->getBody()->getContents());
 
         return $response;
-
-
-        /*
-        $res = $client->request(‘GET’, ‘https://api.cloudways.com/api/v1’, [
-‘headers’ => [
-            ‘Accept’ => ‘application/json’,
-            ‘Content-type’ => ‘application/json’
-        ]]);
-
-
-        $response = collect($this->getJson($this->url . 'AppUserId=123123123123123123123&TransactionId=123456789&SecretToken=1234567890123445o8o438y12472163782136128732168736123123wefjh&TerminalId='.$machineNumber));
-        return $response;*/
     }
 
     protected function getJson($url)
