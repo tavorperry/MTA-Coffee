@@ -282,7 +282,7 @@
                             </h3>
                         <tr>
                             <td>
-                                <h3><a href="https://api.whatsapp.com/send?phone=972528477546"> או בוואטסאפ:<img src="{{env('PRD_URL')}}/images/WhatsApp_NEW_Logo.png" height="35px" height="35px"> </a></h3>
+                                <h3><a href="https://api.whatsapp.com/send?phone={{env('Kafe_Emun_Manager_Phone_STR')}}"> או בוואטסאפ:<img src="{{env('PRD_URL')}}/images/WhatsApp_NEW_Logo.png" height="35px" height="35px"> </a></h3>
                             </td>
                         </tr>
                             </div>
@@ -325,7 +325,7 @@
                 <br><br>
                 אגודת הסטודנטים<br><span class="unstyle-auto-detected-links">רבנו ירוחם 12, תל אביב<br><a href="tel:03-9292929">03-9292929</a></span>
                 <br><br>
-                <a href="{{env('PRD_URL')}}/notifications/unsubscribe/{{$user->secret_token}}"> <unsubscribe style="color: #888888; text-decoration: underline;">unsubscribe</unsubscribe> </a>
+                <a href="{{env('APP_URL')}}/notifications/unsubscribe/{{$user->secret_token}}"> <unsubscribe style="color: #888888; text-decoration: underline;">unsubscribe</unsubscribe> </a>
             </td>
         </tr>
     </table>
