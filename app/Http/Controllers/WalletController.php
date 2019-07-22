@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\CreditCardTransaction;
 use App\User;
 use App\Wallet;
+use http\Env\Response;
 use http\Exception;
 use Illuminate\Http\Request;
 use Auth;
@@ -202,5 +203,22 @@ try{
 
     public function getCoffee(Request $request){
         //TODO
+    }
+
+    public function chargeWithTranzila(Request $request){
+        $amount = $request->get('amount');
+        if ($amount < 10 || $amount > 100){
+            return view('wallet.credit_card_charge_iframe')->with(['error' => true]);
+        }
+        return view('wallet.credit_card_charge_iframe')->with(compact("amount"));
+    }
+
+    public function confirmChargeWithTranzila(Request $request){
+        dd($request);
+        dd(123);
+    }
+
+    public function chargeFailedWithTranzila(){
+        dd(12345);
     }
 }

@@ -45,7 +45,7 @@
                 <a class="js-scroll-trigger part-of-nav" href="{{ route('profile') }}">הפרופיל שלי</a>
             </li>
             <li class="sidebar-nav-item part-of-nav">
-                <a class="js-scroll-trigger part-of-nav" href="{{ route('wallet.confirmCreditCardCharge') }}">הטענת ארנק</a>
+                <a class="js-scroll-trigger part-of-nav" href="{{ route('wallet.creditCardCharge') }}">הטענת ארנק</a>
             </li>
             <li class="sidebar-nav-item part-of-nav">
                 <a class="js-scroll-trigger part-of-nav" href="{{ route('reports.create') }}">דיווח על תקלה</a>
