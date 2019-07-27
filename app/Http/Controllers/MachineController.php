@@ -86,10 +86,18 @@ class MachineController extends Controller
     public function sale(Request $request){
         $json = $request->json()->all();
         $sale = json_decode(json_encode($json));
-        $nayaxTransaction = NayaxTransactions::isTransactionIdExists($sale->TransactionId);
-        if ($nayaxTransaction == null){
-            Log::warning("Transaction ID unknown. " . $sale->TransactionId);
-            $status = new StatusObject("Declined", 2, "Transaction ID unknown","TransactionId is missing");
+        if (isset($sale->TransactionId)) {
+            $nayaxTransaction = NayaxTransactions::isTransactionIdExists($sale->TransactionId);
+        }
+        if (empty ($nayaxTransaction)){
+            if (isset($sale->TransactionId)) {
+                Log::warning("Transaction ID unknown. ID: " . $sale->TransactionId);
+                $status = new StatusObject("Declined", 2, "Transaction ID unknown", "TransactionId is missing");
+            }else{
+                Log::warning("Transaction ID is missing in JSON request");
+                $status = new StatusObject("Declined", 10, "Missing mandatory parameters","Missing mandatory parameters" );
+                $sale->TransactionId = "Missing";
+            }
         }else {
             NayaxTransactions::deleteTransactionFromDB($sale->TransactionId);
             $user = User::getUserById($nayaxTransaction->userId);
