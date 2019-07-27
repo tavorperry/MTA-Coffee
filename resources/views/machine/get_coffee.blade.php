@@ -8,7 +8,7 @@
     @if(session('message'))
         <div>{{ session('message') }}</div>
     @endif
-    {{ Form::open(['route' => ['getCoffee']])}}
+    {{ Form::open(['route' => ['getCoffee.buy']])}}
     @csrf
     <div class="row">
         <label class="to-the-right col-3"><h4 class="service-description">בחר מכונה</h4></label>
@@ -16,7 +16,6 @@
             <option value="2">ווסטון</option>
         </select>
     </div>
-
 
     {{--<div class="row">
         <label class="to-the-right col-3"><h4 class="service-description">הערות</h4></label>
@@ -33,7 +32,7 @@
     <div class="container">
         <div class="text-center">
            {{-- {!! app('captcha')->render(); !!}--}}
-            <button type="submit" class="btn login-btn" value="דווח!">הטען!</button>
+            <button type="submit" class="btn login-btn" value="דווח!">תביאו לי קפה!</button>
         </div>
     </div>
     {!! Form::close() !!}

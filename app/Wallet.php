@@ -81,26 +81,28 @@ class Wallet extends Model
         }
     }
 
-    public function logTransaction($amount, $comment, $wallet)
+    public function logTransaction($actionType, $amount, $comment)
     {
-        log::info("Starting logTransaction() for Wallet: ".$wallet);
-        DB::beginTransaction();
+        log::info("Starting logTransaction() for Wallet: " . $this->id);
         try {
             $transaction = new Transaction([
-                'transaction_type' => 'deposit',
+                'transaction_type' => $actionType,
                 'amount' => $amount,
                 'comment' => $comment,
-                'wallet_id' => $wallet->id,
-                'new_balance' => $wallet->balance(),
+                'wallet_id' => $this->id,
+                'new_balance' => $this->balance,
             ]);
-            $transaction->save();
 
-            DB::commit();
-            log::info("Exit logTransaction() for Wallet: ");
-            return true;
+            $saved = $transaction->save();
+            if ($saved) {
+                log::info("Exit logTransaction().Transaction Saved for Wallet: " . $this->id);
+                return true;
+            }else{
+                log::error("Transaction failed to save!!! for Wallet: " . $this->id);
+                return false;
+            }
         } catch (Exception $e) {
-            DB::rollback();
-            Log::error("Failed to create Transaction. Wallet: " . $wallet->id . " Exception: " . $e->getMessage());
+            Log::error("Failed to create Transaction. Wallet: " . $this->id . " Exception: " . $e->getMessage());
             return false;
         }
     }
@@ -129,26 +131,21 @@ class Wallet extends Model
      * @param  double  $amount
      * @return boolean
      */
-    public function pay($amount, $comment="No Comment!", $station){
+    public function pay($amount, $comment="No Comment!"){
         log::info("Starting pay()");
         if($this->isEnoughBalance($amount)){
-            DB::beginTransaction();
             try{
                 $this->balance -= $amount;
                 $this->save();
-                $this->transactions()->create([
-                    'transaction_type' => 'withdraw',
-                    'amount'           => $amount,
-                    'comment'          => $comment,
-                    'station'          => $station,
-                ]);
-                DB::commit();
+                $this->logTransaction("pay", $amount,$comment);
                 return true;
             }catch (Exception $e){
                 DB::rollback();
-                Log::error("Failed to pay. user ".$this->user_id ." Exception: " .$e->getMessage());
+                Log::error("Failed to pay. user ".$this->user_id .". Exception: " .$e->getMessage());
                 return false;
             }
+        }else{
+            Log::warning("Insufficient funds! Deposit amount: " .$amount . ". Wallet: " . $this.$this->toJson());
         }
         log::info("Exit pay()");
         return false;
