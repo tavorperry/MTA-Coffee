@@ -143,4 +143,8 @@ class User extends Authenticatable
     public static function getUserByEmail($email){
         return User::where('email',$email) -> first();
     }
+
+    public static function getUserById($id){
+        return User::where('id',$id) -> first();
+    }
 }
