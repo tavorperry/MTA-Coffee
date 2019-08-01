@@ -67,7 +67,7 @@ Route::post('profile/deactivation', 'ProfileController@deactivation')->name('pro
 //Wallet
 Route::get('wallet/charge', 'WalletController@manualCharge')->name('wallet.manualCharge')->middleware('auth');
 Route::post('wallet/charge', 'WalletController@confirmCharge')->name('wallet.confirmCharge')->middleware('auth');
-Route::get('wallet/creditcardcharge', 'WalletController@CreditCardCharge')->name('wallet.creditCardCharge')->middleware('auth');
+Route::get('wallet/creditcardcharge', 'WalletController@CreditCardCharge')->name('wallet.creditCardCharge')->middleware('auth'); //first pay page
 Route::post('wallet/creditcardcharge', 'WalletController@confirmCreditCardCharge')->name('wallet.confirmCreditCardCharge')->middleware('auth');
 
 ///Machine
@@ -77,9 +77,10 @@ Route::post('getcoffee/buy', 'MachineController@buyCoffee')->name('getCoffee.buy
 //Nayax
 Route::post(env('NAYAX_AUTHORIZATION'), 'MachineController@authorization')->name('nayax.authorization');
 Route::post('nayax/sale', 'MachineController@sale')->name('nayax.sale');
+Route::post('nayax/sale_end_notification', 'MachineController@saleEndNotification')->name('nayax.saleEndNotification');
 
 //Tranzila
-Route::post('wallet/creditcardchargetranzila', 'WalletController@chargeWithTranzila')->name('wallet.chargeWithTranzila')->middleware('auth');
+Route::post('wallet/creditcardchargetranzila', 'WalletController@chargeWithTranzila')->name('wallet.chargeWithTranzila')->middleware('auth'); //iframe page
 Route::post('wallet/confirm-charge-with-tranzila', 'WalletController@confirmChargeWithTranzila')->name('wallet.confirmChargeWithTranzila');
 Route::post('wallet/charge-failed-with-tranzila', 'WalletController@chargeFailedWithTranzila')->name('wallet.chargeFailedWithTranzila');
 

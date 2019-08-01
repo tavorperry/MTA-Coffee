@@ -13,8 +13,7 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         'wallet/confirm-charge-with-tranzila',
-        'https://coffee-stg.mta.ac.il/wallet/confirm-charge-with-tranzila',
-        'https://coffee.mta.ac.il/wallet/confirm-charge-with-tranzila',
-        'nayax/sale'
+        'nayax/sale',
+        'nayax/sale_end_notification'
     ];
 }
