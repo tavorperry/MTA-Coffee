@@ -6,10 +6,16 @@
     @if(isset($error) && $error == true)
         <b> הסכום חייב להיות בין 10 ל 100 </b>
     @else
+
+    <?php
+    $amount = $tranzila_transaction->sum;
+    $thtk = $tranzila_transaction->thtk;
+    ?>
+
     <h2 class="service-description text-center">הטענת ארנק דיגיטלי בכרטיס אשראי</h2>
     <hr>
     <div style="height:560px" class="embed-responsive embed-responsive-1by1">
-        <iframe class="embed-responsive-item" src="https://direct.tranzila.com/test/iframenew.php?lang=il&cred_type=1&u71=1&sum={{$amount}}" scrolling="no"> </iframe>
+        <iframe class="embed-responsive-item" src="https://direct.tranzila.com/test/iframenew.php?lang=il&cred_type=1&u71=1&sum={{$amount}}&thtk={{$thtk}}" scrolling="no"> </iframe>
     </div>
     @endif
 

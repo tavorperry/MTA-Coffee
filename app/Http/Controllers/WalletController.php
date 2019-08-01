@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\CreditCardTransaction;
+use App\NayaxTransactions;
+use App\TranzilaTransaction;
 use App\User;
 use App\Wallet;
+use GuzzleHttp\Client;
 use http\Env\Response;
 use http\Exception;
 use Illuminate\Http\Request;
@@ -207,18 +210,76 @@ try{
 
     public function chargeWithTranzila(Request $request){
         $amount = $request->get('amount');
+        $thtk = $this->getThtkToken($request);
+        $tranzila_transaction = new TranzilaTransaction();
+        $tranzila_transaction->sum = $amount;
+        $tranzila_transaction->thtk = $thtk;
+        TranzilaTransaction::saveObjectToDB($tranzila_transaction);
+
         if ($amount < 10 || $amount > 100){
             return view('wallet.credit_card_charge_iframe')->with(['error' => true]);
         }
-        return view('wallet.credit_card_charge_iframe')->with(compact("amount"));
+        return view('wallet.credit_card_charge_iframe')->with(compact("tranzila_transaction"));
     }
 
-    public function confirmChargeWithTranzila(Request $request){
-        dd($request);
-        dd(123);
+    public function confirmChargeWithTranzila(){
+
+        if ($this->validateThtkToken($_POST)){
+            Log::info("Thtk Token validated");
+        }else{
+            Log::warning("Thtk Validation Failed!");
+            return;
+        }
+
+        $auth_user = auth::user();
+        $wallet = $auth_user->wallet();
+        $wallet->deposit($_POST['sum']);
     }
 
     public function chargeFailedWithTranzila(){
         dd(12345);
+    }
+
+    public function getThtkToken($request){
+        $sum = $request['sum'];
+        $response = null;
+        $client = new Client();
+        $order_id = NayaxTransactions::generateTransactionId();
+
+        if (!strcmp($order_id, "0")){
+            log::error("order_id == 0");
+            return false;
+        }
+        try {
+            $response = $client->post(env('TRANZILA_HANDSHAKE_URL'), [
+                'form_params' => [
+                    'sum' => "\'".$sum."\'",
+                    'supplier' => 'test',
+                    'op' => '1',
+                    'TranzilaPW' => env('TRANZILA_PW')
+                ]
+            ]);
+
+        }catch (\Exception $exception){
+            Log::error("getThtkToken() Failed in post request! Exception: " . $exception);
+        }
+        return $response->getBody()->getContents();
+    }
+
+    public function validateThtkToken($_POST){
+        $sum = $_POST['sum'];
+        $thtk = $_POST['thtk'];
+        $tranzila_transaction =  TranzilaTransaction::getTranzilaTransactionByThtk($thtk);
+        if (!empty($tranzila_transaction) && !empty($tranzila_transaction->sum) && !empty($tranzila_transaction->thtk) && !empty($thtk) && !empty($sum)){
+            if ($tranzila_transaction->sum == $sum && strcasecmp($tranzila_transaction->thtk, $thtk)){
+                if ($tranzila_transaction->delete()){
+                Log::info("Tranzila Transaction deleted");
+                    return true;
+            }else{
+                    Log::error("Tranzila transaction cant be deleted!");
+                }
+            }
+        }
+        return false;
     }
 }
