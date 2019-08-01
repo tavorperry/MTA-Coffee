@@ -266,9 +266,9 @@ try{
         return $response->getBody()->getContents();
     }
 
-    public function validateThtkToken($_POST){
-        $sum = $_POST['sum'];
-        $thtk = $_POST['thtk'];
+    public function validateThtkToken($response){
+        $sum = $response['sum'];
+        $thtk = $response['thtk'];
         $tranzila_transaction =  TranzilaTransaction::getTranzilaTransactionByThtk($thtk);
         if (!empty($tranzila_transaction) && !empty($tranzila_transaction->sum) && !empty($tranzila_transaction->thtk) && !empty($thtk) && !empty($sum)){
             if ($tranzila_transaction->sum == $sum && strcasecmp($tranzila_transaction->thtk, $thtk)){
