@@ -224,7 +224,6 @@ try{
     }
 
     public function confirmChargeWithTranzila(){
-
         if ($this->validateThtkToken($_POST)){
             Log::info("Thtk Token validated");
         }else{
@@ -232,9 +231,9 @@ try{
             return;
         }
 
-        $auth_user = auth::user();
-        $wallet = $auth_user->wallet();
-        $wallet->deposit($_POST['sum']);
+        $user = auth::user();
+        $user->wallet->deposit($_POST['sum']);
+
     }
 
     public function chargeFailedWithTranzila(){
@@ -274,7 +273,7 @@ try{
         $thtk = $response['thtk'];
         $tranzila_transaction =  TranzilaTransaction::getTranzilaTransactionByThtk($thtk);
         if (!empty($tranzila_transaction) && !empty($tranzila_transaction->sum) && !empty($tranzila_transaction->thtk) && !empty($thtk) && !empty($sum)){
-            if ($tranzila_transaction->sum == $sum && strcasecmp($tranzila_transaction->thtk, $thtk)){
+            if ($tranzila_transaction->sum == $sum && strcasecmp($tranzila_transaction->thtk, $thtk) == 0){
                 if ($tranzila_transaction->delete()){
                 Log::info("Tranzila Transaction deleted");
                     return true;
