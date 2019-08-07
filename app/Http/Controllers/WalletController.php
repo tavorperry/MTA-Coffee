@@ -214,6 +214,7 @@ try{
         $tranzila_transaction = new TranzilaTransaction();
         $tranzila_transaction->sum = $amount;
         $tranzila_transaction->thtk = $thtk;
+        $tranzila_transaction->user = auth()->id();
         TranzilaTransaction::saveObjectToDB($tranzila_transaction);
 
         if ($amount < 10 || $amount > 100){
@@ -241,7 +242,7 @@ try{
     }
 
     public function getThtkToken($request){
-        $sum = $request['sum'];
+        $sum = $request->get('amount');
         $response = null;
         $client = new Client();
         $order_id = NayaxTransactions::generateTransactionId();
@@ -250,20 +251,22 @@ try{
             log::error("order_id == 0");
             return false;
         }
+        $form_params = [
+            'sum' => "".$sum."",
+            'supplier' => 'test',
+            'op' => '1',
+            'TranzilaPW' => env('TRANZILA_PW')
+        ];
+
         try {
             $response = $client->post(env('TRANZILA_HANDSHAKE_URL'), [
-                'form_params' => [
-                    'sum' => "\'".$sum."\'",
-                    'supplier' => 'test',
-                    'op' => '1',
-                    'TranzilaPW' => env('TRANZILA_PW')
-                ]
+                'form_params' => $form_params
             ]);
 
         }catch (\Exception $exception){
             Log::error("getThtkToken() Failed in post request! Exception: " . $exception);
         }
-        return $response->getBody()->getContents();
+        return substr($response->getBody()->getContents(),5);
     }
 
     public function validateThtkToken($response){

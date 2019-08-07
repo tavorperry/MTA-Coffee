@@ -21,11 +21,11 @@ class TranzilaTransaction extends Model
             Log::error("saveObjectToDB Failed! Exception: ".$e->getMessage());
         }
         if ($isSaved) {
-            Log::info("creditCardTransactionObject successfully saved!");
+            Log::info("TranzilaTransactionObject successfully saved!");
             return $tranzila_transaction->id;
         }
         else
-            Log::error("creditCardTransactionObject Failed to save!");
+            Log::error("TranzilaTransactionObject Failed to save!");
         return 0;
 
     }
