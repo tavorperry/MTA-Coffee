@@ -34,7 +34,7 @@ class NayaxTransactions extends Model
             return $nayaxTransaction->transactionId;
         }
         else{
-            Log::error("creditCardTransactionObject Failed to save!");
+            Log::error("NayaxTransaction Failed to save!");
             return "0";
         }
     }

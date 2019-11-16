@@ -10,7 +10,7 @@ class TranzilaTransaction extends Model
 {
 
     protected $fillable = [
-        'sum', 'currency', 'pdesc','lang', 'company', 'contact', 'email','thtk'
+        'sum', 'user', 'thtk', 'currency', 'ccno', 'used'
     ];
 
     public static function saveObjectToDB($tranzila_transaction){

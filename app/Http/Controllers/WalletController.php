@@ -15,6 +15,7 @@ use Auth;
 use Alert;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use function MongoDB\BSON\toJSON;
 use Validator;
 
 class WalletController extends Controller
@@ -215,6 +216,7 @@ try{
         $tranzila_transaction->sum = $amount;
         $tranzila_transaction->thtk = $thtk;
         $tranzila_transaction->user = auth()->id();
+        $tranzila_transaction->used = false;
         TranzilaTransaction::saveObjectToDB($tranzila_transaction);
 
         if ($amount < 10 || $amount > 100){
@@ -224,16 +226,36 @@ try{
     }
 
     public function confirmChargeWithTranzila(){
-        if ($this->validateThtkToken($_POST)){
-            Log::info("Thtk Token validated");
-        }else{
-            Log::warning("Thtk Validation Failed!");
-            return;
+        try {
+            $thtk = $_POST['thtk'];
+            $sum = $_POST['sum'];
+            $ccno = $_POST['ccno'];
+            $tranzila_transaction = TranzilaTransaction::getTranzilaTransactionByThtk($thtk);
+            if ($this->validateThtkToken($sum, $thtk, $tranzila_transaction)) {
+                Log::info("Thtk Token validated. thtk: ".$thtk);
+            } else {
+                Log::warning("Thtk Validation Failed!");
+                return;
+            }
+
+            $tranzila_transaction->ccno = $ccno;
+            TranzilaTransaction::saveObjectToDB($tranzila_transaction);
+            $user = auth::user();
+            //$user = User::getUserById(3); //TODO: Delete
+
+            $deposit_succeed = $user->wallet->deposit($sum);
+            if (!$deposit_succeed) {
+                Log::error("Deposit Failed!!! We need to refund user: " . $user . ".for Amount: ." . $sum);
+                Log::error("tranzila_transaction: " . $tranzila_transaction);
+                //TODO-> if failed - refund costumer;
+            }else{
+                Log::debug("end of confirmChargeWithTranzila(). Forwarding user to view. User: ". $user->id);
+                return view('wallet.deposit_succeed', compact('deposit_succeed', 'sum'));
+            }
+
+        }catch (\Exception $exception){
+            Log::error("Failed to excecute confirmChargeWithTranzila(). Exception: ". $exception);
         }
-
-        $user = auth::user();
-        $user->wallet->deposit($_POST['sum']);
-
     }
 
     public function chargeFailedWithTranzila(){
@@ -268,17 +290,20 @@ try{
         return substr($response->getBody()->getContents(),5);
     }
 
-    public function validateThtkToken($response){
-        $sum = $response['sum'];
-        $thtk = $response['thtk'];
-        $tranzila_transaction =  TranzilaTransaction::getTranzilaTransactionByThtk($thtk);
-        if (!empty($tranzila_transaction) && !empty($tranzila_transaction->sum) && !empty($tranzila_transaction->thtk) && !empty($thtk) && !empty($sum)){
-            if ($tranzila_transaction->sum == $sum && strcasecmp($tranzila_transaction->thtk, $thtk) == 0){
-                if ($tranzila_transaction->delete()){
-                Log::info("Tranzila Transaction deleted");
-                    return true;
-            }else{
-                    Log::error("Tranzila transaction cant be deleted!");
+    public function validateThtkToken($sum, $thtk, $tranzila_transaction){
+        if (!empty($tranzila_transaction) && !empty($tranzila_transaction->sum) && !empty($tranzila_transaction->thtk) && !empty($thtk) && !empty($sum)) {
+            if ($tranzila_transaction->sum == $sum && strcasecmp($tranzila_transaction->thtk, $thtk) == 0) {
+                Log::debug("sum and thtk validated. Validating if used");
+                if ($tranzila_transaction->used == false) {
+                    $tranzila_transaction->used = true;
+                    if (TranzilaTransaction::saveObjectToDB($tranzila_transaction)) {
+                        Log::info("Tranzila Transaction used!");
+                        return true;
+                    } else {
+                        Log::error("Tranzila transaction cant be saved as used!");
+                    }
+                }else{
+                    Log::emergency("Thtk already used! thtk: ". $thtk);
                 }
             }
         }
