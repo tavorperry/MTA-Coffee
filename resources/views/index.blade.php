@@ -48,7 +48,7 @@
             </a>
         </div>
         <div class="row">
-            <a href="{{ route('wallet.chargeWithTranzila') }}" class="btn menu-btn col"><i class="fas fa-money-check-alt menu-btn-icon"></i><br>
+            <a href="{{ route('wallet.creditCardCharge') }}" class="btn menu-btn col"><i class="fas fa-money-check-alt menu-btn-icon"></i><br>
                 הטענת ארנק
                 <br>
                 דיגיטלי

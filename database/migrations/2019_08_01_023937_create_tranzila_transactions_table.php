@@ -18,12 +18,9 @@ class CreateTranzilaTransactionsTable extends Migration
             $table->integer('user')->unsigned();
             $table->string('sum')->nullable();
             $table->string('currency')->nullable();
-            $table->string('pdesc')->nullable();
-            $table->string('lang')->nullable();
-            $table->string('company')->nullable();
-            $table->string('contact')->nullable();
-            $table->string('email')->nullable();
+            $table->string('ccno')->nullable();
             $table->string('thtk')->nullable();
+            $table->boolean('used');
             $table->timestamps();
             $table->foreign('user')->references('id')->on('users')->onDelete('cascade');
         });

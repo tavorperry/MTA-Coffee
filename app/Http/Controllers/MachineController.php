@@ -114,4 +114,12 @@ class MachineController extends Controller
         ];
         return json_encode($response);
     }
+
+    public function saleEndNotification(Request $request){
+        $json = $request->json()->all();
+        $sale = json_decode(json_encode($json));
+        if (isset($sale->TransactionId)) {
+            return($sale->TransactionId);
+        }
+    }
 }
