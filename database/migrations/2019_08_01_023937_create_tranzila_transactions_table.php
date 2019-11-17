@@ -20,7 +20,7 @@ class CreateTranzilaTransactionsTable extends Migration
             $table->string('currency')->nullable();
             $table->string('ccno')->nullable();
             $table->string('thtk')->nullable();
-            $table->boolean('used');
+            $table->boolean('used')->default(false);
             $table->timestamps();
             $table->foreign('user')->references('id')->on('users')->onDelete('cascade');
         });
