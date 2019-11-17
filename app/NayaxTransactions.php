@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Log;
 
 class NayaxTransactions extends Model
 {
-    protected $fillable = ['transactionId', 'userId'];
+    protected $fillable = ['transactionId', 'userId','used'];
     public static function generateTransactionId(){
         $transactionId = str_random(40);
         $isTransactionExist = self::isTransactionIdExists($transactionId);
@@ -48,14 +48,23 @@ class NayaxTransactions extends Model
         return $result;
     }
 
-    public static function deleteTransactionFromDB($transactionId){
+    public static function isTransactionIdAlreadyUsed($transactionId){
         $result = null;
-        $isDeleted = DB::table('nayax_transactions')->where('transactionId', $transactionId)->delete();
-        if ($isDeleted){
-            Log::info("Nayax Transaction: '" . $transactionId . "'' Deleted successfully from DB");
-        }else{
-            Log::error("Nayax Transaction: '" . $transactionId . "'' Could NOT Deleted from DB !!!!!!!!!!!");
+        $nayaxTransaction = DB::table('nayax_transactions')->where('transactionId', $transactionId)->first();
+        if(!empty ($nayaxTransaction)){
+            $result = $nayaxTransaction->used == true;
         }
         return $result;
+    }
+
+    public static function markTransactionAsUsedOnDB($transactionId){
+        $isMarkedAsUsed = null;
+        $isMarkedAsUsed = DB::table('nayax_transactions')->where('transactionId', $transactionId)->update(['used' => true]);
+        if ($isMarkedAsUsed){
+            Log::info("Nayax Transaction: '" . $transactionId . "'' Successfully marked as used on DB");
+        }else{
+            Log::error("Nayax Transaction: '" . $transactionId . "'' Could NOT be marked as used on DB !!!!!!!!!!!");
+        }
+        return $isMarkedAsUsed;
     }
 }

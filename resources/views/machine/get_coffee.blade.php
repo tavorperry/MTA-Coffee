@@ -8,7 +8,7 @@
     @if(session('message'))
         <div>{{ session('message') }}</div>
     @endif
-    {{ Form::open(['route' => ['getCoffee.buy']])}}
+    <form name="getCoffee" class="" method="POST" action="<?php echo e(route('getCoffee.buy')); ?>" onsubmit="return getCoffeeAlert()">
     @csrf
     <div class="row">
         <label class="to-the-right col-3"><h4 class="service-description">בחר מכונה</h4></label>
@@ -16,18 +16,6 @@
             <option value="2">ווסטון</option>
         </select>
     </div>
-
-    {{--<div class="row">
-        <label class="to-the-right col-3"><h4 class="service-description">הערות</h4></label>
-        <input id="comment" name="comment" type="text" maxlength="50" class="col-9 form-control" placeholder="הערות (עד 50 תווים)" >
-
-        </input>
-        @if ($errors->has('comment'))
-            <span class="invalid-feedback" style="display: block !important; text-align: center">
-                    <strong>אנא הקלידו הערה תקינה. בלי תווים מיוחדים ועד 100 תווים</strong>
-                </span>
-        @endif
-    </div>--}}
     <br>
     <div class="container">
         <div class="text-center">
@@ -35,7 +23,16 @@
             <button type="submit" class="btn login-btn" value="דווח!">תביאו לי קפה!</button>
         </div>
     </div>
-    {!! Form::close() !!}
+    </form>
+    <script>
+        function getCoffeeAlert() {
+            if (confirm("הפעולה הבאה תפתח את המכונה ותחייב אתכם בסכום המחיר של קפה. האם להמשיך?")) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    </script>
 
 @endsection
 
