@@ -14,7 +14,7 @@ class AddUsedToNayaxTransactionsTable extends Migration
     public function up()
     {
         Schema::table('nayax_transactions', function (Blueprint $table) {
-            $table->boolean('used');
+            $table->boolean('used')->default(false);
         });
     }
 
