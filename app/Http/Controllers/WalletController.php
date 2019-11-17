@@ -254,7 +254,7 @@ try{
             }
 
         }catch (\Exception $exception){
-            Log::error("Failed to excecute confirmChargeWithTranzila(). Exception: ". $exception);
+            Log::error("Failed to execute confirmChargeWithTranzila(). Exception: ". $exception);
         }
     }
 

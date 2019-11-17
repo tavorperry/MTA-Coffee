@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use http\Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Alert;
@@ -64,21 +66,29 @@ class ProfileController extends Controller
           return back()->with('success', 'הסיסמא שונתה בהצלחה!');
     }
 
-    public function deactivation(Request $request){
-        $user=Auth::user();
-        $user->first_name = "Deleted User";
-        $user->email =  str_random(123)."@Deleted.user";
-        $user->password =  null;
-        $user->notifications = 0;
-        $user->secret_token = str_random(30);
-        $user->remember_token =  null;
-        if($user->save()) {
-            Auth::logout();
-            Alert::success('המשתמש נמחק בהצלחה!')->persistent("Close");
-            return redirect()->route('index');
-        }else{
-            Alert::error('אנא פנו אלינו על מנת שנטפל בבעיה: mtacoffe@gmail.com', 'ישנה שגיאה ולא הצלחנו למחוק את המשתמש שלך!')->persistent("Close");
-            return redirect()->route('index');
+    public function deactivation(Request $request)
+    {
+        Log::info("Starting deactivation()");
+        try {
+            $user = Auth::user();
+            Log::info("deactivation() For user: " . strval($user));
+            $user->first_name = "Deleted User";
+            $user->email = str_random(123) . "@Deleted.user";
+            $user->password = null;
+            $user->notifications = 0;
+            $user->secret_token = str_random(30);
+            $user->remember_token = null;
+            if ($user->save()) {
+                Auth::logout();
+                Alert::success('המשתמש נמחק בהצלחה!')->persistent("Close");
+                Log::info("deactivation() Succeed!");
+                return redirect()->route('index');
+            } else {
+                Alert::error('אנא פנו אלינו על מנת שנטפל בבעיה: mtacoffe@gmail.com', 'ישנה שגיאה ולא הצלחנו למחוק את המשתמש שלך!')->persistent("Close");
+                return redirect()->route('index');
+            }
+        } catch (Exception $e) {
+            Log::error("deactivation() Failed! Exception: " . $e->getMessage());
         }
     }
 }

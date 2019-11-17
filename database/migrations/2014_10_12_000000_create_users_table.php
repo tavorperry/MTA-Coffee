@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->integer('points')->unsigned()->default(0);
             $table->boolean('notifications')->default(true);
             $table->string('secret_token',32);
+            $table->string('app_user_id',32);
             $table->rememberToken();
             $table->timestamps();
         });

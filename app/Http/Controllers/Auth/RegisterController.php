@@ -108,7 +108,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'secret_token' => str_random(32),
-
+            'app_user_id' => str_random(32),
         ]);
     }
 }
