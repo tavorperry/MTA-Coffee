@@ -82,8 +82,8 @@ Route::post(env('NAYAX_REFUND'), 'MachineController@refund')->name('nayax.refund
 
 //Tranzila
 Route::post('wallet/creditcardchargetranzila', 'WalletController@chargeWithTranzila')->name('wallet.chargeWithTranzila')->middleware('auth'); //iframe page
-Route::post('wallet/confirm-charge-with-tranzila', 'WalletController@confirmChargeWithTranzila')->name('wallet.confirmChargeWithTranzila');
-Route::post('wallet/charge-failed-with-tranzila', 'WalletController@chargeFailedWithTranzila')->name('wallet.chargeFailedWithTranzila');
+Route::post(env('TRANZILA_CONFIRM_CHARGE_URL'), 'WalletController@confirmChargeWithTranzila')->name('wallet.confirmChargeWithTranzila');
+Route::post(env('TRANZILA_CONFIRM_CHARGE_FAILED_URL'), 'WalletController@chargeFailedWithTranzila')->name('wallet.chargeFailedWithTranzila');
 
 //מה שנשאר לי לעשות, זה להגיד בטרנזילה דף הצלחה ודף כישלון. דף ההצלחה יקבל את הסכום ויטעין את הארנק לפי הסכון. לשים לב למנוע נסיונות זיוף שם.
 

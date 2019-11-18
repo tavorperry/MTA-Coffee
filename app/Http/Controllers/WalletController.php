@@ -222,7 +222,7 @@ try{
     }
 
     public function confirmChargeWithTranzila(){
-        og::info("Starting confirmChargeWithTranzila()");
+        Log::info("Starting confirmChargeWithTranzila()");
         try {
             $thtk = $_POST['thtk'];
             $sum = $_POST['sum'];
@@ -255,7 +255,7 @@ try{
     }
 
     public function chargeFailedWithTranzila(){
-        og::info("Starting chargeFailedWithTranzila()");
+        Log::info("Starting chargeFailedWithTranzila()");
         try{
         $thtk = $_POST['thtk'];
         $sum = $_POST['sum'];
@@ -311,7 +311,7 @@ try{
                 if ($tranzila_transaction->used == false) {
                     $tranzila_transaction->used = true;
                     if (TranzilaTransaction::saveObjectToDB($tranzila_transaction)) {
-                        Log::info("Tranzila Transaction used!");
+                        Log::info("Tranzila Transaction saved as used!");
                         return true;
                     } else {
                         Log::error("Tranzila transaction cant be saved as used!");

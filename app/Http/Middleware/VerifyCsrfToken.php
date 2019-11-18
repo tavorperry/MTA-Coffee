@@ -12,7 +12,7 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        'wallet/confirm-charge-with-tranzila',
+        'tranzilasecreturl/*',
         'nayaxsecreturl/*'
     ];
 }
