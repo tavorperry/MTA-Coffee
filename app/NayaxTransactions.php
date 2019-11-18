@@ -9,7 +9,16 @@ use Illuminate\Support\Facades\Log;
 
 class NayaxTransactions extends Model
 {
-    protected $fillable = ['transactionId', 'userId','used', 'amount'];
+    public static function isTransactionIdAlreadyUsed($transactionId){
+        $result = null;
+        $nayaxTransaction = DB::table('nayax_transactions')->where('transactionId', $transactionId)->first();
+        if(!empty ($nayaxTransaction)){
+            $result = $nayaxTransaction->used == true;
+        }
+        return $result;
+    }
+
+    protected $fillable = ['transactionId', 'userId','used', 'amount', 'refunded'];
     public static function generateTransactionId(){
         $transactionId = str_random(40);
         $isTransactionExist = self::isTransactionIdExists($transactionId);
@@ -49,15 +58,6 @@ class NayaxTransactions extends Model
         return $result;
     }
 
-    public static function isTransactionIdAlreadyUsed($transactionId){
-        $result = null;
-        $nayaxTransaction = DB::table('nayax_transactions')->where('transactionId', $transactionId)->first();
-        if(!empty ($nayaxTransaction)){
-            $result = $nayaxTransaction->used == true;
-        }
-        return $result;
-    }
-
     public static function markTransactionAsUsedOnDB($transactionId){
         $isMarkedAsUsed = null;
         $isMarkedAsUsed = DB::table('nayax_transactions')->where('transactionId', $transactionId)->update(['used' => true]);
@@ -71,6 +71,8 @@ class NayaxTransactions extends Model
 
     public static function isTransactionTimestampValid($transactionId){
         $result = null;
+        $DBTimestamp = "";
+        $nowTimestamp = "";
         try {
             $nayaxTransaction = DB::table('nayax_transactions')->where('transactionId', $transactionId)->first();
             if (!empty ($nayaxTransaction)) {
@@ -94,5 +96,16 @@ class NayaxTransactions extends Model
         }
         Log::debug("The amount: " . $amount. "was updated? (" . $isAmountUpdated . ") to TransactionId: " . $transactionId);
         return $isAmountUpdated;
+    }
+
+    public static function markTransactionAsRefundedOnDB($transactionId){
+        $isMarkedAsUsed = null;
+        $isMarkedAsUsed = DB::table('nayax_transactions')->where('transactionId', $transactionId)->update(['refunded' => true]);
+        if ($isMarkedAsUsed){
+            Log::info("Nayax Transaction: '" . $transactionId . "'' Successfully marked as refunded on DB");
+        }else{
+            Log::error("Nayax Transaction: '" . $transactionId . "'' Could NOT be marked as refunded on DB !!!!!!!!!!!");
+        }
+        return $isMarkedAsUsed;
     }
 }
