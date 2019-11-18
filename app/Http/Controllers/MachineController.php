@@ -173,23 +173,49 @@ class MachineController extends Controller
         Log::info($METHOD_NAME . " Starting");
         $status = new StatusObject("Declined", 6, "General system failure", "General system failure");
         $isRefundSucceed = false;
+        $stopFunction = false;
         try{
-            $user = auth::user();
             Log::debug($METHOD_NAME . " request: " . strval($request));
             $json = $request->json()->all();
             $refund = json_decode(json_encode($json));
+
             if (!isset($refund->TransactionId) || !isset($refund->ReasonCode) || !isset($refund->ReasonText)){
                 $status = new StatusObject("Declined", 10, "Missing mandatory parameters", "Missing mandatory parameters");
                 Log::error("operation Failed. Returning status with error code 10. Missing mandatory parameters!");
-            }else if (isset($refund->RefundAmount)){
-                $isRefundSucceed = $user->wallet->refund($refund->RefundAmount, "TransactionId: " . $refund->TransactionId);
-            }else{
-                $transaction = NayaxTransactions::isTransactionIdExists($refund->TransactionId);
-                $transactionAmount = $transaction->amount;
-                $isRefundSucceed = $user->wallet->refund($transactionAmount, "TransactionId: " . $refund->TransactionId);
+                $stopFunction = true;
             }
-            if ($isRefundSucceed){
+            if (!$stopFunction && isset($refund->TransactionId)){
+                $transaction = NayaxTransactions::isTransactionIdExists($refund->TransactionId);
+                if (!isset($transaction)) {
+                    $status = new StatusObject("Declined", 2, "Transaction ID unknown", "Transaction ID unknown");
+                    Log::error("operation Failed. Returning status with error code 2. transaction ID unknown");
+                    $stopFunction = true;
+                }else{
+                    $user = User::getUserById($transaction->userId);
+                }
+            }
+            if (!$stopFunction && isset($refund->RefundAmount)){
+                if ($transaction->refunded){
+                    $status = new StatusObject("Declined", 11, "Transaction is already refunded", "Transaction is already refunded");
+                    Log::error("operation Failed. Returning status with error code 1. Transaction is already refunded");
+                    $stopFunction = true;
+                }else {
+                    $isRefundSucceed = $user->wallet->refund($refund->RefundAmount, "TransactionId: " . $refund->TransactionId);
+                }
+            }else if (!$stopFunction) {
+                if ($transaction->refunded) {
+                    $status = new StatusObject("Declined", 11, "Transaction is already refunded", "Transaction is already refunded");
+                    Log::error("operation Failed. Returning status with error code 1. Transaction is already refunded");
+                    $stopFunction = true;
+                } else {
+                    $transactionAmount = $transaction->amount;
+                    $isRefundSucceed = $user->wallet->refund($transactionAmount, "TransactionId: " . $refund->TransactionId);
+                }
+            }
+
+            if (!$stopFunction && $isRefundSucceed){
                 Log::info("refund succeed!");
+                NayaxTransactions::markTransactionAsRefundedOnDB($refund->TransactionId);
                 $status = new StatusObject("Approved", null, null, "Refund Approved");
             }
 
