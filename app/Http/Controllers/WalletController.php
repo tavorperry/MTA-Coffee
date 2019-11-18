@@ -243,7 +243,7 @@ try{
             $user = auth::user();
             //$user = User::getUserById(3); //TODO: Delete
 
-            $deposit_succeed = $user->wallet->deposit($sum);
+            $deposit_succeed = $user->wallet->deposit($sum, "thtk " . $thtk);
             if (!$deposit_succeed) {
                 Log::error("Deposit Failed!!! We need to refund user: " . $user . ".for Amount: ." . $sum);
                 Log::error("tranzila_transaction: " . $tranzila_transaction);

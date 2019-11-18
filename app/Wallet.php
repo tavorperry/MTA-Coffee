@@ -183,4 +183,38 @@ class Wallet extends Model
         }
         return false;
     }
+
+    /**
+     * refund transaction.
+     * similar to deposit
+     *
+     * @param  double  $amount
+     * @return boolean
+     */
+
+    public function refund($amount, $comment = "No Comment!"){
+        $METHOD_NAME = "refund";
+        log::info("Starting " . $METHOD_NAME . " for wallet: ".$this);
+        DB::beginTransaction();
+        try{
+            $this->balance += $amount;
+            $this->save();
+            $transaction = new Transaction([
+                'transaction_type' => $METHOD_NAME,
+                'amount'           => $amount,
+                'comment'          => $comment,
+                'wallet_id'        => $this->id,
+                'new_balance'      => $this->balance(),
+            ]);
+            $transaction->save();
+
+            DB::commit();
+            log::info($METHOD_NAME . " succeed for: ".$amount." ILS");
+            return true;
+        }catch (Exception $e){
+            DB::rollback();
+            Log::error("Failed to " . $METHOD_NAME . ". user ".$this->user_id . " Exception: " .$e->getMessage());
+            return false;
+        }
+    }
 }
