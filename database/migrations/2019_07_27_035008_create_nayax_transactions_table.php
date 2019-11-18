@@ -18,6 +18,7 @@ class CreateNayaxTransactionsTable extends Migration
             $table->string('transactionId');
             $table->integer('userId')->unsigned();
             $table->boolean('used');
+            $table->string('amount')->nullable();
             $table->timestamps();
             $table->foreign('userId')->references('id')->on('users');
         });

@@ -76,8 +76,9 @@ Route::post('getcoffee/buy', 'MachineController@buyCoffee')->name('getCoffee.buy
 
 //Nayax
 Route::post(env('NAYAX_AUTHORIZATION'), 'MachineController@authorization')->name('nayax.authorization');
-Route::post('nayax/sale', 'MachineController@sale')->name('nayax.sale');
-Route::post('nayax/sale_end_notification', 'MachineController@saleEndNotification')->name('nayax.saleEndNotification');
+Route::post(env('NAYAX_SALE'), 'MachineController@sale')->name('nayax.sale');
+Route::post(env('NAYAX_SALE_END_NOTIFICATION'), 'MachineController@saleEndNotification')->name('nayax.saleEndNotification');
+Route::post(env('NAYAX_REFUND'), 'MachineController@refund')->name('nayax.refund');
 
 //Tranzila
 Route::post('wallet/creditcardchargetranzila', 'WalletController@chargeWithTranzila')->name('wallet.chargeWithTranzila')->middleware('auth'); //iframe page

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Log;
 
 class NayaxTransactions extends Model
 {
-    protected $fillable = ['transactionId', 'userId','used'];
+    protected $fillable = ['transactionId', 'userId','used', 'amount'];
     public static function generateTransactionId(){
         $transactionId = str_random(40);
         $isTransactionExist = self::isTransactionIdExists($transactionId);
@@ -22,6 +22,7 @@ class NayaxTransactions extends Model
         $nayaxTransaction = new NayaxTransactions();
         $nayaxTransaction->transactionId = $transactionId;
         $nayaxTransaction->userId = $user = auth()->id();
+        $nayaxTransaction->used = false;
 
         $isSaved = false;
         try {
@@ -66,5 +67,32 @@ class NayaxTransactions extends Model
             Log::error("Nayax Transaction: '" . $transactionId . "'' Could NOT be marked as used on DB !!!!!!!!!!!");
         }
         return $isMarkedAsUsed;
+    }
+
+    public static function isTransactionTimestampValid($transactionId){
+        $result = null;
+        try {
+            $nayaxTransaction = DB::table('nayax_transactions')->where('transactionId', $transactionId)->first();
+            if (!empty ($nayaxTransaction)) {
+                $DBTimestamp = $nayaxTransaction->created_at;
+                $nowTimestamp = now();
+                $result = $nowTimestamp->diffInSeconds($DBTimestamp) <= env('NAYAX_SECONDS_TIMEOUT_FOR_TRANSACTION');
+            }
+        }catch (\Exception $e){
+            Log::error("isTransactionTimestampValid() Falied. Exception msg: " . $e->getMessage());
+        }
+        Log::debug("DBTimestamp: " . strval($DBTimestamp) . ". nowTimestamp: " . strval($nowTimestamp) . ". For TransactionID: " . $transactionId);
+        return $result;
+    }
+
+    public static function updateAmountOnRecord($transactionId, $amount){
+        $result = null;
+        try {
+            $isAmountUpdated = DB::table('nayax_transactions')->where('transactionId', $transactionId)->update(['amount' => $amount]);
+        }catch (\Exception $e){
+            Log::error("isTransactionTimestampValid() Falied. Exception msg: " . $e->getMessage());
+        }
+        Log::debug("The amount: " . $amount. "was updated? (" . $isAmountUpdated . ") to TransactionId: " . $transactionId);
+        return $isAmountUpdated;
     }
 }
