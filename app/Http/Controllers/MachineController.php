@@ -20,7 +20,8 @@ class MachineController extends Controller
     }
 
     public function buyCoffee(Request $request){
-        log::info("Starting buyCoffee()");
+        $METHOD_NAME = "buyCoffee";
+        log::info("Starting " . $METHOD_NAME . "()");
 
         try {
             //$this->validator($request->all())->validate();
@@ -34,16 +35,18 @@ class MachineController extends Controller
             //open Machine
             $isSucceed = $this->notifyNayax($machineNumber);
             if ($isSucceed){
-                Log::info("buyCoffee succeed");
+                Log::info($METHOD_NAME . " succeed");
             }else{
-                Log::error("buyCoffee failed in post request");
+                Log::error($METHOD_NAME . " failed in post request");
             }
          }catch (Exception $e){
-            LOG::error("buyCoffee failed. Exception: " . $e->getMessage());
+            LOG::error($METHOD_NAME . "Failed. Exception: " . $e->getMessage());
         }
     }
 
     public function notifyNayax($machineNumber){
+        $METHOD_NAME = "notifyNayax";
+        log::info("Starting " . $METHOD_NAME . "()");
         $response = null;
         $client = new Client();
         $transactionId = NayaxTransactions::generateTransactionId();
@@ -63,8 +66,9 @@ class MachineController extends Controller
             ]);
 
         }catch (\Exception $exception){
-            Log::error("openMachine() Failed in post request! Exception: " . $exception);
+            Log::error("notifyNayax() Failed in post request! Exception: " . $exception);
         }
+        Log::info("Exit " . $METHOD_NAME);
         return ($response->getStatusCode() == 200);
     }
 

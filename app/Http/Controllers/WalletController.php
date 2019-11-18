@@ -205,10 +205,6 @@ try{
         return view('get_coffee');
     }
 
-    public function getCoffee(Request $request){
-        //TODO
-    }
-
     public function chargeWithTranzila(Request $request){
         $amount = $request->get('amount');
         $thtk = $this->getThtkToken($request);
@@ -226,6 +222,7 @@ try{
     }
 
     public function confirmChargeWithTranzila(){
+        og::info("Starting confirmChargeWithTranzila()");
         try {
             $thtk = $_POST['thtk'];
             $sum = $_POST['sum'];
@@ -241,13 +238,12 @@ try{
             $tranzila_transaction->ccno = $ccno;
             TranzilaTransaction::saveObjectToDB($tranzila_transaction);
             $user = auth::user();
-            //$user = User::getUserById(3); //TODO: Delete
 
             $deposit_succeed = $user->wallet->deposit($sum, "thtk " . $thtk);
             if (!$deposit_succeed) {
-                Log::error("Deposit Failed!!! We need to refund user: " . $user . ".for Amount: ." . $sum);
+                Log::error("Deposit Failed!!! We need to manually check that was charge from credit card and refund the user: " . $user . ".for Amount: ." . $sum);
                 Log::error("tranzila_transaction: " . $tranzila_transaction);
-                //TODO-> if failed - refund costumer;
+                return view('wallet.deposit_failed', compact('deposit_succeed', 'sum'));
             }else{
                 Log::debug("end of confirmChargeWithTranzila(). Forwarding user to view. User: ". $user->id);
                 return view('wallet.deposit_succeed', compact('deposit_succeed', 'sum'));
@@ -259,7 +255,25 @@ try{
     }
 
     public function chargeFailedWithTranzila(){
-        dd(12345);
+        og::info("Starting chargeFailedWithTranzila()");
+        try{
+        $thtk = $_POST['thtk'];
+        $sum = $_POST['sum'];
+        $ccno = $_POST['ccno'];
+        $tranzila_transaction = TranzilaTransaction::getTranzilaTransactionByThtk($thtk);
+        if ($this->validateThtkToken($sum, $thtk, $tranzila_transaction)) {
+            Log::info("Thtk Token validated. thtk: ".$thtk);
+        } else {
+            Log::warning("Thtk Validation Failed!");
+            return;
+        }
+
+        $tranzila_transaction->ccno = $ccno;
+        TranzilaTransaction::saveObjectToDB($tranzila_transaction);
+    }catch (\Exception $exception) {
+            Log::error("Failed to execute confirmChargeWithTranzila(). Exception: " . $exception);
+        }
+        return view('wallet.deposit_failed_from_tranzila');
     }
 
     public function getThtkToken($request){

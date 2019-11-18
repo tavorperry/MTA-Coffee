@@ -12,7 +12,7 @@
                 <div class="row justify-content-center position-relative" style="bottom:30px">
                     <div class="col-md-8">
                         <div class="card">
-                            <div class="card-header text-center"><b>אישור הטענה</b></div>
+                            <div class="card-header text-center"><b>טעינה נכשלה!!</b></div>
                             <div class="card-body container">
                                 <table>
                                     <tr style="width: 100%">
@@ -20,7 +20,7 @@
                                             שם:
                                         </td>
                                         <td style="width: 59%">
-                                        <span style="color: limegreen">
+                                        <span style="color: red">
                                             {{$first_name}} {{$last_name}}
                                 </span>
                                         </td>
@@ -29,7 +29,7 @@
                                             סכום:
                                         </td>
                                         <td>
-                                    <span style="color: limegreen">
+                                    <span style="color: red">
                                         {{$sum}} ש"ח
                                         </span>
                                         </td>
@@ -38,7 +38,7 @@
                                             יתרה מעודכנת:
                                         </td>
                                         <td>
-                                            <span style="color: limegreen"> {{$user->wallet->balance}} ש"ח </span>
+                                            <span style="color: red"> {{$user->wallet->balance}} ש"ח </span>
                                         </td>
                                     </tr>
                                 </table>
@@ -49,6 +49,9 @@
                     </div>
                 </div>
             </div>
+    <script>
+        alert("כרטיסך חיוב אך יש תקלה אצלנו במערכת! אנא צור קשא איתנו כדי לקבל זיכוי. תודה וסליחה!");
+    </script>
 
 @endsection
 
