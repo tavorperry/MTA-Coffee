@@ -50,9 +50,15 @@ class MachineController extends Controller
         $response = null;
         $client = new Client();
         $transactionId = NayaxTransactions::generateTransactionId();
+        $terminalId = "";
         if (!strcmp($transactionId, "0")){
             log::error("transactionId == 0");
             return false;
+        }
+        if ($machineNumber == '1'){
+            $terminalId = env('NAYAX_MACHINE1');
+        }elseif ($machineNumber == '2'){
+            $terminalId = env('NAYAX_MACHINE2');
         }
         try {
             $user = Auth::user();
