@@ -224,6 +224,7 @@ try{
     public function confirmChargeWithTranzila(){
         Log::info("Starting confirmChargeWithTranzila()");
         try {
+            Log::debug("_POST: " . print_r($_POST, true));
             $thtk = $_POST['thtk'];
             $sum = $_POST['sum'];
             $ccno = $_POST['ccno'];
@@ -233,7 +234,7 @@ try{
             if ($thtkValidatedAndMarkedAsUsed && $isTransactionTimestampValid) {
                 Log::info("Thtk Token validated. thtk: ".$thtk);
             } else {
-                Log::warning("Thtk Validation Failed!");
+                Log::emergency("Thtk Validation Failed!");
                 return "Error proceeding Tranzila Transaction. You may have been charged. Please Contact us!!  054-7981961 or mtacoffe@gmail.com";
             }
 
@@ -259,21 +260,21 @@ try{
     public function chargeFailedWithTranzila(){
         Log::info("Starting chargeFailedWithTranzila()");
         try{
-        $thtk = $_POST['thtk'];
-        $sum = $_POST['sum'];
-        $ccno = $_POST['ccno'];
-        $tranzila_transaction = TranzilaTransaction::getTranzilaTransactionByThtk($thtk);
-        if ($this->validateThtkToken($sum, $thtk, $tranzila_transaction)) {
-            Log::info("Thtk Token validated. thtk: ".$thtk);
-        } else {
-            Log::warning("Thtk Validation Failed!");
-            return;
-        }
-
-        $tranzila_transaction->ccno = $ccno;
-        TranzilaTransaction::saveObjectToDB($tranzila_transaction);
-    }catch (\Exception $exception) {
-            Log::error("Failed to execute confirmChargeWithTranzila(). Exception: " . $exception);
+            Log::debug("_POST: " . print_r($_POST, true));
+            $thtk = $_POST['thtk'];
+            $sum = $_POST['sum'];
+            $ccno = $_POST['ccno'];
+            $tranzila_transaction = TranzilaTransaction::getTranzilaTransactionByThtk($thtk);
+            if ($this->validateThtkToken($sum, $thtk, $tranzila_transaction)) {
+                Log::info("Thtk Token validated. thtk: ".$thtk);
+            } else {
+                Log::emergency("Thtk Validation Failed!");
+                return "Error proceeding Tranzila Transaction. You may have been charged. Please Contact us!!  054-7981961 or mtacoffe@gmail.com";
+            }
+            $tranzila_transaction->ccno = $ccno;
+            TranzilaTransaction::saveObjectToDB($tranzila_transaction);
+        }catch (\Exception $exception) {
+            Log::error("Failed to execute chargeFailedWithTranzila(). Exception: " . $exception);
         }
         return view('wallet.deposit_failed_from_tranzila');
     }
@@ -282,12 +283,6 @@ try{
         $sum = $request->get('amount');
         $response = null;
         $client = new Client();
-        $order_id = NayaxTransactions::generateTransactionId();
-
-        if (!strcmp($order_id, "0")){
-            log::error("order_id == 0");
-            return false;
-        }
         $form_params = [
             'sum' => "".$sum."",
             'supplier' => 'test',
@@ -307,7 +302,6 @@ try{
     }
 
     public function validateThtkToken($sum, $thtk, $tranzila_transaction){
-        //TODO: add timeout check lie in NAYAX
         if (!empty($tranzila_transaction) && !empty($tranzila_transaction->sum) && !empty($tranzila_transaction->thtk) && !empty($thtk) && !empty($sum)) {
             if ($tranzila_transaction->sum == $sum && strcasecmp($tranzila_transaction->thtk, $thtk) == 0) {
                 Log::debug("sum and thtk validated. Validating if used");

@@ -125,18 +125,6 @@
         @endif
     </div>
     <br>
-    <div class="row">
-        <label class="to-the-right col-3"><h4 class="service-description">הערות נוספות</h4></label>
-        <input id="comment" name="comment" type="text" maxlength="100" class="col-9 form-control" placeholder="הערות נוספות" >
-
-        </input>
-        @if ($errors->has('comment'))
-            <span class="invalid-feedback" style="display: block !important; text-align: center">
-                    <strong>אנא הקלידו הערה תקינה. בלי תווים מיוחדים ועד 100 תווים</strong>
-                </span>
-        @endif
-    </div>
-    <br>
     <div class="container">
         <div class="text-center">
             {!! app('captcha')->render(); !!}
