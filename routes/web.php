@@ -85,6 +85,3 @@ Route::post('wallet/creditcardchargetranzila', 'WalletController@chargeWithTranz
 Route::post(env('TRANZILA_CONFIRM_CHARGE_URL'), 'WalletController@confirmChargeWithTranzila')->name('wallet.confirmChargeWithTranzila');
 Route::post(env('TRANZILA_CONFIRM_CHARGE_FAILED_URL'), 'WalletController@chargeFailedWithTranzila')->name('wallet.chargeFailedWithTranzila');
 
-//מה שנשאר לי לעשות, זה להגיד בטרנזילה דף הצלחה ודף כישלון. דף ההצלחה יקבל את הסכום ויטעין את הארנק לפי הסכון. לשים לב למנוע נסיונות זיוף שם.
-
-

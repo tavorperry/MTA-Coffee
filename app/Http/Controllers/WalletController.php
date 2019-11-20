@@ -228,16 +228,18 @@ try{
             $sum = $_POST['sum'];
             $ccno = $_POST['ccno'];
             $tranzila_transaction = TranzilaTransaction::getTranzilaTransactionByThtk($thtk);
-            if ($this->validateThtkToken($sum, $thtk, $tranzila_transaction)) {
+            $thtkValidatedAndMarkedAsUsed = $this->validateThtkToken($sum, $thtk, $tranzila_transaction);
+            $isTransactionTimestampValid = TranzilaTransaction::isTranzilaTransactionTimestampValid($thtk);
+            if ($thtkValidatedAndMarkedAsUsed && $isTransactionTimestampValid) {
                 Log::info("Thtk Token validated. thtk: ".$thtk);
             } else {
                 Log::warning("Thtk Validation Failed!");
-                return;
+                return "Error proceeding Tranzila Transaction. You may have been charged. Please Contact us!!  054-7981961 or mtacoffe@gmail.com";
             }
 
             $tranzila_transaction->ccno = $ccno;
             TranzilaTransaction::saveObjectToDB($tranzila_transaction);
-            $user = auth::user();
+            $user = User::getUserById($tranzila_transaction->user);
 
             $deposit_succeed = $user->wallet->deposit($sum, "thtk " . $thtk);
             if (!$deposit_succeed) {
@@ -246,7 +248,7 @@ try{
                 return view('wallet.deposit_failed', compact('deposit_succeed', 'sum'));
             }else{
                 Log::debug("end of confirmChargeWithTranzila(). Forwarding user to view. User: ". $user->id);
-                return view('wallet.deposit_succeed', compact('deposit_succeed', 'sum'));
+                return view('wallet.deposit_succeed', compact('user', 'sum'));
             }
 
         }catch (\Exception $exception){
@@ -305,13 +307,14 @@ try{
     }
 
     public function validateThtkToken($sum, $thtk, $tranzila_transaction){
+        //TODO: add timeout check lie in NAYAX
         if (!empty($tranzila_transaction) && !empty($tranzila_transaction->sum) && !empty($tranzila_transaction->thtk) && !empty($thtk) && !empty($sum)) {
             if ($tranzila_transaction->sum == $sum && strcasecmp($tranzila_transaction->thtk, $thtk) == 0) {
                 Log::debug("sum and thtk validated. Validating if used");
                 if ($tranzila_transaction->used == false) {
                     $tranzila_transaction->used = true;
                     if (TranzilaTransaction::saveObjectToDB($tranzila_transaction)) {
-                        Log::info("Tranzila Transaction saved as used!");
+                        Log::info("Tranzila Transaction validated and saved as used!");
                         return true;
                     } else {
                         Log::error("Tranzila transaction cant be saved as used!");

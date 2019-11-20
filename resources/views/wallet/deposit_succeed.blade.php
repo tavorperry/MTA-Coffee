@@ -4,7 +4,6 @@
 
 @section('content')
         <?php
-            $user = auth::user();
             $first_name = $user->first_name;
             $last_name = $user->last_name;
         ?>
