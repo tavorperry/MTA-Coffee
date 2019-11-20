@@ -246,6 +246,7 @@ try{
             if (!$deposit_succeed) {
                 Log::error("Deposit Failed!!! We need to manually check that was charge from credit card and refund the user: " . $user . ".for Amount: ." . $sum);
                 Log::error("tranzila_transaction: " . $tranzila_transaction);
+                Log::debug("end of confirmChargeWithTranzila(). Forwarding user to view deposit_failed. User: ". $user->id);
                 return view('wallet.deposit_failed', compact('deposit_succeed', 'sum'));
             }else{
                 Log::debug("end of confirmChargeWithTranzila(). Forwarding user to view. User: ". $user->id);
@@ -276,6 +277,7 @@ try{
         }catch (\Exception $exception) {
             Log::error("Failed to execute chargeFailedWithTranzila(). Exception: " . $exception);
         }
+        Log::debug("end of chargeFailedWithTranzila(). Forwarding user to view.");
         return view('wallet.deposit_failed_from_tranzila');
     }
 
