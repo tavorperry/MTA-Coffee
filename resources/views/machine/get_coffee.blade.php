@@ -26,11 +26,7 @@
     </form>
     <script>
         function getCoffeeAlert() {
-            if (confirm("הפעולה הבאה תפתח את המכונה ותחייב אתכם בסכום המחיר של קפה. האם להמשיך?")) {
-                return true;
-            } else {
-                return false;
-            }
+            return confirm("הפעולה הבאה תפתח את המכונה ותחייב אתכם בסכום המחיר של קפה. האם להמשיך?");
         }
     </script>
 
