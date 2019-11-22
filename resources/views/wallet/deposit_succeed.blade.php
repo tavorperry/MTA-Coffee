@@ -74,7 +74,9 @@
                                     <br>
                                 </div>
                             </div>
-                            <button onclick="window.location.href = '{{env("APP_URL")}}'"> אישור ומעבר לתפריט הראשי </button>
+                            <form action='{{env("APP_URL")}}'>
+                                <input type="submit" value="אישור ומעבר לתפריט הראשי" />
+                            </form>
                         </div>
                     </div>
                 </div>
