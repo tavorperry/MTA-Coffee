@@ -5,7 +5,7 @@
         ?>
 
 
-        <html dir="rtl">
+        <html>
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -34,7 +34,7 @@
 
             <!-- End of Google Analytics -->
         </head>
-        <body dir="rtl">
+        <body dir="">
 
         <main class="container">
             <div class="container content text-right">
@@ -78,9 +78,7 @@
                                     <br>
                                 </div>
                             </div>
-                            <form action='{{env("APP_URL")}}'>
-                                <input type="submit" value="אישור ומעבר לתפריט הראשי" />
-                            </form>
+                            <button onclick="window.top.location.href = '{{env("APP_URL")}}'"> אישור ומעבר לתפריט הראשי </button>
                         </div>
                     </div>
                 </div>
