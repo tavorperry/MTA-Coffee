@@ -1,5 +1,14 @@
 $( document ).ready(function() {
-   
+
+    $('button[id="form-button"').click(function() {
+        var input = this;
+        input.disabled = true;
+        setTimeout(function() {
+            input.disabled = false;
+        }, 3000);
+
+    });
+
     // Closes the sidebar menu
     $(".menu-toggle").click(function(e) {
       e.preventDefault();
