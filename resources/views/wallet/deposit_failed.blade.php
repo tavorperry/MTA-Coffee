@@ -5,7 +5,7 @@
         ?>
 
 
-        <html>
+        <html dir="rtl">
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -34,17 +34,7 @@
 
             <!-- End of Google Analytics -->
         </head>
-        <body>
-        <header class="master-head" id="page-top">
-            <span>
-                <a href="{{route('home')}}" title="Home Page"><i class="fas fa-home back-to-home"></i></a>
-            </span>
-            <div class="round-div"></div>
-            <div class="container text-center my-auto">
-                <a href="{{route('home')}}" title="Home Page" style="text-decoration: none"><h3 id="navtext">חזק, על בסיס אמון</h3></a>
-            </div>
-            <div class="overlay"></div>
-        </header>
+        <body dir="rtl">
 
         <main class="container">
             <div class="container content text-right">
