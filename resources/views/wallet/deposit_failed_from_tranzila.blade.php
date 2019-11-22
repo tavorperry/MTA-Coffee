@@ -16,6 +16,8 @@
             <link href="{{env('APP_URL')}}/css/index.css" media="all" rel="stylesheet" type="text/css" />
             <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Varela+Round" rel="stylesheet">
             <script type="text/javascript" src="{{env('APP_URL')}}/js/index.js"></script>
+            <!-- jQuery library -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
             <meta name="csrf-token" content="{{ csrf_token() }}">
             @yield('page-style')
             <title>MTAcoffee</title>
