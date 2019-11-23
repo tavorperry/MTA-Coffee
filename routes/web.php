@@ -50,9 +50,9 @@ Route::post(env('LOG_PATH'), '\Rap2hpoutre\LaravelLogViewer\LogViewerController@
 Route::get('/terms', function () {
     return view('terms');})->name('terms');
 
-//Volunteer
+/*//Volunteer
 Route::get('/volunteer', function () {
-    return view('volunteer');})->name('volunteer')->middleware('auth');
+    return view('volunteer');})->name('volunteer')->middleware('auth');*/
 
 //ContactUs
 Route::get('contact-us', 'ContactUsController@contactUS')->name('contact-us');
@@ -65,13 +65,12 @@ Route::post('profile/changePassword', 'ProfileController@changePassword')->name(
 Route::post('profile/deactivation', 'ProfileController@deactivation')->name('profile.deactivation')->middleware('auth');
 
 //Wallet
-Route::get('wallet/charge', 'WalletController@manualCharge')->name('wallet.manualCharge')->middleware('auth');
-Route::post('wallet/charge', 'WalletController@confirmCharge')->name('wallet.confirmCharge')->middleware('auth');
-Route::get('wallet/creditcardcharge', 'WalletController@CreditCardCharge')->name('wallet.creditCardCharge')->middleware('auth'); //first pay page
-Route::post('wallet/creditcardcharge', 'WalletController@confirmCreditCardCharge')->name('wallet.confirmCreditCardCharge')->middleware('auth');
+//Route::get('wallet/charge', 'WalletController@manualCharge')->name('wallet.manualCharge')->middleware('auth');
+//Route::post('wallet/charge', 'WalletController@confirmCharge')->name('wallet.confirmCharge')->middleware('auth');
+//Route::post('wallet/creditcardcharge', 'WalletController@confirmCreditCardCharge')->name('wallet.confirmCreditCardCharge')->middleware('auth');
 
 ///Machine
-Route::get('getcoffee', 'MachineController@view')->name('getCoffee')->middleware('auth');
+Route::get('getcoffee', 'MachineController@getCoffeeView')->name('getCoffee')->middleware('auth');
 Route::post('getcoffee/buy', 'MachineController@buyCoffee')->name('getCoffee.buy')->middleware('auth');
 
 //Nayax
@@ -81,7 +80,7 @@ Route::post(env('NAYAX_SALE_END_NOTIFICATION'), 'MachineController@saleEndNotifi
 Route::post(env('NAYAX_REFUND'), 'MachineController@refund')->name('nayax.refund');
 
 //Tranzila
+    Route::get('wallet/creditcardcharge', 'WalletController@CreditCardCharge')->name('wallet.creditCardCharge')->middleware('auth'); //first pay page
 Route::post('wallet/creditcardchargetranzila', 'WalletController@chargeWithTranzila')->name('wallet.chargeWithTranzila')->middleware('auth'); //iframe page
 Route::post(env('TRANZILA_CONFIRM_CHARGE_URL'), 'WalletController@confirmChargeWithTranzila')->name('wallet.confirmChargeWithTranzila');
 Route::post(env('TRANZILA_CONFIRM_CHARGE_FAILED_URL'), 'WalletController@chargeFailedWithTranzila')->name('wallet.chargeFailedWithTranzila');
-
