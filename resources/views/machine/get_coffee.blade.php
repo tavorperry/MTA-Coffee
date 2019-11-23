@@ -8,7 +8,7 @@
     @if(session('message'))
         <div>{{ session('message') }}</div>
     @endif
-    <form name="getCoffee" class="" method="POST" action="<?php echo e(route('getCoffee.buy')); ?>" onsubmit="return getCoffeeAlert()">
+    <form name="getCoffee" id="submit_form" class="" method="POST" action="<?php echo e(route('getCoffee.buy')); ?>" onsubmit="return getCoffeeAlert()">
     @csrf
     <div class="row">
         <label class="to-the-right col-3"><h4 class="service-description">בחר מכונה</h4></label>
@@ -19,8 +19,8 @@
     <br>
     <div class="container">
         <div class="text-center">
-           {{-- {!! app('captcha')->render(); !!}--}}
-            <button type="submit" class="btn login-btn" value="דווח!">תביאו לי קפה!</button>
+            {!! app('captcha')->render(); !!}
+            <button type="submit" class="btn login-btn form-button" value="דווח!">תביאו לי קפה!</button>
         </div>
     </div>
     </form>

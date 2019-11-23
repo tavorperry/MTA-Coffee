@@ -1,12 +1,8 @@
 $( document ).ready(function() {
 
-    $('button[id="form-button"').click(function() {
-        var input = this;
-        input.disabled = true;
-        setTimeout(function() {
-            input.disabled = false;
-        }, 3000);
-
+    $("#submit_form").submit(function () {
+        $(".form-button").attr("disabled", true);
+        return true;
     });
 
     // Closes the sidebar menu

@@ -12,7 +12,7 @@
                 {{ "כלכלה" }}
             @endif
         </h4>
-        <form action="{{ route('station.shifts', $station->id) }}" method="POST">
+        <form id="submit_form" action="{{ route('station.shifts', $station->id) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="table-responsive">
@@ -49,7 +49,7 @@
             </div>
             <div class="container">
                 <div class="text-center">
-                    <button type="submit" class="btn login-btn" >עדכן משמרות</button>
+                    <button type="submit" class="btn login-btn form-button" >עדכן משמרות</button>
                 </div>
             </div>
         </form>
