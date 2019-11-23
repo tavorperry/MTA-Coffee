@@ -11,11 +11,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use App\Wallet;
+use Alert;
 
 class MachineController extends Controller
 {
-    public function view()
+    public function getCoffeeView()
     {
+        if(Auth::user()->wallet->balance() <= 0){
+            Alert::error(' ניתן לרכוש קפה אחרי הטענת הארנק הדיגיטלי', 'עדיין לא הטענת את הארק הדיגיטלי שלך!')->persistent("אוקיי, אני אטען");
+            return redirect()->back();
+        }
         return view('machine.get_coffee');
     }
 
