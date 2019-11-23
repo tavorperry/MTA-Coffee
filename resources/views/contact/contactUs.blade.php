@@ -21,7 +21,7 @@
     @endif
 
     @if(Auth::user())
-        {{ Form::open(['route' => ['contact-us.send']]) }}
+        {{ Form::open(['route' => ['contact-us.send'] , 'id' => 'submit_form']) }}
         <div class="row">
             <label class="to-the-right col-3"><h4 class="service-description">שם</h4></label>
             <input type="text" id="username" type="text" class="col-9 form-control" name="username" value="{{ $user->first_name. ' ' .$user->last_name }}" readonly>
@@ -44,12 +44,12 @@
             </div>
         </div>
         <div class="text-center">
-            <button type="submit" class="btn login-btn" value="שלח הודעה">שלח הודעה!</button>
+            <button type="submit" class="btn login-btn form-button" value="שלח הודעה">שלח הודעה!</button>
         </div>
 
         {!! Form::close() !!}
     @else
-        {{ Form::open(['route' => ['contact-us.send']]) }}
+        {{ Form::open(['route' => ['contact-us.send'] , 'id' => 'submit_form']) }}
         <div class="row">
             <label class="to-the-right col-3"><h4 class="service-description">שם</h4></label>
             <input type="text" id="username" type="text" class="col-9 form-control" name="username" placeholder="שם מלא" required>
@@ -72,7 +72,7 @@
             </div>
         </div>
         <div class="text-center">
-            <button type="submit" class="btn login-btn" value="שלח הודעה">שלח הודעה!</button>
+            <button type="submit" class="btn login-btn form-button" value="שלח הודעה">שלח הודעה!</button>
         </div>
         {!! Form::close() !!}
     @endif

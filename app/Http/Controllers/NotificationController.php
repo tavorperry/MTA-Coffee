@@ -14,6 +14,11 @@ class NotificationController extends Controller
 
     public function show(){
         $user = Auth::user();
+
+        if($user->role != 'admin' && $user->role != 'employee'){
+            return "You dont have permission to this page!";
+        }
+
         $shifts = $user->shifts;
         $notifications = [];
 

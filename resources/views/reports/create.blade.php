@@ -10,7 +10,7 @@
     @if(session('message'))
         <div>{{ session('message') }}</div>
     @endif
-    {{ Form::open(['route' => ['reports.store'],'files' => true]) }}
+    {{ Form::open(['route' => ['reports.store'],'files' => true , 'id' => 'submit_form']) }}
         @csrf
 
         <div class="row">
@@ -72,8 +72,7 @@
         <div class="container">
             <div class="text-center">
                 {!! app('captcha')->render() !!}
-                {{--<input type="submit" value="דווח!">--}}
-                <button type="submit" class="btn login-btn" value="דווח!">דווח!</button>
+                <button type="submit" class="btn login-btn form-button" value="דווח!">דווח!</button>
             </div>
         </div>
     {!! Form::close() !!}

@@ -38,7 +38,13 @@ class StationShiftController extends Controller
 
     public function pickStation()
     {
-        return view('shifts.stations');
+        $user = Auth::user();
+        if ($user->role == 'admin' || $user->role == 'employee') {
+            return view('shifts.stations');
+        }
+        else{
+            return "You dont have permission to this page!";
+        }
     }
 
     public static function isUserCheckThisShiftAlready($shift){

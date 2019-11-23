@@ -5,7 +5,7 @@
 @section('content')
         <h2 class="service-description text-center">הטען ארנק באמצעות כרטיס אשראי</h2>
         <hr>
-        {{ Form::open(['route' =>  ['wallet.chargeWithTranzila']]) }}
+        {{ Form::open(['route' =>  ['wallet.chargeWithTranzila'] , 'id' => 'submit_form']) }}
         @csrf
         <div class="row">
             <label class="to-the-right col-3"><h4 class="service-description">סכום</h4></label>
@@ -33,7 +33,7 @@
         <div class="container">
             <div class="text-center">
                 {!! app('captcha')->render(); !!}
-                <button type="submit" class="btn login-btn" value="דווח!">הטען!</button>
+                <button type="submit" class="btn login-btn form-button" value="charge">הטען!</button>
             </div>
         </div>
         {!! Form::close() !!}

@@ -48,14 +48,16 @@
                 <a class="js-scroll-trigger part-of-nav" href="{{ route('wallet.creditCardCharge') }}">הטענת ארנק</a>
             </li>
             <li class="sidebar-nav-item part-of-nav">
-                <a class="js-scroll-trigger part-of-nav" href="{{ route('getCoffee.buy') }}">תביאו לי קפה!</a>
+                <a class="js-scroll-trigger part-of-nav" href="{{ route('getCoffee') }}">תביאו לי קפה!</a>
             </li>
             <li class="sidebar-nav-item part-of-nav">
                 <a class="js-scroll-trigger part-of-nav" href="{{ route('reports.create') }}">דיווח על תקלה</a>
             </li>
-            <li class="sidebar-nav-item part-of-nav">
-                <a class="js-scroll-trigger part-of-nav" href="{{ route('station') }}">עדכון משמרות</a>
-            </li>
+            @if($auth_user->role == 'admin' || $auth_user->role == 'employee')
+                <li class="sidebar-nav-item part-of-nav">
+                    <a class="js-scroll-trigger part-of-nav" href="{{ route('station') }}">עדכון משמרות</a>
+                </li>
+            @endif
             <li class="sidebar-nav-item part-of-nav">
                 <a class="js-scroll-trigger part-of-nav" href="{{ route('contact-us') }}">צור קשר</a>
             </li>

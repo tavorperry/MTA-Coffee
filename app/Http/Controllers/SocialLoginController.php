@@ -50,6 +50,7 @@ class SocialLoginController extends Controller
                 $user->email = $socialUser->getEmail();
                 $user->secret_token = str_random(32);
                 $user->app_user_id = str_random(32);
+                $user->role = "student";
                 $user->save();
 
                 $social = new SocialUser;
@@ -73,8 +74,7 @@ class SocialLoginController extends Controller
                 //End
                 Auth::login($user);
             }
-            $google = true;
-            return view('volunteer', compact('google'));
+            return view('index');
         }catch (Exception $e){
             log::error("Failed to register/connect user via Social!!!"." Exception: ".$e->getMessage());
         }
