@@ -292,11 +292,19 @@ class ReportController extends Controller
     //Helper function for routing
     public function view(Report $report)
     {
+        $user = Auth::user();
+        if($user->role != 'admin' && $user->role != 'employee'){
+            return "You dont have permission to this page!";
+        }
         return view('reports.view', compact('report'));
     }
 
     //Helper function for routing
     public function viewAll(){
+        $user = Auth::user();
+        if($user->role != 'admin' && $user->role != 'employee'){
+            return "You dont have permission to this page!";
+        }
         return view('reports.view_all');
     }
 }

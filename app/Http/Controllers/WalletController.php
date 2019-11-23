@@ -201,10 +201,6 @@ try{
             ]);
     }
 
-    public function getCoffeeView(){
-        return view('get_coffee');
-    }
-
     public function chargeWithTranzila(Request $request){
         $amount = $request->get('amount');
         $thtk = $this->getThtkToken($request);

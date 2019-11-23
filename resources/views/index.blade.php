@@ -34,6 +34,7 @@
 
 @section('content')
     @if($auth_user)
+        @if($auth_user->role == 'admin' || $auth_user->role == 'employee')
         <div class="row">
             <a href="{{ route('notifications.show') }}" class="btn menu-btn col"> <i class="far fa-flag menu-btn-icon"></i><br>
                 התראות
@@ -43,8 +44,14 @@
               {{ count($unread_notifications) }}
             </span>
             </a>
-            <a href="{{ route('reports.create') }}" class="btn menu-btn col"><i class="fas fa-exclamation-triangle menu-btn-icon"></i><br>
-                דווח!
+            <a href="{{ route('station') }}" class="btn menu-btn col"><i class="far fa-calendar-alt menu-btn-icon"></i><br>
+                התנדבות
+            </a>
+        @else
+            <div class="row">
+        @endif
+            <a href="{{ route('getCoffee') }}" class="btn menu-btn col"><i class="fas fa-coffee menu-btn-icon"></i><br>
+                תביאו לי קפה!
             </a>
         </div>
         <div class="row">
@@ -53,8 +60,8 @@
                 <br>
                 דיגיטלי
             </a>
-            <a href="{{ route('station') }}" class="btn menu-btn col"><i class="far fa-calendar-alt menu-btn-icon"></i><br>
-                התנדבות
+            <a href="{{ route('reports.create') }}" class="btn menu-btn col"><i class="fas fa-exclamation-triangle menu-btn-icon"></i><br>
+                דווח!
             </a>
         </div>
         <form action="{{ route('logout') }}" method="POST" class="mt-5">

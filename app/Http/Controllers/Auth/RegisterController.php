@@ -76,7 +76,6 @@ class RegisterController extends Controller
 
         $this->guard()->login($user);
 
-        // $this->registered($request, $user)
         //Welcome Email:
         EmailController::SendWelcomeEmail($user,$user->email);
 
@@ -85,13 +84,8 @@ class RegisterController extends Controller
         if(env('NOTIFY_TAVOR'))
             EmailController::SendEmailNotification($user,'mtacoffe@gmail.com');
 
-
-
-
-       // return redirect()->to('/volunteer');
-
         return $this->guard()->login($user)
-            ?: redirect()->to('/volunteer');
+            ?: redirect()->to('/');
     }
 
     /**
@@ -109,6 +103,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'secret_token' => str_random(32),
             'app_user_id' => str_random(32),
+            'role' => 'student',
         ]);
     }
 }
