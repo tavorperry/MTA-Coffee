@@ -42,7 +42,8 @@ class MachineController extends Controller
             if ($isSucceed){
                 Log::info($METHOD_NAME . " succeed");
             }else{
-                Log::error($METHOD_NAME . " failed in post request");
+                Log::error($METHOD_NAME . " Failed in post request");
+                return "Operation Failed!";
             }
          }catch (Exception $e){
             LOG::error($METHOD_NAME . "Failed. Exception: " . $e->getMessage());
@@ -52,10 +53,11 @@ class MachineController extends Controller
     public function notifyNayax($machineNumber){
         $METHOD_NAME = "notifyNayax";
         log::info("Starting " . $METHOD_NAME . "()");
-        $response = null;
+        $response = "";
         $client = new Client();
         $transactionId = NayaxTransactions::generateTransactionId();
         $terminalId = "";
+        $isApproved = false;
         if (!strcmp($transactionId, "0")){
             log::error("transactionId == 0");
             return false;
@@ -67,20 +69,28 @@ class MachineController extends Controller
         }
         try {
             $user = Auth::user();
-            $response = $client->post(env('NAYAX_NOTIFY_URL'), [
-                'json' => [
-                    'AppUserId' => $user->app_user_id,
-                    'TransactionId' => $transactionId,
-                    'SecretToken' => env('NAYAX_SECRET_TOKEN'),
-                    'TerminalId' => $machineNumber
-                ]
-            ]);
-
+            $requset =  array(
+                'AppUserId' => $user->app_user_id,
+                'TransactionId' => $transactionId,
+                'SecretToken' => env('NAYAX_SECRET_TOKEN'),
+                'TerminalId' => $terminalId
+            );
+            Log::debug("Request will be sent to Nayax: " . json_encode($requset));
+            $response = $client->post(env('NAYAX_NOTIFY_URL'), ['json' => $requset]);
+            Log::debug($METHOD_NAME . " Response: " . strval($response->getBody()->getContents()));
+            //TODO: Verify the transactionID that come back from the response
+            if(!empty($response) && json_decode($response->getBody())->Status->Verdict == "Approved"){
+                $isApproved = true;
+            }
         }catch (\Exception $exception){
             Log::error("notifyNayax() Failed in post request! Exception: " . $exception);
         }
         Log::info("Exit " . $METHOD_NAME);
-        return ($response->getStatusCode() == 200);
+        if (!empty($response)) {
+            return ($response->getStatusCode() == 200 && $isApproved);
+        }else{
+            return "404";
+        }
     }
 
     protected function getJson($url)
